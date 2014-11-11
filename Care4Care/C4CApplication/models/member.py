@@ -6,7 +6,7 @@ class Member(models.Model):
     mail = models.EmailField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    picture = models.ImageField()
+    #picture = models.ImageField()
     birthday = models.DateField()
     
     TAG = (
@@ -36,8 +36,11 @@ class Member(models.Model):
     
     branch = models.ManyToManyField('Branch')
     favorite = models.ForeignKey("self")
-    ignored = models.ForeignKey("self")
+    #ignored = models.ForeignKey("self")
     #personal_network = models.ForeignKey(self)
     job = models.ManyToManyField('Job')
     message_sent = models.ForeignKey('Message')
-    message_received = models.ForeignKey('Message')
+    #message_received = models.ForeignKey('Message')
+    
+    class Meta:
+        app_label = 'C4CApplication'

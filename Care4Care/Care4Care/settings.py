@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'C4CApplication',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +61,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'OPTIONS' : { "init_command": "SET foreign_key_checks = 0;" },  #Je sais pas a quoi ca sert, mais ca fait tout bugge
+        'USER': 'root',
+        'PASSWORD': 'MOTDEPASSE',
+        #'HOST': '127.0.0.1',
+        #'PORT': '',
     }
 }
 
