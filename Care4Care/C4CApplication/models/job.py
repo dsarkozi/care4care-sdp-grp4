@@ -8,20 +8,20 @@ class Member(models.Model):
     start_time = models.IntegerField()
     
     FREQ = (
-        (0, once),
-        (1, daily),
-        (2, weekly),
-        (3, monthly),
-        (4, yearly),
+        (0, 'once'),
+        (1, 'daily'),
+        (2, 'weekly'),
+        (3, 'monthly'),
+        (4, 'yearly'),
     )
     frequence = models.SmallIntegerField(choices=FREQ)
     km = models.SmallIntegerField()
     time = models.SmallIntegerField()
     
     CAT = (
-        (1, shopping),
-        (2, visit),
-        (3, transport),
+        (1, 'shopping'),
+        (2, 'visit'),
+        (3, 'transport'),
     )
     job_category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField()

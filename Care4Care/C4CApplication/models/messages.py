@@ -6,10 +6,10 @@ class Messages(models.Model):
     subject = models.CharField(max_length=100)
     
     TYPE = (
-        (0, nothing),
-        (1, important),
-        (2, question),
-        (3, information),
+        (0, 'nothing'),
+        (1, 'important'),
+        (2, 'question'),
+        (3, 'information'),
     )
     type = models.SmallIntegerField(choices = TYPE)
     status = models.BooleanField()
