@@ -27,7 +27,7 @@ class MemberGuard():
         return True
     
     def get_members(self, member, criteria): 
-        """ returns a QuerySet """
+        """ returns a QuerySet of all the objects in the database """
         # TODO 
         return None
     
