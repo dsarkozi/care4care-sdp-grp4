@@ -2,8 +2,9 @@ from django.db import models
 
 
 class Job(models.Model):
-    id = models.AutoField(primary_key=True)
-    mail = models.EmailField(primary_key=True)
+    #id = models.AutoField(primary_key=True)
+    #mail = models.EmailField(primary_key=True)
+    mail = models.EmailField()
     done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     start_time = models.IntegerField()

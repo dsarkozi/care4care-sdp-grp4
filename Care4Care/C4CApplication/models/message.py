@@ -2,8 +2,9 @@ from django.db import models
 
 
 class Message(models.Model):
-    id = models.AutoField(primary_key=True)
-    mail = models.EmailField(primary_key=True)
+    #id = models.AutoField(primary_key=True)
+    #mail = models.EmailField(primary_key=True)
+    mail = models.EmailField()
     subject = models.CharField(max_length=100)
     
     TYPE = (
