@@ -30,14 +30,25 @@ class MemberGuard():
     def get_members(self, member, criteria): 
         """ returns a QuerySet of all the objects in the database 
         filtered by the criteria dictionary of the form (field, value) """
-        # check permission 
         result = Member.objects.all(); 
         for field, value in criteria : 
             result = result.filter(field=value)
+            
+        # TODO check visibility of the searched people
+        #result.exlude(visibility=) ?
         return result
     
     def modify_mail(self, member, identity, modification): 
-        # TODO
+        """ returns True if the value of the field mail as been replaced by the value of modification
+        for the member identified by the criteria in identity """
+        if member.type < 4 : # not a branch officer or a bp admin
+            return False
+        
+        result = Member.objects.all(); 
+        for field, value in criteria : 
+            result = result.filter(field=value)
+        
+        # TODO result must be the member to modify
         return True
     
     def modify_first_name(self, member, identity, modification): 
