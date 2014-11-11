@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Messages(models.Model):
     id = models.AutoField(primary_key=True)
     mail = models.EmailField(primary_key=True)
@@ -11,6 +12,6 @@ class Messages(models.Model):
         (2, 'question'),
         (3, 'information'),
     )
-    type = models.SmallIntegerField(choices = TYPE)
-    status = models.BooleanField()
+    type = models.SmallIntegerField(choices = TYPE, default=0)
+    status = models.BooleanField(default=False) #False = notRead, True = read
     date = models.DateField()

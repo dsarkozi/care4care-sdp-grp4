@@ -1,9 +1,10 @@
 from django.db import models
 
+
 class Member(models.Model):
     id = models.AutoField(primary_key=True)
     mail = models.EmailField(primary_key=True)
-    done = models.BooleanField()
+    done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     start_time = models.IntegerField()
     
@@ -24,5 +25,6 @@ class Member(models.Model):
         (3, 'transport'),
     )
     job_category = models.SmallIntegerField(choices=CAT)
-    type = models.BooleanField()
+    type = models.BooleanField() # True = demand, False = offer
     adresse = models.CharField(max_length=200)
+    accepted = models.BooleanField(default=False)
