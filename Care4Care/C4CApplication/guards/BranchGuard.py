@@ -1,5 +1,5 @@
 from C4CApplication.models import Branch
-
+from django.db.models.query import QuerySet
 
 class BranchGuard():
     
