@@ -1,5 +1,4 @@
 from django.db import models
-#from django.db.models.fields.related import ForeignKey
 
 class Member(models.Model): 
     mail = models.EmailField(primary_key=True)
