@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Member(models.Model):
+class Job(models.Model):
     id = models.AutoField(primary_key=True)
     mail = models.EmailField(primary_key=True)
     done = models.BooleanField(default=False)
@@ -25,6 +25,9 @@ class Member(models.Model):
         (3, 'transport'),
     )
     job_category = models.SmallIntegerField(choices=CAT)
-    type = models.BooleanField() # True = demand, False = offer
+    type = models.BooleanField(default=None) # True = demand, False = offer
     adresse = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
+    
+    class Meta:
+        app_label = 'C4CApplication'

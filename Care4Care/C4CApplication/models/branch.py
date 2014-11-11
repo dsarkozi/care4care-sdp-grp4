@@ -7,3 +7,6 @@ class Branch(models.Model):
     adress = models.CharField(max_length=200)
     
     jobs = models.ForeignKey('Job')
+    
+    class Meta:
+        app_label = 'C4CApplication'

@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Messages(models.Model):
+class Message(models.Model):
     id = models.AutoField(primary_key=True)
     mail = models.EmailField(primary_key=True)
     subject = models.CharField(max_length=100)
@@ -15,3 +15,6 @@ class Messages(models.Model):
     type = models.SmallIntegerField(choices = TYPE, default=0)
     status = models.BooleanField(default=False) #False = notRead, True = read
     date = models.DateField()
+    
+    class Meta:
+        app_label = 'C4CApplication'
