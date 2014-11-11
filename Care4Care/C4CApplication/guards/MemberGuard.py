@@ -3,26 +3,27 @@ from C4CApplication.models import Member
 
 class MemberGuard():
     
-    def create_member(self, member, fields): 
-        """ returns True if creation is done """
-        # if member as not the authorization return False 
-        # else 
-        mail = fields["mail"]
-        first_name = fields["first_name"]
-        last_name = fields["last_name"]
-        picture = fields["picture"]
-        birthday = fields["birthday"]
+    def create_member(self, fields): 
+        """ returns True if the creation is done """
+        member = Member( mail = fields["mail"] )
+        
+        member.first_name = fields["first_name"]
+        member.last_name = fields["last_name"]
+        member.picture = fields["picture"]
+        member.birthday = fields["birthday"]
         if fields["tag"] >= 0 and fields["tag"] <= 6 : 
-            tag = fields["tag"]
-        status = fields["status"]
-        mobile = fields["mobile"]
-        telephone = fields["telephone"]
-        register_date = fields["register_date"]
-        dash_board_text = fields["dash_board_text"]
-        adresse = fields["adresse"]
+            member.tag = fields["tag"]
+        member.status = fields["status"]
+        member.mobile = fields["mobile"]
+        member.telephone = fields["telephone"]
+        member.register_date = fields["register_date"]
+        member.dash_board_text = fields["dash_board_text"]
+        member.adresse = fields["adresse"]
         if fields["visibility"] >= 0 and fields["visibility"] <= 3 :
-            visibility = fields["visibility"]
-        time_credit = fields["time_credit"]
+            member.visibility = fields["visibility"]
+        member.time_credit = fields["time_credit"]
+        
+        member.save()
         return True
     
     def get_members(self, member, criteria): 
