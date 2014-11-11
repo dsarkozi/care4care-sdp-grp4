@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'C4CApplication.views.test.home', name='home'),
 )
