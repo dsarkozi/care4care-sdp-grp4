@@ -2,6 +2,7 @@ from C4CApplication.models import Member
 
 
 class MemberGuard():
+    
     def create_member(self, member, fields): 
         """ returns True if creation is done """
         # TODO 
