@@ -7,14 +7,30 @@ class Member(models.Model):
     last_name = models.CharField(max_length=30)
     picture = models.ImageField()
     birthday = models.DateField()
-    tag = models.SmallIntegerField()
+    TAG = (
+        (0,non_member),
+        (1,member),
+        (2,verified),
+        (3,volonteer),
+        (4, branch_off),
+        (5, bp_admin),
+    )
+    
+    tag = models.SmallIntegerField(choices = TAG)
     status = models.BooleanField()
     mobile = models.CharField(max_length=15)
     telephone = models.CharField(max_length=15)
     register_date = models.DateField()
     dash_board_text = models.TextField()
     adresse = models.CharField(max_length=200)
-    visibility = models.SmallIntegerField()
+    
+    VISIBILITY = (
+        (0,anyone),
+        (1,verified),
+        (2,favorites),
+        (3,network),
+    )
+    visibility = models.SmallIntegerField(choices = VISIBILITY)
     time_credit = models.BigIntegerField()
     accepted = models.BooleanField()
     
