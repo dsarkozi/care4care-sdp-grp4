@@ -71,3 +71,51 @@ class MemberGuard():
     def modify_accepted(self, member, identity, modification): 
         # TODO
         return True
+    
+    def add_branch(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_branch(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def add_favorite(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_favorite(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def add_ignored(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_ignored(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def add_job(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_job(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def add_message_sent(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_message_sent(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def add_message_received(self, member, identity, branch): 
+        # TODO
+        return True
+    
+    def remove_message_received(self, member, identity, branch): 
+        # TODO
+        return True
