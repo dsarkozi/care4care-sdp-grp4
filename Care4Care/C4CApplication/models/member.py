@@ -23,5 +23,5 @@ class Member(models.Model):
     ignored = models.ForeignKey("self")
     #personal_network = models.ForeignKey(self)
     job = models.ManyToManyField('Job')
-    message = models.ManyToManyField('Message')
-    
+    message_sent = models.ForeignKey('Message')
+    message_received = models.ForeignKey('Message')

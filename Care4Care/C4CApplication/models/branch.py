@@ -6,4 +6,4 @@ class Branch(models.Model):
     branch_officer = models.EmailField()
     adress = models.CharField(max_length=200)
     
-    members = models.ManyToManyField(Member)
+    jobs = models.ForeignKey('Job')
