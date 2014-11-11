@@ -1,4 +1,5 @@
 from django.db import models
+#from django.db.models.fields.related import ForeignKey
 
 class Member(models.Model): 
     mail = models.EmailField(primary_key=True)
@@ -17,4 +18,10 @@ class Member(models.Model):
     time_credit = models.BigIntegerField()
     accepted = models.BooleanField()
     
+    branch = models.ManyToManyField('Branch')
+    favorite = models.ForeignKey("self")
+    ignored = models.ForeignKey("self")
+    #personal_network = models.ForeignKey(self)
+    job = models.ManyToManyField('Job')
+    message = models.ManyToManyField('Message')
     

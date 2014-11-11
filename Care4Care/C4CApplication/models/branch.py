@@ -5,3 +5,5 @@ class Branch(models.Model):
     town = models.CharField(max_length=200)
     branch_officer = models.EmailField()
     adress = models.CharField(max_length=200)
+    
+    members = models.ManyToManyField(Member)
