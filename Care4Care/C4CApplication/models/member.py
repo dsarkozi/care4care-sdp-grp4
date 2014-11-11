@@ -14,7 +14,7 @@ class Member(models.Model):
         (1, 'member'),
         (2, 'verified'),
         (3, 'volunteer'),
-        (4, 'branch_off'),
+        (4, 'branch_officer'),
         (5, 'bp_admin'),
     )
     tag = models.SmallIntegerField(choices = TAG)
