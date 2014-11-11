@@ -1,6 +1,7 @@
 from django.db import models
 #from django.db.models.fields.related import ForeignKey
 
+
 class Member(models.Model): 
     mail = models.EmailField(primary_key=True)
     first_name = models.CharField(max_length=20)
@@ -11,13 +12,13 @@ class Member(models.Model):
         (0, 'non_member'),
         (1, 'member'),
         (2, 'verified'),
-        (3, 'volonteer'),
+        (3, 'volunteer'),
         (4, 'branch_off'),
         (5, 'bp_admin'),
     )
     
     tag = models.SmallIntegerField(choices = TAG)
-    status = models.BooleanField()
+    status = models.BooleanField(default=True) # True = active, False = inactive
     mobile = models.CharField(max_length=15)
     telephone = models.CharField(max_length=15)
     register_date = models.DateField()
@@ -30,9 +31,8 @@ class Member(models.Model):
         (2, 'favorites'),
         (3, 'network'),
     )
-    visibility = models.SmallIntegerField(choices = VISIBILITY)
-    time_credit = models.BigIntegerField()
-    accepted = models.BooleanField()
+    visibility = models.SmallIntegerField(choices = VISIBILITY, default=1)
+    time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
     favorite = models.ForeignKey("self")
