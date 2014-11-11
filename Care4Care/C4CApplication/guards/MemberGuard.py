@@ -84,8 +84,14 @@ class MemberGuard():
         # TODO
         return True
     
-    def modify_visibility(self, member, identity, modification): 
+    def add_visibility(self, member, identity, option): 
         # TODO
+        # self.visibility = option | self.visibility
+        return True
+    
+    def remove_visibility(self, member, identity, option): 
+        # TODO
+        # self.visibility = option ^ self.visibility
         return True
     
     def modify_time_credit(self, member, identity, modification): 

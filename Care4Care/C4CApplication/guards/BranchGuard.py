@@ -3,18 +3,28 @@ from C4CApplication.models import Branch
 
 class BranchGuard():
     
-    def create_branch(self, member, fields): 
-        """ returns True if creation is done """
-        # TODO 
+    def create_branch(self, member, fields):
+        """ returns True if the creation is done """
+        if(member.tag!=5): # if not bp-admin
+            return False
+        branch = Branch( name = fields["name"] )
+        branch.town = fields["town"]
+        branch.branch_officer = fields["branch_officer"]
+        branch.adress = fields["adress"]
+        
+        branch.save()
         return True
     
-    def get_branch(self, member, criteria): 
+    def get_branch(self, criteria): 
         """ returns a QuerySet """
-        # TODO 
-        return None
+        result = Branch.objects.all(); 
+        for field, value in criteria : 
+            result = result.filter(field=value)
+        return result
     
     def modify_name(self, member, identity, modification): #TODO keep this function ? Because changing private key is difficult in db
-        # TODO
+        if(member.tag<4):
+            return False
         return True
     
     def modify_town(self, member, identity, modification): 

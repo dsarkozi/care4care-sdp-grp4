@@ -25,13 +25,13 @@ class Member(models.Model):
     dash_board_text = models.TextField()
     adresse = models.CharField(max_length=200)
     
-    VISIBILITY = (
-        (0, 'anyone'),
-        (1, 'verified'),
-        (2, 'favorites'),
-        (3, 'network'),
+    VISIBILITY = ( # every bit of the number corresponds to one option
+        (1, 'anyone'), #0001
+        (2, 'verified'), #0010
+        (4, 'favorites'), #0100
+        (8, 'network'), #1000
     )
-    visibility = models.SmallIntegerField(choices = VISIBILITY, default=1)
+    visibility = models.SmallIntegerField(choices = VISIBILITY, default=2)
     time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
