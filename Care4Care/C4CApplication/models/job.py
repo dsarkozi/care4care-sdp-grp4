@@ -6,9 +6,23 @@ class Member(models.Model):
     done = models.BooleanField()
     comment = models.CharField(max_length=200)
     start_time = models.IntegerField()
-    frequence = models.SmallIntegerField()
+    
+    FREQ = (
+        (0, once),
+        (1, daily),
+        (2, weekly),
+        (3, monthly),
+        (4, yearly),
+    )
+    frequence = models.SmallIntegerField(choices=FREQ)
     km = models.SmallIntegerField()
     time = models.SmallIntegerField()
-    job_category = models.SmallIntegerField()
+    
+    CAT = (
+        (1, shopping),
+        (2, visit),
+        (3, transport),
+    )
+    job_category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField()
     adresse = models.CharField(max_length=200)
