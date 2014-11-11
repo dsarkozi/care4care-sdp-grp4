@@ -2,9 +2,27 @@ from C4CApplication.models import Member
 
 
 class MemberGuard():
+    
     def create_member(self, member, fields): 
         """ returns True if creation is done """
-        # TODO 
+        # if member as not the authorization return False 
+        # else 
+        mail = fields["mail"]
+        first_name = fields["first_name"]
+        last_name = fields["last_name"]
+        picture = fields["picture"]
+        birthday = fields["birthday"]
+        if fields["tag"] >= 0 and fields["tag"] <= 6 : 
+            tag = fields["tag"]
+        status = fields["status"]
+        mobile = fields["mobile"]
+        telephone = fields["telephone"]
+        register_date = fields["register_date"]
+        dash_board_text = fields["dash_board_text"]
+        adresse = fields["adresse"]
+        if fields["visibility"] >= 0 and fields["visibility"] <= 3 :
+            visibility = fields["visibility"]
+        time_credit = fields["time_credit"]
         return True
     
     def get_members(self, member, criteria): 
@@ -80,42 +98,42 @@ class MemberGuard():
         # TODO
         return True
     
-    def add_favorite(self, member, identity, branch): 
+    def add_favorite(self, member, identity, favorite): 
         # TODO
         return True
     
-    def remove_favorite(self, member, identity, branch): 
+    def remove_favorite(self, member, identity, favorite): 
         # TODO
         return True
     
-    def add_ignored(self, member, identity, branch): 
+    def add_ignored(self, member, identity, ignored): 
         # TODO
         return True
     
-    def remove_ignored(self, member, identity, branch): 
+    def remove_ignored(self, member, identity, ignored): 
         # TODO
         return True
     
-    def add_job(self, member, identity, branch): 
+    def add_job(self, member, identity, job): 
         # TODO
         return True
     
-    def remove_job(self, member, identity, branch): 
+    def remove_job(self, member, identity, job): 
         # TODO
         return True
     
-    def add_message_sent(self, member, identity, branch): 
+    def add_message_sent(self, member, identity, message_sent): 
         # TODO
         return True
     
-    def remove_message_sent(self, member, identity, branch): 
+    def remove_message_sent(self, member, identity, message_sent): 
         # TODO
         return True
     
-    def add_message_received(self, member, identity, branch): 
+    def add_message_received(self, member, identity, message_received): 
         # TODO
         return True
     
-    def remove_message_received(self, member, identity, branch): 
+    def remove_message_received(self, member, identity, message_received): 
         # TODO
         return True

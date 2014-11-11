@@ -2,11 +2,13 @@ from django.db import models
 
 
 class Member(models.Model): 
+    
     mail = models.EmailField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
     picture = models.ImageField()
     birthday = models.DateField()
+    
     TAG = (
         (0, 'non_member'),
         (1, 'member'),
@@ -15,7 +17,6 @@ class Member(models.Model):
         (4, 'branch_off'),
         (5, 'bp_admin'),
     )
-    
     tag = models.SmallIntegerField(choices = TAG)
     status = models.BooleanField(default=True) # True = active, False = inactive
     mobile = models.CharField(max_length=15)
