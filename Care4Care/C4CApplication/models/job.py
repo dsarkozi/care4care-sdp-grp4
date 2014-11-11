@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Member(models.Model):
+class Job(models.Model):
     id = models.AutoField(primary_key=True)
     mail = models.EmailField(primary_key=True)
     done = models.BooleanField(default=False)
