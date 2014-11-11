@@ -1,4 +1,5 @@
 from C4CApplication.models import Member
+from django.db.models.query import QuerySet
 
 
 class MemberGuard():
@@ -27,9 +28,13 @@ class MemberGuard():
         return True
     
     def get_members(self, member, criteria): 
-        """ returns a QuerySet of all the objects in the database """
-        # TODO 
-        return None
+        """ returns a QuerySet of all the objects in the database 
+        filtered by the criteria dictionary of the form (field, value) """
+        # check permission 
+        result = Member.objects.all(); 
+        for field, value in criteria : 
+            result = result.filter(field=value)
+        return result
     
     def modify_mail(self, member, identity, modification): 
         # TODO
