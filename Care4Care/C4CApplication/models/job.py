@@ -29,6 +29,7 @@ class Job(models.Model):
     type = models.BooleanField(default=None) # True = demand, False = offer
     adresse = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
+    branch = models.ForeignKey('Branch') #TODO here instead of in branch
     
     class Meta:
         app_label = 'C4CApplication'

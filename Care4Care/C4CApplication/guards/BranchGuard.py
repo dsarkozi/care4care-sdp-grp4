@@ -5,44 +5,78 @@ class BranchGuard():
     
     def create_branch(self, member, fields):
         """ returns True if the creation is done """
-        if(member.tag!=5): # if not bp-admin
+        if(member.tag<5): # if not bp-admin
             return False
         branch = Branch( name = fields["name"] )
         branch.town = fields["town"]
         branch.branch_officer = fields["branch_officer"]
-        branch.adress = fields["adress"]
-        
+        branch.address = fields["address"]
         branch.save()
         return True
     
-    def get_branch(self, criteria): 
+    def get_branches(self, criteria): 
         """ returns a QuerySet """
-        result = Branch.objects.all(); 
+        branches = Branch.objects.all(); 
         for field, value in criteria : 
-            result = result.filter(field=value)
-        return result
+            branches = branches.filter(field=value)
+        return branches
     
     def modify_name(self, member, identity, modification): #TODO keep this function ? Because changing private key is difficult in db
-        if(member.tag<4):
+        branch = Branch.objects.get(identity)
+        if(member.tag<5 & member.mail != branch.branch_officer): # if not bp-admin neither the Branch-officer 
             return False
+        branch.name = modification
+        branch.save()
         return True
     
     def modify_town(self, member, identity, modification): 
-        # TODO
+        branch = Branch.objects.get(identity)
+        if(member.tag<5 & member.mail != branch.branch_officer): # if not bp-admin neither the Branch-officer 
+            return False
+        branch.town = modification
+        branch.save()
         return True
     
     def modify_branch_officer(self, member, identity, modification): 
-        # TODO
+        if(member.tag<5):
+            return False
+        result = Branch.objects.get(identity)
+        result.branch_officer = modification
+        result.save()
         return True
     
-    def modify_adress(self, member, identity, modification): 
-        # TODO
+    def modify_address(self, member, identity, modification): 
+        branch = Branch.objects.get(identity)
+        if(member.tag<5 & member.mail != branch.branch_officer): # if not bp-admin neither the Branch-officer 
+            return False
+        branch.address = modification
+        branch.save()
         return True
     
-    def add_job(self, member, identity, job): 
-        # TODO
+    #TODO job is an Entry.objects.get() ? if not, need to create it before adding it
+    def add_job(self, member, identity, job):
+        if(job.mail != member.mail) : #TODO necessary ?
+            return False
+        branch = Branch.objects.get(identity)
+        allowed = False
+        for br in member.branch :
+            if (branch == br) :
+                allowed = True
+        if (~allowed) :
+            return False
+        branch.job_set.add(job)
         return True
     
     def remove_job(self, member, identity, job): 
-        # TODO
+        if(job.mail != member.mail) : #TODO necessary ? And who can delete a job?
+            return False
+        branch = Branch.objects.get(identity)
+        allowed = False
+        for br in member.branch :
+            if (branch == br) :
+                allowed = True
+        if (~allowed) :
+            return False
+        #need to Entry.object.get(job) before removing it, but not primary_key...
+        branch.job_set.remove(job)
         return True
