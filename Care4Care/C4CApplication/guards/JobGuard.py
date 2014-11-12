@@ -110,3 +110,11 @@ class JobGuard():
         job.accepted = modification
         job.save()
         return True
+    
+    def modify_branch(self, member, identity, modification):
+        job = Job.objects.get()#TODO primary key = identity
+        if member.mail!=job.mail : #if it is not the creator
+            return False
+        job.branch = modification
+        job.save()
+        return True
