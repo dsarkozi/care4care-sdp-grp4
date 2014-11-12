@@ -13,7 +13,6 @@ class Message(models.Model):
         (3, 'information'),
     )
     type = models.SmallIntegerField(choices = TYPE, default=0)
-    status = models.BooleanField(default=False) #False = notRead, True = read
     date = models.DateField()
     
     class Meta:
