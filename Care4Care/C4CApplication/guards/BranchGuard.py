@@ -70,7 +70,7 @@ class BranchGuard():
     
     def remove_job(self, member, identity, job): 
         #TODO need to Job.object.get(job) before removing it, but no primary_key...
-        if member.mail==job.member_set[0] or member.mail==job.member_set[1] :
+        if member.mail!=job.member_set[0] and member.mail!=job.member_set[1] :
             return False
         branch = Branch.objects.get(identity)
         allowed = False
