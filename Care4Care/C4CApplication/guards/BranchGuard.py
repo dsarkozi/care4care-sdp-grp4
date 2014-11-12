@@ -63,7 +63,7 @@ class BranchGuard():
         for br in member.branch :
             if branch == br :
                 allowed = True
-        if ~allowed :
+        if not allowed :
             return False
         branch.job_set.add(job)
         return True
@@ -77,7 +77,7 @@ class BranchGuard():
         for br in member.branch :
             if branch == br :
                 allowed = True
-        if ~allowed :
+        if not allowed :
             return False
         branch.job_set.remove(job)
         return True
