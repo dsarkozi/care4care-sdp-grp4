@@ -2,8 +2,6 @@ from django.db import models
 
 
 class Job(models.Model):
-    #id = models.AutoField(primary_key=True)
-    #mail = models.EmailField(primary_key=True)
     mail = models.EmailField()
     number = models.IntegerField()
     done = models.BooleanField(default=False)
