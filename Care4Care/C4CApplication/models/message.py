@@ -5,6 +5,7 @@ class Message(models.Model):
     mail = models.EmailField()
     number = models.IntegerField()
     subject = models.CharField(max_length=100)
+    content = models.TextField()
     
     TYPE = (
         (0, 'nothing'),

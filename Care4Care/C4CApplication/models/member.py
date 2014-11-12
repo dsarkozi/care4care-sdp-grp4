@@ -7,7 +7,7 @@ class Member(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
     #picture = models.ImageField()
-    birthday = models.DateField()
+    birthday = models.DateField()   #'yyyy-mm-dd'
     
     TAG = (
         (0, 'non_member'),
