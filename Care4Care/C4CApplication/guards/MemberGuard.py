@@ -184,7 +184,14 @@ class MemberGuard():
         return True
     
     def modify_time_credit(self, member, identity, modification): 
-        # TODO
+        """ returns True if the value of the field time_credit as been replaced by the value of modification
+        for the member identified by identity """
+        to_change = Member.objects.get(mail=identity)        
+        if member.mail != to_change.mail : 
+            return False
+        
+        to_change.time_credit = modification
+        to_change.save()
         return True
     
     def modify_accepted(self, member, identity, modification): 
