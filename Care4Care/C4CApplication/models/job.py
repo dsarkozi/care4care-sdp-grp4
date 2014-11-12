@@ -34,3 +34,4 @@ class Job(models.Model):
     
     class Meta:
         app_label = 'C4CApplication'
+        unique_together = ('mail', 'number')
