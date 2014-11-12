@@ -5,6 +5,7 @@ class Job(models.Model):
     #id = models.AutoField(primary_key=True)
     #mail = models.EmailField(primary_key=True)
     mail = models.EmailField()
+    number = models.IntegerField()
     done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     start_time = models.IntegerField()
@@ -25,7 +26,7 @@ class Job(models.Model):
         (2, 'visit'),
         (3, 'transport'),
     )
-    job_category = models.SmallIntegerField(choices=CAT)
+    category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField(default=None) # True = demand, False = offer
     address = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
