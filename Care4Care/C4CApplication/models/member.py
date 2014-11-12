@@ -23,7 +23,7 @@ class Member(models.Model):
     telephone = models.CharField(max_length=15)
     register_date = models.DateField()
     dash_board_text = models.TextField()
-    adresse = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
     
     VISIBILITY = ( # every bit of the number corresponds to one option
         (1, 'anyone'), #0001
