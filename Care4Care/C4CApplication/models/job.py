@@ -16,8 +16,8 @@ class Job(models.Model):
         (3, 'monthly'),
         (4, 'yearly'),
     )
-    frequence = models.SmallIntegerField(choices=FREQ)
-    km = models.SmallIntegerField()
+    frequency = models.SmallIntegerField(choices=FREQ)
+    km = models.SmallIntegerField(default=0)
     time = models.SmallIntegerField()
     
     CAT = (
@@ -27,7 +27,7 @@ class Job(models.Model):
     )
     job_category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField(default=None) # True = demand, False = offer
-    adresse = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
     branch = models.ForeignKey('Branch')
     
