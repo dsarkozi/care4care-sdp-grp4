@@ -16,8 +16,6 @@ class Message(models.Model):
     status = models.BooleanField(default=False) #False = notRead, True = read
     date = models.DateField()
     
-    member = models.ForeignKey('Message')
-    
     class Meta:
         app_label = 'C4CApplication'
         unique_together = ('mail', 'number')
