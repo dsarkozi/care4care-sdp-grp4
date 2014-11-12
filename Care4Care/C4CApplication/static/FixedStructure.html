@@ -6,10 +6,11 @@
 		</head>
 		
         <style type="text/css">   /* Partie CSS */ 
-         		
+         			
   		 /* Applied to all the html body... */
   		 body {
   		  top: 5em;
+  		  padding-right: 15em;
   		  padding-left: 15em;
   		  font-family: Georgia, "Times New Roman",
           Times, serif;
@@ -35,14 +36,20 @@
 				padding: 0.3em; 
 				border-right: 1em solid navy }
 			
+		  ul.navbar li a:hover{color:#58FAAC;}
+		  table a:hover{color:#58FAAC;}
+		  
 		 /* Deletes link underlines */		
-		  ul.navbar a {
+		  ul.navbar a, table a {
 			text-decoration: none }
-
+			
+		  a:link,a:visited {
+			color: #669 }
+			
         </style>
 			
 			
-<!-- Partie html : Menu de navigation (structure fixe) -->
+	<!-- Menu de navigation (structure fixe) -->
 	<ul class="navbar">
 			 <!-- Optionnel
 			
@@ -52,6 +59,7 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
+			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
 			<li><a href="Branches.html">Care4Care Branches</a></li>
 				<ul>
 					<li><a href="">Heembeek</a></li>
@@ -65,4 +73,5 @@
 			<li><a href="News.html">News</a></li>
 			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
 	</ul>
-
+		
+	
