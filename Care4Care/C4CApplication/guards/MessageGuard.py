@@ -3,28 +3,27 @@ from C4CApplication.models import Message
 
 class MessageGuard():
     
-    def create_job(self, member, fields): 
+    def create_message(self, member, fields): 
         """ returns True if creation is done """
-        # TODO 
+        message = Message.create() #TODO add primary key
+        message.mail = fields["mail"]
+        message.subject = fields["subject"]
+        if fields["type"] != None :
+            message.type = fields["type"]
+        if fields["status"] != None :
+            message.type = fields["status"]
+        message.date = fields["date"]
+        message.save()
         return True
     
-    def get_job(self, member, criteria): 
+    def get_messages(self, member, criteria): 
         """ returns a QuerySet """
-        # TODO 
-        return None
-    
-    def modify_subject(self, member, identity, modification): 
-        # TODO
-        return True
-    
-    def modify_type(self, member, identity, modification): 
-        # TODO
-        return True
+        message = Message.objects.all(); #TODO add condition : user can access this message
+        for field, value in criteria : 
+            message = message.filter(field=value)
+        return message
     
     def modify_status(self, member, identity, modification): 
-        # TODO
-        return True
-    
-    def modify_date(self, member, identity, modification): 
-        # TODO
+        #need primary key to get the message
+        #TODO implementation of message in db not yet fixed
         return True
