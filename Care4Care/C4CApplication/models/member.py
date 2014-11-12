@@ -35,12 +35,13 @@ class Member(models.Model):
     time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
+    
     favorite = models.ForeignKey("self")
     #ignored = models.ForeignKey("self")
+    
     #personal_network = models.ForeignKey(self)
+    
     job = models.ManyToManyField('Job')
-    message_sent = models.ForeignKey('Message')
-    #message_received = models.ForeignKey('Message')
     
     class Meta:
         app_label = 'C4CApplication'
