@@ -28,6 +28,15 @@ class Job(models.Model):
     type = models.BooleanField(default=None) # True = demand, False = offer
     address = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
+    
+    JOB_VISIBILITY = { # every bit of the number corresponds to one option
+        'anyone'     : 1,   #00001
+        'verified'   : 2,   #00010
+        'favorites'  : 4,   #00100
+        'network'    : 8,   #01000
+        'volunteer'  : 16,  #10000
+    }
+    visibility = models.SmallIntegerField(default=JOB_VISIBILITY['anyone'])
     branch = models.ForeignKey('Branch')
     
     class Meta:

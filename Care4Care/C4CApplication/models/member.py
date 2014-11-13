@@ -9,15 +9,15 @@ class Member(models.Model):
     #picture = models.ImageField()
     birthday = models.DateField()   #'yyyy-mm-dd'
     
-    TAG = (
-        (0, 'non_member'),
-        (1, 'member'),
-        (2, 'verified'),
-        (3, 'volunteer'),
-        (4, 'branch_officer'),
-        (5, 'bp_admin'),
-    )
-    tag = models.SmallIntegerField(choices = TAG)
+    TAG = {
+        'non_member'     : 1,   #000001
+        'member'         : 2,   #000010
+        'verified'       : 4,   #000100
+        'volunteer'      : 8,   #001000
+        'branch_officer' : 16,  #010000
+        'bp_admin'       : 32,  #100000
+    }
+    tag = models.SmallIntegerField()    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive
     mobile = models.CharField(max_length=15)
     telephone = models.CharField(max_length=15)
@@ -25,13 +25,13 @@ class Member(models.Model):
     dash_board_text = models.TextField()
     address = models.CharField(max_length=200)
     
-    VISIBILITY = ( # every bit of the number corresponds to one option
-        (1, 'anyone'), #0001
-        (2, 'verified'), #0010
-        (4, 'favorites'), #0100
-        (8, 'network'), #1000
-    )
-    visibility = models.SmallIntegerField(choices = VISIBILITY, default=2)
+    MEMBER_VISIBILITY = { # every bit of the number corresponds to one option
+        'anyone'     : 1,   #0001
+        'verified'   : 2,   #0010
+        'favorites'  : 4,   #0100
+        'network'    : 8,   #1000
+    }
+    visibility = models.SmallIntegerField(default=MEMBER_VISIBILITY['verified'])
     time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
