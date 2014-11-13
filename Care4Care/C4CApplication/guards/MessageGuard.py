@@ -10,20 +10,39 @@ class MessageGuard():
         message.subject = fields["subject"]
         if fields["type"] != None :
             message.type = fields["type"]
-        if fields["status"] != None :
-            message.status = fields["status"]
         message.date = fields["date"]
+        message.content = fields["content"]
         message.save()
         return True
     
-    def get_messages(self, member, criteria): 
+    def send_message(self, fields):
+        mailbox = Mailbox.create()
+        if fields["status"] != None :
+            mailbox.status = fields["status"]
+        mailbox.member = fields["member"]
+        mailbox.message = fields["message"]
+    
+    def get_received_messages(self, member): 
+        """ returns a list """
+        mailboxes = Mailbox.objects.all()
+        mailboxes = mailboxes.filter(member=member.mail)
+        messages = []
+        for mailbox in mailboxes :
+            messages.append(Message.objects.get(id=mailbox.message))
+        return messages
+    
+    def get_sent_messages(self, member): 
         """ returns a QuerySet """
-        message = Message.objects.all(); #TODO add condition : user can access this message
-        for field, value in criteria : 
-            message = message.filter(field=value)
-        return message
+        messages = Message.objects.all()
+        messages = messages.filter(mail = member.mail)
+        return messages
+    
+    def get_status(self, member, message):
+        """ returns a boolean """
     
     def modify_status(self, member, identity, modification): 
-        #need primary key to get the message
-        #TODO implementation of message in db not yet fixed
+        if member!=identity["member"] :
+            return False
+        mailBox = Mailbox.objects.get(member = identity["member"], message=identity["message"])
+        mailBox.status = modification
         return True
