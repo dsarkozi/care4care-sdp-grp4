@@ -2,7 +2,7 @@ from C4CApplication.models import Branch
 from django.db.models.query import QuerySet
 
 class BranchGuard():
-    
+
     def create_branch(self, member, fields):
         """ returns True if the creation is done """
         if member.tag < 5 : # if not bp-admin
