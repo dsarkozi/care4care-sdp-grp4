@@ -1,9 +1,10 @@
 from django.db import models
 
-class Member(models.Model):
-    id = models.AutoField(primary_key=True)
-    mail = models.EmailField(primary_key=True)
-    done = models.BooleanField()
+
+class Job(models.Model):
+    mail = models.EmailField()
+    number = models.IntegerField()
+    done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     start_time = models.IntegerField()
     
@@ -14,8 +15,8 @@ class Member(models.Model):
         (3, 'monthly'),
         (4, 'yearly'),
     )
-    frequence = models.SmallIntegerField(choices=FREQ)
-    km = models.SmallIntegerField()
+    frequency = models.SmallIntegerField(choices=FREQ)
+    km = models.SmallIntegerField(default=0)
     time = models.SmallIntegerField()
     
     CAT = (
@@ -23,6 +24,12 @@ class Member(models.Model):
         (2, 'visit'),
         (3, 'transport'),
     )
-    job_category = models.SmallIntegerField(choices=CAT)
-    type = models.BooleanField()
-    adresse = models.CharField(max_length=200)
+    category = models.SmallIntegerField(choices=CAT)
+    type = models.BooleanField(default=None) # True = demand, False = offer
+    address = models.CharField(max_length=200)
+    accepted = models.BooleanField(default=False)
+    branch = models.ForeignKey('Branch')
+    
+    class Meta:
+        app_label = 'C4CApplication'
+        unique_together = ('mail', 'number')
