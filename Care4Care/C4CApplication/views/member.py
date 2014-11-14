@@ -46,16 +46,17 @@ class Member(NonMember):
         
         return True
 
-    def accept_help(self, number, helper_email):
+    def accept_help(self, number_of_the_job, mail_creator_job, helper_email):
         """
         Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
         The chosen helper is warned by email
 
-        :param number:
+        :param number_of_the_job: it's the number of the job created by the mail_creator_job
+        :param mail_creator_job: The mail of the creator of the job
         :param helper_email:
         :return: False if there was a problem and True otherwise
         """
-        job = Job.objects.filter(number=number, mail=self.db_member.mail)
+        job = Job.objects.filter(number=number_of_the_job, mail=mail_creator_job)
         if len(job)!=1 : return False
         job.member_set.clear()  #On vire toutes les relations du job avec tout les membres.
         createur = Member.objects.filter(mail=job.mail) #je pref des filter, ca ne crash pas ca.
@@ -112,18 +113,19 @@ class Member(NonMember):
         job.save()
         return True
 
-    def register_job_done(self, number_of_job, mail_creator_job, helped_one_email=None, new_time=0):
+    def register_job_done(self, number_of_the_job, mail_creator_job, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
 
-        :param number_of_job: it's the number of the job created by the mail_creator_job
+        :param number_of_the_job: it's the number of the job created by the mail_creator_job
+        :param mail_creator_job: The mail of the creator of the job
         :param helped_one_email: it can't be None
         :param new_time:
         :return: False if there was a problem and True otherwise.
         """
         if helped_one_email==None : return False
-        job = Job.objects.filter(mail=mail_creator_job, number=number_of_job)
+        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
         if len(job)!=1 : return False
         job.done = True
         job.save()
@@ -142,16 +144,17 @@ class Member(NonMember):
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
         
 
-    def accept_bill(self, number_of_job, mail_creator_job, helper_email, amount):
+    def accept_bill(self, number_of_the_job, mail_creator_job, helper_email, amount):
         """
         Accepts the bill and transfers money to the helper
 
-        :param number_of_job: it's the number of the job created by the mail_creator_job
+        :param number_of_the_job: it's the number of the job created by the mail_creator_job
+        :param mail_creator_job: The mail of the creator of the job
         :param helper_email:
         :param amount: amount of the bill
         :return: False if there was a problem and True otherwise.
         """
-        job = Job.objects.filter(mail=mail_creator_job, number=number_of_job)
+        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
         if len(job)!=1 : return False
         job.payed = True
         job.save()
@@ -178,22 +181,50 @@ class Member(NonMember):
         type = 3
         return self.send_mail(sender_mail, receiver_mail, subject, content, type)
 
-    def refuse_bill(self, job_id, helper_email):
+    def refuse_bill(self, number_of_the_job, mail_creator_job, helper_email):
         """
         Refuses the bill and warns the branch officer by email
 
-        :param job_id:
+        :param number_of_the_job: it's the number of the job created by the mail_creator_job
+        :param mail_creator_job: The mail of the creator of the job
         :param helper_email:
-        :return: False if there was a problem and Ture otherwise.
+        :return: False if there was a problem and True otherwise.
         """
+        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
+        mail_branch_officer = job.branch.branch_officer
+        
+        #Send the mails
+        subject = "bill refused"
+        content = "Your bill has been refused by "+str(self.db_member.mail)
+        type = 1
+        res = self.send_mail(self.db_member.mail, helper_email, subject, content, type)
+        if res==False : return False
+        
+        content = "A bill has been refused by "+str(self.db_member.mail)
+        return self.send_mail(self.db_member.mail, mail_branch_officer, subject, content, type)
 
     def transfer_time(self, destination_email, time):
         """
         Transfers 'time' to a member with 'destination_email' as email
 
         :param destination_email: the email address of the member to transfer time
-        :return: False if there was a problem and Ture otherwise.
+        :return: False if there was a problem and True otherwise.
         """
+        sender_gift = self.db_member
+        receiver_gift = Member.objects.filter(mail=destination_email)
+        if len(receiver_gift)!=1 : return False
+        
+        sender_gift.time_credit -= time
+        receiver_gift.time_credit += time
+        sender_gift.save()
+        receiver_gift.save()
+        
+        #Send the message
+        subject = "You've received a gift"
+        content = "You've received a gift from "+str(sender_gift.mail)
+        type = 3
+        return self.send_mail(sender_gift.mail, receiver_gift.mail, subject, content, type)
+        
 
     def make_donation(self, time, branch_name=None):
         """
@@ -203,3 +234,16 @@ class Member(NonMember):
         :param time:
         :return:
         """
+        branch = Branch.objects.filter(name=branch_name)
+        if len(branch)==0 : #<=> if branch_name==None
+            branches_member = self.db_member.branch.all()   #We still try to find a branch
+            if len(branches_member)!=1 : return False
+            else : 
+                branch = branches_member[0]
+        
+        #We make the donation
+        self.db_member.time_credit -= time
+        branch.donation += time
+        self.db_member.save()
+        branch.save()
+        return True
