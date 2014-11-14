@@ -10,7 +10,7 @@ class MemberGuard():
         
         member.first_name = fields["first_name"]
         member.last_name = fields["last_name"]
-        member.picture = fields["picture"]
+        #member.picture = fields["picture"]
         member.birthday = fields["birthday"]
         if fields["tag"] < 0 or fields["tag"] > 6 : return False
         member.tag = fields["tag"]

@@ -5,7 +5,7 @@ class JobGuard():
     
     def create_job(self, member, fields): 
         """ returns True if creation is done """
-        job = Branch() #TODO primary key...
+        job = Branch()
         job.mail = fields["mail"]
         if fields["done"] != None :
             job.done = fields["done"]
@@ -32,7 +32,7 @@ class JobGuard():
         return jobs
     
     def modify_done(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if not ((job.type and member.mail==job.member_set[0]) or (not job.type and member.mail==job.member_set[1])) : #if it is not the helped one
             return False
         job.done = modification
@@ -40,7 +40,7 @@ class JobGuard():
         return True
     
     def modify_comment(self, member, identity, modification):  
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.member_set[0] and member.mail!=job.member_set[1] : #if it is not the helped one neither the helper
             return False
         job.comment = modification
@@ -48,7 +48,7 @@ class JobGuard():
         return True
     
     def modify_start_time(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.start_time = modification
@@ -56,7 +56,7 @@ class JobGuard():
         return True
     
     def modify_frequency(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.frequency = modification
@@ -64,7 +64,7 @@ class JobGuard():
         return True
     
     def modify_km(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.km = modification
@@ -72,7 +72,7 @@ class JobGuard():
         return True
     
     def modify_time(self, member, identity, modification):
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.time = modification
@@ -80,7 +80,7 @@ class JobGuard():
         return True
     
     def modify_category(self, member, identity, modification):
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.category = modification
@@ -88,7 +88,7 @@ class JobGuard():
         return True
     
     def modify_type(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.type = modification
@@ -96,7 +96,7 @@ class JobGuard():
         return True
     
     def modify_address(self, member, identity, modification): 
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.address = modification
@@ -104,7 +104,7 @@ class JobGuard():
         return True
     
     def modify_accepted(self, member, identity, modification):
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.member_set[0] and member.mail!=job.member_set[1] : #if it is not the helped one neither the helper
             return False
         job.accepted = modification
@@ -112,7 +112,7 @@ class JobGuard():
         return True
     
     def modify_branch(self, member, identity, modification):
-        job = Job.objects.get()#TODO primary key = identity
+        job = Job.objects.get(mail = identity[0], number = identity[1])
         if member.mail!=job.mail : #if it is not the creator
             return False
         job.branch = modification

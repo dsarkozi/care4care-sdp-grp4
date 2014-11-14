@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>{{ member.first_name}} {{ member.last_name }}</h1>
+    <p>Email : {{ member.mail }}</p>
+    {% if member.telephone %}
+        <p>Fixed phone number : {{ member.telephone }}</p>
+    {% endif %}
+    {% if member.mobile %}
+        <p>Mobile phone number : {{ member.mobile }}</p>
+    {% endif %}
+    {% comment %}
+        TODO add other information if necessary
+    {% endcomment %}
+</body>
+</html>
