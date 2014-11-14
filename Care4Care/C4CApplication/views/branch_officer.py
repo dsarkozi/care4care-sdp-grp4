@@ -40,6 +40,7 @@ class BranchOfficer(Member):
         branch = Branch.objects.filter(branch_officer=self.db_member.mail)
         branch.branch_officer = new_branch_officer_email
         branch.save()
+        return True
 
     def modify_tag_member(self, member_mail, new_tag):
         '''
@@ -53,6 +54,7 @@ class BranchOfficer(Member):
         if len(member)!=1 : return False
         member.tag = Member.TAG[new_tag]
         member.save()
+        return True
 
     def transfer_money_from_branch(self, time, branch_name, destination_email):
         '''
