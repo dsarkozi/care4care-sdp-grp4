@@ -39,6 +39,18 @@ class Member(models.Model):
     relation = models.ManyToManyField('Member', through='Relationship')
     job = models.ManyToManyField('Job')
     #personal_network = models.ForeignKey(self)
+
+    def is_favorite(self, other_member):
+        """
+        :param other_member:
+        :return: True if the email is in the favorite list of the member
+        """
+
+        for relation in self.relation.all():
+            if relation.member == other_member:
+                return True
+
+        return False
     
     class Meta:
         app_label = 'C4CApplication'
