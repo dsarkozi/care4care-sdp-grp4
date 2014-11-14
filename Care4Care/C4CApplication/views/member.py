@@ -92,7 +92,6 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise.
         """
         job = Job()
-        job.save()
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
@@ -109,7 +108,10 @@ class Member(NonMember):
         job.type = is_demand
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
-        job.branch = branch_name
+        job.save()
+        branch = Branch.objects.filter(name=branch_name)
+        if len(branch)!=1 : return False
+        job.branch = branch
         job.save()
         return True
 

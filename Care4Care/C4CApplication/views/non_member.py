@@ -121,11 +121,9 @@ class NonMember(User):
                 return False
 
         job = Job()
-        job.save()
         job.number = number+1
         job.accepted = False
         job.address = address
-        job.branch = branch_list[0]
         job.category = category
         job.comment = comment
         job.done = False
@@ -137,6 +135,8 @@ class NonMember(User):
         job.time = time
         job.type = False
         job.visibility = Job.JOB_VISIBILITY[visibility]
+        job.save()
+        job.branch = branch_list[0]
         job.member_set = [self.db_member]
 
         job.save()
