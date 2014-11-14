@@ -3,7 +3,7 @@ from C4CApplication.models import Message
 
 class MessageGuard():
     
-    def create_message(self, member, fields): 
+    def create_message(self, fields): 
         """ returns True if creation is done """
         message = Message.create() #TODO add primary key
         message.mail = fields["mail"]
@@ -11,7 +11,7 @@ class MessageGuard():
         if fields["type"] != None :
             message.type = fields["type"]
         if fields["status"] != None :
-            message.type = fields["status"]
+            message.status = fields["status"]
         message.date = fields["date"]
         message.save()
         return True

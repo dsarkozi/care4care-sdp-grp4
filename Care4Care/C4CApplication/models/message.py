@@ -2,9 +2,8 @@ from django.db import models
 
 
 class Message(models.Model):
-    #id = models.AutoField(primary_key=True)
-    #mail = models.EmailField(primary_key=True)
     mail = models.EmailField()
+    number = models.IntegerField()
     subject = models.CharField(max_length=100)
     
     TYPE = (
@@ -14,8 +13,8 @@ class Message(models.Model):
         (3, 'information'),
     )
     type = models.SmallIntegerField(choices = TYPE, default=0)
-    status = models.BooleanField(default=False) #False = notRead, True = read
     date = models.DateField()
     
     class Meta:
         app_label = 'C4CApplication'
+        unique_together = ('mail', 'number')
