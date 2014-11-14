@@ -7,7 +7,7 @@ class BPAdministrator(BranchOfficer):
     """
 
     def delete_member_from_branch(self, branch_name, deleted_one_email):
-
+        
 
     def delete_member_from_site(self, deleted_one_email):
 

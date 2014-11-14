@@ -6,7 +6,7 @@ class Job(models.Model):
     number = models.IntegerField()
     done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
-    start_time = models.IntegerField()
+    start_time = models.IntegerField(default=0)
     
     FREQ = (
         (0, 'once'),
@@ -15,9 +15,9 @@ class Job(models.Model):
         (3, 'monthly'),
         (4, 'yearly'),
     )
-    frequency = models.SmallIntegerField(choices=FREQ)
+    frequency = models.SmallIntegerField(choices=FREQ, default=0)
     km = models.SmallIntegerField(default=0)
-    time = models.SmallIntegerField()
+    time = models.SmallIntegerField(default=0)
     
     CAT = (
         (1, 'shopping'),
@@ -28,7 +28,6 @@ class Job(models.Model):
     type = models.BooleanField(default=None) # True = demand, False = offer
     address = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
-
     payed = models.BooleanField(default=False)
     
     JOB_VISIBILITY = { # every bit of the number corresponds to one option

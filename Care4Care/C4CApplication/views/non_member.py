@@ -106,7 +106,7 @@ class NonMember(User):
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.all()
+        job_list = Job.objects.all()    #pas bon pour moi ^^' de quentin
         if len(job_list) == 0:
             number = 0
         else:
@@ -121,6 +121,7 @@ class NonMember(User):
                 return False
 
         job = Job()
+        job.save()
         job.number = number+1
         job.accepted = False
         job.address = address

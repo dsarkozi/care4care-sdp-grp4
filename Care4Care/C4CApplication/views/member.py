@@ -1,23 +1,81 @@
+from time import strftime, gmtime
 from C4CApplication.views import NonMember
+from django.core.mail import send_mail
 
 
 class Member(NonMember):
     """
     This class represents a kind of Users called Members
     """
-
-    def accept_help(self, job_id, helper_email):
+    
+    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
         """
-        Chooses the member (with email stored in 'helper_email') to fo the job (with id stored in 'job_id')
+        Send a mail from from_mail to to_mail, with the subject, 
+        the content, and the type passed in parameter
+
+        :param sender_mail: mail of the sender
+        :param receiver_maill: mail of the receiver
+        :param subject: subject of the mail
+        :param content: content of the mail
+        :param type: type of the mail
+        :return: False if there was a problem and True otherwise
+        """
+        message = Message()
+        message.mail = sender_mail
+        n = 0
+        list_message = Message.objects.filter(mail=sender_mail)
+        for m in list_message:
+            if m.number>n :
+                n = m
+        message.number = n=1
+        message.subject = subject
+        message.content = content
+        message.type = type
+        message.date = strftime('%Y-%m-%d', gmtime())
+        message.save()
+        
+        mailbox = Mailbox()
+        mailbox.save()
+        member = Member.objects.filter(mail=receiver_mail)
+        if len(member)!=1 : return False
+        mailbox.member = member
+        mailbox.message = message
+        member.save()
+        message.save()
+        mailbox.save()
+        
+        return True
+
+    def accept_help(self, number, helper_email):
+        """
+        Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
         The chosen helper is warned by email
 
-        :param job_id:
+        :param number:
         :param helper_email:
         :return: False if there was a problem and True otherwise
         """
+        job = Job.objects.filter(number=number, mail=self.db_member.mail)
+        if len(job)!=1 : return False
+        job.member_set.clear()  #On vire toutes les relations du job avec tout les membres.
+        createur = Member.objects.filter(mail=job.mail) #je pref des filter, ca ne crash pas ca.
+        if len(createur)!=1 : return False
+        job.member_set.add(createur)  #on ajoute le createur du job
+        helper = Member.objects.filter(mail=helper_email)
+        if len(helper)!=1 : return False
+        job.member_set.add(helper)
+        job.accepted = True
+        job.save()
+        
+        #On envoit le mail
+        subject = 'Your help is accepted'
+        content = 'Congratulation ! Your help has been accepted by '+str(createur.mail)+' for the job '+str(job.id)
+        type = 3
+        return self.send_mail(createur.mail, helper.mail, subject, content, type)
+        
 
-    def create_job(self, is_demand=False, comment=None, start_time=0, frequency=0, km=0,
-                   time=0, category=1, address=None, visibility='anyone'):
+    def create_job(self, is_demand=False, comment=None, start_time, frequency=0, km=0,
+                   time=0, category=1, address=None, visibility='anyone', branch_name):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -32,26 +90,93 @@ class Member(NonMember):
         :param visibility:
         :return: False if there was a problem and True otherwise.
         """
+        job = Job()
+        job.save()
+        job.mail = self.db_member.mail
+        n = 0
+        jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
+        for j in jobs_created_by_me:
+            if j.number>n :
+                n = m
+        job.number = n+1
+        job.comment = comment
+        job.start_time = start_time
+        job.frequency = frequency
+        job.km = km
+        job.time = time
+        job.category = category
+        job.type = is_demand
+        job.address = address
+        job.visibility = Job.JOB_VISIBILITY[visibility]
+        job.branch = branch_name
+        job.save()
+        return True
 
-    def register_job_done(self, job_id, helped_one_email=None, new_time=0):
+    def register_job_done(self, number_of_job, mail_creator_job, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
 
-        :param job_id:
-        :param helped_one_email:
+        :param number_of_job: it's the number of the job created by the mail_creator_job
+        :param helped_one_email: it can't be None
         :param new_time:
         :return: False if there was a problem and True otherwise.
         """
+        if helped_one_email==None : return False
+        job = Job.objects.filter(mail=mail_creator_job, number=number_of_job)
+        if len(job)!=1 : return False
+        job.done = True
+        job.save()
+        
+        #On envoit le mail
+        helper_mail = ''
+        participants = job.member_set.all()
+        for participant in participants :
+            if participant.mail!=helped_one_email :
+                helper_mail = participant.mail
+                break
+        if helper_mail=='' : return False
+        subject = 'The job number '+str(j.id)+' is done'
+        content = 'The job number '+str(j.id)+' is done. Please, consult your account to accept or not the bill'
+        type = 1
+        return self.send_mail(helper_mail, helped_one_email, subject, content, type)
+        
 
-    def accept_bill(self, job_id, helper_email):
+    def accept_bill(self, number_of_job, mail_creator_job, helper_email, amount):
         """
         Accepts the bill and transfers money to the helper
 
-        :param job_id:
+        :param number_of_job: it's the number of the job created by the mail_creator_job
         :param helper_email:
-        :return: False if there was a problem and Ture otherwise.
+        :param amount: amount of the bill
+        :return: False if there was a problem and True otherwise.
         """
+        job = Job.objects.filter(mail=mail_creator_job, number=number_of_job)
+        if len(job)!=1 : return False
+        job.payed = True
+        job.save()
+        
+        helped_one = None
+        participants = job.member_set.all()
+        for participant in participants :
+            if participant.mail!=helper_email :
+                helper = participant
+                break
+        if helped_one==None : return False
+        helper = Member.objects.filter(mail=helper_email)
+        if len(helper)!=1 : return False
+        
+        #On debite
+        helped_one.time_credit -= amount
+        helper.time_credit += amount
+        helper.save()
+        helped_one.save()
+        
+        #On envoit un message pour prevenir
+        subject = "You've been payed"
+        content = "You've been payed by "+str(helped_one.mail)
+        type = 3
+        return self.send_mail(sender_mail, receiver_mail, subject, content, type)
 
     def refuse_bill(self, job_id, helper_email):
         """
