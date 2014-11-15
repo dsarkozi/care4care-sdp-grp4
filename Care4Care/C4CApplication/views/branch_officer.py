@@ -31,13 +31,13 @@ class BranchOfficer(Member):
         pass
 
 
-    def give_branch_control(self, new_branch_officer_email):    #TODO -> corriger l'obtention du branch
+    def give_branch_control(self, branch_name, new_branch_officer_email):
         '''
         Set the control of a branch to an another branch_officer, which is represent by the mail
         :param new_branch_officer_email: the new branch_officer that will control the branch
         :return: False if there was a problem and True otherwise.
         '''
-        branch = Branch.objects.filter(branch_officer=self.db_member.mail)
+        branch = Branch.objects.filter(name=branch_name)
         branch.branch_officer = new_branch_officer_email
         branch.save()
         return True
@@ -75,7 +75,7 @@ class BranchOfficer(Member):
         member.save()
         return True
         
-    def create_job(self, is_demand=False, comment=None, start_time=0, frequency=0, km=0,
+    def create_job(self, branch_name, is_demand=False, comment=None, start_time=0, frequency=0, km=0,
                    time=0, category=1, address=None, visibility='volunteer'):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -109,7 +109,7 @@ class BranchOfficer(Member):
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
-        branch = Branch.objects.filter(branch_officer=self.db_member.mail)    #TODO: checker si c'est bon pour avoir la branch
+        branch = Branch.objects.filter(name=branch_name)
         if len(branch)!=1 : return False
         job.branch = branch
         job.save()
