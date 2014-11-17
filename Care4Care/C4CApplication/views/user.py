@@ -7,9 +7,6 @@ from C4CApplication.models import *
 class User(object):
     __metaclass__ = abc.ABCMeta
     
-    self.db_member = None
-    
-    
     
     ''' Si on veut mettre des methodes abstract
     

@@ -5,7 +5,7 @@ class Branch(models.Model):
     town = models.CharField(max_length=200)
     branch_officer = models.EmailField()
     address = models.CharField(max_length=200)
-    donation = models.IntegerField()
+    donation = models.IntegerField(default=0)
     
     class Meta:
         app_label = 'C4CApplication'

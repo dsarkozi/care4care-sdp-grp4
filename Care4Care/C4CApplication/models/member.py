@@ -1,3 +1,6 @@
+from time import strftime, gmtime
+
+
 from django.db import models
 
 
@@ -7,7 +10,7 @@ class Member(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
     #picture = models.ImageField()
-    birthday = models.DateField()   #'yyyy-mm-dd'
+    birthday = models.DateField(default='2014-01-01')   #'yyyy-mm-dd'
     
     TAG = {
         'non_member'     : 1,   #000001
@@ -17,11 +20,11 @@ class Member(models.Model):
         'branch_officer' : 16,  #010000
         'bp_admin'       : 32,  #100000
     }
-    tag = models.SmallIntegerField()    #Limit max
+    tag = models.SmallIntegerField(default=1)    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive
     mobile = models.CharField(max_length=15)
     telephone = models.CharField(max_length=15)
-    register_date = models.DateField()
+    register_date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))
     dash_board_text = models.TextField()
     address = models.CharField(max_length=200)
     
@@ -39,6 +42,18 @@ class Member(models.Model):
     relation = models.ManyToManyField('Member', through='Relationship')
     job = models.ManyToManyField('Job')
     #personal_network = models.ForeignKey(self)
+
+    def is_favorite(self, other_member):
+        """
+        :param other_member:
+        :return: True if the email is in the favorite list of the member
+        """
+
+        for relation in self.relation.all():
+            if relation.member == other_member:
+                return True
+
+        return False
     
     class Meta:
         app_label = 'C4CApplication'

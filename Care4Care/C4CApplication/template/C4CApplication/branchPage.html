@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% comment %}
+        TODO Check for URL
+    {% endcomment %}
+    <form action="{% url 'myapp:branches' %}" method="post">
+        <label for="branch_list_not_registered">List of your branches</label>
+        <ul>
+        {% for branch in branch_list %}
+            {% if branch.ckecked %}
+                <li>
+                    <label for="{{ branch }}">{{ branch }}</label>
+                    <input type="checkbox" id="{{ branch }}" name="{{ branch }}" value="{{ branch }}" checked/>
+                    <a href="{% url 'myapp:memberslist' branch %}"></a> {% comment %} TODO find another way... Redirection in view ? {% endcomment %}
+                </li>
+            {% else %}
+                <li>
+                    <label for="{{ branch }}">{{ branch }}</label>
+                    <input type="checkbox" id="{{ branch }}" name="{{ branch }}" value="{{ branch }}"/>
+                    <a href="{% url 'myapp:memberslist' branch %}"></a> {% comment %} TODO find another way... Redirection in view ? {% endcomment %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <input type="submit" value="Change"/>
+    </form>
+
+</body>
+</html>
