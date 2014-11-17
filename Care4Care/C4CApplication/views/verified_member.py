@@ -1,4 +1,4 @@
-from C4CApplication.views import Member
+from C4CApplication.views import Member, Job
 
 
 class VerifiedMember(Member):
@@ -28,7 +28,7 @@ class VerifiedMember(Member):
     # herited by Non-Member from Member ?
     def get_job_list(self, show_offers):
         """ returns a QuerySet """
-        jobs = Job.objects.all(); 
+        jobs = Job.objects.all()
         #TODO a quoi sert show_offers ?
         return jobs
 
