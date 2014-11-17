@@ -5,3 +5,4 @@ from C4CApplication.views.verified_member import *
 from C4CApplication.views.volunteer_member import *
 from C4CApplication.views.branch_officer import *
 from C4CApplication.views.bp_administrator import *
+from C4CApplication.views.system_email import *

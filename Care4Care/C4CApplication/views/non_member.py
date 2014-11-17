@@ -89,7 +89,7 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, start_time, time, branch_name, comment=None, frequency=0, km=0, \
+    def create_job(self, start_time, time, branch_name, comment=None, frequency=0, km=0,
                    category=1, address=None, visibility='anyone'):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -106,11 +106,11 @@ class NonMember(User):
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.all()    #pas bon pour moi ^^' de quentin
+        job_list = Job.objects.all()  # TODO pas bon pour moi ^^' de quentin
         if len(job_list) == 0:
             number = 0
         else:
-            job_dic = job_list[0].aggregate(Max('number'))
+            job_dic = job_list.aggregate(Max('number'))
             number = job_dic['number__max']
 
         if branch_name is None:

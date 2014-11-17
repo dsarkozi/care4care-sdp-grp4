@@ -1,4 +1,5 @@
 from C4CApplication.views import Member
+from C4CApplication.models import Branch, Job
 
 
 class BranchOfficer(Member):
@@ -16,12 +17,12 @@ class BranchOfficer(Member):
         :return: False if there was a problem and True otherwise.
         """
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
+        if len(branch) != 1:
             return False
-        if branch.branch_officer != self.db_member.mail :
+        if branch.branch_officer != self.db_member.mail:
             return False
         member = Member.objects.filter(mail=deleted_one_email)
-        if len(member)!=1 :
+        if len(member) != 1:
             return False
         member.branch.remove(branch)
         member.save()
@@ -32,8 +33,8 @@ class BranchOfficer(Member):
         """
         ????
         """
+        # TODO
         pass
-
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
@@ -42,9 +43,9 @@ class BranchOfficer(Member):
         :return: False if there was a problem and True otherwise.
         """
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
+        if len(branch) != 1:
             return False
-        if branch.branch_officer != self.db_member.mail :
+        if branch.branch_officer != self.db_member.mail:
             return False
         branch.branch_officer = new_branch_officer_email
         branch.save()
@@ -58,14 +59,19 @@ class BranchOfficer(Member):
         :param new_tag: new tag to assign to the member
         :return: False if there was a problem and True otherwise.
         """
-        branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
-            return False
-        if branch.branch_officer != self.db_member.mail :
-            return False
+
         member = Member.objects.filter(mail=member_mail)
-        if len(member)!=1 :
+        if len(member) != 1:
             return False
+
+        member_branch = None
+        for branch in member.branch:
+            if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
+                member_branch = branch
+
+        if member_branch is None:  # The branch officer have no power on this user
+            return False
+
         member.tag = Member.TAG[new_tag]
         member.save()
         return True
@@ -80,12 +86,12 @@ class BranchOfficer(Member):
         :return: False if there was a problem and True otherwise.
         """
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
+        if len(branch) != 1:
             return False
-        if branch.branch_officer != self.db_member.mail :
+        if branch.branch_officer != self.db_member.mail:
             return False
         member = Member.objects.filter(mail=destination_email)
-        if len(member)!=1 :
+        if len(member) != 1:
             return False
         branch.donation -= time
         member.time_credit += time
@@ -93,7 +99,7 @@ class BranchOfficer(Member):
         member.save()
         return True
         
-    def create_job(self, branch_name, is_demand=False, comment=None, start_time=0, frequency=0, km=0, \
+    def create_job(self, branch_name, is_demand=False, comment=None, start_time=0, frequency=0, km=0,
                    time=0, category=1, address=None, visibility='volunteer'):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -109,12 +115,14 @@ class BranchOfficer(Member):
         :param visibility:
         :return: False if there was a problem and True otherwise.
         """
+
+        # TODO Why my aggregate solution does not work :p ?
         job = Job()
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
         for j in jobs_created_by_me:
-            if j.number>n :
+            if j.number > n:
                 n = m
         job.number = n+1
         job.comment = comment
@@ -128,7 +136,7 @@ class BranchOfficer(Member):
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
+        if len(branch) != 1:
             return False
         job.branch = branch
         job.save()
