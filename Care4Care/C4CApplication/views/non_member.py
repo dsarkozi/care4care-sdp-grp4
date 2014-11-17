@@ -89,7 +89,7 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, start_time, time, branch_name, comment=None, frequency=0, km=0,
+    def create_job(self, start_time, time, branch_name, comment=None, frequency=0, km=0, \
                    category=1, address=None, visibility='anyone'):
         """
         Creates a help offer (the parameters will be used to fill the database).

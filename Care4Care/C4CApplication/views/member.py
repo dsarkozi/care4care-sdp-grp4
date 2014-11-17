@@ -75,8 +75,8 @@ class Member(NonMember):
         return self.send_mail(createur.mail, helper.mail, subject, content, type)
         
 
-    def create_job(self, is_demand=False, comment=None, start_time, frequency=0, km=0,
-                   time=0, category=1, address=None, visibility='anyone', branch_name):
+    def create_job(self, branch_name, start_time, is_demand=False, comment='', \
+                   frequency=0, km=0, time=0, category=1, address=None, visibility='anyone'):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
