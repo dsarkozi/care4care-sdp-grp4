@@ -11,6 +11,7 @@ class VerifiedMember(Member):
         #TODO
         return False
 
+    # herited by Non-Member from Member ?
     def get_job_list(self, show_offers):
         """ returns a QuerySet """
         jobs = Job.objects.all(); 
