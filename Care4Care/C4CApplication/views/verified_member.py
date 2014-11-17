@@ -6,6 +6,19 @@ class VerifiedMember(Member):
     This class represents a kind of Users called Verified Members
     """
 
+    def is_job_visible(self, job, db_member):
+        """
+        :param job:
+        :param db_member:
+        :return: True if the job created by the member is visible
+        """
+
+        #This line have to change if we add the personal network
+        return job.visibility == Job.JOB_VISIBILITY['anyone']\
+               or job.visibility == Job.JOB_VISIBILITY['verified']\
+               or (job.visibility == Job.JOB_VISIBILITY['favorites']
+                   and db_member.is_favorite(self.db_member))
+
     def see_job_details(self, job_id, helped_one_email):
         """
         :param job_id: id of the job to return
@@ -13,24 +26,24 @@ class VerifiedMember(Member):
         :return: the instance of Job object represented by the 'job_id' if the user can see it
                         otherwise, it returns None
         """
-        # TODO a finir
         job_list = Job.objects.filter(number=job_id, mail=helped_one_email)
         if len(job_list) == 0:
             return None
+        job = job_list[0]
 
         db_member = (Member.objects.filter(mail=job_list.mail))[0]
 
-        if self.is_job_visible(job_list[0], db_member):
-            return job_list[0]
+        if self.is_job_visible(job, db_member):
+            return job
         else:
             return None
 
-    # herited by Non-Member from Member ?
-    def get_job_list(self, show_offers):
-        """ returns a QuerySet """
+    # En fait en redéfinissant juste is_visible c'est bon, nan ? (idem pour see_job_details
+    """def get_job_list(self, show_offers):
+        """ """returns a QuerySet """ """
         jobs = Job.objects.all()
         #TODO a quoi sert show_offers ?
-        return jobs
+        return jobs"""
 
     def accept_job(self, job_id, helped_one_email):
         #TODO
