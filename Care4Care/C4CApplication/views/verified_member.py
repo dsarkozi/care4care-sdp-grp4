@@ -1,10 +1,24 @@
-from C4CApplication.views import Member, Job
+from C4CApplication.views import Member
+from C4CApplication.models import Job
 
 
 class VerifiedMember(Member):
     """
     This class represents a kind of Users called Verified Members
     """
+
+    def is_job_visible(self, job, db_member):
+        """
+        :param job:
+        :param db_member:
+        :return: True if the job created by the verified member is visible
+        """
+
+        #This line have to change if we add the personal network
+        return (job.visibility & Job.JOB_VISIBILITY['anyone']) == 1\
+               or (job.visibility & Job.JOB_VISIBILITY['verified']) == 1\
+               or (job.visibility == Job.JOB_VISIBILITY['favorites']
+                   and db_member.is_favorite(self.db_member))
 
     def see_job_details(self, job_id, helped_one_email):
         """
@@ -13,25 +27,23 @@ class VerifiedMember(Member):
         :return: the instance of Job object represented by the 'job_id' if the user can see it
                         otherwise, it returns None
         """
-        # TODO a finir
-        job_list = Job.objects.filter(number=job_id, mail=helped_one_email)
-        if len(job_list) == 0:
-            return None
+        return self.see_job_details_base(job_id, helped_one_email, self.is_job_visible)
 
-        db_member = (Member.objects.filter(mail=job_list.mail))[0]
-
-        if self.is_job_visible(job_list[0], db_member):
-            return job_list[0]
-        else:
-            return None
-
-    # herited by Non-Member from Member ?
     def get_job_list(self, show_offers):
-        """ returns a QuerySet """
-        jobs = Job.objects.all()
-        #TODO a quoi sert show_offers ?
-        return jobs
+        """
+        :param show_offers: the type of the list of the jobs to return
+        :return: the list of Job objects visible by the user
+            (offers if 'show_offers' is true and otherwise the demands)
+        """
+        return self.get_job_list_base(show_offers, self.is_job_visible)
 
     def accept_job(self, job_id, helped_one_email):
-        #TODO
-        return False
+        """
+        Puts the member on the list of possible helpers for a pending job.
+        The helped one will be warned by email (this email is the parameter 'helped_one_email').
+
+        :param job_id: the if of the job to accept
+        :param helped_one_email: the email of the 'owner' of the job
+        :return: False if there was a problem and True otherwise
+        """
+        return self.accept_job_base(job_id, helped_one_email, self.is_job_visible)

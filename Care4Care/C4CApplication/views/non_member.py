@@ -30,6 +30,16 @@ class NonMember(User):
         :return: the instance of Job object represented by the 'job_id' if the user can see it
                         otherwise, it returns None
         """
+        return self.see_job_details_base(job_id, helped_one_email, self.is_job_visible)
+
+    def see_job_details_base(self, job_id, helped_one_email, function):
+        """
+        :param job_id: id of the job to return
+        :param helped_one_email: the email of the 'owner' of the job
+        :param function: the function to check visibility of the job
+        :return: the instance of Job object represented by the 'job_id' if the user can see it
+                        otherwise, it returns None
+        """
 
         job_list = Job.objects.filter(number=job_id, mail=helped_one_email)
         if len(job_list) == 0:
@@ -37,7 +47,7 @@ class NonMember(User):
 
         db_member = (Member.objects.filter(mail=job_list.mail))[0]
 
-        if self.is_job_visible(job_list[0], db_member):
+        if function(job_list[0], db_member):
             return job_list[0]
         else:
             return None
@@ -45,6 +55,15 @@ class NonMember(User):
     def get_job_list(self, show_offers):
         """
         :param show_offers: the type of the list of the jobs to return
+        :return: the list of Job objects visible by the user
+            (offers if 'show_offers' is true and otherwise the demands)
+        """
+        return self.get_job_list_base(show_offers, self.is_job_visible)
+
+    def get_job_list_base(self, show_offers, function):
+        """
+        :param show_offers: the type of the list of the jobs to return
+        :param function: the function to check visibility of the job
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
@@ -57,7 +76,7 @@ class NonMember(User):
         filtered_job_list = []
 
         for job in job_list:
-            if self.is_job_visible(job, db_member):
+            if function(job, db_member):
                 filtered_job_list.append(job)
 
         return filtered_job_list
@@ -71,6 +90,18 @@ class NonMember(User):
         :param helped_one_email: the email of the 'owner' of the job
         :return: False if there was a problem and True otherwise
         """
+        return self.accept_job_base(job_id, helped_one_email, self.is_job_visible)
+
+    def accept_job_base(self, job_id, helped_one_email, function):
+        """
+        Puts the member on the list of possible helpers for a pending job.
+        The helped one will be warned by email (this email is the parameter 'helped_one_email').
+
+        :param job_id: the if of the job to accept
+        :param helped_one_email: the email of the 'owner' of the job
+        :param function: the function to check visibility of the job
+        :return: False if there was a problem and True otherwise
+        """
 
         job_list = Job.objects.filter(number=job_id, mail=helped_one_email, type=True)
         if len(job_list) == 0:
@@ -80,7 +111,7 @@ class NonMember(User):
 
         db_member = (Member.objects.filter(mail=job_list.mail))[0]
 
-        if self.is_job_visible(job, db_member):
+        if function(job, db_member):
             job.member_set.add(self.db_member)
 
             Message.send_new_helper_accept(self.db_member, db_member)
@@ -106,7 +137,7 @@ class NonMember(User):
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.all()  # TODO pas bon pour moi ^^' de quentin
+        job_list = Job.objects.filter(mail=self.db_member.mail)
         if len(job_list) == 0:
             number = 0
         else:

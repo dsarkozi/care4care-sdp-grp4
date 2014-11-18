@@ -33,8 +33,7 @@ class BranchOfficer(Member):
         """
         ????
         """
-        # TODO
-        pass
+        raise PermissionError  # TODO
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
@@ -123,7 +122,7 @@ class BranchOfficer(Member):
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
         for j in jobs_created_by_me:
             if j.number > n:
-                n = m
+                n = j.number
         job.number = n+1
         job.comment = comment
         job.start_time = start_time

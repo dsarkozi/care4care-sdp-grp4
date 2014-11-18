@@ -34,6 +34,7 @@ class BPAdministrator(BranchOfficer):
         :return: False if there was a problem and True otherwise.
         """
         # TODO
+        raise PermissionError
 
     def log_as_member(self, email):
         """
@@ -41,6 +42,7 @@ class BPAdministrator(BranchOfficer):
         :return: the object Member or None if there is a problem
         """
         # TODO -> go throught sessions variables ?
+        raise PermissionError
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
@@ -106,14 +108,14 @@ class BPAdministrator(BranchOfficer):
         :param visibility:
         :return: False if there was a problem and True otherwise.
         """
-        # TODO Why my aggregate solution does not work :p ?
+
         job = Job()
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
         for j in jobs_created_by_me:
             if j.number > n:
-                n = m
+                n = j.number
         job.number = n+1
         job.comment = comment
         job.start_time = start_time

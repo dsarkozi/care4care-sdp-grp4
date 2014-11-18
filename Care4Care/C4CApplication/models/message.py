@@ -13,7 +13,7 @@ class Message(models.Model):
         (2, 'question'),
         (3, 'information'),
     )
-    type = models.SmallIntegerField(choices = TYPE, default=0)
+    type = models.SmallIntegerField(choices=TYPE, default=0)
     date = models.DateField()
     
     class Meta:

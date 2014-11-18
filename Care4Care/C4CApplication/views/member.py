@@ -28,7 +28,7 @@ class Member(NonMember):
         for m in list_message:
             if m.number > n:
                 n = m
-        message.number = n = 1
+        message.number = n + 1
         message.subject = subject
         message.content = content
         message.type = type
@@ -102,7 +102,7 @@ class Member(NonMember):
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
         for j in jobs_created_by_me:
             if j.number > n:
-                n = m
+                n = j.number
         job.number = n+1
         job.comment = comment
         job.start_time = start_time
@@ -144,7 +144,7 @@ class Member(NonMember):
         #We send a mail
         helper_mail = ''
         participants = job.member_set.all()
-        for participant in participants :
+        for participant in participants:
             if participant.mail != helped_one_email:
                 helper_mail = participant.mail
                 break
