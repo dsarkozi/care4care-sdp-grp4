@@ -18,7 +18,7 @@ class VolunteerVerified(VolunteerMember, VerifiedMember):
         return (job.visibility & Job.JOB_VISIBILITY['anyone']) == 1\
                or (job.visibility & Job.JOB_VISIBILITY['verified']) == 1\
                or (job.visibility & Job.JOB_VISIBILITY['volunteer']) == 1\
-               or (job.visibility == Job.JOB_VISIBILITY['favorites']
+               or (job.visibility & Job.JOB_VISIBILITY['favorites'] == 1
                    and db_member.is_favorite(self.db_member))
 
     def see_job_details(self, job_id, helped_one_email):

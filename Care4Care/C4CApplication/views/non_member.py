@@ -19,8 +19,8 @@ class NonMember(User):
         """
 
         #This line have to change if we add the personal network
-        return job.visibility == Job.JOB_VISIBILITY['anyone']\
-               or (job.visibility == Job.JOB_VISIBILITY['favorites']
+        return job.visibility & Job.JOB_VISIBILITY['anyone'] == 1\
+               or (job.visibility & Job.JOB_VISIBILITY['favorites'] == 1
                    and db_member.is_favorite(self.db_member))
 
     def see_job_details(self, job_id, helped_one_email):

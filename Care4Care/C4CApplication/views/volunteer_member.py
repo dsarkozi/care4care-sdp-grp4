@@ -11,13 +11,13 @@ class VolunteerMember(Member):
         """
         :param job:
         :param db_member:
-        :return: True if the job created by the verified member is visible
+        :return: True if the job created by the volunteer member is visible
         """
 
         #This line have to change if we add the personal network
         return (job.visibility & Job.JOB_VISIBILITY['anyone']) == 1\
                or (job.visibility & Job.JOB_VISIBILITY['volunteer']) == 1\
-               or (job.visibility == Job.JOB_VISIBILITY['favorites']
+               or (job.visibility & Job.JOB_VISIBILITY['favorites'] == 1
                    and db_member.is_favorite(self.db_member))
 
     def see_job_details(self, job_id, helped_one_email):
