@@ -1,10 +1,11 @@
+{% load staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 	
 <head>
 	<meta charset="utf-8"/>
 	<title>Care4Care - Home Page</title>
-	<link rel="stylesheet" href="../../static/home_page.css">
+	<link rel="stylesheet" href="{% static "css/home_page.css" %}">
 </head>
 
 	
@@ -33,7 +34,7 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
+			<li><a href="HomePage.html"> <b> <center> HOME </center> </b> </a></li>
 			<li><a href="Branches.html">Care4Care Branches</a></li>
 				<ul>
 					<li><a href="">Heembeek</a></li>
@@ -55,9 +56,9 @@
 	<center>
 	<table style="margin-top:50px; margin-left:0px; border: 2px solid navy;"> 
 	<tr> 
-		<td><img src="../images/retraite.jpg" alt="titre" width= 240px height= 200px /></td> 
-		<td ><img src="../images/care.jpg" alt="titre" width= 240px height= 200px /></td> 
-		<td ><img src="../images/old.jpg" alt="titre" width= 240px height= 200px/></td> 
+		<td><img src="{% static "images/retraite.jpg"%}" alt="titre" width= 240px height= 200px /></td>
+		<td ><img src="{% static "images/care.jpg"%}" alt="titre" width= 240px height= 200px /></td>
+		<td ><img src="{% static "images/old.jpg"%}" alt="titre" width= 240px height= 200px/></td>
 	</tr> 
 	</table> 
 	</center>
