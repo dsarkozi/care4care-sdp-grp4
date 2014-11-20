@@ -1,11 +1,12 @@
 from django.views.generic.edit import FormView
+
 from C4CApplication.views.forms.LoginForm import LoginForm
 
 
 class HomePageView(FormView):
     template_name = "C4CApplication/HomePage.html"
     form_class = LoginForm
-    success_url = "/"
+    success_url = "myc4c/"
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
@@ -15,8 +16,7 @@ class HomePageView(FormView):
     def form_valid(self, form):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
-        print("Email: " + email)
-        print("Password: " + password)
+        self.request.session['email'] = email
         return super(HomePageView, self).form_valid(form)
 
     # def post(self, request, *args, **kwargs):
