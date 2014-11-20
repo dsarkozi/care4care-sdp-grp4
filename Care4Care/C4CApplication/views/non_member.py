@@ -21,7 +21,8 @@ class NonMember(User):
         #This line have to change if we add the personal network
         return job.visibility & Job.JOB_VISIBILITY['anyone'] == 1\
                or (job.visibility & Job.JOB_VISIBILITY['favorites'] == 1
-                   and db_member.is_favorite(self.db_member))
+                   and db_member.is_favorite(self.db_member))\
+               or db_member == self.db_member
 
     def see_job_details(self, job_number, job_creator_mail):
         """
@@ -52,7 +53,7 @@ class NonMember(User):
         else:
             return None
 
-    def get_job_list(self, show_offers):
+    def get_visible_job_list(self, show_offers):
         """
         :param show_offers: the type of the list of the jobs to return
         :return: the list of Job objects visible by the user
@@ -60,7 +61,7 @@ class NonMember(User):
         """
         return self.get_job_list_base(show_offers, self.is_job_visible)
 
-    def get_job_list_base(self, show_offers, function):
+    def get_visible_job_list_base(self, show_offers, function):
         """
         :param show_offers: the type of the list of the jobs to return
         :param function: the function to check visibility of the job
@@ -68,18 +69,34 @@ class NonMember(User):
             (offers if 'show_offers' is true and otherwise the demands)
         """
 
-        job_list = Job.objects.filter(type=show_offers)
-        if len(job_list) == 0:
+        jobs_list = Job.objects.filter(type=show_offers)
+        if len(jobs_list) == 0:
             return []
-
-        db_member = (Member.objects.filter(mail=job_list.mail))[0]
-        filtered_job_list = []
-
-        for job in job_list:
+        
+        filtered_jobs_list = []
+        for job in jobs_list :
+            db_member = (Member.objects.filter(mail=job.mail))[0]
             if function(job, db_member):
-                filtered_job_list.append(job)
+                filtered_jobs_list.append(job)
 
-        return filtered_job_list
+        return filtered_jobs_list
+    
+    def get_involved_job_list(self, show_offers):
+        """
+        :param show_offers: the type of the list of the jobs to return
+        :return: the list of Job objects in which the user is involved
+            (offers if 'show_offers' is true and otherwise the demands)
+        """
+        jobs_list = Job.objects.filter(type=show_offers)
+        if len(jobs_list) == 0:
+            return []
+        
+        filtered_jobs_list = []
+        for job in jobs_list :
+            if self.db_member == job.member_set[0] or self.db_member == job.member_set[1] :
+                filtered_jobs_list.append(job)
+
+        return filtered_jobs_list
 
     def accept_job(self, job_number, job_creator_mail):
         """
