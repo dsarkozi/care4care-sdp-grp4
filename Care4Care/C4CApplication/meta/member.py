@@ -1,5 +1,5 @@
 from time import strftime, gmtime
-from C4CApplication.views import NonMember#, SystemEmail
+from C4CApplication.meta import NonMember#, SystemEmail
 from C4CApplication.models import Message, Job, Branch, Mailbox
 from C4CApplication import models
 
