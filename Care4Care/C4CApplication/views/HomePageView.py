@@ -1,14 +1,21 @@
-from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
+
 from C4CApplication.views.LoginForm import LoginForm
 
 
-class HomePageView(TemplateView):
+class HomePageView(FormView):
     template_name = "C4CApplication/HomePage.html"
+    form_class = LoginForm
+
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['loginForm'] = LoginForm(auto_id=False)
         return context
+
+    def post(self, request, *args, **kwargs):
+
+        return super(HomePageView, self).post(request, *args, **kwargs)
 
     def demand_job_list(self):
         member = None # get_member TODO
