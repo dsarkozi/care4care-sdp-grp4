@@ -48,17 +48,17 @@ class Member(NonMember):
         
         return True
 
-    def accept_help(self, number_of_the_job, mail_creator_job, helper_email):
+    def accept_help(self, job_number, job_creator_mail, helper_email):
         """
         Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
         The chosen helper is warned by email
 
-        :param number_of_the_job: it's the number of the job created by the mail_creator_job
-        :param mail_creator_job: The mail of the creator of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
         :param helper_email:
         :return: False if there was a problem and True otherwise
         """
-        job = Job.objects.filter(number=number_of_the_job, mail=mail_creator_job)
+        job = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job) != 1:
             return False
         job.member_set.clear()  # We clear all relationships with the members (only one member can be accepted)
@@ -121,13 +121,13 @@ class Member(NonMember):
         job.save()
         return True
 
-    def register_job_done(self, number_of_the_job, mail_creator_job, helped_one_email=None, new_time=0):
+    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
 
-        :param number_of_the_job: it's the number of the job created by the mail_creator_job
-        :param mail_creator_job: The mail of the creator of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
         :param helped_one_email: it can't be None
         :param new_time:
         :return: False if there was a problem and True otherwise.
@@ -135,7 +135,7 @@ class Member(NonMember):
 
         if helped_one_email is None:
             return False
-        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
+        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
         if len(job) != 1:
             return False
         job.done = True
@@ -155,17 +155,17 @@ class Member(NonMember):
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
-    def accept_bill(self, number_of_the_job, mail_creator_job, helper_email, amount):
+    def accept_bill(self, job_number, job_creator_mail, helper_email, amount):
         """
         Accepts the bill and transfers money to the helper
 
-        :param number_of_the_job: it's the number of the job created by the mail_creator_job
-        :param mail_creator_job: The mail of the creator of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
         :param helper_email:
         :param amount: amount of the bill
         :return: False if there was a problem and True otherwise.
         """
-        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
+        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
         if len(job) != 1:
             return False
         job.payed = True
@@ -195,16 +195,16 @@ class Member(NonMember):
         type = 3
         return self.send_mail(helped_one.mail, helper.mail, subject, content, type)
 
-    def refuse_bill(self, number_of_the_job, mail_creator_job, helper_email):
+    def refuse_bill(self, job_number, job_creator_mail, helper_email):
         """
         Refuses the bill and warns the branch officer by email
 
-        :param number_of_the_job: it's the number of the job created by the mail_creator_job
-        :param mail_creator_job: The mail of the creator of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
         :param helper_email:
         :return: False if there was a problem and True otherwise.
         """
-        job = Job.objects.filter(mail=mail_creator_job, number=number_of_the_job)
+        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
         mail_branch_officer = job.branch.branch_officer
         
         #Send the mails

@@ -23,25 +23,25 @@ class NonMember(User):
                or (job.visibility & Job.JOB_VISIBILITY['favorites'] == 1
                    and db_member.is_favorite(self.db_member))
 
-    def see_job_details(self, job_id, helped_one_email):
+    def see_job_details(self, job_number, job_creator_mail):
         """
-        :param job_id: id of the job to return
-        :param helped_one_email: the email of the 'owner' of the job
-        :return: the instance of Job object represented by the 'job_id' if the user can see it
+        :param job_number: id of the job to return
+        :param job_creator_mail: the email of the 'owner' of the job
+        :return: the instance of Job object represented by the 'job_number' if the user can see it
                         otherwise, it returns None
         """
-        return self.see_job_details_base(job_id, helped_one_email, self.is_job_visible)
+        return self.see_job_details_base(job_number, job_creator_mail, self.is_job_visible)
 
-    def see_job_details_base(self, job_id, helped_one_email, function):
+    def see_job_details_base(self, job_number, job_creator_mail, function):
         """
-        :param job_id: id of the job to return
-        :param helped_one_email: the email of the 'owner' of the job
+        :param job_number: id of the job to return
+        :param job_creator_mail: the email of the 'owner' of the job
         :param function: the function to check visibility of the job
-        :return: the instance of Job object represented by the 'job_id' if the user can see it
+        :return: the instance of Job object represented by the 'job_number' if the user can see it
                         otherwise, it returns None
         """
 
-        job_list = Job.objects.filter(number=job_id, mail=helped_one_email)
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job_list) == 0:
             return None
 
@@ -81,29 +81,29 @@ class NonMember(User):
 
         return filtered_job_list
 
-    def accept_job(self, job_id, helped_one_email):
+    def accept_job(self, job_number, job_creator_mail):
         """
         Puts the member on the list of possible helpers for a pending job.
-        The helped one will be warned by email (this email is the parameter 'helped_one_email').
+        The helped one will be warned by email (this email is the parameter 'job_creator_mail').
 
-        :param job_id: the if of the job to accept
-        :param helped_one_email: the email of the 'owner' of the job
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
         :return: False if there was a problem and True otherwise
         """
-        return self.accept_job_base(job_id, helped_one_email, self.is_job_visible)
+        return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
 
-    def accept_job_base(self, job_id, helped_one_email, function):
+    def accept_job_base(self, job_number, job_creator_mail, function):
         """
         Puts the member on the list of possible helpers for a pending job.
-        The helped one will be warned by email (this email is the parameter 'helped_one_email').
+        The helped one will be warned by email (this email is the parameter 'job_creator_mail').
 
-        :param job_id: the if of the job to accept
-        :param helped_one_email: the email of the 'owner' of the job
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
         :param function: the function to check visibility of the job
         :return: False if there was a problem and True otherwise
         """
 
-        job_list = Job.objects.filter(number=job_id, mail=helped_one_email, type=True)
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail, type=True)
         if len(job_list) == 0:
             return False
 
@@ -174,16 +174,16 @@ class NonMember(User):
         return True
 
 
-    def register_job_done(self, job_id, helped_one_email):
+    def register_job_done(self, job_number, job_creator_mail):
         """
         Registers a job as done (with no time because a Non Member cannot 'earn' time)
 
-        :param job_id:
-        :param helped_one_email: the email of the 'owner' of the job
+        :param job_number:
+        :param job_creator_mail: the email of the 'owner' of the job
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.filter(number=job_id, mail=helped_one_email)
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job_list) == 0:
             return False
 
