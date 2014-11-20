@@ -14,7 +14,7 @@ class Message(models.Model):
         (3, 'information'),
     )
     type = models.SmallIntegerField(choices=TYPE, default=0)
-    date = models.DateField()
+    date = models.DateField()   #'yyyy-mm-dd'
     
     class Meta:
         app_label = 'C4CApplication'

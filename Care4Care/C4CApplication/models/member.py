@@ -41,7 +41,7 @@ class Member(models.Model):
     message = models.ManyToManyField('Message', through='Mailbox')
     relation = models.ManyToManyField('Member', through='Relationship')
     job = models.ManyToManyField('Job')
-    #personal_network = models.ForeignKey(self)
+    #personal_network = models.ManyToManyField('Member', through='Relationship')
 
     def is_favorite(self, other_member):
         """
