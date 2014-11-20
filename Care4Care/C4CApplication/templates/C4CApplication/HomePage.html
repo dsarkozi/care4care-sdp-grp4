@@ -16,7 +16,9 @@
   <form class="login" method="post" >
     <h1>Care4Care</h1>
     {% csrf_token %}
+    {{ loginForm.email.errors }}
     {{ loginForm.email }}
+    {{ loginForm.password.errors }}
     {{ loginForm.password }}
     <input type="submit" value="Login" class="login-submit">
     <input type="submit" value="Sign up" class="login-submit">
