@@ -13,10 +13,11 @@
     	
 	 <!-- Login/Sign up -->
 	 
-  <form action="HomePage.html" class="login" method="post" >
+  <form class="login" method="post" >
     <h1>Care4Care</h1>
-    <input type="text" name="email" class="login-input" placeholder="Email Address" autofocus>
-    <input type="password" name="password" class="login-input" placeholder="Password">
+    {% csrf_token %}
+    {{ loginForm.email }}
+    {{ loginForm.password }}
     <input type="submit" value="Login" class="login-submit">
     <input type="submit" value="Sign up" class="login-submit">
     <p class="login-help"><a href=# >Forgot password?</a></p>

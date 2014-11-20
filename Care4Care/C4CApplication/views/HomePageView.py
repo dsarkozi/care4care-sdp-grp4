@@ -1,8 +1,15 @@
-from django.views.generic import TemplateView
+from django.views.generic.base import TemplateView
+from C4CApplication.views.LoginForm import LoginForm
+
 
 class HomePageView(TemplateView):
     template_name = "C4CApplication/HomePage.html"
-    
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['loginForm'] = LoginForm(auto_id=False)
+        return context
+
     def demand_job_list(self):
         member = None # get_member TODO
         return member.get_visible_jobs_list(True)
