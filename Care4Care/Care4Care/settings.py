@@ -104,5 +104,5 @@ STATICFILES_DIRS = (
 
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'C4CApplication/template'),
+    os.path.join(BASE_DIR, 'C4CApplication/templates'),
 )
