@@ -1,6 +1,5 @@
 from django.views.generic.edit import FormView
-
-from C4CApplication.views.LoginForm import LoginForm
+from C4CApplication.views.forms.LoginForm import LoginForm
 
 
 class HomePageView(FormView):
