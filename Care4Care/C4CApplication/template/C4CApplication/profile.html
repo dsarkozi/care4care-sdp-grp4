@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../static/profile.css">
+        <title>Ton profil</title>
+    </head>
+
+    <body>
+<section>
+    <p class = "entete"><span class="nom"> {{member.first_name}} {{member.last_name}}</span> <span class="tag"> {{ member.tag }} </span></p>
+    <article class = "first">
+        <img src="../images/armand.jpg" alt="Photo de profil" id="photo"/>
+        <h3>Compte :</h3>
+        <ul>
+            <li class="info">Mail : {{ member.mail }}</li>
+            <li class="info">Mot de passe : *********</li> 
+            <li class="info">Date d'inscription : {{ member.register_date}}</li>
+        </ul>
+    </article>
+    
+    <article class = "second">
+        <h3>Informations personnelles :</h3>
+        <ul>
+            <li class="info">Nom : {{member.first_name}} {{member.last_name}}</li>
+            <li class="info">Date de naissance : {{member.birthday}}</li> 
+            <li class="info">Mobile : {{member.mobile}}</li>
+            <li class="info">Telephone : {{member.telephone}}</li>
+        </ul>
+        
+        <h3>Adresse :</h4>
+        <ul>
+        	<li class="info">{{member.address}}</li>
+        {% comment %}
+            <li class="info">Rue : rue de l'Eglise</li>
+            <li class="info">Numéro : 40</li>
+            <li class="info">Code postal : 1330</li>
+            <li class="info">Ville : Rixensart</li> 
+            <li class="info">Pays : Belgique</li>
+        {% endcomment %}
+        </ul>
+    </article>
+</section>   
+    </body>
+</html>

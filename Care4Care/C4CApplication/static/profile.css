@@ -1,0 +1,57 @@
+#photo
+{
+	width : 200px;
+}
+
+.nom
+{
+    color : black;
+
+}
+
+.tag
+{
+    color : green;
+}
+
+h3
+{
+    color : #383838;
+}
+
+.sous-titre
+{
+    color : #787878;
+}
+
+.info
+{
+    color : #383838;
+}
+
+ul
+{
+    list-style-type : none;  
+}
+
+section
+{
+    overflow : scroll;
+    width : 700px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.entete
+{
+    text-align : center;   
+}
+.first
+{
+    float : left;
+}
+
+.second
+{
+    float : right;
+}
