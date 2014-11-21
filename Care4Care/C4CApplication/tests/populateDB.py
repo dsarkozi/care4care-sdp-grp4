@@ -3,7 +3,7 @@ from C4CApplication.models import *
 
 
 '''
-Commande a executer dans le terminale :
+Commande a executer dans le terminal :
 exec(open('./C4CApplication/tests/populateDB.py').read())
 '''
 
