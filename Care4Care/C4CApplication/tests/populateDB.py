@@ -110,3 +110,19 @@ a2 = Mailbox()
 a2.member_receiver = m2 #Yves Devilles
 a2.message = e2
 a2.save()
+
+#Creation des relations entre les membres
+r1 = Relationship()
+r1.member_source = m4   #Armand met Obo dans ses amis.
+r1.member_target = m3
+r1.save()
+
+r2 = Relationship()
+r2.member_source = m4   #Armant met Yves dans ses amis
+r2.member_target = m2
+r2.save()
+
+r3 = Relationship()
+r3.member_source = m1   #Kim met Obo dans ses amis
+r3.member_target = m3
+r3.save()
