@@ -76,9 +76,14 @@ m1.save()
 m2.save()
 m3.save()
 
+#Suppression des messages pour eviter les conflits
+list_message = Message.objects.all()
+for message in list_message :
+        message.delete()
+
 #Creation de messages
 e1 = Message()
-e1.mail = "olivier.bonaventure@gmail.com"
+e1.member_sender = m3   #Olivier Bonaventure
 e1.number = 1
 e1.subject = "Comment faire une donation ?"
 e1.content = "Bonjour, j'aimerai savoir comment il faut procéder pour faire une donation ? Corialement, Olivier."
@@ -87,7 +92,7 @@ e1.date = "2014-11-20"
 e1.save()
 
 e2 = Message()
-e2.mail = "olivier.bonaventure@gmail.com"
+e2.member_sender = m3   #Olivier Bonaventure
 e2.number = 2
 e2.subject = "Rejoindre votre branch ?"
 e2.content = "Bonjour, j'aimerai savoir s'il est possible de rejoindre votre branch, et si oui, comment ? Corialement, Olivier."
@@ -96,5 +101,12 @@ e2.date = "2014-11-03"
 e2.save()
 
 #Creation des mailboxs
-a1 = Mailbox()
-#a1.member = 
+a1 = Mailbox()  # message e1 pour Kim Mens
+a1.member_receiver = m1  #Kim Mens
+a1.message = e1
+a1.save()
+
+a2 = Mailbox()
+a2.member_receiver = m2 #Yves Devilles
+a2.message = e2
+a2.save()

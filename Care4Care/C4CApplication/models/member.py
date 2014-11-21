@@ -48,7 +48,6 @@ class Member(models.Model):
     time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
-    message = models.ManyToManyField('Message', through='Mailbox')
     relation = models.ManyToManyField('Member', through='Relationship')
     job = models.ManyToManyField('Job')
     #personal_network = models.ManyToManyField('Member', through='Relationship')
