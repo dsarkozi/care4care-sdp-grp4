@@ -10,7 +10,9 @@ class Member(models.Model):
     password = models.CharField(max_length=100)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    #picture = models.ImageField()
+    def upload_path(self):
+        return 'C4CApplication/static/images/images_profile/%s_picture' % (self.mail)
+    picture = models.ImageField(upload_to=upload_path)
     birthday = models.DateField(default='2014-01-01')   #'yyyy-mm-dd'
     
     TAG_REVERSE = {
