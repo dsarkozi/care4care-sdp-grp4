@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Create job</title>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Request title</legend>
+        {{ NewJob1Form.title }}
+    </fieldset>
+    <fieldset>
+        <legend>Job category</legend>
+        <ul>
+        {% for choice in NewJob1Form.categories %}
+            {% if forloop.last %}
+                <li>{{ choice }} : {{ NewJob1Form.other }}</li>
+            {% else %}
+                <li>{{ choice }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </fieldset>
+</form>
+
+</body>
+</html>
