@@ -30,6 +30,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('mail', models.EmailField(max_length=75)),
                 ('number', models.IntegerField()),
+                ('description', models.TextField()),
                 ('comment', models.CharField(max_length=200)),
                 ('date', models.DateField(default='2014-11-23')),
                 ('start_time', models.IntegerField(default=0)),

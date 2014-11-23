@@ -7,6 +7,7 @@ from django.db import models
 class Job(models.Model):
     mail = models.EmailField()
     number = models.IntegerField()
+    description = models.TextField()
     comment = models.CharField(max_length=200)
     date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))
     start_time = models.IntegerField(default=0)

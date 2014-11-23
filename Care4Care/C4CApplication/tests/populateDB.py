@@ -145,7 +145,7 @@ for job in list_job :
 
 #Creation des jobs
 j1 = Job(mail="armand.bosquillon@student.uclouvain.be", number=1)
-j1.comment = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
+j1.description = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
 j1.date = "2014-12-27"  #Samedi 27 decembre
 j1.start_time = 840 #14h *60
 j1.frenquency = 2   #Weekly
@@ -160,7 +160,7 @@ j1.member_set.add(m4)
 j1.save()
 
 j2 = Job(mail="armand.bosquillon@student.uclouvain.be", number=2)
-j2.comment = "Bonjour, j'ai besoin de quelqu'un pour m'amener à LLN exceptionnelement, \
+j2.description = "Bonjour, j'ai besoin de quelqu'un pour m'amener à LLN exceptionnelement, \
                 car je n'ai pas de transport en commun ce jour la."
 j2.date = "2014-12-19"  #Lundi 19 decembre
 j2.start_time = 480 #8h *60
@@ -179,7 +179,7 @@ j2.member_set.add(m3)
 j2.save()
 
 j3 = Job(mail="olivier.bonaventure@gmail.com", number=1)
-j3.comment = "Bonjour, j'aimerai visiter l'Atomium, mais je ne veux pas le faire seul.\
+j3.description = "Bonjour, j'aimerai visiter l'Atomium, mais je ne veux pas le faire seul.\
                 Quelqu'un pour m'accompagner ?"
 j3.date = "2015-01-27"  #Mardi 27 janvier
 j3.start_time = 600 #10h *60
@@ -198,7 +198,7 @@ j3.member_set.add(m2)
 j3.save()
 
 j4 = Job(mail="yves.deville@gmail.com", number=1)
-j4.comment = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles"
+j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles"
 j4.date = "2015-01-29"  #Jeudi 29 janvier
 j4.start_time = 540 #9h *60
 j4.frenquency = 1   #Once
@@ -216,7 +216,7 @@ j4.member_set.add(m1)
 j4.save()
 
 j5 = Job(mail="kim.mens@gmail.com", number=1)
-j5.comment = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles.\
+j5.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles.\
                 Plus précisement, à l'universite de Bruxelles."
 j5.date = "2014-12-09"  #Vendredi 9 janvier
 j5.start_time = 540 #9h *60
@@ -236,7 +236,7 @@ j5.member_set.add(m4)
 j5.save()
 
 j6 = Job(mail="armand.bosquillon@student.uclouvain.be", number=3)
-j6.comment = "Bonjour, je met à disposition mon aide pour faire du shopping a l'Esplanade."
+j6.description = "Bonjour, je met à disposition mon aide pour faire du shopping a l'Esplanade."
 j6.date = "2015-01-24"  #Samedi 24 janvier
 j6.start_time = 780 #13h *60
 j6.frenquency = 1   #Once
