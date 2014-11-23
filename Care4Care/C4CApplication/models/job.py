@@ -1,11 +1,14 @@
+from time import strftime, gmtime
+
+
 from django.db import models
 
 
 class Job(models.Model):
     mail = models.EmailField()
     number = models.IntegerField()
-    done = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
+    date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))
     start_time = models.IntegerField(default=0)
     
     FREQ = (
@@ -28,6 +31,7 @@ class Job(models.Model):
     type = models.BooleanField(default=None) # True = demand, False = offer
     address = models.CharField(max_length=200)
     accepted = models.BooleanField(default=False)
+    done = models.BooleanField(default=False)
     payed = models.BooleanField(default=False)
     
     JOB_VISIBILITY = { # every bit of the number corresponds to one option
