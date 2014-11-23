@@ -6,7 +6,7 @@ from C4CApplication.views.forms.CreateJob1Form import CreateJob1Form
 class CreateJob1View(FormView):
     template_name = "C4CApplication/CreateJob1.html"
     form_class = CreateJob1Form
-    success_url = "newjob2/"
+    success_url = "../newjob2/"
 
     def get_context_data(self, **kwargs):
         context = super(CreateJob1View, self).get_context_data(**kwargs)
