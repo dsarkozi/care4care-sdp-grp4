@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.widgets import TextInput
+from django.forms.widgets import TextInput, Textarea
 
 from C4CApplication.models.job import Job
 
@@ -7,7 +7,12 @@ from C4CApplication.models.job import Job
 class CreateJob1Form(forms.Form):
     title = forms.CharField(
         widget=TextInput(
-            attrs={'autofocus':'true'}
+            attrs={'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        )
+    )
+    desc = forms.CharField(
+        widget=Textarea(
+            attrs={'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
         )
     )
     categories = forms.ChoiceField(

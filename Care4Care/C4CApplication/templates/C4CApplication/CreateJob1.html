@@ -9,8 +9,11 @@
 <form method="post">
     {% csrf_token %}
     <fieldset>
-        <legend>Request title</legend>
-        {{ NewJob1Form.title }}
+        <legend>Request details</legend>
+        {{ NewJob1Form.title }} <br>
+        <p id="job_desc_field">
+            {{ NewJob1Form.desc }}
+        </p>
     </fieldset>
     <fieldset>
         <legend>Job category</legend>
