@@ -1,3 +1,6 @@
+from time import strftime, gmtime
+
+
 from C4CApplication.views import BranchOfficer
 from C4CApplication.models import Member, Branch, Job
 
@@ -19,9 +22,11 @@ class BPAdministrator(BranchOfficer):
         member = Member.objects.filter(mail=deleted_one_email)
         if len(member) != 1:
             return False
+        member = member[0]
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
+        branch = branch[0]
         member.branch.remove(branch)
         member.save()
         branch.save()
@@ -52,6 +57,9 @@ class BPAdministrator(BranchOfficer):
         :return: False if there was a problem and True otherwise.
         """
         branch = Branch.objects.filter(name=branch_name)
+        if len(branch)!=1 :
+            return False
+        branch = branch[0]
         branch.branch_officer = new_branch_officer_email
         branch.save()
         return True
@@ -67,6 +75,7 @@ class BPAdministrator(BranchOfficer):
         member = Member.objects.filter(mail=email)
         if len(member) != 1:
             return False
+        member = member[0]
         member.tag = Member.TAG[new_tag]
         member.save()
         return True
@@ -83,29 +92,33 @@ class BPAdministrator(BranchOfficer):
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
+        branch = branch[0]
         member = Member.objects.filter(mail=destination_email)
         if len(member) != 1:
             return False
+        member = member[0]
         branch.donation -= time
         member.time_credit += time
         branch.save()
         member.save()
         return True
 
-    def create_job(self, branch_name, is_demand=False, comment=None, start_time=0, frequency=0, km=0,
-                   time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
+                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
-        :param is_demand:
-        :param comment:
-        :param start_time:
-        :param frequency:
-        :param km:
-        :param time:
-        :param category:
-        :param address:
-        :param visibility:
+        :param branch_name: The branch to which belongs the job
+        :param date: The date of the job
+        :param is_demand: True if it's a demand, false otherwise
+        :param comment: Comment of the job
+        :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
+        :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
+        :param km: The number of km to do the job
+        :param time: The time to do the job
+        :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
+        :param address: The address where the job will be done
+        :param visibility: Which people can see the job.
         :return: False if there was a problem and True otherwise.
         """
 
@@ -118,6 +131,7 @@ class BPAdministrator(BranchOfficer):
                 n = j.number
         job.number = n+1
         job.comment = comment
+        job.date = date
         job.start_time = start_time
         job.frequency = frequency
         job.km = km
@@ -130,7 +144,8 @@ class BPAdministrator(BranchOfficer):
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
-        job.branch = branch
+        job.branch = branch[0]
+        job.member_set = self.db_member
         job.save()
         return True
 
@@ -160,6 +175,7 @@ class BPAdministrator(BranchOfficer):
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
+        branch = branch[0]
         branch.member_set.clear()
         branch.delete()
         return True
@@ -173,6 +189,7 @@ class BPAdministrator(BranchOfficer):
         member = Member.objects.filter(mail=new_bp_admin_email)
         if len(member) != 1:
             return False
+        member = member[0]
         member.tag = Member.TAG['bp_admin']
         self.db_member.tag = Member.TAG['verified']
         member.save()
