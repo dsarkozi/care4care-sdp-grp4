@@ -22,7 +22,10 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise
         """
         message = Message()
-        message.mail = sender_mail
+        member_sender = Member.objects.filter(mail=sender_mail)
+        if len(member_sender)!=1 :
+            return False
+        message.member_sender = member_sender[0]
         n = 0
         list_message = Message.objects.filter(mail=sender_mail)
         for m in list_message:
@@ -37,10 +40,10 @@ class Member(NonMember):
         
         mailbox = Mailbox()
         mailbox.save()
-        member = models.Member.objects.filter(mail=receiver_mail)
-        if len(member) != 1:
+        member_receiver = models.Member.objects.filter(mail=receiver_mail)
+        if len(member_receiver) != 1:
             return False
-        mailbox.member = member
+        mailbox.member = member_receiver[0]
         mailbox.message = message
         member.save()
         message.save()
@@ -61,15 +64,16 @@ class Member(NonMember):
         job = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job) != 1:
             return False
+        job = job[0]
         job.member_set.clear()  # We clear all relationships with the members (only one member can be accepted)
         creator = models.Member.objects.filter(mail=job.mail)  # TODO -> show : je pref des filter, ca ne crash pas ca.
         if len(creator) != 1:
             return False
-        job.member_set.add(creator)  # We add the creator of the job
+        job.member_set.add(creator[0])  # We add the creator of the job
         helper = models.Member.objects.filter(mail=helper_email)
         if len(helper) != 1:
             return False
-        job.member_set.add(helper)
+        job.member_set.add(helper[0])
         job.accepted = True
         job.save()
         
@@ -79,22 +83,25 @@ class Member(NonMember):
         type = 3
         return self.send_mail(creator.mail, helper.mail, subject, content, type)
 
-    def create_job(self, branch_name, start_time, is_demand=False, comment='',
-                   frequency=0, km=0, time=0, category=1, address=None, visibility='anyone'):
+    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
+                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
-        :param is_demand:
-        :param comment:
-        :param start_time:
-        :param frequency:
-        :param km:
-        :param time:
-        :param category:
-        :param address:
-        :param visibility:
+        :param branch_name: The branch to which belongs the job
+        :param date: The date of the job
+        :param is_demand: True if it's a demand, false otherwise
+        :param comment: Comment of the job
+        :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
+        :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
+        :param km: The number of km to do the job
+        :param time: The time to do the job
+        :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
+        :param address: The address where the job will be done
+        :param visibility: Which people can see the job.
         :return: False if there was a problem and True otherwise.
         """
+
         # TODO Why my aggregate solution does not work :p ?
         job = Job()
         job.mail = self.db_member.mail
@@ -105,6 +112,7 @@ class Member(NonMember):
                 n = j.number
         job.number = n+1
         job.comment = comment
+        job.date = date
         job.start_time = start_time
         job.frequency = frequency
         job.km = km
@@ -117,7 +125,8 @@ class Member(NonMember):
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
-        job.branch = branch
+        job.branch = branch[0]
+        job.member_set = self.db_member
         job.save()
         return True
 
@@ -138,6 +147,7 @@ class Member(NonMember):
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
         if len(job) != 1:
             return False
+        job = job[0]
         job.done = True
         job.save()
         
@@ -168,6 +178,7 @@ class Member(NonMember):
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
         if len(job) != 1:
             return False
+        job = job[0]
         job.payed = True
         job.save()
         
@@ -182,6 +193,7 @@ class Member(NonMember):
         helper = models.Member.objects.filter(mail=helper_email)
         if len(helper) != 1:
             return False
+        helper = helper[0]
         
         #We transfer money
         helped_one.time_credit -= amount
@@ -205,6 +217,9 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise.
         """
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
+        if len(job)!=1:
+            return False
+        job = job[0]
         mail_branch_officer = job.branch.branch_officer
         
         #Send the mails
@@ -229,6 +244,7 @@ class Member(NonMember):
         receiver_gift = models.Member.objects.filter(mail=destination_email)
         if len(receiver_gift) != 1:
             return False
+        receiver_gift = receiver_gift[0]
         
         sender_gift.time_credit -= time
         receiver_gift.time_credit += time

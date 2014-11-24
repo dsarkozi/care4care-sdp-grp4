@@ -3,7 +3,7 @@ from C4CApplication.models import *
 
 
 '''
-Commande a executer dans le terminale :
+Commande a executer dans le terminal :
 exec(open('./C4CApplication/tests/populateDB.py').read())
 '''
 
@@ -72,13 +72,20 @@ b2.save()
 m1.branch.add(b1)
 m2.branch.add(b2)
 m3.branch.add(b1)
+m4.branch.add(b1)
 m1.save()
 m2.save()
 m3.save()
+m4.save()
+
+#Suppression des messages pour eviter les conflits
+list_message = Message.objects.all()
+for message in list_message :
+        message.delete()
 
 #Creation de messages
 e1 = Message()
-e1.mail = "olivier.bonaventure@gmail.com"
+e1.member_sender = m3   #Olivier Bonaventure
 e1.number = 1
 e1.subject = "Comment faire une donation ?"
 e1.content = "Bonjour, j'aimerai savoir comment il faut procéder pour faire une donation ? Corialement, Olivier."
@@ -87,7 +94,7 @@ e1.date = "2014-11-20"
 e1.save()
 
 e2 = Message()
-e2.mail = "olivier.bonaventure@gmail.com"
+e2.member_sender = m3   #Olivier Bonaventure
 e2.number = 2
 e2.subject = "Rejoindre votre branch ?"
 e2.content = "Bonjour, j'aimerai savoir s'il est possible de rejoindre votre branch, et si oui, comment ? Corialement, Olivier."
@@ -96,5 +103,149 @@ e2.date = "2014-11-03"
 e2.save()
 
 #Creation des mailboxs
-a1 = Mailbox()
-#a1.member = 
+a1 = Mailbox()  # message e1 pour Kim Mens
+a1.member_receiver = m1  #Kim Mens
+a1.message = e1
+a1.save()
+
+a2 = Mailbox()
+a2.member_receiver = m2 #Yves Devilles
+a2.message = e2
+a2.save()
+
+#Creation des relations entre les membres
+r1 = Relationship()
+r1.member_source = m4   #Armand met Obo dans ses amis.
+r1.member_target = m3
+r1.save()
+
+r2 = Relationship()
+r2.member_source = m4   #Armant met Yves dans ses amis
+r2.member_target = m2
+r2.save()
+
+r3 = Relationship()
+r3.member_source = m1   #Kim met Obo dans ses amis
+r3.member_target = m3
+r3.save()
+
+r4 = Relationship()
+r4.member_source = m3   #Obo met Armand dans ses amis
+r4.member_target = m4
+r4.save()
+
+r5 = Relationship()
+r5.member_source = m3   #Obo met Yves dans ses amis
+r5.member_target = m2
+
+#Suppression des jobs avant creation
+list_job = Job.objects.all()
+for job in list_job :
+        job.delete()
+
+#Creation des jobs
+j1 = Job(mail="armand.bosquillon@student.uclouvain.be", number=1)
+j1.description = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
+j1.date = "2014-12-27"  #Samedi 27 decembre
+j1.start_time = 840 #14h *60
+j1.frenquency = 2   #Weekly
+j1.km = 30
+j1.time = 60    #1h *60
+j1.category = 1 #Shopping
+j1.type = True  #True = Demand
+j1.address = m4.address
+j1.branch = b1
+j1.save()
+j1.member_set.add(m4)
+j1.save()
+
+j2 = Job(mail="armand.bosquillon@student.uclouvain.be", number=2)
+j2.description = "Bonjour, j'ai besoin de quelqu'un pour m'amener à LLN exceptionnelement, \
+                car je n'ai pas de transport en commun ce jour la."
+j2.date = "2014-12-19"  #Lundi 19 decembre
+j2.start_time = 480 #8h *60
+j2.frenquency = 1   #Once
+j2.km = 30
+j2.time = 60    #1h *60
+j2.category = 3 #Transport
+j2.type = True  #True = Demand
+j2.address = m4.address
+j2.visibility = Job.JOB_VISIBILITY['favorites']
+j2.branch = b1
+j2.save()
+j2.member_set.add(m4)
+j2.member_set.add(m2)
+j2.member_set.add(m3)
+j2.save()
+
+j3 = Job(mail="olivier.bonaventure@gmail.com", number=1)
+j3.description = "Bonjour, j'aimerai visiter l'Atomium, mais je ne veux pas le faire seul.\
+                Quelqu'un pour m'accompagner ?"
+j3.date = "2015-01-27"  #Mardi 27 janvier
+j3.start_time = 600 #10h *60
+j3.frenquency = 1   #Once
+j3.km = 50
+j3.time = 120    #2h *60
+j3.category = 2 #Transport
+j3.type = True  #True = Demand
+j3.address = "Square de l'Atomium, B-1020 BRUXELLES"
+j3.accepted = True
+j3.visibility = Job.JOB_VISIBILITY['favorites']
+j3.branch = b1
+j3.save()
+j3.member_set.add(m3)
+j3.member_set.add(m2)
+j3.save()
+
+j4 = Job(mail="yves.deville@gmail.com", number=1)
+j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles"
+j4.date = "2015-01-29"  #Jeudi 29 janvier
+j4.start_time = 540 #9h *60
+j4.frenquency = 1   #Once
+j4.km = 50
+j4.time = 120    #2h *60
+j4.category = 2 #Transport
+j4.type = True  #True = Demand
+j4.address = "Square de l'Atomium, B-1020 BRUXELLES"
+j4.accepted = True
+j4.done = True
+j4.branch = b1
+j4.save()
+j4.member_set.add(m2)
+j4.member_set.add(m1)
+j4.save()
+
+j5 = Job(mail="kim.mens@gmail.com", number=1)
+j5.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles.\
+                Plus précisement, à l'universite de Bruxelles."
+j5.date = "2014-12-09"  #Vendredi 9 janvier
+j5.start_time = 540 #9h *60
+j5.frenquency = 1   #Once
+j5.km = 50
+j5.time = 60    #1h *60
+j5.category = 2 #Transport
+j5.type = True  #True = Demand
+j5.address = "Avenue Franklin Roosevelt 50 - 1050 Bruxelles"
+j5.accepted = True
+j5.done = True
+j5.done = True
+j5.branch = b1
+j5.save()
+j5.member_set.add(m2)
+j5.member_set.add(m4)
+j5.save()
+
+j6 = Job(mail="armand.bosquillon@student.uclouvain.be", number=3)
+j6.description = "Bonjour, je met à disposition mon aide pour faire du shopping a l'Esplanade."
+j6.date = "2015-01-24"  #Samedi 24 janvier
+j6.start_time = 780 #13h *60
+j6.frenquency = 1   #Once
+j6.km = 0
+j6.time = 240    #4h *60
+j6.category = 1 #Transport
+j6.type = False  #False = Offer
+j6.address = "Place de l’Accueil 10 bte 1, 1348 Louvain-la-Neuve"
+j6.branch = b1
+j6.save()
+j6.member_set.add(m4)
+j6.save()

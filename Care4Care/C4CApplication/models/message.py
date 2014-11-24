@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Message(models.Model):
-    mail = models.EmailField()
+    member_sender = models.ForeignKey('Member')
     number = models.IntegerField()
     subject = models.CharField(max_length=100)
     content = models.TextField()
@@ -18,4 +18,4 @@ class Message(models.Model):
     
     class Meta:
         app_label = 'C4CApplication'
-        unique_together = ('mail', 'number')
+        unique_together = ('member_sender', 'number')
