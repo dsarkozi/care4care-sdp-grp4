@@ -10,5 +10,5 @@ class BranchListForm(forms.Form):
         branch_name_list.append((branch.name, branch.name))
     branch_tuple = tuple(branch_name_list)
 
-    branch_list = forms.ChoiceField(choices=branch_tuple,
+    branch_list = forms.MultipleChoiceField(choices=branch_tuple,
                                     widget=forms.CheckboxSelectMultiple())
