@@ -6,10 +6,72 @@ Createur du job :
 		{{member.first_name}} {{member.last_name}}
 	{% endif %}
 {% endfor %} <br/>
+
 Number of the job : {{ job.number }} <br/>
+
 Date of the job : {{ job.date }} <br/>
-Hour of the start : {{ job.start_time|div:60 }}:{{job.start_time}} <br/>
+
+{% if job.start_time|mod:60 < 10 %}
+	Hour of the start : {{ job.start_time|intdiv:60 }}:0{{job.start_time|mod:60}}
+{% else %}
+	Hour of the start : {{ job.start_time|intdiv:60 }}:{{job.start_time|mod:60}}
+{% endif %} <br/>
+
+Frequency :
+{% for key, value in job.FREQ %}
+	{% if key == job.frequency %}
+		{{ value }}
+	{% endif %}
+{% endfor %} <br/>
+
+Km : {{ job.km }} <br/>
+
+{% if job.time|mod:60 < 10 %}
+	Time estimated : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
+{% else %}
+	Time estimated : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+{% endif %} <br/>
+
+Category :
+{% for key, value in job.CAT %}
+	{% if key == job.category %}
+		{{ value }}
+	{% endif %}
+{% endfor %} <br/>
+
+Type of job :
+{% if job.type %}
+	Demand
+{% else %}
+	Offer
+{% endif %} <br/>
+
+Address : {{ job.address }} <br/>
+
+Job accepted : {{ job.accepted }} <br/>
+
+Job done : {{ job.done }} <br/>
+
+Job payed : {{ job.payed }} <br/>
+
+Visibility of the job :
+{% for key, value in job.JOB_VISIBILITY_TUPLE %}
+	{% if key == job.visibility %}
+		{{ value }}
+	{% endif %}
+{% endfor %} <br/>
+
+Branch : {{ job.branch.name }} <br/>
+
 Description : {{ job.description }} <br/>
+
+<!-- Participants -->
+Participants :
+<ul>
+{% for member in job.member_set.all %}
+	<li> {{member.first_name}} {{member.last_name}} </li>
+{% endfor %}
+</ul>
 
 
 
