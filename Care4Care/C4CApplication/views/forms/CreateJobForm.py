@@ -53,7 +53,7 @@ class CreateJobForm(forms.Form):
         ('saturday','Saturday'),
         ('sunday','Sunday')
     )
-    weekdays = forms.ChoiceField(
+    weekdays = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
             attrs={'disabled':'true'}
         ),
@@ -65,7 +65,7 @@ class CreateJobForm(forms.Form):
         ('evening','Evening'),
         ('any','Anytime')
     )
-    dayparts = forms.ChoiceField(
+    dayparts = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
             attrs={'disabled':'true'}
         ),
