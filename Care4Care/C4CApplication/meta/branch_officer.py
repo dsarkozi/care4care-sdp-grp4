@@ -1,4 +1,5 @@
-from C4CApplication.views import Member
+from time import strftime, gmtime
+from C4CApplication.meta import Member
 from C4CApplication.models import Branch, Job
 
 

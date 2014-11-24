@@ -1,4 +1,4 @@
-from C4CApplication.views import Member
+from C4CApplication.meta import Member
 from C4CApplication.models import Job
 
 

@@ -1,4 +1,4 @@
-from C4CApplication.views import VerifiedMember, VolunteerMember
+from C4CApplication.meta import VerifiedMember, VolunteerMember
 from C4CApplication.models import Job
 
 

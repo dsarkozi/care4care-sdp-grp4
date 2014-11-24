@@ -1,4 +1,4 @@
-from C4CApplication.models import Job, NonMember
+from C4CApplication.models import Job, Member
 
 class JobView():
     """
