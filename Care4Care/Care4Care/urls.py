@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home$', HomePageView.as_view(), name='home'),
 
+<<<<<<< Updated upstream
     url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^logout$', LogoutView.as_view()),
@@ -24,4 +25,9 @@ urlpatterns = patterns('',
     url(r'^confirmjobdone/(?P<pk>\d+)$', ...),
 
     url(r'^newjob1/', CreateJob1View.as_view()),
+=======
+    url(r'^myc4c/', MyCare4CareView.as_view(), name='myc4c'),
+    url(r'^logout', LogoutView.as_view()),
+    url(r'^profile$','C4CApplication.views.test.profile'),
+>>>>>>> Stashed changes
 )

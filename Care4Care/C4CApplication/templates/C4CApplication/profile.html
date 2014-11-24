@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% comment %} TODO : ajouter un formulaire pour modifier les données {% endcomment %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +12,7 @@
 <section>
     <p class = "entete"><span class="nom"> {{member.first_name}} {{member.last_name}}</span> <span class="tag"> {{ member.tag }} </span></p>
     <article class = "first">
-        <img src="{% static "images/armand.jpg"%}" alt="Photo de profil" id="photo"/>
+        <img src="{% static "images/images_profile/armand.jpg"%}" alt="Photo de profil" id="photo"/>
         <h3>Compte :</h3>
         <ul>
             <li class="info">Mail : {{ member.mail }}</li>
