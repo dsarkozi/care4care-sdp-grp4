@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$',JobDetailsView.as_view()), 
+    url(r'^confirmjobdone/(?P<pk>\d+)$', ...),
 
     url(r'^newjob1/', CreateJob1View.as_view()),
 )

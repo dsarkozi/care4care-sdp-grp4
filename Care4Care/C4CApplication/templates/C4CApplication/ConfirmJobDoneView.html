@@ -1,0 +1,10 @@
+{% extends "jobdetails.html" %}
+
+{% block form_job_done %}
+<form method="post">
+
+	{% csrf_token %}
+    {{ confirm_job_done_form }}
+    <input type="submit" value="Confirm"/>
+</form>
+{% endblock %}
