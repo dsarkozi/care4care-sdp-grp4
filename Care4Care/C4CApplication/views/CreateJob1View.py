@@ -10,5 +10,5 @@ class CreateJob1View(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(CreateJob1View, self).get_context_data(**kwargs)
-        context['NewJob1Form'] = CreateJob1Form(auto_id=False)
+        context['NewJob1Form'] = CreateJob1Form(auto_id=False, initial={'weekdays': ['monday']})
         return context
