@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^myc4c/', MyCare4CareView.as_view(), name='myc4c'),
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^logout', LogoutView.as_view()),
+    url(r'^jobdetails(?P<pk>\d+)$',JobDetailView.as_view()), 
 
     url(r'^newjob1/', CreateJob1View.as_view()),
 )
