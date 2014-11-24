@@ -1,4 +1,4 @@
-from django.views.generic.base import DetailView
+from django.views.generic import DetailView
 from C4CApplication.models.job import Job
 
 class JobDetailsView(DetailView):

@@ -6,6 +6,7 @@ from C4CApplication.views.HomePageView import HomePageView
 from C4CApplication.views.LogoutView import LogoutView
 from C4CApplication.views.MyCare4CareView import MyCare4CareView
 from C4CApplication.views.BranchListView import BranchListView
+from C4CApplication.views.JobDetailsView import JobDetailsView
 
 
 urlpatterns = patterns('',
@@ -16,10 +17,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home$', HomePageView.as_view(), name='home'),
 
-    url(r'^myc4c/', MyCare4CareView.as_view(), name='myc4c'),
+    url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
-    url(r'^logout', LogoutView.as_view()),
-    url(r'^jobdetails(?P<pk>\d+)$',JobDetailView.as_view()), 
+    url(r'^logout$', LogoutView.as_view()),
+    url(r'^jobdetails/(?P<pk>\d+)$',JobDetailsView.as_view()), 
 
     url(r'^newjob1/', CreateJob1View.as_view()),
 )
