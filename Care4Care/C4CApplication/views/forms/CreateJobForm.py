@@ -5,7 +5,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from C4CApplication.models.job import Job
 
 
-class CreateJob1Form(forms.Form):
+class CreateJobForm(forms.Form):
     #TODO Put some magical js for disabled fields toggle
 
     # Request details fieldset
@@ -97,7 +97,7 @@ class CreateJob1Form(forms.Form):
         """
         #TODO Verify if further validations are needed for the nested selectors
         
-        cleaned_data = super(CreateJob1Form, self).clean()
+        cleaned_data = super(CreateJobForm, self).clean()
         category = cleaned_data.get("categories")
         other = cleaned_data.get("other")
         if category == 'other' and other == '':
