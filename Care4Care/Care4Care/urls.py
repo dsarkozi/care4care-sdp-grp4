@@ -7,6 +7,7 @@ from C4CApplication.views.LogoutView import LogoutView
 from C4CApplication.views.MyCare4CareView import MyCare4CareView
 from C4CApplication.views.BranchListView import BranchListView
 from C4CApplication.views.JobDetailsView import JobDetailsView
+from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 
 
 urlpatterns = patterns('',
