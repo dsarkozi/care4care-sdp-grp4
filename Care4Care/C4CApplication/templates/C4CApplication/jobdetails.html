@@ -1,3 +1,5 @@
+{% load mathfilters %}
+
 Createur du job :
 {% for member in job.member_set.all %}
 	{% if member.mail == job.mail %}
@@ -5,6 +7,11 @@ Createur du job :
 	{% endif %}
 {% endfor %} <br/>
 Number of the job : {{ job.number }} <br/>
-Description : {{  }}
-{{ job.description }} <br/>
+Date of the job : {{ job.date }} <br/>
+Hour of the start : {{ job.start_time|div:60 }}:{{job.start_time}} <br/>
+Description : {{ job.description }} <br/>
 
+
+
+{% block form_job_done %}
+{% endblock %}
