@@ -13,12 +13,6 @@ class BranchListView(FormView):
     def get_context_data(self, **kwargs):
         context = super(BranchListView, self).get_context_data(**kwargs)
 
-        # Get the full list of branches
-        branch_name_list = []
-        for branch in Branch.objects.all():
-            branch_name_list.append((branch.name, branch.name))
-        branch_tuple = tuple(branch_name_list)
-
         # Get the personal list of the member
         member = Member.objects.get(mail="yves.deville@gmail.com")  # TODO get member from session variables !!
 
@@ -27,13 +21,7 @@ class BranchListView(FormView):
             branch_checked_name_list.append(branch.name)
 
         # Creates the form and change the context
-        branch_list_form = BranchListForm(branch_tuple=branch_tuple, auto_id=False, initial={'weekdays':['0']})
-        """for checkbox in branch_list_form['branchlist']:  # TODO
-            if checkbox.choice_label in branch_checked_name_list:
-                print('ok')
-                checkbox.checked = True  # TODO change this line
-            print(checkbox)"""
-
+        branch_list_form = BranchListForm(auto_id=False, initial={'branch_list': branch_checked_name_list})
 
         context['branch_list_form'] = branch_list_form
         return context
