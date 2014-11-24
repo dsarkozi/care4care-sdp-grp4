@@ -1,8 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Create job</title>
+    <link rel="stylesheet" href="{% static "css/create_job1.css" %}">
 </head>
 <body>
 
@@ -27,6 +29,44 @@
         {% endfor %}
         </ul>
     </fieldset>
+    <fieldset>
+        <legend>Job timeline</legend>
+        <ul>
+            {% for freq in NewJob1Form.frequency %}
+                {% if forloop.first %}
+                    <li> {{ freq }}
+                        <ul>
+                            {% for subfreq in NewJob1Form.subfrequency %}
+                                {% if forloop.first %}
+                                    <li>{{ subfreq }} : {{ NewJob1Form.specific }}</li>
+                                {% else %}
+                                    <div class="job_weekdays">
+                                        <li>{{ subfreq }} : {{ NewJob1Form.weekdays }}</li>
+                                    </div>
+                                    <div class="job_dayparts">
+                                        {{ NewJob1Form.dayparts }}
+                                    </div>
+                                    <br><br><br><br><br><br><br><br><br> <!-- TODO Fix this ! -->
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li>{{ freq }}
+                        <ul>
+                            <div class="job_weekdays">
+                                {{ NewJob1Form.weekdays }}
+                            </div>
+                            <div class="job_dayparts">
+                                {{ NewJob1Form.dayparts }}
+                            </div>
+                        </ul>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </fieldset>
+    <input type="submit" />
 </form>
 
 </body>
