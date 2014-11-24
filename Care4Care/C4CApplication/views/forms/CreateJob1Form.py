@@ -77,6 +77,19 @@ class CreateJob1Form(forms.Form):
         )
     )
 
+    # Job visibility fieldset
+    VISIBILITY = (
+        ('any', 'Anyone'),
+        ('verified', 'Verified members only'),
+        ('favorites', 'My favorites only'),
+        ('personal', 'My personal network only'),
+        ('default', 'Apply my default preferences')     # TODO Gather from database
+    )
+    visibility = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=VISIBILITY
+    )
+
     def clean(self):
         """
         Overrides clean from super to add an error if 'other' has been checked,

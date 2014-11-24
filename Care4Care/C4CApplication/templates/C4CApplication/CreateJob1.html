@@ -66,7 +66,11 @@
             {% endfor %}
         </ul>
     </fieldset>
-    <input type="submit" />
+    <fieldset>
+        <legend>Job visibility</legend>
+        {{ NewJob1Form.visibility }}
+    </fieldset>
+    <input type="submit" value="Post request" />
 </form>
 
 </body>
