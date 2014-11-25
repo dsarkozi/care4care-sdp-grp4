@@ -2,6 +2,8 @@ from time import strftime, gmtime
 from C4CApplication.meta import Member
 from C4CApplication.models import Branch, Job
 
+from C4CApplication import models
+
 
 class BranchOfficer(Member):
     """
@@ -23,7 +25,7 @@ class BranchOfficer(Member):
         branch = branch[0]
         if branch.branch_officer != self.db_member.mail:
             return False
-        member = Member.objects.filter(mail=deleted_one_email)
+        member = models.Member.objects.filter(mail=deleted_one_email)
         if len(member) != 1:
             return False
         member = member[0]
@@ -63,7 +65,7 @@ class BranchOfficer(Member):
         :return: False if there was a problem and True otherwise.
         """
 
-        member = Member.objects.filter(mail=member_mail)
+        member = models.Member.objects.filter(mail=member_mail)
         if len(member) != 1:
             return False
         member = member[0]
@@ -76,7 +78,7 @@ class BranchOfficer(Member):
         if member_branch is None:  # The branch officer have no power on this user
             return False
 
-        member.tag = Member.TAG[new_tag]
+        member.tag = models.Member.TAG[new_tag]
         member.save()
         return True
 
@@ -95,7 +97,7 @@ class BranchOfficer(Member):
         branch = branch[0]
         if branch.branch_officer != self.db_member.mail:
             return False
-        member = Member.objects.filter(mail=destination_email)
+        member = models.Member.objects.filter(mail=destination_email)
         if len(member) != 1:
             return False
         member = member[0]

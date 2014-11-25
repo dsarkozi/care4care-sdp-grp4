@@ -9,8 +9,12 @@ class NonMember(User):
     This class represents a kind of Users called Non Members
     """
 
-    def __init__(self, db_member):
-        self.db_member = db_member
+    def __init__(self, member_email):
+        member_list = Member.objects.filter(mail=member_email)
+        if len(member_list) == 1:
+            self.db_member = member_list[0]
+        else:  # Fake email
+            self.db_member = None
 
     def is_job_visible(self, job, db_member):
         """
@@ -194,7 +198,7 @@ class NonMember(User):
         job.save()
         return True
 
-
+    #TODO
     def register_job_done(self, job_number, job_creator_mail):
         """
         Registers a job as done (with no time because a Non Member cannot 'earn' time)

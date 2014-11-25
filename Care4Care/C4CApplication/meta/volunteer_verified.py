@@ -38,7 +38,7 @@ class VolunteerVerified(VolunteerMember, VerifiedMember):
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
-        return self.get_job_list_base(show_offers, self.is_job_visible)
+        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
 
     def accept_job(self, job_number, job_creator_mail):
         """
