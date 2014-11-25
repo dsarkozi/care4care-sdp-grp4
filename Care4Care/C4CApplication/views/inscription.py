@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
 from django.http import HttpResponseRedirect
+from C4CApplication.models import * 
 
 from C4CApplication.views.forms.inscription import InscriptionForm
 
@@ -36,6 +37,20 @@ def inscription(request):
             #infos faculatives
             telephone_fixe = form.cleaned_data['telephone_fixe']
             telephone_mobile = form.cleaned_data['telephone_mobile']
+            """  
+            member = models.Member(mail = email )
+            member.password = mot_de_passe
+            member.first_name = prenom
+            member.last_name = nom
+            member.birthday = date_de_naissance
+            member.tag = Member.TAG_REVERSE[type_membre]
+            #adresse
+            member.address = numero+ " " + rue + " "+ " " + code_postal +" " +ville
+            
+            member.mobile = telephonde_mobile
+            member.address = "Rue de l'Eglise, 40, Rixensart, 1330"
+            member.time_credit = 9999
+            member.save()"""
             #return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
