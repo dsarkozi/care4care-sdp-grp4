@@ -10,6 +10,49 @@ class NonMember(User):
 
     def __init__(self, db_member):
         self.db_member = db_member
+        
+    #TODO Why don't you put this on the specific file system_email ?
+    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
+        """
+        Send a mail from from_mail to to_mail, with the subject, 
+        the content, and the type passed in parameter
+
+        :param sender_mail: mail of the sender
+        :param receiver_mail: mail of the receiver
+        :param subject: subject of the mail
+        :param content: content of the mail
+        :param type: type of the mail
+        :return: False if there was a problem and True otherwise
+        """
+        message = Message()
+        member_sender = Member.objects.filter(mail=sender_mail)
+        if len(member_sender)!=1 :
+            return False
+        message.member_sender = member_sender[0]
+        n = 0
+        list_message = Message.objects.filter(mail=sender_mail)
+        for m in list_message:
+            if m.number > n:
+                n = m
+        message.number = n + 1
+        message.subject = subject
+        message.content = content
+        message.type = type
+        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
+        message.save()
+        
+        mailbox = Mailbox()
+        mailbox.save()
+        member_receiver = models.Member.objects.filter(mail=receiver_mail)
+        if len(member_receiver) != 1:
+            return False
+        mailbox.member = member_receiver[0]
+        mailbox.message = message
+        member.save()
+        message.save()
+        mailbox.save()
+        
+        return True
 
     def is_job_visible(self, job, db_member):
         """
@@ -194,23 +237,38 @@ class NonMember(User):
         return True
 
 
-    def register_job_done(self, job_number, job_creator_mail):
+    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None):
         """
-        Registers a job as done (with no time because a Non Member cannot 'earn' time)
+        Registers a job as done (with the new time to put).
+        The helped one will be warned by email and will be able to accept the 'payment' or not
 
-        :param job_number:
-        :param job_creator_mail: the email of the 'owner' of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
+        :param helped_one_email: it can't be None
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
-        if len(job_list) == 0:
+        if helped_one_email is None:
             return False
-
-        job = job_list[0]
-        if self.db_member not in job.member_set:
+        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
+        if len(job) != 1:
             return False
-
+        job = job[0]
         job.done = True
-        return True
+        job.time = 0
+        job.save()
+        
+        #We send a mail
+        helper_mail = ''
+        participants = job.member_set.all()
+        for participant in participants:
+            if participant.mail != helped_one_email:
+                helper_mail = participant.mail
+                break
+        if helper_mail == '':
+            return False
+        subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
+        content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
+        type = 1
+        return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 

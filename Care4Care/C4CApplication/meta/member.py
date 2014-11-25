@@ -149,6 +149,7 @@ class Member(NonMember):
             return False
         job = job[0]
         job.done = True
+        job.time = new_time
         job.save()
         
         #We send a mail
