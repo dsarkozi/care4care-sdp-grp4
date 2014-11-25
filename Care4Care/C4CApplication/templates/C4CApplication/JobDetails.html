@@ -73,11 +73,12 @@ Participants :
 {% endfor %}
 </ul>
 
-<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">
-{% for member in job.member_set.all %}
-	
-{% endfor %}
-</a>
+{% if connected_member in job.member_set.all %}
+	<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Stop participating</a> <br/>
+{% else %}
+	<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a> <br/>
+{% endif %}
+
 
 {% block form_job_done %}
 {% endblock %}
