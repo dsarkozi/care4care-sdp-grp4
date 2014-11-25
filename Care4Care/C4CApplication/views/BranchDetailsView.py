@@ -3,6 +3,7 @@ from django.core.exceptions import PermissionDenied
 
 from C4CApplication.meta import User
 from C4CApplication.models import Branch
+from C4CApplication.views.utils import create_user
 
 
 class BranchDetailView(DetailView):
@@ -18,7 +19,7 @@ class BranchDetailView(DetailView):
             raise PermissionDenied  # HTTP 403
 
         # Create the object representing the user
-        user = User.create_user(self.request.session['email'], self.request.session['tag'])
+        user = create_user(self.request.session['email'], self.request.session['tag'])
 
         return super(BranchDetailView, self).dispatch(request, *args, **kwargs)
 

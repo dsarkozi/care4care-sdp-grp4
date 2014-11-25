@@ -67,7 +67,6 @@
 	</center>
 
 
-
 	<!-- Buttons -->
 	<center> <h1> Welcome on Care4Care !</h1> 
 		<a href="newjob/" class="myButton">I want to help</a>
@@ -77,36 +76,32 @@
 	</center>
 
 
-
     <!-- Feed tables -->
-    
-        <!-- Job offers table -->
+  <!-- Job offers table -->
 	
 	<table class="tab1" style="left:10em" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
 	  </tr>
+	  
 	  <tr>
 		<td class="tab1-4">Job category</td>
-		<td class="tab1-4">Title</td>
+		<td class="tab1-4">Description</td>
 		<td class="tab1-4">Location</td>
 	  </tr>
-	  <tr>
-		<td class="tab1-3"> <a href="#">Computing  </a></td>
-		<td class="tab1-3"> <a href="#">Faire mes devoirs en IA  </a></td>
-		<td class="tab1-3"> <a href="#">Louvain-La-Neuve, salle Intel  </a></td>
+	  	    
+    {% for job in offer_list %} 
+    <tr>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {% for key, value in job.CAT %}
+											{% if key == job.category %}
+												{{ value }}
+												{% endif %}
+ 											   {% endfor %}   </a></td>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.description|truncatewords:10  }} </a></td>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.address }} </a></td>
 	  </tr>
-	  <tr>
-
-		<td class=" tab1-3"><a href="#"> Esclave  </a></td>
-		<td class="tab1-3"> <a href="#">Terminer ses pages .html de m*****  </a></td>
-		<td class=" tab1-3"> <a href="#"> DMC ?  </a></td>  </tr>
-
-	  <tr>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-	  </tr>
+	{% endfor %}
+	
 	</table>
        
      
@@ -120,20 +115,20 @@
 		<td class="tab1-4">Title</td>
 		<td class="tab1-4">Location</td>
 	  </tr>
+	  
+	   {% for job in demand_list %} 
 	  <tr>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#"> Armand Bosquillon pue de la gueule </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}">
+											{% for key, value in job.CAT %}
+											{% if key == job.category %}
+												{{ value }}
+												{% endif %}
+ 											   {% endfor %}  </a></td>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.description|truncatewords:10  }} </a></td>
+		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.address }} </a></td>
 	  </tr>
-	  <tr>
-		<td class=" tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class=" tab1-3"> <a href="#">........ </a></td>  </tr>
-	  <tr>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-		<td class="tab1-3"> <a href="#">........ </a></td>
-	  </tr>
+	   {% endfor %}
+	   
 	</table>
 	
 

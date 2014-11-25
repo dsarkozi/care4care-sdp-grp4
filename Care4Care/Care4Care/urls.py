@@ -10,6 +10,9 @@ from C4CApplication.views.BranchListView import BranchListView
 from C4CApplication.views.JobDetailsView import JobDetailsView
 from C4CApplication.views.BranchDetailsView import BranchDetailView
 from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
+
+from C4CApplication.views.ProfileView import ProfileView
+
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
@@ -33,7 +36,10 @@ urlpatterns = patterns('',
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^favorites$', FavoritesView.as_view()),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
+    url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
+    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
+
 
 
     url(r'newjob/$', CreateJobView.as_view()),
