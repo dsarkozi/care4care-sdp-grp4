@@ -73,7 +73,11 @@ Participants :
 {% endfor %}
 </ul>
 
-<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a>
+<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">
+{% for member in job.member_set.all %}
+	
+{% endfor %}
+</a>
 
 {% block form_job_done %}
 {% endblock %}
