@@ -8,13 +8,9 @@ class NonMember(User):
     """
     This class represents a kind of Users called Non Members
     """
-    
-    def __init__(self, member_email):
-        member_list = Member.objects.filter(mail=member_email)
-        if len(member_list) == 1:
-            self.db_member = member_list[0]
-        else:  # Fake email
-            self.db_member = None
+
+    def __init__(self, db_member):
+        self.db_member = db_member
 
     def is_job_visible(self, job, db_member):
         """

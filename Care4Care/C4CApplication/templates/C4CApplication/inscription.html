@@ -1,0 +1,53 @@
+{% load static %}
+{% load static %}
+
+
+<!DOCTYPE html>   
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<link rel = "  stylesheet" href = "{% static 'css/inscription.css' %}" type ="text/css"/> 
+        <title>Titre</title>
+    </head>
+
+    <body>
+    	<form method = "post" >
+    		{% csrf_token %}
+   			<div id = "container">
+        		<div id ="centreur">
+        			<div id = "header">
+        				<h4 id = "titre"> INSCRIPTION </h4>
+        			</div>
+    				<fieldset>	<legend> Informations personnels </legend>
+    					<p>  <div class = "left">{{form.prenom.errors}} {{form.prenom}} </div> <div class = "right">{{form.nom.errors}} {{form.nom}} </div> </br></p>
+    					<p>  {{form.email.errors}} {{form.email}}</p>
+   						<p>  {{form.mot_de_passe.errors}} {{form.mot_de_passe}} </p>  				
+   						<p>  {{form.date_de_naissance.errors}} {{form.date_de_naissance}} </p>    				
+    				
+   						<p> adresse: <br/>
+   						  {{form.numero.errors}} {{form.numero}}  {{form.rue.errors}} {{form.rue}}</p>    				
+       					<p> {{form.code_postal.errors}} {{form.code_postal}}  {{form.ville.errors}} {{form.ville}} </p>
+    			</div>
+					
+    			<div id = "compte"> 
+    				<fieldset>	<legend> Type de membre </legend>     			
+    					<p> type de membre:<br/>
+    						{{form.type_membre.errors}}
+    						{{form.type_membre}}
+    					</p>
+    					<p>  {{form.branch.errors}}{{form.branch}}</p>
+    				</fieldset>
+    			</div>   
+    			<div id = "facultatives" >
+    				<fieldset>	<legend> Informations facultatives </legend> 
+   			    		<p> {{form.telephone_fixe.errors}} {{form.telephone_fixe}} </p>
+    					<p> {{form.telephone_mobile.errors}} {{form.telephone_mobile}} </p>
+    				</fieldset>   				
+    			</div>
+    			<p id = "envoyer"> <input type = "submit" name = "envoyer" > </p>
+    		</div>
+		<form/>
+    </body>
+</html>
+
+<!--  -->

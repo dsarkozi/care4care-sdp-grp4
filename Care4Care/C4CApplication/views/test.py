@@ -25,4 +25,4 @@ def profile(request):
     
     member.save()
     
-    return render(request, 'C4CApplication/profile.html', {'member':member})
+    return render(request, 'C4CApplication/Profile.html', {'member':member})
