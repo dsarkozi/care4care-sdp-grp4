@@ -8,7 +8,7 @@ from C4CApplication.views.forms.BranchListForm import BranchListForm
 class BranchListView(FormView):
     template_name = "C4CApplication/branchList.html"
     form_class = BranchListForm
-    success_url = "home"
+    success_url = "branchlist"
     member = None
 
     def dispatch(self, request, *args, **kwargs):
