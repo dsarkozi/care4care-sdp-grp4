@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home$', HomePageView.as_view(), name='home'),
+    url(r'^$', HomePageView.as_view(), name='home'),
 
     url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
