@@ -7,8 +7,7 @@ from C4CApplication.meta.volunteer_verified import VolunteerVerified
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.meta.bp_administrator import BPAdministrator
 
-@staticmethod
-def create_user(member_email, member_tag):
+def create_user(member_email):
     """
     :param member_email:
     :param member_tag:
