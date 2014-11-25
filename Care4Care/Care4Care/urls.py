@@ -29,6 +29,6 @@ urlpatterns = patterns('',
     #url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view()),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
 
-    url(r'^newjob/$', CreateJobView.as_view()),
-    url(r'^donate/$', DonateTimeView.as_view())
+    url(r'newjob/$', CreateJobView.as_view()),
+    url(r'donate/$', DonateTimeView.as_view())
 )
