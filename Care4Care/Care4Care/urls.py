@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from C4CApplication.views.CreateJobView import CreateJobView
+from C4CApplication.views.DonateTimeView import DonateTimeView
 
 from C4CApplication.views.HomePageView import HomePageView
 from C4CApplication.views.LogoutView import LogoutView
@@ -29,4 +30,5 @@ urlpatterns = patterns('',
     url(r'^profile$', 'C4CApplication.views.test.profile'),
 
     url(r'^newjob/$', CreateJobView.as_view()),
+    url(r'^donate/$', DonateTimeView.as_view())
 )

@@ -5,6 +5,12 @@
     <title>Donate time</title>
 </head>
 <body>
-
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Donation message</legend>
+            {{ donateTime.message }}
+        </fieldset>
+    </form>
 </body>
 </html>
