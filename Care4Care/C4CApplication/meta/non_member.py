@@ -1,5 +1,5 @@
 from time import strftime, gmtime
-from C4CApplication.meta import User, Message
+from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch
 from django.db.models import Max
 
