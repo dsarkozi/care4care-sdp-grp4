@@ -19,15 +19,6 @@ class HomePageView(FeedsMixingView,FormView):
         self.request.session['email'] = email
         return super(HomePageView, self).form_valid(form)
 
-    # def post(self, request, *args, **kwargs):
-    #     form = LoginForm(request.POST)
-    #     if form.is_valid():
-    #         email = form.cleaned_data['email']
-    #         password = form.cleaned_data['password']
-    #         print("Email: " + email)
-    #         print("Password: " + password)
-    #         return super(HomePageView, self).post(request, *args, **kwargs)
-
     def demand_job_list(self):
         member = None # get_member TODO
         return member.get_visible_jobs_list(True)

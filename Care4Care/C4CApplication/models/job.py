@@ -13,20 +13,20 @@ class Job(models.Model):
     start_time = models.IntegerField(default=0)
     
     FREQ = (
-        (0, 'once'),
-        (1, 'daily'),
-        (2, 'weekly'),
-        (3, 'monthly'),
-        (4, 'yearly'),
+        (0, 'Once'),
+        (1, 'Daily'),
+        (2, 'Weekly'),
+        (3, 'Monthly'),
+        (4, 'Yearly'),
     )
     frequency = models.SmallIntegerField(choices=FREQ, default=0)
     km = models.SmallIntegerField(default=0)
     time = models.SmallIntegerField(default=0)
     
     CAT = (
-        (1, 'shopping'),
-        (2, 'visit'),
-        (3, 'transport'),
+        (1, 'Shopping'),
+        (2, 'Visit'),
+        (3, 'Transport'),
     )
     category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField(default=None) # True = demand, False = offer
@@ -34,6 +34,14 @@ class Job(models.Model):
     accepted = models.BooleanField(default=False)
     done = models.BooleanField(default=False)
     payed = models.BooleanField(default=False)
+    
+    JOB_VISIBILITY_TUPLE = (
+        (1, 'Anyone'),
+        (2, 'Verified'),
+        (4, 'Favorites'),
+        (8, 'Network'),
+        (16, 'Volunteer'),
+    )
     
     JOB_VISIBILITY = { # every bit of the number corresponds to one option
         'anyone'     : 1,   #00001

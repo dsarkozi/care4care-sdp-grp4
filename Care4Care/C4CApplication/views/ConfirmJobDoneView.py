@@ -5,7 +5,7 @@ class ConfirmJobDoneView(FormView):
     
     model = Job
     context_object_name = "job"
-    template_name = "C4CApplication/confirmjobdoneview.html"
+    template_name = "C4CApplication/ConfirmJobDoneView.html"
 
     def get_object(self):
         

@@ -1,4 +1,5 @@
-from C4CApplication.views import User, Message
+from time import strftime, gmtime
+from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch
 from django.db.models import Max
 
@@ -59,7 +60,7 @@ class NonMember(User):
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
-        return self.get_job_list_base(show_offers, self.is_job_visible)
+        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
 
     def get_visible_job_list_base(self, show_offers, function):
         """
@@ -193,7 +194,7 @@ class NonMember(User):
         job.save()
         return True
 
-
+    #TODO
     def register_job_done(self, job_number, job_creator_mail):
         """
         Registers a job as done (with no time because a Non Member cannot 'earn' time)

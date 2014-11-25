@@ -6,14 +6,16 @@
     <title></title>
 </head>
 <body>
-    {% comment %}
-        TODO Check for URL
-    {% endcomment %}
     <form method="post">
         {% csrf_token %}
-        {{ branch_list_form }}
+        <ul>
+            {% for checkbox in branch_list_form.branch_list %}
+                <li>
+                    {{ checkbox }} <a href="{% url 'memberlist' checkbox.choice_label %}">Details</a>
+                </li>
+            {% endfor %}
+        </ul>
         <input type="submit" value="Submit changes"/>
     </form>
-
 </body>
 </html>

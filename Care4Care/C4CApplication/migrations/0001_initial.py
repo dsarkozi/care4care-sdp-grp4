@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Branch',
             fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
+                ('name', models.CharField(serialize=False, max_length=50, primary_key=True)),
                 ('town', models.CharField(max_length=200)),
                 ('branch_officer', models.EmailField(max_length=75)),
                 ('address', models.CharField(max_length=200)),
@@ -27,17 +27,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Job',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('mail', models.EmailField(max_length=75)),
                 ('number', models.IntegerField()),
                 ('description', models.TextField()),
                 ('comment', models.CharField(max_length=200)),
-                ('date', models.DateField(default='2014-11-23')),
+                ('date', models.DateField(default='2014-11-25')),
                 ('start_time', models.IntegerField(default=0)),
-                ('frequency', models.SmallIntegerField(choices=[(0, 'once'), (1, 'daily'), (2, 'weekly'), (3, 'monthly'), (4, 'yearly')], default=0)),
+                ('frequency', models.SmallIntegerField(choices=[(0, 'Once'), (1, 'Daily'), (2, 'Weekly'), (3, 'Monthly'), (4, 'Yearly')], default=0)),
                 ('km', models.SmallIntegerField(default=0)),
                 ('time', models.SmallIntegerField(default=0)),
-                ('category', models.SmallIntegerField(choices=[(1, 'shopping'), (2, 'visit'), (3, 'transport')])),
+                ('category', models.SmallIntegerField(choices=[(1, 'Shopping'), (2, 'Visit'), (3, 'Transport')])),
                 ('type', models.BooleanField(default=None)),
                 ('address', models.CharField(max_length=200)),
                 ('accepted', models.BooleanField(default=False)),
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Mailbox',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('status', models.BooleanField(default=False)),
             ],
             options={
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Member',
             fields=[
-                ('mail', models.EmailField(max_length=75, primary_key=True, serialize=False)),
+                ('mail', models.EmailField(serialize=False, max_length=75, primary_key=True)),
                 ('password', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=20)),
                 ('last_name', models.CharField(max_length=30)),
@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                 ('status', models.BooleanField(default=True)),
                 ('mobile', models.CharField(max_length=15)),
                 ('telephone', models.CharField(max_length=15)),
-                ('register_date', models.DateField(default='2014-11-23')),
+                ('register_date', models.DateField(default='2014-11-25')),
                 ('dash_board_text', models.TextField()),
                 ('address', models.CharField(max_length=200)),
                 ('visibility', models.SmallIntegerField(default=2)),
@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('number', models.IntegerField()),
                 ('subject', models.CharField(max_length=100)),
                 ('content', models.TextField()),
@@ -103,9 +103,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Relationship',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
-                ('member_source', models.ForeignKey(to='C4CApplication.Member', related_name='source')),
-                ('member_target', models.ForeignKey(to='C4CApplication.Member', related_name='target')),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('member_source', models.ForeignKey(related_name='source', to='C4CApplication.Member')),
+                ('member_target', models.ForeignKey(related_name='target', to='C4CApplication.Member')),
             ],
             options={
             },
@@ -118,7 +118,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='member',
             name='relation',
-            field=models.ManyToManyField(to='C4CApplication.Member', through='C4CApplication.Relationship'),
+            field=models.ManyToManyField(through='C4CApplication.Relationship', to='C4CApplication.Member'),
             preserve_default=True,
         ),
         migrations.AddField(

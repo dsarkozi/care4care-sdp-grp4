@@ -5,7 +5,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from C4CApplication.models.job import Job
 
 
-class CreateJob1Form(forms.Form):
+class CreateJobForm(forms.Form):
     #TODO Put some magical js for disabled fields toggle
 
     # Request details fieldset
@@ -53,7 +53,7 @@ class CreateJob1Form(forms.Form):
         ('saturday','Saturday'),
         ('sunday','Sunday')
     )
-    weekdays = forms.ChoiceField(
+    weekdays = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
             attrs={'disabled':'true'}
         ),
@@ -65,7 +65,7 @@ class CreateJob1Form(forms.Form):
         ('evening','Evening'),
         ('any','Anytime')
     )
-    dayparts = forms.ChoiceField(
+    dayparts = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
             attrs={'disabled':'true'}
         ),
@@ -77,6 +77,19 @@ class CreateJob1Form(forms.Form):
         )
     )
 
+    # Job visibility fieldset
+    VISIBILITY = (
+        ('any', 'Anyone'),
+        ('verified', 'Verified members only'),
+        ('favorites', 'My favorites only'),
+        ('personal', 'My personal network only'),
+        ('default', 'Apply my default preferences')     # TODO Gather from database
+    )
+    visibility = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=VISIBILITY
+    )
+
     def clean(self):
         """
         Overrides clean from super to add an error if 'other' has been checked,
@@ -84,7 +97,7 @@ class CreateJob1Form(forms.Form):
         """
         #TODO Verify if further validations are needed for the nested selectors
         
-        cleaned_data = super(CreateJob1Form, self).clean()
+        cleaned_data = super(CreateJobForm, self).clean()
         category = cleaned_data.get("categories")
         other = cleaned_data.get("other")
         if category == 'other' and other == '':

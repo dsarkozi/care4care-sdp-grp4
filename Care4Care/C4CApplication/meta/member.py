@@ -22,15 +22,15 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise
         """
         message = Message()
-        member_sender = Member.objects.filter(mail=sender_mail)
+        member_sender = models.Member.objects.filter(mail=sender_mail)
         if len(member_sender)!=1 :
             return False
         message.member_sender = member_sender[0]
         n = 0
-        list_message = Message.objects.filter(mail=sender_mail)
+        list_message = member_sender[0].message_set.all()
         for m in list_message:
             if m.number > n:
-                n = m
+                n = m.number
         message.number = n + 1
         message.subject = subject
         message.content = content
@@ -39,13 +39,12 @@ class Member(NonMember):
         message.save()
         
         mailbox = Mailbox()
-        mailbox.save()
         member_receiver = models.Member.objects.filter(mail=receiver_mail)
         if len(member_receiver) != 1:
             return False
-        mailbox.member = member_receiver[0]
+        mailbox.member_receiver = member_receiver[0]
         mailbox.message = message
-        member.save()
+        member_sender[0].save()  # TODO Member sender or mailbox.member ???
         message.save()
         mailbox.save()
         
@@ -130,6 +129,7 @@ class Member(NonMember):
         job.save()
         return True
 
+    #TODO Where do you change the time ?
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
