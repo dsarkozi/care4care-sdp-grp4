@@ -10,6 +10,7 @@ from C4CApplication.views.BranchListView import BranchListView
 from C4CApplication.views.JobDetailsView import JobDetailsView
 from C4CApplication.views.BranchDetailsView import BranchDetailView
 from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
+from C4CApplication.views.ProfileView import ProfileView
 
 
 urlpatterns = patterns('',
@@ -28,7 +29,8 @@ urlpatterns = patterns('',
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
     #url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view()),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
-
+    url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
+                       
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view())
 )
