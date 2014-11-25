@@ -19,6 +19,19 @@
             {{ donateTime.hours }} <label> hours, </label>
             {{ donateTime.minutes }} <label> minutes. </label>
         </fieldset>
+        <fieldset>
+            <legend>Donation recipient</legend>
+            <ul>
+            {% for recipient in donateTime.receiver %}
+                {% if forloop.last %}
+                    <li>{{ recipient }} : {{ donateTime.userDropdown }}</li>
+                {% else %}
+                    <li>{{ recipient }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </fieldset>
+        <input type="submit" value="Donate time">
     </form>
 </body>
 </html>
