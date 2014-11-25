@@ -9,7 +9,6 @@ class FavoritesView(DetailView):
 
     def get_object(self):
         
-        #member = Member.objects.filter(mail=self.request.session['email'])
-        member = Member.objects.filter(mail="armand.bosquillon@student.uclouvain.be")[0]
+        member = Member.objects.filter(mail=self.request.session['email'])[0]
     
         return member
