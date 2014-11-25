@@ -1,15 +1,20 @@
-from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import never_cache
 from django.views.generic.base import RedirectView
+from C4CApplication.models.job import Job
+from C4CApplication.models.member import Member
 
-from articles.models import Article
 
 class ParticipateJobRedirectView(RedirectView):
 
-    permanent = False
-    query_string = True
-    pattern_name = 'article-detail'
+    job = None
+    
+    url = ""
 
-    def get_redirect_url(self, *args, **kwargs):
-        article = get_object_or_404(Article, pk=kwargs['pk'])
-        article.update_counter()
-        return super(ArticleCounterRedirectView, self).get_redirect_url(*args, **kwargs)
+    @never_cache
+    def get(self, request, *args, **kwargs):
+        #member = Member.objects.filter(mail=request.session['email'])
+        job_id = kwargs['pk']
+        self.job = Job.objects.filter(id=job_id)
+        self.url = "/jobdetails/"+str(job_id)
+        #member.accept_job(job.number, job.mail)
+        return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)

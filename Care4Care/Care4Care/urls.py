@@ -11,6 +11,11 @@ from C4CApplication.views.JobDetailsView import JobDetailsView
 from C4CApplication.views.BranchDetailsView import BranchDetailView
 from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 
+from C4CApplication.views.ProfileView import ProfileView
+
+from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
+
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -26,8 +31,14 @@ urlpatterns = patterns('',
 
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
+    url(r'^participatejob/(?P<pk>\d+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     #url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view()),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
+    url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
+    url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
+    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
+
+
 
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view())
