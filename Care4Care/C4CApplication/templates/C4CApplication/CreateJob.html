@@ -4,7 +4,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Create job</title>
-    <link rel="stylesheet" href="{% static "css/create_job1.css" %}">
+    <link rel="stylesheet" href="{% static "css/create_job.css" %}">
 </head>
 <body>
 
@@ -12,17 +12,17 @@
     {% csrf_token %}
     <fieldset>
         <legend>Request details</legend>
-        {{ NewJob1Form.title }} <br>
+        {{ createJob.title }} <br>
         <p id="job_desc_field">
-            {{ NewJob1Form.desc }}
+            {{ createJob.desc }}
         </p>
     </fieldset>
     <fieldset>
         <legend>Job category</legend>
         <ul>
-        {% for choice in NewJob1Form.categories %}
+        {% for choice in createJob.categories %}
             {% if forloop.last %}
-                <li>{{ choice }} : {{ NewJob1Form.other }}</li>
+                <li>{{ choice }} : {{ createJob.other }}</li>
             {% else %}
                 <li>{{ choice }}</li>
             {% endif %}
@@ -32,19 +32,19 @@
     <fieldset>
         <legend>Job timeline</legend>
         <ul>
-            {% for freq in NewJob1Form.frequency %}
+            {% for freq in createJob.frequency %}
                 {% if forloop.first %}
                     <li> {{ freq }}
                         <ul>
-                            {% for subfreq in NewJob1Form.subfrequency %}
+                            {% for subfreq in createJob.subfrequency %}
                                 {% if forloop.first %}
-                                    <li>{{ subfreq }} : {{ NewJob1Form.specific }}</li>
+                                    <li>{{ subfreq }} : {{ createJob.specific }}</li>
                                 {% else %}
                                     <div class="job_weekdays">
-                                        <li>{{ subfreq }} : {{ NewJob1Form.weekdays }}</li>
+                                        <li>{{ subfreq }} : {{ createJob.weekdays }}</li>
                                     </div>
                                     <div class="job_dayparts">
-                                        {{ NewJob1Form.dayparts }}
+                                        {{ createJob.dayparts }}
                                     </div>
                                     <br><br><br><br><br><br><br><br><br> <!-- TODO Fix this ! -->
                                 {% endif %}
@@ -55,10 +55,10 @@
                     <li>{{ freq }}
                         <ul>
                             <div class="job_weekdays">
-                                {{ NewJob1Form.weekdays }}
+                                {{ createJob.weekdays }}
                             </div>
                             <div class="job_dayparts">
-                                {{ NewJob1Form.dayparts }}
+                                {{ createJob.dayparts }}
                             </div>
                         </ul>
                     </li>
@@ -66,7 +66,11 @@
             {% endfor %}
         </ul>
     </fieldset>
-    <input type="submit" />
+    <fieldset>
+        <legend>Job visibility</legend>
+        {{ createJob.visibility }}
+    </fieldset>
+    <input type="submit" value="Post request" />
 </form>
 
 </body>

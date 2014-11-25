@@ -1,4 +1,5 @@
-from C4CApplication.views import User, Message
+from time import strftime, gmtime
+from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch
 from django.db.models import Max
 
@@ -7,52 +8,13 @@ class NonMember(User):
     """
     This class represents a kind of Users called Non Members
     """
-
-    def __init__(self, db_member):
-        self.db_member = db_member
-        
-    #TODO Why don't you put this on the specific file system_email ?
-    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
-        """
-        Send a mail from from_mail to to_mail, with the subject, 
-        the content, and the type passed in parameter
-
-        :param sender_mail: mail of the sender
-        :param receiver_mail: mail of the receiver
-        :param subject: subject of the mail
-        :param content: content of the mail
-        :param type: type of the mail
-        :return: False if there was a problem and True otherwise
-        """
-        message = Message()
-        member_sender = Member.objects.filter(mail=sender_mail)
-        if len(member_sender)!=1 :
-            return False
-        message.member_sender = member_sender[0]
-        n = 0
-        list_message = Message.objects.filter(mail=sender_mail)
-        for m in list_message:
-            if m.number > n:
-                n = m
-        message.number = n + 1
-        message.subject = subject
-        message.content = content
-        message.type = type
-        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
-        message.save()
-        
-        mailbox = Mailbox()
-        mailbox.save()
-        member_receiver = models.Member.objects.filter(mail=receiver_mail)
-        if len(member_receiver) != 1:
-            return False
-        mailbox.member = member_receiver[0]
-        mailbox.message = message
-        member.save()
-        message.save()
-        mailbox.save()
-        
-        return True
+    
+    def __init__(self, member_email):
+        member_list = Member.objects.filter(mail=member_email)
+        if len(member_list) == 1:
+            self.db_member = member_list[0]
+        else:  # Fake email
+            self.db_member = None
 
     def is_job_visible(self, job, db_member):
         """
@@ -102,7 +64,7 @@ class NonMember(User):
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
-        return self.get_job_list_base(show_offers, self.is_job_visible)
+        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
 
     def get_visible_job_list_base(self, show_offers, function):
         """
@@ -236,8 +198,13 @@ class NonMember(User):
         job.save()
         return True
 
+<<<<<<< HEAD
 
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None):
+=======
+    #TODO
+    def register_job_done(self, job_number, job_creator_mail):
+>>>>>>> branch 'dev' of https://github.com/dsarkozi/care4care-sdp-grp4.git
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not

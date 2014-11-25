@@ -45,7 +45,7 @@ class Member(NonMember):
             return False
         mailbox.member = member_receiver[0]
         mailbox.message = message
-        member.save()
+        member.save()  # TODO Member sender or mailbox.member ???
         message.save()
         mailbox.save()
         
@@ -130,6 +130,7 @@ class Member(NonMember):
         job.save()
         return True
 
+    #TODO Where do you change the time ?
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).

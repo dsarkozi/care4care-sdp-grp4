@@ -1,7 +1,7 @@
 from time import strftime, gmtime
 
 
-from C4CApplication.views import BranchOfficer
+from C4CApplication.meta import BranchOfficer
 from C4CApplication.models import Member, Branch, Job
 
 

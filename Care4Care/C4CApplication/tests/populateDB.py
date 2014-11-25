@@ -10,6 +10,7 @@ exec(open('./C4CApplication/tests/populateDB.py').read())
 # Creation de membre
 m1 = Member()
 m1.mail = "kim.mens@gmail.com"
+m1.password = "agentKim007"
 m1.first_name = "Kim"
 m1.last_name = "Mens"
 m1.birthday = "1967-10-03"
@@ -21,6 +22,7 @@ m1.save()
 
 m2 = Member()
 m2.mail = "yves.deville@gmail.com"
+m2.password = "agentYves007"
 m2.first_name = "Yves"
 m2.last_name = "Deville"
 m2.birthday = "1956-08-23"
@@ -32,6 +34,7 @@ m2.save()
 
 m3 = Member()
 m3.mail = "olivier.bonaventure@gmail.com"
+m3.password = "oboIsWatchingYou"
 m3.first_name = "Olivier"
 m3.last_name = "Bonaventure"
 m3.birthday = "1970-05-25"
@@ -43,6 +46,7 @@ m3.save()
 
 m4 = Member()
 m4.mail = "armand.bosquillon@student.uclouvain.be"
+m4.password = "Bouillakasha69"
 m4.first_name = "Armand"
 m4.last_name = "Bosquillon"
 m4.birthday = "1993-03-20"

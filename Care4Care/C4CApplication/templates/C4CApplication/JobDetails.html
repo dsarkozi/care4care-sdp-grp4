@@ -73,7 +73,7 @@ Participants :
 {% endfor %}
 </ul>
 
-<input type="submit" value="Participate" class="participate-job">
+<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a>
 
 {% block form_job_done %}
 {% endblock %}

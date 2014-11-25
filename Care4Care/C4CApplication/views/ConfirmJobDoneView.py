@@ -14,6 +14,11 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
     
         return job
     
+    def dispatch(self, request, *args, **kwargs):
+        if 'email' not in self.request.session:
+            raise PermissionDenied  # HTTP 403
+        return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super(ConfirmJobDoneView, self).get_context_data(**kwargs)
         

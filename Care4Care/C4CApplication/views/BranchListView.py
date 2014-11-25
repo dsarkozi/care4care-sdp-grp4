@@ -1,4 +1,5 @@
 from django.views.generic.edit import FormView
+from django.core.exceptions import PermissionDenied
 
 from C4CApplication.models.member import Member
 from C4CApplication.views.forms.BranchListForm import BranchListForm
@@ -7,14 +8,18 @@ from C4CApplication.views.forms.BranchListForm import BranchListForm
 class BranchListView(FormView):
     template_name = "C4CApplication/branchList.html"
     form_class = BranchListForm
-    success_url = "home"
+    success_url = "branchlist"
     member = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'email' not in self.request.session:
+            raise PermissionDenied  # HTTP 403
+        return super(BranchListView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(BranchListView, self).get_context_data(**kwargs)
 
         # Get the personal list of the member
-        # TODO test if the member has session variables !! -> redirection
         if BranchListView.member is None:
             BranchListView.member = Member.objects.get(mail=self.request.session['email'])
 
@@ -29,7 +34,6 @@ class BranchListView(FormView):
         return context
 
     def form_valid(self, form):
-        # TODO test if the member has session variables !! -> redirection
         if BranchListView.member is None:
             BranchListView.member = Member.objects.get(mail=self.request.session['email'])
 
