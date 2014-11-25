@@ -19,7 +19,7 @@
         				<h4 id = "titre"> INSCRIPTION </h4>
         			</div>
     				<fieldset>	<legend> Informations personnels </legend>
-    					<p>  {{form.prenom.errors}} {{form.prenom}}  {{form.nom.errors}} {{form.nom}} </p>
+    					<p>  <div class = "left">{{form.prenom.errors}} {{form.prenom}} </div> <div class = "right">{{form.nom.errors}} {{form.nom}} </div> </br></p>
     					<p>  {{form.email.errors}} {{form.email}}</p>
    						<p>  {{form.mot_de_passe.errors}} {{form.mot_de_passe}} </p>  				
    						<p>  {{form.date_de_naissance.errors}} {{form.date_de_naissance}} </p>    				
