@@ -197,14 +197,8 @@ class NonMember(User):
 
         job.save()
         return True
-
-<<<<<<< HEAD
-
+    
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None):
-=======
-    #TODO
-    def register_job_done(self, job_number, job_creator_mail):
->>>>>>> branch 'dev' of https://github.com/dsarkozi/care4care-sdp-grp4.git
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
