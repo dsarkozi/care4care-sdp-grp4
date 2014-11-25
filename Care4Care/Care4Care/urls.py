@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     #url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view()),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
+    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
 
 
     url(r'newjob/$', CreateJobView.as_view()),
