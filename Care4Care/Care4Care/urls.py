@@ -34,7 +34,7 @@ from C4CApplication.views.CreateBranchView import CreateBranchView
 from C4CApplication.views.ChangeActivityView import ChangeActivityView
 from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedirectView
 
-from C4CApplication.views.DeleteMemberFromBranchRedirectView import DeleteMemberFromBranchRedirectView
+from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
 
 urlpatterns = patterns('',
@@ -72,7 +72,7 @@ urlpatterns = patterns('',
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
     url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
 
-    url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
+    url(r'^branchlistredirect/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)/(?P<action>\d+)$', BranchListRedirectView.as_view(), name='branchlistredirect'),
     url(r'^loginasmember/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', LoginAsMemberRedirectView.as_view(), name="loginasmember"),
 
     url(r'newjob/$', CreateJobView.as_view()),
