@@ -41,13 +41,16 @@ class BPAdministrator(BranchOfficer):
         # TODO
         raise PermissionError
 
-    def log_as_member(self, email):
-        """
-        :param email: the email of the member to log in as
-        :return: the object Member or None if there is a problem
-        """
-        # TODO -> go throught sessions variables ?
-        raise PermissionError
+    def log_as_member(self, email, session):
+
+        if email == self.db_member.mail:  # If the user is already logged as himself...
+            return False
+
+        # Change the session variable
+        session['super_user_mail'] = session['email']
+        session['email'] = email
+
+        return True
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """

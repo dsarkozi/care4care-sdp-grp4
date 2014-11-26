@@ -191,10 +191,12 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def log_as_member(self, email):
+    def log_as_member(self, email, session):
         """
+        Logs the current user as the one specified by the email (by modifying the session variables)
         :param email: the email of the member to log in as
-        :return: the object Member or None if there is a problem
+        :param session: the dictionary containing the session variables
+        :return: False if there was a problem and True otherwise.
         """
         return
 

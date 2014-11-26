@@ -47,11 +47,29 @@ class BranchOfficer(Member):
         branch.save()
         return True
 
-    def log_as_member(self, email):
-        """
-        ????
-        """
-        raise PermissionError  # TODO
+    def log_as_member(self, email, session):
+
+        if email == self.db_member.mail:  # If the user is already logged as himself...
+            return False
+
+        member = models.Member.objects.filter(mail=email)
+        if len(member) != 1:
+            return False
+        member = member[0]
+
+        member_branch = None
+        for branch in member.branch:
+            if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
+                member_branch = branch
+
+        if member_branch is None:  # The branch officer have no power on this user
+            return False
+
+        # Change the session variable
+        session['super_user_mail'] = session['mail']
+        session['mail'] = email
+
+        return True
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
@@ -59,10 +77,10 @@ class BranchOfficer(Member):
         :param new_branch_officer_email: the new branch_officer that will control the branch
         :return: False if there was a problem and True otherwise.
         """
-        branch = Branch.objects.filter(name=branch_name)
-        if len(branch) != 1:
+        branchlist = Branch.objects.filter(name=branch_name)
+        if len(branchlist) != 1:
             return False
-        branh = branch[0]
+        branch = branchlist[0]
         if branch.branch_officer != self.db_member.mail:
             return False
         branch.branch_officer = new_branch_officer_email
