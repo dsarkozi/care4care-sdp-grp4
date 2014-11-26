@@ -57,7 +57,7 @@
 				<li><a href="Help">Help</a></li>
 
 			-->
-			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
+			<li><a href="{% url 'home' %}"> <b> <center> HOME</a> </center> </b> </li>
 			<li><a href="Branches.html">Care4Care Branches</a></li>
 				<ul>
 					<li><a href="">Heembeek</a></li>
@@ -104,7 +104,7 @@
 <center>
 <table style="margin-top:150px; margin-left:0px; ">
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-    <td><a href="#" class="myButton">Messages</a></td>
+    <td><a href="/list_messages/1" class="myButton">Messages</a></td>
     <td><a href="#" class="myButton">Profile</a></td>
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
     <td><a href="/favorites" class="myButton">Favorites</a></td>

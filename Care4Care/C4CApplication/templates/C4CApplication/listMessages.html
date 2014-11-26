@@ -6,6 +6,11 @@
     <title></title>
 </head>
 <body>
+<br\>
+<a href="/list_messages/1">Received Messages</a>
+<a href="/list_messages/0">Sent Messages</a>
+<br\>
+<br\>
    	{% for message in object_list %}
    		<div class="ListMessages">
       		<h3>{{ message.subject }}</h3>

@@ -38,10 +38,10 @@ urlpatterns = patterns('',
 
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
-    url(r'^participatejob/(?P<pk>\d+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
+    url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
-    url(r'^favorites$', FavoritesView.as_view()),
+    url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
@@ -54,7 +54,7 @@ urlpatterns = patterns('',
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),
     
-    url(r'^list_messages$', ListMessages.as_view(), name='messageList'),
+    url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
 
 
