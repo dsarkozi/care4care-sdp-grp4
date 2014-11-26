@@ -9,11 +9,6 @@ class AcceptBillView(DetailView):
     context_object_name = "job"
     template_name = "C4CApplication/AcceptBill.html"
     
-    #def get_object(self):
-        
-        #member = Member.objects.filter(mail=self.request.session['email'])[0]
-    
-        #return member
     def get_object(self):
         
         job = super(AcceptBillView, self).get_object()
