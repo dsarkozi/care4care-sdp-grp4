@@ -19,13 +19,12 @@ class MemberDetailsView(DetailView):
 
         return super(MemberDetailsView, self).dispatch(request, *args, **kwargs)
     
-    '''
+    
     def get_context_data(self, **kwargs):
         context = {}
         context = super(MemberDetailsView, self).get_context_data(**context)
         context['connected_member'] = self.connected_member.db_member
         return context
-    '''
 
     def get_object(self):
         

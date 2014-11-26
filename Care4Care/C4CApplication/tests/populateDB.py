@@ -58,14 +58,14 @@ m4.save()
 #Creation de branch
 b1 = Branch(name="LLN")
 b1.town = "Louvain-La-Neuve"
-b1.mail = "kim.mens@gmail.com"
+b1.branch_officer = "kim.mens@gmail.com"
 m1.tag = 16
 b1.donation = 54
 b1.save()
 
 b2 = Branch(name="Nivelles")
 b2.town = "Nivelles"
-b2.mail = "yves.deville@gmail.com"
+b2.branch_officer = "yves.deville@gmail.com"
 m2.tag = 16
 b2.donation = 10
 b2.save()
