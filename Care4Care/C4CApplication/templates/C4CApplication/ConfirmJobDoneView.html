@@ -5,7 +5,7 @@
 
 	{% csrf_token %}
 	Time for doing the job (in minutes) :  <br/>
-    {{ confirm_job_done_form }}  <br/>
-    <input type="submit" value="Confirm"/>
+    <p>{{ confirm_job_done_form }}</p>
+    <p><input type="submit" value="Confirm"/></p>
 </form>
 {% endblock %}

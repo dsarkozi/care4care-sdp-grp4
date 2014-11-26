@@ -1,5 +1,6 @@
 from django.views.decorators.cache import never_cache
 from django.views.generic.base import RedirectView
+from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
 from C4CApplication.models.member import Member
 
@@ -20,17 +21,14 @@ class ParticipateJobRedirectView(RedirectView):
         job = job[0]
         
         connected_member = create_user("kim.mens@gmail.com")
-        print("connected_member = "+str(connected_member))
-        
-        '''if connected_member==None:
+        if connected_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         if connected_member.db_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
-        connected_member = connected_member.db_member
         
-        if connected_member in job.member_set :
-            
-        
-        member.accept_job(job.number, job.mail)'''
+        if connected_member.db_member in job.member_set.all() :
+            connected_member.stop_participate_job(job.number, job.mail)
+        elif not job.accepted :
+            connected_member.accept_job(job.number, job.mail)
         
         return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)

@@ -8,47 +8,7 @@ class Member(NonMember):
     """
     This class represents a kind of Users called Members
     """
-    #TODO Why don't you put this on the specific file system_email ?
-    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
-        """
-        Send a mail from from_mail to to_mail, with the subject, 
-        the content, and the type passed in parameter
-
-        :param sender_mail: mail of the sender
-        :param receiver_mail: mail of the receiver
-        :param subject: subject of the mail
-        :param content: content of the mail
-        :param type: type of the mail
-        :return: False if there was a problem and True otherwise
-        """
-        message = Message()
-        member_sender = models.Member.objects.filter(mail=sender_mail)
-        if len(member_sender)!=1 :
-            return False
-        message.member_sender = member_sender[0]
-        n = 0
-        list_message = member_sender[0].message_set.all()
-        for m in list_message:
-            if m.number > n:
-                n = m.number
-        message.number = n + 1
-        message.subject = subject
-        message.content = content
-        message.type = type
-        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
-        message.save()
-        
-        mailbox = Mailbox()
-        member_receiver = models.Member.objects.filter(mail=receiver_mail)
-        if len(member_receiver) != 1:
-            return False
-        mailbox.member_receiver = member_receiver[0]
-        mailbox.message = message
-        member_sender[0].save()  # TODO Member sender or mailbox.member ???
-        message.save()
-        mailbox.save()
-        
-        return True
+    
 
     def accept_help(self, job_number, job_creator_mail, helper_email):
         """
@@ -145,6 +105,7 @@ class Member(NonMember):
         if helped_one_email is None:
             return False
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
+        print("Job : "+str(job))
         if len(job) != 1:
             return False
         job = job[0]
@@ -154,11 +115,17 @@ class Member(NonMember):
         
         #We send a mail
         helper_mail = ''
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helped_one_email:
-                helper_mail = participant.mail
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+            print("offer")
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                print("Particpant : "+str(participant)+" -> helped_one : "+str(helped_one_email))
+                if participant.mail != helped_one_email:
+                    print('helper trouve')
+                    helper_mail = participant.mail
+                    break
         if helper_mail == '':
             return False
         subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
@@ -184,11 +151,17 @@ class Member(NonMember):
         job.save()
         
         helped_one = None  # TODO What ? -> the helped one is simply the self.db_member
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helper_email:
-                helper = participant  # TODO unused
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+            print("offer")
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                print("Particpant : "+str(participant)+" -> helped_one : "+str(helped_one_email))
+                if participant.mail != helped_one_email:
+                    print('helper trouve')
+                    helper_mail = participant.mail
+                    break
         if helped_one is None:
             return False
         helper = models.Member.objects.filter(mail=helper_email)

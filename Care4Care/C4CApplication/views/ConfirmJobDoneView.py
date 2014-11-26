@@ -7,12 +7,13 @@ from C4CApplication.views.forms.ConfirmJobDoneForm import ConfirmJobDoneForm
 from C4CApplication.views.utils import create_user
 
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse_lazy
 
 class ConfirmJobDoneView(FormView, JobDetailsView):
     
     template_name = "C4CApplication/ConfirmJobDoneView.html"
     form_class = ConfirmJobDoneForm
-    success_url = "myc4c"
+    success_url = reverse_lazy("myc4c")
     user = None
 
     def get_object(self):
@@ -26,8 +27,7 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
             raise PermissionDenied  # HTTP 403
 
         # Create the object representing the user
-        print("Session var : "+str(self.request.session['email']))
-        user = create_user(self.request.session['email'])
+        self.user = create_user(self.request.session['email'])
 
         return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)
     
@@ -51,13 +51,14 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         
         job = self.get_object()
         # retrieve helped_one, None if impossible to retrieve
-        helped_one = None
-        if len(job.member_set.all()) <= 2 : 
+        helped_one_mail = None
+        if job.type : 
+            helped_one_mail = job.mail 
+        elif len(job.member_set.all()) <= 2 : 
             for member in job.member_set.all() : 
-                if member.mail != job.mail : helped_one = member
-        
-        print("Bonsoir "+str(self.user.mail))    
+                if member.mail != job.mail : helped_one_mail = member.mail
+
         # register that the job is done
-        self.user.register_job_done(job.id, job.mail, helped_one.mail, time_to_pay) # comment je connais le job ?
+        self.user.register_job_done(job.number, job.mail, helped_one_mail, time_to_pay)
         
         return super(ConfirmJobDoneView, self).form_valid(form)
