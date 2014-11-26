@@ -19,8 +19,22 @@
         <ul>
             {% for member in member_list %}
                 <li><a href="{% url 'memberdetails' member.mail %}">{{ member.first_name }} {{ member.last_name }}</a>
-                    {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32%} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
-                        <a href="{% url 'deletememberfrombranch' branch.name member.mail %}">Delete from branch</a>
+                    {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+                        {% if member.mail != current_member.mail %}
+	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}">Remove from branch</a>
+	                        
+	                        {% if member.tag != 4 and member.tag != 12 %}
+	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 1 %}">Promote to verified</a>
+	                        {% else %}
+	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 1 %}">No more verified</a>
+	                        {% endif %}
+	                        
+	                        {% if member.tag != 8 and member.tag != 12 %}
+	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 2 %}">Promote to volunteer</a>
+	                        {% else %}
+	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 2 %}">No more volunteer</a>
+	                        {% endif %}
+                        {% endif %}
                     {% endif %}
                 </li>
             {% endfor %}
