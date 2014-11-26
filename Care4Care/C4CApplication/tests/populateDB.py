@@ -119,6 +119,11 @@ e2.type = 2
 e2.date = "2014-11-03"
 e2.save()
 
+#Suppression des mailbox pour eviter les doublons
+list_mailbox = Mailbox.objects.all()
+for mailbox in list_mailbox :
+    mailbox.delete()
+
 #Creation des mailboxs
 a1 = Mailbox()  # message e1 pour Kim Mens
 a1.member_receiver = m1  #Kim Mens
@@ -129,6 +134,11 @@ a2 = Mailbox()
 a2.member_receiver = m2 #Yves Devilles
 a2.message = e2
 a2.save()
+
+#Suppression des relations pour eviter les doublons
+list_relation = Relationship.objects.all()
+for relation in list_relation :
+    relation.delete()
 
 #Creation des relations entre les membres
 r1 = Relationship()

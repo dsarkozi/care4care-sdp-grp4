@@ -44,8 +44,9 @@
 	    {% endif %}
 	    
 	    {{ connected_member.mail }} <br/>
-	    {% for relation in connected_member.relationship %}
-	    	{{ relation.mail }}
+	    {{ connected_member.relation.all }}<br/>
+	    {% for relation in connected_member.relation.all %}
+	    	{{ relation.first_name }} <br/>
 	    {% endfor %}
 	    
 	    {% if connected_member.mail != member.mail and member not in connected_member.relation %}
