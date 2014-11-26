@@ -1,54 +1,27 @@
-{% load staticfiles %}
-{% comment %} TODO : ajouter un formulaire pour modifier les données {% endcomment %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="{% static "css/home_page.css"%}">
-        <title>Ton profil</title>
-    </head>
+{% extends "C4CApplication/MyCare4Care.html" %}
 
-    <body>
-    <!-- Menu de navigation (structure fixe) -->
-	<ul class="navbar">
-			 <!-- Optionnel
-			
-				<li><a href="AboutUs.html">About us</a></li>
-				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
-				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
-				<li><a href="Help">Help</a></li>
-			
-			-->
-			<li><a href="{% url 'home' %}"> <b> <center> HOME </center> </b> </a></li>
-			<li><a href="Branches.html">Care4Care Branches</a></li>
-				<ul>
-					<li><a href="">Heembeek</a></li>
-					<li><a href="">Molenbeek</a></li>
-					<li><a href="">Rixensart</a></li>
-					
-				</ul>
-			<li><a href="Statistics.html">Statistics</a></li>
-			<li><a href="Map.html">Map</a></li>
-			<li><a href="StartABranch.html">Start a branch ?</a></li>
-			<li><a href="News.html">News</a></li>
-			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
-	</ul>
-		
+{% load staticfiles %}
 	
-     <center>
+{% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
+	
+{% block menu%}
+	
+<center>
 <section>
     <h1 class = "entete"><span class="nom"> {{member.first_name}} {{member.last_name}}</span> <span class="tag"> {{ member.tag }} </span></h1>
     <article class = "first">
        <img src="{% static "images/images_profile/armand.jpg"%}" alt="Photo de profil" id="photo" style="height:250px;"/>
-        <h3>Compte :</h3>
+    </article>
+    
+    <article class = "second">
+    
+    	<h3>Compte :</h3>
         <ul style = "list-style-type: none;"> 
             <li class="info">Mail : {{ member.mail }}</li>
             <li class="info">Mot de passe : *********</li> 
             <li class="info">Date d'inscription : {{ member.register_date}}</li>
         </ul>
-    </article>
-    
-    <article class = "second">
+        
         <h3>Informations personnelles :</h3>
         <ul style = "list-style-type: none;">
             <li class="info">Nom : {{member.first_name}} {{member.last_name}}</li>
@@ -58,10 +31,10 @@
             <li class="info">Adresse : {{member.address}}</li
         </ul>
         
+        
          {% comment %}
         <h4>Adresse :</h4>
         <ul>
-        	>
        
             <li class="info">Rue : rue de l'Eglise</li>
             <li class="info">Numéro : 40</li>
@@ -70,8 +43,10 @@
             <li class="info">Pays : Belgique</li>
         {% endcomment %}
         </ul>
+        
+        
     </article>
 </section>   
 </center>
-    </body>
-</html>
+
+{% endblock %}

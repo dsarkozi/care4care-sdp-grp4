@@ -1,11 +1,9 @@
+{% extends "C4CApplication/MyCare4Care.html" %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+		
+{% block menu %}
+
 <br\>
 <a href="/list_messages/1">Received Messages</a>
 <a href="/list_messages/0">Sent Messages</a>
@@ -19,5 +17,4 @@
 			<hr/>
     	</div>
 	{% endfor %}
-</body>
-</html>
+{% endblock %}
