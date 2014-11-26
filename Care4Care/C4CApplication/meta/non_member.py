@@ -90,8 +90,10 @@ class NonMember(User):
         if len(job_list) == 0:
             return None
 
-        db_member = (Member.objects.filter(mail=job_list.mail))[0]
-
+        db_member = Member.objects.filter(mail=job_list.mail)
+        if len(db_member) == 0:
+            return None
+        db_member = db_member[0]
         if function(job_list[0], db_member):
             return job_list[0]
         else:
@@ -119,7 +121,10 @@ class NonMember(User):
         
         filtered_jobs_list = []
         for job in jobs_list :
-            db_member = (Member.objects.filter(mail=job.mail))[0]
+            db_member = Member.objects.filter(mail=job.mail)
+            if len(db_member) == 0:
+                return None
+            db_member = db_member[0]
             if function(job, db_member):
                 filtered_jobs_list.append(job)
 
@@ -387,12 +392,14 @@ class NonMember(User):
         :param favorite_mail : the mail of the favorite
         :return : false if the member is not removed from favorites (because it doesn't exist for example)
         """  
-        favorite = Member.objects.filter(mail=favorite_mail)[0]
-        if favorite is None:
+        favorite = Member.objects.filter(mail=favorite_mail)
+        if len(favorite) != 1:
             return False
-        relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)[0]
-        if relation is None:
+        favortie = favorite[0]
+        relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)
+        if len(relation) != 1:
             return False
+        relation = relation[0]
         relation.delete()
         return True
 
