@@ -1,37 +1,10 @@
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../static/css/home_page.css">
-</head>
+{% extends "MyCare4Care.html" %}
 
-	<!-- Menu de navigation (structure fixe) -->
-	<ul class="navbar">
-			 <!-- Optionnel
-
-				<li><a href="AboutUs.html">About us</a></li>
-				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
-				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
-				<li><a href="Help">Help</a></li>
-
-			-->
-			<li><a href="{% url 'home' %}"> <b> <center> HOME</a> </center> </b> </li>
-			<li><a href="Branches.html">Care4Care Branches</a></li>
-				<ul>
-					<li><a href="">Heembeek</a></li>
-					<li><a href="">Molenbeek</a></li>
-					<li><a href="">Rixensart</a></li>
-
-				</ul>
-			<li><a href="Statistics.html">Statistics</a></li>
-			<li><a href="Map.html">Map</a></li>
-			<li><a href="StartABranch.html">Start a branch ?</a></li>
-			<li><a href="News.html">News</a></li>
-			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
-	</ul>
-
+{% load staticfiles %}
+		
+{% block menu %}
 	
-
-
-	<form class="login" method="post" style ="left: 55em; top: 5px;">
+	<form class="login" method="post">
     <h1> </h1>
     {% csrf_token %}
     {{ favIgnForm.email.errors }}
@@ -43,7 +16,7 @@
 
      
 
-	<table class="tab1" style="left:15em; top:2em;" >
+	<table class="tab1"" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Favorite members</th>
 	  </tr>
@@ -66,4 +39,5 @@
 	{% endfor %}
 	
 	</table>
+{% endblock %}
 	

@@ -11,7 +11,7 @@
 <tr>
     <td>Hello, {{ member.first_name }} !</td>
     <td>{{ memberTag }}</td>
-    <td><a href="changeActivity" value="activity">{{ memberActivity }}</a></td>
+    <td>{{ memberActivity }}</td> {% comment %} TODO Change this {% endcomment %}
     <td><a href="../logout" class="myButton">Logout</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
 </tr>
 </table>
@@ -36,7 +36,7 @@
 <table style="margin-top:150px; margin-left:0px; ">
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
     <td><a href="/list_messages/1" class="myButton">Messages</a></td>
-    <td><a href="#" class="myButton">Profile</a></td>
+    <td><a href="/profile" class="myButton">Profile</a></td>
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
     <td><a href="/favorites" class="myButton">Favorites</a></td>
     <td><a href="#" class="myButton">Account & Stats</a></td>
@@ -44,5 +44,8 @@
 </tr>
 </table>
 </center>
+{% block menu %}
+	
+{% endblock %}
 	
 {% endblock %}
