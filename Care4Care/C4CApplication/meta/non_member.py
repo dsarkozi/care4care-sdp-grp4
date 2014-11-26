@@ -1,6 +1,6 @@
 from time import strftime, gmtime
 from C4CApplication.meta import User
-from C4CApplication.models import Job, Member, Branch
+from C4CApplication.models import Job, Member, Branch, Message, Mailbox
 from django.db.models import Max
 
 
@@ -11,6 +11,48 @@ class NonMember(User):
 
     def __init__(self, db_member):
         self.db_member = db_member
+        
+    #TODO Why don't you put this on the specific file system_email ?
+    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
+        """
+        Send a mail from from_mail to to_mail, with the subject, 
+        the content, and the type passed in parameter
+
+        :param sender_mail: mail of the sender
+        :param receiver_mail: mail of the receiver
+        :param subject: subject of the mail
+        :param content: content of the mail
+        :param type: type of the mail
+        :return: False if there was a problem and True otherwise
+        """
+        message = Message()
+        member_sender = Member.objects.filter(mail=sender_mail)
+        if len(member_sender)!=1 :
+            return False
+        message.member_sender = member_sender[0]
+        n = 0
+        list_message = member_sender[0].message_set.all()
+        for m in list_message:
+            if m.number > n:
+                n = m.number
+        message.number = n + 1
+        message.subject = subject
+        message.content = content
+        message.type = type
+        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
+        message.save()
+        
+        mailbox = Mailbox()
+        member_receiver = Member.objects.filter(mail=receiver_mail)
+        if len(member_receiver) != 1:
+            return False
+        mailbox.member_receiver = member_receiver[0]
+        mailbox.message = message
+        member_sender[0].save()  # TODO Member sender or mailbox.member ???
+        message.save()
+        mailbox.save()
+        
+        return True
 
     def is_job_visible(self, job, db_member):
         """
@@ -120,22 +162,56 @@ class NonMember(User):
         :param function: the function to check visibility of the job
         :return: False if there was a problem and True otherwise
         """
-
-        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail, type=True)
+        
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job_list) == 0:
             return False
 
         job = job_list[0]
 
-        db_member = (Member.objects.filter(mail=job_list.mail))
-        if len(db_member) != 1:
-            return False
-        db_member = db_member[0]
-
-        if function(job, db_member):
+        if function(job, self.db_member):
             job.member_set.add(self.db_member)
 
-            Message.send_new_helper_accept(self.db_member, db_member)
+            subject = "A member want to participate to your job"
+            content = "The member "+str(self.db_member.first_name)+" "+str(self.db_member.last_name)+\
+                        " has been added to the list of the potential participant."
+            type = 3
+            return self.send_mail(self.db_member.mail, job_creator_mail, subject, content, type)
+            
+            #Message.send_new_helper_accept(self.db_member, db_member)
+
+        return False
+    
+    def stop_participate_job(self, job_number, job_creator_mail):
+        """
+        Remove the member on the list of possible helpers for a pending job.
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :return: False if there was a problem and True otherwise
+        """
+        return self.stop_participate_job_base(job_number, job_creator_mail, self.is_job_visible)
+    
+    def stop_participate_job_base(self, job_number, job_creator_mail, function):
+        """
+        Remove the member on the list of possible helpers for a pending job.
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :param function: the function to check visibility of the job
+        :return: False if there was a problem and True otherwise
+        """
+
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
+        if len(job_list) == 0:
+            return False
+
+        job = job_list[0]
+
+        if function(job, self.db_member):
+            job.member_set.remove(self.db_member)
+
+            #Message.send_new_helper_accept(self.db_member, db_member)
 
             return True
 

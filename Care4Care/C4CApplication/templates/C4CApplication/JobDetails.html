@@ -71,10 +71,12 @@ Participants :
 {% endfor %}
 </ul>
 
-{% if connected_member in job.member_set.all %}
-	<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Stop participating</a> <br/>
-{% else %}
-	<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a> <br/>
+{% if not job.accepted %}
+	{% if connected_member in job.member_set.all %}
+		<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Stop participating</a> <br/>
+	{% else %}
+		<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a> <br/>
+	{% endif %}
 {% endif %}
 
 
