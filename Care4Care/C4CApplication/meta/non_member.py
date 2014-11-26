@@ -373,7 +373,7 @@ class NonMember(User):
         for mem in self.get_visible_members(None):
             if mem.mail == favorite_mail:
                 favorite=mem
-        if (favorite is None) or (self.db_member==favorite) or (self.db_member.is_favorite(mem)):
+        if (favorite is None) or (self.db_member==favorite) or (self.db_member.is_favorite(favorite)):
             return False
         relation = Relationship()
         relation.member_source = self.db_member
