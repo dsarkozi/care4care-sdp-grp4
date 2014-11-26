@@ -28,7 +28,7 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         # Create the object representing the user
         user = create_user(self.request.session['email'])
 
-        return super(BranchDetailView, self).dispatch(request, *args, **kwargs)
+        return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
         context = super(ConfirmJobDoneView, self).get_context_data(**kwargs)
@@ -42,8 +42,8 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
     
     def form_valid(self, form):
         # TODO test if the member has session variables !! -> redirection
-        if ConfirmJobDoneView.member is None:
-            ConfirmJobDoneView.member = models.Member.objects.get(mail=self.request.session['email'])
+        if ConfirmJobDoneView.user is None:
+            ConfirmJobDoneView.user = models.Member.objects.get(mail=self.request.session['email'])
 
         # value entered in the integer field
         time_to_pay = form.cleaned_data['time_to_pay']
@@ -54,8 +54,9 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         if len(job.member_set.all()) <= 2 : 
             for member in job.member_set.all() : 
                 if member.mail != job.mail : helped_one = member
-                
+        
+        print("Bonsoir "+str(self.user.mail))    
         # register that the job is done
-        self.user.register_job_done(self, job.id, job.mail, helped_one.mail, time_to_pay) # comment je connais le job ?
-
+        self.user.register_job_done(job.id, job.mail, helped_one.mail, time_to_pay) # comment je connais le job ?
+        
         return super(ConfirmJobDoneView, self).form_valid(form)

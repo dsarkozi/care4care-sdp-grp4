@@ -6,6 +6,7 @@ from C4CApplication.meta.verified_member import VerifiedMember
 from C4CApplication.meta.volunteer_verified import VolunteerVerified
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.meta.bp_administrator import BPAdministrator
+from C4CApplication import models
 
 
 def create_user(member_email):
@@ -19,9 +20,11 @@ def create_user(member_email):
         db_member = None
     else:
         db_member = models.Member.objects.filter(mail=member_email)
+        if len(db_member) != 1 : return None 
+        else : db_member = db_member[0]
         member_tag = db_member.tag
-        if db_member is None:  # If the adress was faked
-            return None
+        #if db_member is None:  # If the adress was faked
+            #return None
 
     if member_tag & 32:  # BP Administrator
         user = BPAdministrator(member_email)
