@@ -369,8 +369,11 @@ class NonMember(User):
         :param favorite_mail : the mail of the favorite
         :return : false if the member is not added to favorites (because it doesn't exist for example)
         """
-        favorite = Member.objects.filter(mail=favorite_mail)[0]
-        if favorite is None:
+        favorite = None
+        for mem in self.get_visible_members(None):
+            if mem.mail == favorite_mail:
+                favorite=mem
+        if (favorite is None) or (self.db_member==favorite) or (self.db_member.is_favorite(mem)):
             return False
         relation = Relationship()
         relation.member_source = self.db_member
