@@ -145,6 +145,7 @@ class Member(NonMember):
         if helped_one_email is None:
             return False
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
+        print("Job : "+str(job))
         if len(job) != 1:
             return False
         job = job[0]
@@ -154,11 +155,17 @@ class Member(NonMember):
         
         #We send a mail
         helper_mail = ''
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helped_one_email:
-                helper_mail = participant.mail
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+            print("offer")
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                print("Particpant : "+str(participant)+" -> helped_one : "+str(helped_one_email))
+                if participant.mail != helped_one_email:
+                    print('helper trouve')
+                    helper_mail = participant.mail
+                    break
         if helper_mail == '':
             return False
         subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
