@@ -8,6 +8,9 @@
 	</head>
 
 	<body>
+		{% block accept_bill %}
+		{% endblock %}
+		
 		Createur du job :
 		{% for member in job.member_set.all %}
 			{% if member.mail == job.mail %}
@@ -92,7 +95,7 @@
 			{% else %}
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a>
 			{% endif %}
-		{% endif %} <br/>
+		{% endif %}
 		
 		{% if not job.accepted and job.mail == connected_member.mail %}
 			<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="participate-job">Delete job</a> <br/>

@@ -10,6 +10,19 @@ class BranchOfficer(Member):
     This class represents a kind of Users called Branch Officers
     """
 
+    def is_job_visible(self, job, db_member):
+        # The branch officer can see all the jobs
+        return True
+
+    def see_job_details(self, job_number, job_creator_mail):
+        return self.see_job_details_base(job_number, job_creator_mail, self.is_job_visible)
+
+    def get_job_list(self, show_offers):
+        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
+
+    def accept_job(self, job_number, job_creator_mail):
+        return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
+
     def delete_member_from_branch(self, branch_name, deleted_one_email):
         """
         Delete the member from the branch
@@ -153,3 +166,9 @@ class BranchOfficer(Member):
         job.member_set = self.db_member
         job.save()
         return True
+
+    def is_member_visible(self, member):
+        return True
+
+    def get_visible_members(self, branch):
+        return self.get_visible_members_base(self.is_member_visible, branch)

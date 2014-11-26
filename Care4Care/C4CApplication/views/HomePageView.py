@@ -2,8 +2,8 @@ from django.views.generic.edit import FormView
 from C4CApplication.views.FeedsMixingView import FeedsMixingView
 from C4CApplication.views.forms.LoginForm import LoginForm
 
-# Rq : heritage multiple ; comme FeedsMixingView est la premiere citee, c'est son get_context_data qui sera appele
-class HomePageView(FeedsMixingView,FormView):
+
+class HomePageView(FeedsMixingView, FormView):
     template_name = "C4CApplication/HomePage.html"
     form_class = LoginForm
     success_url = "myc4c/"
