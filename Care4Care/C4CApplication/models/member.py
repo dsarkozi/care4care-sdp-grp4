@@ -59,11 +59,9 @@ class Member(models.Model):
         :param other_member:
         :return: True if the email is in the favorite list of the member
         """
-
         for relation in self.relation.all():
-            if relation.member == other_member: #TODO this line won't work
+            if relation == other_member: #TODO this line won't work
                 return True
-
         return False
     
     class Meta:
