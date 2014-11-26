@@ -127,7 +127,10 @@ class NonMember(User):
 
         job = job_list[0]
 
-        db_member = (Member.objects.filter(mail=job_list.mail))[0]
+        db_member = (Member.objects.filter(mail=job_list.mail))
+        if len(db_member) != 1:
+            return False
+        db_member = db_member[0]
 
         if function(job, db_member):
             job.member_set.add(self.db_member)
