@@ -2,6 +2,7 @@ from time import strftime, gmtime
 from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch, Message, Mailbox
 from django.db.models import Max
+from C4CApplication.models.relationship import Relationship
 
 
 class NonMember(User):
@@ -308,4 +309,35 @@ class NonMember(User):
         content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
+    
+    
+    def add_favorite(self, favorite_mail):
+        """
+        Add a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not added to favorites (because it doesn't exist for example)
+        """
+        favorite = Member.objects.filter(mail=favorite_mail)[0]
+        if(favorite==None):
+            return False
+        relation = Relationship()
+        relation.member_source = self
+        relation.member_target = favorite
+        relation.save()
+        return True
+        
+    def remove_favorite(self, favorite_mail):
+        """
+        Remove a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not removed from favorites (because it doesn't exist for example)
+        """  
+        favorite = Member.objects.filter(mail=favorite_mail)[0]
+        if(favorite==None):
+            return False
+        relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)[0]
+        if(relation==None):
+            return False
+        relation.delete()
+        return True
 

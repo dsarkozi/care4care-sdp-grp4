@@ -264,3 +264,21 @@ class User(object):
         :return: False if there was a problem and True otherwise.
         """
         return
+    
+    @abc.abstractmethod
+    def add_favorite(self, favorite_mail):
+        """
+        Add a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not added to favorites (because it doesn't exist for example)
+        """
+        return
+    
+    @abc.abstractmethod
+    def remove_favorite(self, favorite_mail):
+        """
+        Remove a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not removed from favorites (because it doesn't exist for example)
+        """  
+        return
