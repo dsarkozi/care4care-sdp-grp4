@@ -61,7 +61,7 @@ urlpatterns = patterns('',
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription',name='inscription'),
-    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
+    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message', name='newmessage'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
