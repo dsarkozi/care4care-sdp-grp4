@@ -23,6 +23,18 @@ class BranchOfficer(Member):
     def accept_job(self, job_number, job_creator_mail):
         return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
 
+    def is_branch_officer(self, member):
+        """
+        :param member:
+        :return: True if the current user is the branch officer of the member
+        """
+        member_branch = None
+        for branch in member.branch:
+            if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
+                member_branch = branch
+
+        return member_branch is not None
+
     def delete_member_from_branch(self, branch_name, deleted_one_email):
         """
         Delete the member from the branch

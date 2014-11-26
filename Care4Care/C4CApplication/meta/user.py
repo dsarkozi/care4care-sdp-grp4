@@ -304,3 +304,11 @@ class User(object):
         :return: True
         """
         return
+
+    @abc.abstractmethod
+    def is_branch_officer(self, member):
+        """
+        :param member:
+        :return: True if the current user is the branch officer of the member
+        """
+        return

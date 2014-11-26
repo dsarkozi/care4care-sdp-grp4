@@ -56,6 +56,10 @@
 	    {% if connected_member.mail != member.mail and member not in connected_member.relation.all %}
 	    	<a href="{% url 'memberdetailsredirect' member.mail %}" type="submit" value="AddRelation" class="add_relation">Add as a friend</a> <br/>
 	    {% endif %}
+
+        {% if is_branch_officer or connected_member.tag == 32 %}
+            <p><a href="{% url 'loginasmember' member.email %}">Log as member</a></p>
+        {% endif %}
 	    
 	</body>
 </html>
