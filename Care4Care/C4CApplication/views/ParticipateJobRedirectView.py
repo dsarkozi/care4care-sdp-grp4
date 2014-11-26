@@ -41,7 +41,7 @@ class ParticipateJobRedirectView(RedirectView):
         #Actions buttons
         if mail_member_choiced == self.connected_member.db_member.mail :    #Clicked on delete job
             #TODO Demand confirmation
-            self.connected_member.delete_job(job.id)
+            self.connected_member.delete_job(job.number)
             self.url = "/"
         elif mail_member_choiced != 'no_response@care4care.com' :    #Clicked on Choice this member
             self.connected_member.choose_participant_for_job(job.number, job.mail, mail_member_choiced)

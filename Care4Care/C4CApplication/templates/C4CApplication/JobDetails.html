@@ -1,98 +1,108 @@
 {% load mathfilters %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	    <meta charset="UTF-8">
+	    <title></title>
+	</head>
 
-{% block accept_bill %}
-{% endblock %}
-
-Createur du job :
-{% for member in job.member_set.all %}
-	{% if member.mail == job.mail %}
-		{{member.first_name}} {{member.last_name}}
-	{% endif %}
-{% endfor %} <br/>
-
-Date of the job : {{ job.date }} <br/>
-
-{% if job.start_time|mod:60 < 10 %}
-	Hour of the start : {{ job.start_time|intdiv:60 }}:0{{job.start_time|mod:60}}
-{% else %}
-	Hour of the start : {{ job.start_time|intdiv:60 }}:{{job.start_time|mod:60}}
-{% endif %} <br/>
-
-Frequency :
-{% for key, value in job.FREQ %}
-	{% if key == job.frequency %}
-		{{ value }}
-	{% endif %}
-{% endfor %} <br/>
-
-Km : {{ job.km }} <br/>
-
-{% if job.time|mod:60 < 10 %}
-	Time : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
-{% else %}
-	Time : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
-{% endif %} <br/>
-
-Category :
-{% for key, value in job.CAT %}
-	{% if key == job.category %}
-		{{ value }}
-	{% endif %}
-{% endfor %} <br/>
-
-Type of job :
-{% if job.type %}
-	Demand
-{% else %}
-	Offer
-{% endif %} <br/>
-
-Address : {{ job.address }} <br/>
-
-Job accepted : {{ job.accepted }} <br/>
-
-Job done : {{ job.done }} <br/>
-
-Job payed : {{ job.payed }} <br/>
-
-Visibility of the job :
-{% for key, value in job.JOB_VISIBILITY_TUPLE %}
-	{% if key == job.visibility %}
-		{{ value }}
-	{% endif %}
-{% endfor %} <br/>
-
-Branch : {{ job.branch.name }} <br/>
-
-Description : {{ job.description }} <br/>
-
-<!-- Participants -->
-Participants :
-<ul>
-{% for member in job.member_set.all %}
-	<li>
-		{{member.first_name}} {{member.last_name}}
-		{% if not job.accepted and member.mail != connected_member.mail %}
-			{% if connected_member.mail == job.mail %}
-				<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job">Choice this member</a>
+	<body>
+		{% block accept_bill %}
+		{% endblock %}
+		
+		Createur du job :
+		{% for member in job.member_set.all %}
+			{% if member.mail == job.mail %}
+				{{member.first_name}} {{member.last_name}}
+			{% endif %}
+		{% endfor %} <br/>
+		
+		Date of the job : {{ job.date }} <br/>
+		
+		{% if job.start_time|mod:60 < 10 %}
+			Hour of the start : {{ job.start_time|intdiv:60 }}:0{{job.start_time|mod:60}}
+		{% else %}
+			Hour of the start : {{ job.start_time|intdiv:60 }}:{{job.start_time|mod:60}}
+		{% endif %} <br/>
+		
+		Frequency :
+		{% for key, value in job.FREQ %}
+			{% if key == job.frequency %}
+				{{ value }}
+			{% endif %}
+		{% endfor %} <br/>
+		
+		Km : {{ job.km }} <br/>
+		
+		{% if job.time|mod:60 < 10 %}
+			Time : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
+		{% else %}
+			Time : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+		{% endif %} <br/>
+		
+		Category :
+		{% for key, value in job.CAT %}
+			{% if key == job.category %}
+				{{ value }}
+			{% endif %}
+		{% endfor %} <br/>
+		
+		Type of job :
+		{% if job.type %}
+			Demand
+		{% else %}
+			Offer
+		{% endif %} <br/>
+		
+		Address : {{ job.address }} <br/>
+		
+		Job accepted : {{ job.accepted }} <br/>
+		
+		Job done : {{ job.done }} <br/>
+		
+		Job payed : {{ job.payed }} <br/>
+		
+		Visibility of the job :
+		{% for key, value in job.JOB_VISIBILITY_TUPLE %}
+			{% if key == job.visibility %}
+				{{ value }}
+			{% endif %}
+		{% endfor %} <br/>
+		
+		Branch : {{ job.branch.name }} <br/>
+		
+		Description : {{ job.description }} <br/>
+		
+		<!-- Participants -->
+		Participants :
+		<ul>
+		{% for member in job.member_set.all %}
+			<li>
+				{{member.first_name}} {{member.last_name}}
+				{% if not job.accepted and member.mail != connected_member.mail %}
+					{% if connected_member.mail == job.mail %}
+						<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job">Choice this member</a>
+					{% endif %}
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+		
+		{% if not job.accepted and connected_member.mail != job.mail %}
+			{% if connected_member in job.member_set.all %}
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Stop participating</a>
+			{% else %}
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a>
 			{% endif %}
 		{% endif %}
-	</li>
-{% endfor %}
-</ul>
-
-{% if not job.accepted and connected_member.mail != job.mail %}
-	{% if connected_member in job.member_set.all %}
-		<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Stop participating</a>
-	{% else %}
-		<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a>
-	{% endif %}
-{% endif %} <br/>
-
-{% if not job.accepted and job.mail == connected_member.mail %}
-	<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="participate-job">Delete job</a> <br/>
-{% endif %}
-
-
-{% block form_job_done %}
-{% endblock %}
+		
+		{% if not job.accepted and job.mail == connected_member.mail %}
+			<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="participate-job">Delete job</a> <br/>
+		{% endif %}
+		
+		
+		{% block form_job_done %}
+		{% endblock %}
+	</body>
+</html>

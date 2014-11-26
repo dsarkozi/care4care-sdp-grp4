@@ -24,6 +24,15 @@ class Member(models.Model):
         32        : 'bp_admin',        #100000
     }
     
+    TAG_CHOICE = (
+        (1, 'Non_member'),
+        (2, 'Member'),
+        (4, 'Verified'),
+        (8, 'Volunteer'),
+        (16, 'Branch_officer'),
+        (32, 'BP_admin'),
+    )
+    
     TAG = {
         'non_member'     : 1,   #000001
         'member'         : 2,   #000010
@@ -59,11 +68,9 @@ class Member(models.Model):
         :param other_member:
         :return: True if the email is in the favorite list of the member
         """
-
         for relation in self.relation.all():
-            if relation.member == other_member: #TODO this line won't work
+            if relation == other_member: #TODO this line won't work
                 return True
-
         return False
     
     class Meta:

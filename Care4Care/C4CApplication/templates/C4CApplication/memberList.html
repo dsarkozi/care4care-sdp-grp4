@@ -9,15 +9,16 @@
         <h1>
             {{ branch.name }}
         </h1>
-        <p>Zone : {{ branch.town }}</p>
+        <p>Area : {{ branch.town }}</p>
         <p>Current donation amount : {{ branch.donation }}</p>
-        <p>Address of Branch office : {{ branch address }}</p>
+        <p>Address of Branch office : {{ branch.address }}</p>
+        <p>Branch officer's email : {{ branch.branch_officer }}</p>
     </header>
     <h2>List of members</h2>
     <section>
         <ul>
-            {% for member in memberList %}
-                <li>{{ member.first_name }} {{ member.last_name }}<a href="{% url 'myapp:memberDetails' member.mail %}">details</a></li>
+            {% for member in member_list %}
+                <li>{{ member.first_name }} {{ member.last_name }}<a href="{% url 'memberdetail' member.mail %}">details</a></li>
             {% endfor %}
         </ul>
     </section>
