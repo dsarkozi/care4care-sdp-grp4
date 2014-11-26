@@ -1,11 +1,11 @@
-{% extends "jobdetails.html" %}
+{% extends "C4CApplication/JobDetails.html" %}
 
 {% block form_job_done %}
 <form method="post">
 
 	{% csrf_token %}
-	Time for doing the job : 
-    {{ confirm_job_done_form }}
-    <input type="submit" value="Confirm"/>
+	Time for doing the job (in minutes) :  <br/>
+    <p>{{ confirm_job_done_form }}</p>
+    <p><input type="submit" value="Confirm"/></p>
 </form>
 {% endblock %}
