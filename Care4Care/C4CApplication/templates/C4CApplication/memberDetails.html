@@ -43,14 +43,10 @@
 	        <p>Mobile phone number : {{ member.mobile }}</p>
 	    {% endif %}
 	    
-	    {{ connected_member.mail }} <br/>
-	    {{ connected_member.relation.all }}<br/>
-	    {% for relation in connected_member.relation.all %}
-	    	{{ relation.first_name }} <br/>
-	    {% endfor %}
 	    
-	    {% if connected_member.mail != member.mail and member not in connected_member.relation %}
-	    	Boug !!! <br/>
+	    
+	    {% if connected_member.mail != member.mail and member not in connected_member.relation.all %}
+	    	<a href="{% url 'memberdetailsredirect' member.mail %}" type="submit" value="AddRelation" class="add_relation">Add as a friend</a> <br/>
 	    {% endif %}
 	    
 	</body>
