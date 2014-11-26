@@ -1,0 +1,11 @@
+The following job has been marked as done by ...  <br/>
+
+{% extends "C4CApplication/JobDetails.html" %}
+
+{% block accept_bill %}
+<form method="post">
+
+	{% csrf_token %}
+    <p> <input type="submit" value="Confirm"/> <input type="submit" value="Contest"/> </p>
+</form>
+{% endblock %}
