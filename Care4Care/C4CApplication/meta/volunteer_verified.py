@@ -1,6 +1,7 @@
 from C4CApplication.meta import VerifiedMember, VolunteerMember
 from C4CApplication.models import Job
 
+from C4CApplication import models
 
 class VolunteerVerified(VolunteerMember, VerifiedMember):
     """
@@ -50,3 +51,16 @@ class VolunteerVerified(VolunteerMember, VerifiedMember):
         :return: False if there was a problem and True otherwise
         """
         return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
+
+    def is_member_visible(self, member):
+
+        #this line must be modified if we add the personal network
+        return member.visibility & models.Member.MEMBER_VISIBILITY['anyone']\
+               or member.visibility & models.Member.MEMBER_VISIBILITY['volunteer']\
+               or member.visibility & models.Member.MEMBER_VISIBILITY['verified']\
+               or (member.visibility & models.Member.MEMBER_VISIBILITY['favorites']
+                   and member.is_favorite(self.db_member))\
+               or member == self.db_member
+
+    def get_visible_members(self, branch):
+        return self.get_visible_members_base(self.is_member_visible, branch)
