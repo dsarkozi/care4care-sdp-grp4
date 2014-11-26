@@ -17,6 +17,7 @@ m1.tag = Member.TAG['member']
 m1.mobile = "0477985632"
 m1.address = "Rue du Software, 3, Development, 2255"
 m1.time_credit = 59
+m1.visibility = Member.MEMBER_VISIBILITY['anyone']
 m1.save()
 
 m2 = Member(mail="yves.deville@gmail.com")
@@ -28,6 +29,7 @@ m2.tag = Member.TAG['member']
 m2.mobile = "0478745963"
 m2.address = "Rue de l'intelligence, 7, Artificial, 2261"
 m2.time_credit = 170
+m2.visibility = Member.MEMBER_VISIBILITY['anyone']
 m2.save()
 
 m3 = Member(mail="olivier.bonaventure@gmail.com")
