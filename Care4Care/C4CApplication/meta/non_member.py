@@ -1,7 +1,8 @@
 from time import strftime, gmtime
 from C4CApplication.meta import User
-from C4CApplication.models import Job, Member, Branch
+from C4CApplication.models import Job, Member, Branch, Message, Mailbox
 from django.db.models import Max
+from C4CApplication.models.relationship import Relationship
 
 
 class NonMember(User):
@@ -11,6 +12,48 @@ class NonMember(User):
 
     def __init__(self, db_member):
         self.db_member = db_member
+        
+    #TODO Why don't you put this on the specific file system_email ?
+    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
+        """
+        Send a mail from from_mail to to_mail, with the subject, 
+        the content, and the type passed in parameter
+
+        :param sender_mail: mail of the sender
+        :param receiver_mail: mail of the receiver
+        :param subject: subject of the mail
+        :param content: content of the mail
+        :param type: type of the mail
+        :return: False if there was a problem and True otherwise
+        """
+        message = Message()
+        member_sender = Member.objects.filter(mail=sender_mail)
+        if len(member_sender)!=1 :
+            return False
+        message.member_sender = member_sender[0]
+        n = 0
+        list_message = member_sender[0].message_set.all()
+        for m in list_message:
+            if m.number > n:
+                n = m.number
+        message.number = n + 1
+        message.subject = subject
+        message.content = content
+        message.type = type
+        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
+        message.save()
+        
+        mailbox = Mailbox()
+        member_receiver = Member.objects.filter(mail=receiver_mail)
+        if len(member_receiver) != 1:
+            return False
+        mailbox.member_receiver = member_receiver[0]
+        mailbox.message = message
+        member_sender[0].save()  # TODO Member sender or mailbox.member ???
+        message.save()
+        mailbox.save()
+        
+        return True
 
     def is_job_visible(self, job, db_member):
         """
@@ -120,22 +163,56 @@ class NonMember(User):
         :param function: the function to check visibility of the job
         :return: False if there was a problem and True otherwise
         """
-
-        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail, type=True)
+        
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
         if len(job_list) == 0:
             return False
 
         job = job_list[0]
 
-        db_member = (Member.objects.filter(mail=job_list.mail))
-        if len(db_member) != 1:
-            return False
-        db_member = db_member[0]
-
-        if function(job, db_member):
+        if function(job, self.db_member):
             job.member_set.add(self.db_member)
 
-            Message.send_new_helper_accept(self.db_member, db_member)
+            subject = "A member want to participate to your job"
+            content = "The member "+str(self.db_member.first_name)+" "+str(self.db_member.last_name)+\
+                        " has been added to the list of the potential participant."
+            type = 3
+            return self.send_mail(self.db_member.mail, job_creator_mail, subject, content, type)
+            
+            #Message.send_new_helper_accept(self.db_member, db_member)
+
+        return False
+    
+    def stop_participate_job(self, job_number, job_creator_mail):
+        """
+        Remove the member on the list of possible helpers for a pending job.
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :return: False if there was a problem and True otherwise
+        """
+        return self.stop_participate_job_base(job_number, job_creator_mail, self.is_job_visible)
+    
+    def stop_participate_job_base(self, job_number, job_creator_mail, function):
+        """
+        Remove the member on the list of possible helpers for a pending job.
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :param function: the function to check visibility of the job
+        :return: False if there was a problem and True otherwise
+        """
+
+        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
+        if len(job_list) == 0:
+            return False
+
+        job = job_list[0]
+
+        if function(job, self.db_member):
+            job.member_set.remove(self.db_member)
+
+            #Message.send_new_helper_accept(self.db_member, db_member)
 
             return True
 
@@ -228,8 +305,70 @@ class NonMember(User):
                 break
         if helper_mail == '':
             return False
-        subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
-        content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
+        subject = 'The job number '+str(job.number)+' is done'
+        content = 'The job number '+str(job.number)+' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
+    
+    
+    def add_favorite(self, favorite_mail):
+        """
+        Add a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not added to favorites (because it doesn't exist for example)
+        """
+        favorite = Member.objects.filter(mail=favorite_mail)[0]
+        if(favorite==None):
+            return False
+        relation = Relationship()
+        relation.member_source = self
+        relation.member_target = favorite
+        relation.save()
+        return True
+        
+    def remove_favorite(self, favorite_mail):
+        """
+        Remove a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not removed from favorites (because it doesn't exist for example)
+        """  
+        favorite = Member.objects.filter(mail=favorite_mail)[0]
+        if(favorite==None):
+            return False
+        relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)[0]
+        if(relation==None):
+            return False
+        relation.delete()
+        return True
 
+    def is_member_visible(self, member):
+
+        #TODO modify if we add the network
+
+        return member.visibility & Job.JOB_VISIBILITY['anyone']\
+               or (member.visibility & Job.JOB_VISIBILITY['favorites']
+                   and member.is_favorite(self.db_member))\
+               or member == self.db_member
+
+    def get_visible_members(self, branch=None):
+        return self.get_visible_members_base(self, self.is_member_visible, branch)#TODO
+
+    def get_visible_members_base(self, function, branch):
+        """
+        :param branch: if it is set, it gets only the members that are in a specific branch
+        :param function: the function to check visibility of the member
+        :return: the list of the visible members (of the branch specified if the parameter is set)
+        """
+
+        if branch is not None:
+            list_members = Member.objects.filter(branch=branch)
+        else:  # We get the list of all the members
+            list_members = Member.objects.all()
+
+        # We filter the member that are hidden to the current member
+        filtered_list = []
+        for member in list_members:
+            if function(member):
+                filtered_list.append(member)
+
+        return filtered_list

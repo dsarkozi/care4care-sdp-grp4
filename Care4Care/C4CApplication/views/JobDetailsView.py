@@ -12,13 +12,10 @@ class JobDetailsView(DetailView):
     connected_member = None
     
     def dispatch(self, request, *args, **kwargs):
-        #if 'email' not in self.request.session:
-        #    raise PermissionDenied  # HTTP 403
-
         # Create the object representing the user
-        #self.connected_member = create_user(self.request.session['email'])
-        self.connected_member = create_user("kim.mens@gmail.com")
-        print("connected_member.mail = "+str(type(self.connected_member.db_member)))
+        if 'email' not in self.request.session:
+            raise PermissionDenied  # HTTP 403
+        self.connected_member = create_user(self.request.session['email'])
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     
