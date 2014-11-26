@@ -14,6 +14,10 @@ from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 from C4CApplication.views.ProfileView import ProfileView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
+from C4CApplication.views.ListMessages import ListMessages
+from django.views.generic import ListView
+from C4CApplication.views.viewMessage import ViewMessage
+
 
 
 
@@ -41,5 +45,10 @@ urlpatterns = patterns('',
 
 
     url(r'newjob/$', CreateJobView.as_view()),
-    url(r'donate/$', DonateTimeView.as_view())
+    url(r'donate/$', DonateTimeView.as_view()),
+    
+    url(r'^list_messages$', ListMessages.as_view(), name='messageList'),
+    url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
+
+
 )

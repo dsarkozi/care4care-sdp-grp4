@@ -4,7 +4,8 @@ from django.shortcuts import render
 from datetime import datetime
 from django.http import HttpResponseRedirect
 from C4CApplication.views.forms.nouveauMessageForm import Nouveau_messageForm
-from C4CApplication.meta.member import Member
+
+
 
 def nouveau_message(request):
     if request.method == 'POST':  # S'il s'agit d'une requête POST
@@ -33,3 +34,4 @@ def nouveau_message(request):
         form = Nouveau_messageForm()  # Nous créons un formulaire vide
 
     return render(request, 'C4CApplication/nouveau_message.html', locals())
+
