@@ -27,6 +27,8 @@ from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
+from C4CApplication.views.TransferRightsView import TransferRightsView
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Care4Care.views.home', name='home'),
@@ -54,6 +56,7 @@ urlpatterns = patterns('',
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
+    url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
 
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),
