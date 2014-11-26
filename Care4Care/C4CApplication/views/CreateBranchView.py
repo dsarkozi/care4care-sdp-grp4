@@ -1,5 +1,6 @@
 from django.views.generic import FormView
 from C4CApplication import models
+from C4CApplication.models import Branch
 from C4CApplication.meta import Member, User
 from C4CApplication.views.TransferRightsView import TransferRightsView
 from C4CApplication.views.forms.CreateBranchForm import CreateBranchForm
@@ -39,10 +40,12 @@ class CreateBranchView(FormView):
         if CreateBranchView.user is None:
             CreateBranchView.user = models.Member.objects.get(mail=self.request.session['email'])
 
-        # value entered in the input field
-        name = form.cleaned_data['name']
-        print(name)
-        
-        # TODO creer la branche !
+        # create the branch with the values entered in the input field
+        new_branch = Branch(name=form.cleaned_data['name'])
+        new_branch.town = form.cleaned_data['town']
+        new_branch.branch_off = form.cleaned_data['branch_off']
+        new_branch.address = form.cleaned_data['address']
+        new_branch.save()
+
         
         return super(CreateBranchView, self).form_valid(form)
