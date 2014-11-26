@@ -129,13 +129,12 @@ class Member(NonMember):
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
-    def accept_bill(self, job_number, job_creator_mail, helper_email, amount):
+    def accept_bill(self, job_number, job_creator_mail, amount):
         """
         Accepts the bill and transfers money to the helper
 
         :param job_number: it's the number of the job created by the job_creator_mail
         :param job_creator_mail: The mail of the creator of the job
-        :param helper_email:
         :param amount: amount of the bill
         :return: False if there was a problem and True otherwise.
         """
@@ -145,37 +144,34 @@ class Member(NonMember):
         job = job[0]
         job.payed = True
         job.save()
-        
-        helped_one = None  # TODO What ? -> the helped one is simply the self.db_member
-        if not job.type : # offer
+
+        helper_mail = None
+        if not job.type:  # offer
             helper_mail = job_creator_mail
-            print("offer")
-        else : # demand
+        else:  # demand
             participants = job.member_set.all()
             for participant in participants:
-                print("Particpant : "+str(participant)+" -> helped_one : "+str(helped_one_email))
-                if participant.mail != helped_one_email:
-                    print('helper trouve')
+                if participant.mail != self.db_member.mail:
                     helper_mail = participant.mail
                     break
-        if helped_one is None:
+        if helper_mail is None:
             return False
-        helper = models.Member.objects.filter(mail=helper_email)
+        helper = models.Member.objects.filter(mail=helper_mail)
         if len(helper) != 1:
             return False
         helper = helper[0]
         
         #We transfer money
-        helped_one.time_credit -= amount
+        self.db_member.time_credit -= amount
         helper.time_credit += amount
         helper.save()
-        helped_one.save()
+        self.db_member.save()
         
         #We send a mail to warn
         subject = "You've been payed"
-        content = "You've been payed by "+str(helped_one.mail)
+        content = "You've been payed by "+str(self.db_member.mail)
         type = 3
-        return self.send_mail(helped_one.mail, helper.mail, subject, content, type)
+        return self.send_mail(self.db_member.mail, helper.mail, subject, content, type)
 
     def refuse_bill(self, job_number, job_creator_mail, helper_email):
         """

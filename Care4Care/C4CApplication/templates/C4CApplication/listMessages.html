@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+   	{% for message in object_list %}
+   		<div class="ListMessages">
+      		<h3>{{ message.subject }}</h3>
+			<p>{{ message.content|truncatewords_html:80 }}</p>
+			<p><a href="{% url 'message' message.id %}">Lire la suite</a>
+			<hr/>
+    	</div>
+	{% endfor %}
+</body>
+</html>
