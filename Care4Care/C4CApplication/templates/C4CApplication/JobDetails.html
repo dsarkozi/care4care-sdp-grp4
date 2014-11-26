@@ -25,9 +25,9 @@ Frequency :
 Km : {{ job.km }} <br/>
 
 {% if job.time|mod:60 < 10 %}
-	Time estimated : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
+	Time : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
 {% else %}
-	Time estimated : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+	Time : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
 {% endif %} <br/>
 
 Category :
@@ -67,15 +67,22 @@ Description : {{ job.description }} <br/>
 Participants :
 <ul>
 {% for member in job.member_set.all %}
-	<li> {{member.first_name}} {{member.last_name}} </li>
+	<li>
+		{{member.first_name}} {{member.last_name}}
+		{% if not job.accepted and member.mail != connected_member.mail %}
+			{% if connected_member.mail == job.mail %}
+				<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job">Choice this member</a>
+			{% endif %}
+		{% endif %}
+	</li>
 {% endfor %}
 </ul>
 
-{% if not job.accepted %}
+{% if not job.accepted and connected_member.mail != job.mail %}
 	{% if connected_member in job.member_set.all %}
-		<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Stop participating</a> <br/>
+		<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Stop participating</a> <br/>
 	{% else %}
-		<a href="{% url 'participatejob' job.id %}" type="submit" value="Participate" class="participate-job">Participate</a> <br/>
+		<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a> <br/>
 	{% endif %}
 {% endif %}
 

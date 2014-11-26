@@ -21,6 +21,8 @@ class ParticipateJobRedirectView(RedirectView):
 
     @never_cache
     def get(self, request, *args, **kwargs):
+        
+        mail_member_choiced = kwargs['mail']
         job_id = kwargs['pk']
         self.url = "/jobdetails/"+str(job_id)
         
@@ -36,10 +38,13 @@ class ParticipateJobRedirectView(RedirectView):
         if self.connected_member.db_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         
-        #Action du bouton
-        if self.connected_member.db_member in job.member_set.all() :
-            self.connected_member.stop_participate_job(job.number, job.mail)
-        elif not job.accepted :
-            self.connected_member.accept_job(job.number, job.mail)
+        #Actions buttons
+        if mail_member_choiced != 'no_response@care4care.com' :    #Clicked on Choice this member
+            self.connected_member.choose_participant_for_job(job.number, job.mail, mail_member_choiced)
+        else :  #Clicked on participate/stop participating
+            if self.connected_member.db_member in job.member_set.all() :
+                self.connected_member.stop_participate_job(job.number, job.mail)
+            elif not job.accepted :
+                self.connected_member.accept_job(job.number, job.mail)
         
         return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
