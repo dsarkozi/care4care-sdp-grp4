@@ -436,7 +436,5 @@ class NonMember(User):
     
     def change_status(self, active):
         self.db_member.status = True if active=='True' else False
-        print(self.db_member.mail)
-        print('truc'+active)
         self.db_member.save()
         return True
