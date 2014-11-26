@@ -59,6 +59,7 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
                 if member.mail != job.mail : helped_one_mail = member.mail
 
         # register that the job is done
-        self.user.register_job_done(job.number, job.mail, helped_one_mail, time_to_pay)
+        if job.accepted and helped_one_mail != None: 
+            self.user.register_job_done(job.number, job.mail, helped_one_mail, time_to_pay)
         
         return super(ConfirmJobDoneView, self).form_valid(form)
