@@ -2,7 +2,6 @@ from django.views.generic import DetailView
 from django.core.exceptions import PermissionDenied
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
-from C4CApplication.meta.member import Member
 
 
 class JobDetailsView(DetailView):
@@ -17,8 +16,9 @@ class JobDetailsView(DetailView):
         #    raise PermissionDenied  # HTTP 403
 
         # Create the object representing the user
-        #user = create_user(self.request.session['email'], self.request.session['tag'])
-        self.connected_member = Member("kim.mens@gmail.com")
+        #self.connected_member = create_user(self.request.session['email'])
+        self.connected_member = create_user("kim.mens@gmail.com")
+        print("connected_member.mail = "+str(type(self.connected_member.db_member)))
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     

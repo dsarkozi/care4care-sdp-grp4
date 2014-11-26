@@ -46,6 +46,18 @@ class User(object):
         :return: False if there was a problem and True otherwise
         """
         return
+    
+    @abc.abstractmethod
+    def stop_participate_job(self, job_number, job_creator_mail):
+        """
+        Puts the member on the list of possible helpers for a pending job.
+        The helped one will be warned by email (this email is the parameter 'job_creator_mail').
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :return: False if there was a problem and True otherwise
+        """
+        return
 
     @abc.abstractmethod
     def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None,
@@ -69,7 +81,7 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None):
+    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
@@ -77,6 +89,7 @@ class User(object):
         :param job_number: it's the number of the job created by the job_creator_mail
         :param job_creator_mail: The mail of the creator of the job
         :param helped_one_email: it can't be None
+        :param new_time:
         :return: False if there was a problem and True otherwise.
         """
         return

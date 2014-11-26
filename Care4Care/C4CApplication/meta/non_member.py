@@ -127,7 +127,10 @@ class NonMember(User):
 
         job = job_list[0]
 
-        db_member = (Member.objects.filter(mail=job_list.mail))[0]
+        db_member = (Member.objects.filter(mail=job_list.mail))
+        if len(db_member) != 1:
+            return False
+        db_member = db_member[0]
 
         if function(job, db_member):
             job.member_set.add(self.db_member)
@@ -193,27 +196,43 @@ class NonMember(User):
 
         job.save()
         return True
-
-    #TODO
-    def register_job_done(self, job_number, job_creator_mail):
+    
+    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
-        Registers a job as done (with no time because a Non Member cannot 'earn' time)
+        Registers a job as done (with the new time to put).
+        The helped one will be warned by email and will be able to accept the 'payment' or not
 
-        :param job_number:
-        :param job_creator_mail: the email of the 'owner' of the job
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
+        :param helped_one_email: it can't be None
+        :param new_time:
         :return: False if there was a problem and True otherwise.
         """
 
-        job_list = Job.objects.filter(number=job_number, mail=job_creator_mail)
-        if len(job_list) == 0:
+        if helped_one_email is None:
             return False
-
-        job = job_list[0]
-        if self.db_member not in job.member_set:
+        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
+        if len(job) != 1:
             return False
-
+        job = job[0]
         job.done = True
-        return True
+        job.time = 0
+        job.save()
+        
+        #We send a mail
+        helper_mail = ''
+        participants = job.member_set.all()
+        for participant in participants:
+            if participant.mail != helped_one_email:
+                helper_mail = participant.mail
+                break
+        if helper_mail == '':
+            return False
+        subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
+        content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
+        type = 1
+        return self.send_mail(helper_mail, helped_one_email, subject, content, type)
+    
     
     def add_favorite(self, favorite_mail):
         """
