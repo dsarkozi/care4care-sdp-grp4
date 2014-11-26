@@ -7,20 +7,19 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 
 
-class RemoveFavoriteRedirectView(RedirectView):
+class ChangeActivityRedirectView(RedirectView):
 
     
-    url = reverse_lazy("favorite")
-    user= None
+    url = reverse_lazy("myc4c")
     
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.user = create_user(self.request.session['email'])
-        return super(RemoveFavoriteRedirectView, self).dispatch(request, *args, **kwargs)
+        return super(ChangeActivityRedirectView, self).dispatch(request, *args, **kwargs)
 
     @never_cache
     def get(self, request, *args, **kwargs):
-        favorite_mail = kwargs['pk']
-        self.user.remove_favorite(favorite_mail)
-        return super(RemoveFavoriteRedirectView, self).get(request, *args, **kwargs)
+        active = kwargs['active']
+        self.user.change_status(active)
+        return super(ChangeActivityRedirectView, self).get(request, *args, **kwargs)

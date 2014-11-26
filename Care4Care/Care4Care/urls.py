@@ -27,6 +27,9 @@ from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
+from C4CApplication.views.ChangeActivityView import ChangeActivityView
+from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedirectView
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Care4Care.views.home', name='home'),
@@ -35,6 +38,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
+    
+    url(r'^myc4c/changeActivity$', ChangeActivityView.as_view(), name='changeActivity'),
+    url(r'^myc4c/changeActivityRedirect/(?P<active>\w+)$', ChangeActivityRedirectView.as_view(), name='changeActivityRedirect'),
 
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^memberlist/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='memberlist'),
@@ -45,7 +51,7 @@ urlpatterns = patterns('',
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
-    url(r'^favorites$', FavoritesView.as_view()),
+    url(r'^favorites$', FavoritesView.as_view(), name='favorite'),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
