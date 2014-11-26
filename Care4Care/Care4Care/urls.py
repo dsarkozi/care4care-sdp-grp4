@@ -18,7 +18,8 @@ from C4CApplication.views.ListMessages import ListMessages
 from django.views.generic import ListView
 from C4CApplication.views.viewMessage import ViewMessage
 
-
+from C4CApplication.views.AcceptBillView import AcceptBillView
+from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
@@ -46,6 +47,8 @@ urlpatterns = patterns('',
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
 
+    url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
+    url(r'^confirmbill/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
 
     url(r'newjob/$', CreateJobView.as_view()),

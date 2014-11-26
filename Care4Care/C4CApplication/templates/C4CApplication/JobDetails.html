@@ -1,5 +1,8 @@
 {% load mathfilters %}
 
+{% block accept_bill %}
+{% endblock %}
+
 Createur du job :
 {% for member in job.member_set.all %}
 	{% if member.mail == job.mail %}
