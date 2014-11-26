@@ -20,17 +20,15 @@ class ParticipateJobRedirectView(RedirectView):
         job = job[0]
         
         connected_member = create_user("kim.mens@gmail.com")
-        print("connected_member = "+str(connected_member))
-        
-        '''if connected_member==None:
+        if connected_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         if connected_member.db_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         connected_member = connected_member.db_member
         
-        if connected_member in job.member_set :
+        #if connected_member in job.member_set :
             
         
-        member.accept_job(job.number, job.mail)'''
+        #member.accept_job(job.number, job.mail)
         
         return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)

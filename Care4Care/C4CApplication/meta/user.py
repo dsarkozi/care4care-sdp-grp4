@@ -50,8 +50,7 @@ class User(object):
     @abc.abstractmethod
     def stop_participate_job(self, job_number, job_creator_mail):
         """
-        Puts the member on the list of possible helpers for a pending job.
-        The helped one will be warned by email (this email is the parameter 'job_creator_mail').
+        Remove the member on the list of possible helpers for a pending job.
 
         :param job_number: the if of the job to accept
         :param job_creator_mail: the email of the 'owner' of the job
