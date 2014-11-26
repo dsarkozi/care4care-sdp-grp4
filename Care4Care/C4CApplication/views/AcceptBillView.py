@@ -3,23 +3,21 @@ from C4CApplication.models.job import Job
 from C4CApplication import models
 from C4CApplication.meta import Member, User
 from C4CApplication.views.JobDetailsView import JobDetailsView
-from C4CApplication.views.forms.ConfirmJobDoneForm import ConfirmJobDoneForm
 from C4CApplication.views.utils import create_user
 
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 
-class ConfirmJobDoneView(FormView, JobDetailsView):
+
+class AcceptBillView(FormView): 
     
-    template_name = "C4CApplication/ConfirmJobDoneView.html"
-    form_class = ConfirmJobDoneForm
+    template_name = "C4CApplication/AcceptBill.html"
     success_url = reverse_lazy("myc4c")
     user = None
-
+    
     def get_object(self):
         
-        job = super(ConfirmJobDoneView, self).get_object()
-    
+        job = super(AcceptBillView, self).get_object()
         return job
     
     def dispatch(self, request, *args, **kwargs):
@@ -32,18 +30,17 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
-        context = super(ConfirmJobDoneView, self).get_context_data(**kwargs)
+        context = super(AcceptBillView, self).get_context_data(**kwargs)
         
         # Creates the form and change the context
-        confirm_job_done_form = ConfirmJobDoneForm(auto_id=False)
+        #confirm_job_done_form = ConfirmJobDoneForm(auto_id=False)
 
-        context['confirm_job_done_form'] = confirm_job_done_form
+        #context['confirm_job_done_form'] = confirm_job_done_form
         return context
-
     
     def form_valid(self, form):
         # TODO test if the member has session variables !! -> redirection
-        if ConfirmJobDoneView.user is None:
+        """if ConfirmJobDoneView.user is None:
             ConfirmJobDoneView.user = models.Member.objects.get(mail=self.request.session['email'])
 
         # value entered in the integer field
@@ -61,5 +58,15 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         # register that the job is done
         if job.accepted and helped_one_mail != None: 
             self.user.register_job_done(job.number, job.mail, helped_one_mail, time_to_pay)
-        
-        return super(ConfirmJobDoneView, self).form_valid(form)
+        """
+        return super(AcceptBillView, self).form_valid(form)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
