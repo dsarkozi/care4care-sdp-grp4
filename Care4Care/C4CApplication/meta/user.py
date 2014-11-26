@@ -7,6 +7,14 @@ class User(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def is_job_visible(self, job, db_member):
+        """
+        :param job:
+        :param db_member:
+        :return: True if the job created by the member is visible
+        """
+
+    @abc.abstractmethod
     def see_job_details(self, job_number, job_creator_mail):
         """
         :param job_number: id of the job to return
@@ -263,5 +271,21 @@ class User(object):
         The bp admin abandon his rights, and give them to someone else.
         :param new_bp_admin_email:
         :return: False if there was a problem and True otherwise.
+        """
+        return
+
+    @abc.abstractmethod
+    def is_member_visible(self, member):
+        """
+        :param member:
+        :return: True if the member is visible for the current user and False otherwise
+        """
+        return
+
+    @abc.abstractmethod
+    def get_visible_members(self, branch=None):
+        """
+        :param branch: if it is set, it gets only the members that are in a specific branch
+        :return: the list of the visible members (of the branch specified if the parameter is set)
         """
         return

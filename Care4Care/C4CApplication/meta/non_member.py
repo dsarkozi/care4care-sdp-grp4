@@ -233,3 +233,34 @@ class NonMember(User):
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
+    def is_member_visible(self, member):
+
+        #TODO modify if we add the network
+
+        return member.visibility & Job.JOB_VISIBILITY['anyone']\
+               or (member.visibility & Job.JOB_VISIBILITY['favorites']
+                   and member.is_favorite(self.db_member))\
+               or member == self.db_member
+
+    def get_visible_members(self, branch=None):
+        return self.get_visible_members_base(self, self.is_member_visible, branch)#TODO
+
+    def get_visible_members_base(self, function, branch):
+        """
+        :param branch: if it is set, it gets only the members that are in a specific branch
+        :param function: the function to check visibility of the member
+        :return: the list of the visible members (of the branch specified if the parameter is set)
+        """
+
+        if branch is not None:
+            list_members = Member.objects.filter(branch=branch)
+        else:  # We get the list of all the members
+            list_members = Member.objects.all()
+
+        # We filter the member that are hidden to the current member
+        filtered_list = []
+        for member in list_members:
+            if function(member):
+                filtered_list.append(member)
+
+        return filtered_list
