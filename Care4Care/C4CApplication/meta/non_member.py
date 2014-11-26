@@ -313,7 +313,7 @@ class NonMember(User):
     
     def add_favorite(self, favorite_mail):
         """
-        Add a favorite to self
+        Add a favorite to self.db_member
         :param favorite_mail : the mail of the favorite
         :return : false if the member is not added to favorites (because it doesn't exist for example)
         """
@@ -321,14 +321,14 @@ class NonMember(User):
         if(favorite==None):
             return False
         relation = Relationship()
-        relation.member_source = self
+        relation.member_source = self.db_member
         relation.member_target = favorite
         relation.save()
         return True
         
     def remove_favorite(self, favorite_mail):
         """
-        Remove a favorite to self
+        Remove a favorite to self.db_member
         :param favorite_mail : the mail of the favorite
         :return : false if the member is not removed from favorites (because it doesn't exist for example)
         """  
