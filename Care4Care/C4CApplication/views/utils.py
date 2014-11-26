@@ -6,7 +6,6 @@ from C4CApplication.meta.verified_member import VerifiedMember
 from C4CApplication.meta.volunteer_verified import VolunteerVerified
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.meta.bp_administrator import BPAdministrator
-
 from C4CApplication import models
 
 
@@ -21,23 +20,29 @@ def create_user(member_email):
         db_member = None
     else:
         db_member = models.Member.objects.filter(mail=member_email)
+
+        if len(db_member) != 1 : 
+            return None 
+        db_member = db_member[0]
         member_tag = db_member.tag
-        if db_member is None:  # If the adress was faked
-            return None
+        #if db_member is None:  # If the adress was faked
+            #return None
 
     if member_tag & 32:  # BP Administrator
-        user = BPAdministrator(member_email)
+        user = BPAdministrator(db_member)
     elif member_tag & 16:  # Branch officer
-        user = BranchOfficer(member_email)
+        user = BranchOfficer(db_member)
     elif member_tag & 12:  # Volunteer and Verfied member
-        user = VolunteerVerified(member_email)
+        user = VolunteerVerified(db_member)
     elif member_tag & 8:  # Volunteer
-        user = VolunteerMember(member_email)
+        user = VolunteerMember(db_member)
     elif member_tag & 4:  # Verified member
-        user = VerifiedMember(member_email)
+        user = VerifiedMember(db_member)
     elif member_tag & 2:  # Member
-        user = Member(member_email)
+        user = Member(db_member)
     elif db_member & 1:  # NonMember
-        user = NonMember(member_email)
+        user = NonMember(db_member)
     else:  # To avoid to give BP admin rights by default if the member_tag is unknown
         return Visitor()
+    
+    return user

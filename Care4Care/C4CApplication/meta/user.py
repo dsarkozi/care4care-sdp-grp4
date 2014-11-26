@@ -7,6 +7,14 @@ class User(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def is_job_visible(self, job, db_member):
+        """
+        :param job:
+        :param db_member:
+        :return: True if the job created by the member is visible
+        """
+
+    @abc.abstractmethod
     def see_job_details(self, job_number, job_creator_mail):
         """
         :param job_number: id of the job to return
@@ -46,6 +54,17 @@ class User(object):
         :return: False if there was a problem and True otherwise
         """
         return
+    
+    @abc.abstractmethod
+    def stop_participate_job(self, job_number, job_creator_mail):
+        """
+        Remove the member on the list of possible helpers for a pending job.
+
+        :param job_number: the if of the job to accept
+        :param job_creator_mail: the email of the 'owner' of the job
+        :return: False if there was a problem and True otherwise
+        """
+        return
 
     @abc.abstractmethod
     def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None,
@@ -69,7 +88,7 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None):
+    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
         The helped one will be warned by email and will be able to accept the 'payment' or not
@@ -77,6 +96,7 @@ class User(object):
         :param job_number: it's the number of the job created by the job_creator_mail
         :param job_creator_mail: The mail of the creator of the job
         :param helped_one_email: it can't be None
+        :param new_time:
         :return: False if there was a problem and True otherwise.
         """
         return
@@ -250,5 +270,39 @@ class User(object):
         The bp admin abandon his rights, and give them to someone else.
         :param new_bp_admin_email:
         :return: False if there was a problem and True otherwise.
+        """
+        return
+    
+    @abc.abstractmethod
+    def add_favorite(self, favorite_mail):
+        """
+        Add a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not added to favorites (because it doesn't exist for example)
+        """
+        return
+    
+    @abc.abstractmethod
+    def remove_favorite(self, favorite_mail):
+        """
+        Remove a favorite to self
+        :param favorite_mail : the mail of the favorite
+        :return : false if the member is not removed from favorites (because it doesn't exist for example)
+        """
+        return
+
+    @abc.abstractmethod
+    def is_member_visible(self, member):
+        """
+        :param member:
+        :return: True if the member is visible for the current user and False otherwise
+        """
+        return
+
+    @abc.abstractmethod
+    def get_visible_members(self, branch=None):
+        """
+        :param branch: if it is set, it gets only the members that are in a specific branch
+        :return: the list of the visible members (of the branch specified if the parameter is set)
         """
         return

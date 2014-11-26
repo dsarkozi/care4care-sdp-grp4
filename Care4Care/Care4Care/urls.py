@@ -20,6 +20,8 @@ from C4CApplication.views.viewMessage import ViewMessage
 
 
 
+from C4CApplication.views.FavoritesView import FavoritesView
+from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 urlpatterns = patterns('',
     # Examples:
@@ -36,8 +38,10 @@ urlpatterns = patterns('',
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
     url(r'^participatejob/(?P<pk>\d+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
-    #url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view()),
+    url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
+    url(r'^favorites$', FavoritesView.as_view()),
+    url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
