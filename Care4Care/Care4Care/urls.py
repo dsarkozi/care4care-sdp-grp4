@@ -48,7 +48,7 @@ urlpatterns = patterns('',
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
-    url(r'^confirmbill/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
+    url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
 
     url(r'newjob/$', CreateJobView.as_view()),
