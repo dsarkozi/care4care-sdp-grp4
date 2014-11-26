@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Care4Care - Home Page</title>
-	<link rel="stylesheet" href="{% static "css/home_page.css" %}">
+	<link rel="stylesheet" href="../../static/css/home_page.css">
 </head>
 
 	
@@ -21,7 +21,7 @@
     {{ loginForm.password.errors }}
     {{ loginForm.password }}
     <input type="submit" value="Login" class="login-submit">
-    <input type="submit" value="Sign up" class="login-submit">
+    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
     <p class="login-help"><a href=# >Forgot password?</a></p>
    </form>
 

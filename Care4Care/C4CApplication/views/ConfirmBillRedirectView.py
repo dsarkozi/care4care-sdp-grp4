@@ -33,7 +33,6 @@ class ConfirmBillRedirectView(RedirectView):
         if confirmation == 1 : # pressed confirm
             member.accept_bill(job.number, job.mail, job.time)
         else : # pressed contest
-            res = refuse_bill(job.number, job.mail, helper_email)
-            print("Refused : "+str(res))
+            res = member.refuse_bill(job.number, job.mail)
             
         return super(ConfirmBillRedirectView, self).get(request, *args, **kwargs)
