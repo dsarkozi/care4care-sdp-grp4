@@ -18,7 +18,7 @@
     <section>
         <ul>
             {% for member in member_list %}
-                <li>{{ member.first_name }} {{ member.last_name }}<a href="{% url 'memberdetail' member.mail %}">details</a></li>
+                <li>{{ member.first_name }} {{ member.last_name }}<a href="{% url 'memberdetails' member.mail %}">details</a></li>
             {% endfor %}
         </ul>
     </section>
