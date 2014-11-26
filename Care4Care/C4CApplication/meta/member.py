@@ -8,39 +8,6 @@ class Member(NonMember):
     """
     This class represents a kind of Users called Members
     """
-    
-
-    def accept_help(self, job_number, job_creator_mail, helper_email):
-        """
-        Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
-        The chosen helper is warned by email
-
-        :param job_number: it's the number of the job created by the job_creator_mail
-        :param job_creator_mail: The mail of the creator of the job
-        :param helper_email:
-        :return: False if there was a problem and True otherwise
-        """
-        job = Job.objects.filter(number=job_number, mail=job_creator_mail)
-        if len(job) != 1:
-            return False
-        job = job[0]
-        job.member_set.clear()  # We clear all relationships with the members (only one member can be accepted)
-        creator = models.Member.objects.filter(mail=job.mail)  # TODO -> show : je pref des filter, ca ne crash pas ca.
-        if len(creator) != 1:
-            return False
-        job.member_set.add(creator[0])  # We add the creator of the job
-        helper = models.Member.objects.filter(mail=helper_email)
-        if len(helper) != 1:
-            return False
-        job.member_set.add(helper[0])
-        job.accepted = True
-        job.save()
-        
-        # We send a mail
-        subject = 'Your help is accepted'
-        content = 'Congratulation ! Your help has been accepted by '+str(creator.mail)+' for the job '+str(job.id)
-        type = 3
-        return self.send_mail(creator.mail, helper.mail, subject, content, type)
 
     def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
                    start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
