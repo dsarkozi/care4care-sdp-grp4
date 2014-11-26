@@ -26,6 +26,7 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
             raise PermissionDenied  # HTTP 403
 
         # Create the object representing the user
+        print("Session var : "+str(self.request.session['email']))
         user = create_user(self.request.session['email'])
 
         return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)

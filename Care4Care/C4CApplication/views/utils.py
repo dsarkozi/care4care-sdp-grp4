@@ -21,7 +21,8 @@ def create_user(member_email):
     else:
         db_member = models.Member.objects.filter(mail=member_email)
         if len(db_member) != 1 : return None 
-        else : db_member = db_member[0]
+        
+        db_member = db_member[0]
         member_tag = db_member.tag
         #if db_member is None:  # If the adress was faked
             #return None
@@ -42,3 +43,5 @@ def create_user(member_email):
         user = NonMember(member_email)
     else:  # To avoid to give BP admin rights by default if the member_tag is unknown
         return Visitor()
+    
+    return user
