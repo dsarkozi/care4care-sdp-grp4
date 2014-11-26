@@ -54,6 +54,19 @@ m4.address = "Rue de l'Eglise, 40, Rixensart, 1330"
 m4.time_credit = 9999
 m4.save()
 
+m5 = Member(mail="mathieu.jadin@student.uclouvain.be")
+m5.password = "lamathieu"
+m5.first_name = "Mathieu"
+m5.last_name = "Jadin"
+m5.birthday = "1993-01-31"
+m5.tag = Member.TAG['bp_admin']
+m5.mobile = "0487693533"
+m5.address = "Rue du Leader, 3, LeaderVille, 2255"
+m5.time_credit = 10000000000
+m5.visibility = Member.MEMBER_VISIBILITY['anyone']
+m5.dash_board_text = "Oui, mon jeu de mot pour le mot de passe est pourri x )"
+m5.save()
+
 
 #Creation de branch
 b1 = Branch(name="LLN")
@@ -75,10 +88,12 @@ m1.branch.add(b1)
 m2.branch.add(b2)
 m3.branch.add(b1)
 m4.branch.add(b1)
+m5.branch.add(b1)
 m1.save()
 m2.save()
 m3.save()
 m4.save()
+m5.save()
 
 #Suppression des messages pour eviter les conflits
 list_message = Message.objects.all()
@@ -251,3 +266,16 @@ j6.branch = b1
 j6.save()
 j6.member_set.add(m4)
 j6.save()
+
+j7 = Job(mail="mathieu.jadin@student.uclouvain.be", number=1)
+j7.description = "Bonjour, je met à disposition mon aide pour le projet Care4Care."
+j7.date = "2014-12-05"  #Vendredi 5 Decambre
+j7.start_time = 480 #8h *60
+j7.frenquency = 1   #Once
+j7.km = 0
+j7.time = 2520    #4h *60
+j7.category = 1 #Transport
+j7.type = False  #False = Offer
+j7.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Salle Intel"
+j7.branch = b1
+j7.save()
