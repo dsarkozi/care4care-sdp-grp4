@@ -134,6 +134,15 @@ class User(object):
         :return: False if there was a problem and True otherwise.
         """
         return
+    
+    @abc.abstractmethod
+    def delete_job(self, job_number):
+        """
+        Delete the number eme job of the user
+
+        :param job_number: The number of the job of the user to delete.
+        """
+        return
 
     @abc.abstractmethod
     def accept_bill(self, job_number, job_creator_mail, amount):

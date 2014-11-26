@@ -274,6 +274,19 @@ class NonMember(User):
         job.save()
         return True
     
+    def delete_job(self, job_number):
+        """
+        Delete the number eme job of the user
+
+        :param job_number: The number of the job of the user to delete.
+        """
+        job = Job.objects.filter(mail=self.db_member.mail, number=job_number)
+        if len(job) != 1 :
+            return False
+        job = job[0]
+        job.delete()
+        return True
+    
     def choose_participant_for_job(self, job_number, job_creator_mail, participant_mail):
         """
         Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')

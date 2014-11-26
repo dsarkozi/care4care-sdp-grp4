@@ -39,7 +39,11 @@ class ParticipateJobRedirectView(RedirectView):
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         
         #Actions buttons
-        if mail_member_choiced != 'no_response@care4care.com' :    #Clicked on Choice this member
+        if mail_member_choiced == self.connected_member.db_member.mail :    #Clicked on delete job
+            #TODO Demand confirmation
+            self.connected_member.delete_job(job.id)
+            self.url = "/"
+        elif mail_member_choiced != 'no_response@care4care.com' :    #Clicked on Choice this member
             self.connected_member.choose_participant_for_job(job.number, job.mail, mail_member_choiced)
         else :  #Clicked on participate/stop participating
             if self.connected_member.db_member in job.member_set.all() :
