@@ -288,9 +288,9 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def get_visible_members(self, branch=None):
+    def get_visible_members(self, branch):
         """
-        :param branch: if it is set, it gets only the members that are in a specific branch
-        :return: the list of the visible members (of the branch specified if the parameter is set)
+        :param branch: if it is not None, it gets only the members that are in a specific branch
+        :return: the list of the visible members (of the branch specified if the parameter is not set to None)
         """
         return

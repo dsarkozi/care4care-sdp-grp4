@@ -19,11 +19,15 @@ class BranchDetailView(DetailView):
             raise PermissionDenied  # HTTP 403
 
         # Create the object representing the user
-        user = create_user(self.request.session['email'])
+        self.user = create_user(self.request.session['email'])
 
         return super(BranchDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(BranchDetailView, self).get_context_data()
-        self.member_list = self.user.get_visible_members(self.branch)
+        # Get the list of the visible members of a branch
+        print(context['branch'])
+        self.member_list = self.user.get_visible_members(context['branch'])
+        print(self.member_list)
         context['member_list'] = self.member_list
+        return context

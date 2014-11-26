@@ -362,8 +362,7 @@ class NonMember(User):
         content = 'The job number '+str(job.number)+' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
-    
-    
+
     def add_favorite(self, favorite_mail):
         """
         Add a favorite to self.db_member
@@ -371,7 +370,7 @@ class NonMember(User):
         :return : false if the member is not added to favorites (because it doesn't exist for example)
         """
         favorite = Member.objects.filter(mail=favorite_mail)[0]
-        if(favorite==None):
+        if favorite is None:
             return False
         relation = Relationship()
         relation.member_source = self.db_member
@@ -386,25 +385,24 @@ class NonMember(User):
         :return : false if the member is not removed from favorites (because it doesn't exist for example)
         """  
         favorite = Member.objects.filter(mail=favorite_mail)[0]
-        if(favorite==None):
+        if favorite is None:
             return False
         relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)[0]
-        if(relation==None):
+        if relation is None:
             return False
         relation.delete()
         return True
 
     def is_member_visible(self, member):
 
-        #TODO modify if we add the network
-
-        return member.visibility & Job.JOB_VISIBILITY['anyone']\
-               or (member.visibility & Job.JOB_VISIBILITY['favorites']
+        #this line must be modified if we add the personal network
+        return member.visibility & Member.MEMBER_VISIBILITY['anyone']\
+               or (member.visibility & Member.MEMBER_VISIBILITY['favorites']
                    and member.is_favorite(self.db_member))\
                or member == self.db_member
 
-    def get_visible_members(self, branch=None):
-        return self.get_visible_members_base(self, self.is_member_visible, branch)#TODO
+    def get_visible_members(self, branch):
+        return self.get_visible_members_base(self.is_member_visible, branch)
 
     def get_visible_members_base(self, function, branch):
         """
