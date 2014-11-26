@@ -1,0 +1,13 @@
+{#% extends "C4CApplication/BPAdminOptions.html" %#}
+
+{% block transfer_rights %} 
+<form method="post">
+	{% csrf_token %}
+	<p>Options : <br/></p>
+	Enter the email address of the member to become the new BP Administrator :  <br/>
+    <p>
+    {{ transfer_rights_form }}
+    <input type="submit" value="Confirm"/>
+    </p>
+</form>
+{% endblock %}

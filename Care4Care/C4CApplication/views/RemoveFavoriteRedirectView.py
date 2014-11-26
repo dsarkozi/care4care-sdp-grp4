@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse_lazy
 class RemoveFavoriteRedirectView(RedirectView):
 
     
-    url = reverse_lazy("favorite")
+    url = reverse_lazy("favorites")
     user= None
     
     def dispatch(self, request, *args, **kwargs):
