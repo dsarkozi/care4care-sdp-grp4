@@ -154,6 +154,8 @@ class Member(NonMember):
             return False
         job = job[0]
         mail_branch_officer = job.branch.branch_officer
+        print("branch : "+str(job.branch))
+        print("mail branch off : "+str(mail_branch_officer))
         
         #Send the mails
         subject = "bill refused"

@@ -33,7 +33,19 @@ class ConfirmBillRedirectView(RedirectView):
         if confirmation == 1 : # pressed confirm
             member.accept_bill(job.number, job.mail, job.time)
         else : # pressed contest
-            res = refuse_bill(job.number, job.mail, helper_email)
-            print("Refused : "+str(res))
+            helper_mail = None
+            if not job.type:  # offer
+                helper_mail = job_creator_mail
+            else:  # demand
+                helper_mail = None
+                participants = job.member_set.all()
+                for participant in participants:
+                    if participant.mail != member.db_member.mail:
+                        helper_mail = participant.mail
+                        break
+
+            if helper_mail is not None : 
+                res = member.refuse_bill(job.number, job.mail, helper_mail)
+                print("Refused : "+str(res))
             
         return super(ConfirmBillRedirectView, self).get(request, *args, **kwargs)
