@@ -7,6 +7,21 @@ Commande a executer dans le terminal :
 exec(open('./C4CApplication/tests/populateDB.py').read())
 '''
 
+#Suppression des messages pour eviter les conflits
+list_message = Message.objects.all()
+for message in list_message :
+        message.delete()
+
+#Suppression des relations pour eviter les doublons
+list_relation = Relationship.objects.all()
+for relation in list_relation :
+    relation.delete()
+
+#Suppression des jobs avant creation
+list_job = Job.objects.all()
+for job in list_job :
+    job.delete()
+
 # Creation de membre
 m1 = Member(mail="kim.mens@gmail.com")
 m1.password = "agentKim007"
@@ -95,11 +110,6 @@ m3.save()
 m4.save()
 m5.save()
 
-#Suppression des messages pour eviter les conflits
-list_message = Message.objects.all()
-for message in list_message :
-        message.delete()
-
 #Creation de messages
 e1 = Message()
 e1.member_sender = m3   #Olivier Bonaventure
@@ -135,11 +145,6 @@ a2.member_receiver = m2 #Yves Devilles
 a2.message = e2
 a2.save()
 
-#Suppression des relations pour eviter les doublons
-list_relation = Relationship.objects.all()
-for relation in list_relation :
-    relation.delete()
-
 #Creation des relations entre les membres
 r1 = Relationship()
 r1.member_source = m4   #Armand met Obo dans ses amis.
@@ -164,11 +169,6 @@ r4.save()
 r5 = Relationship()
 r5.member_source = m3   #Obo met Yves dans ses amis
 r5.member_target = m2
-
-#Suppression des jobs avant creation
-list_job = Job.objects.all()
-for job in list_job :
-        job.delete()
 
 #Creation des jobs
 j1 = Job(mail="armand.bosquillon@student.uclouvain.be", number=1)
@@ -258,7 +258,7 @@ j5.done = True
 j5.done = True
 j5.branch = b1
 j5.save()
-j5.member_set.add(m2)
+j5.member_set.add(m1)
 j5.member_set.add(m4)
 j5.save()
 
@@ -288,4 +288,6 @@ j7.category = 1 #Transport
 j7.type = False  #False = Offer
 j7.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Salle Intel"
 j7.branch = b1
+j7.save()
+j7.member_set.add(m5)
 j7.save()

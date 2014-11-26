@@ -15,6 +15,7 @@ from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 
 from C4CApplication.views.ProfileView import ProfileView
 from C4CApplication.views.MemberDetailsView import MemberDetailsView
+from C4CApplication.views.MemberDetailsRedirectView import MemberDetailsRedirectView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
 from C4CApplication.views.ListMessages import ListMessages
@@ -43,8 +44,11 @@ urlpatterns = patterns('',
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
     url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
+    
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
+    url(r'^memberdetailsredirect/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', MemberDetailsRedirectView.as_view(), name='memberdetailsredirect'),
+    
     url(r'^favorites$', FavoritesView.as_view()),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
