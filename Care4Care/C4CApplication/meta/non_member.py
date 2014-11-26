@@ -2,6 +2,7 @@ from time import strftime, gmtime
 from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch
 from django.db.models import Max
+from C4CApplication.models.relationship import Relationship
 
 
 class NonMember(User):
@@ -244,7 +245,7 @@ class NonMember(User):
         if(favorite==None):
             return False
         relation = Relationship()
-        relation.member_source = self
+        relation.member_source = self.db_member
         relation.member_target = favorite
         relation.save()
         return True
@@ -258,7 +259,7 @@ class NonMember(User):
         favorite = Member.objects.filter(mail=favorite_mail)[0]
         if(favorite==None):
             return False
-        relation = Relationship.objects.filter(member_source=self, member_target=favorite)[0]
+        relation = Relationship.objects.filter(member_source=self.db_member, member_target=favorite)[0]
         if(relation==None):
             return False
         relation.delete()
