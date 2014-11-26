@@ -1,77 +1,8 @@
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../static/css/home_page.css">
-</head>
+{% extends "FixedStructure.html" %}
 
-        <style type="text/css">   /* Partie CSS */
-
-  		 /* Applied to all the html body... */
-  		 body {
-  		  top: 5em;
-  		  padding-right: 15em;
-  		  padding-left: 15em;
-  		  font-family: Georgia, "Times New Roman",
-          Times, serif;
-  		  color: navy;
-  		  background-color: #DFF2FF }
-
-
-		  /* Customizes navigation menu */
-	      ul.navbar{
-	        list-style-type: none;
-   			padding: 0;
-  			margin: 0;
-    		position: absolute;
-    		background-color:#87CEFA
-    		top: 2em;
-			left: 1em;
-			}
-
-		/* Customizes navigation menu items */
-		  ul.navbar li {
-			   background: white;
-				margin: 0.5em 0;
-				padding: 0.3em;
-				border-right: 1em solid navy }
-
-		  ul.navbar li a:hover{color:#58FAAC;}
-		  table a:hover{color:#58FAAC;}
-
-		 /* Deletes link underlines */
-		  ul.navbar a, table a {
-			text-decoration: none }
-
-		  a:link,a:visited {
-			color: #669 }
-
-        </style>
-
-
-	<!-- Menu de navigation (structure fixe) -->
-	<ul class="navbar">
-			 <!-- Optionnel
-
-				<li><a href="AboutUs.html">About us</a></li>
-				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
-				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
-				<li><a href="Help">Help</a></li>
-
-			-->
-			<li><a href="{% url 'home' %}"> <b> <center> HOME</a> </center> </b> </li>
-			<li><a href="Branches.html">Care4Care Branches</a></li>
-				<ul>
-					<li><a href="">Heembeek</a></li>
-					<li><a href="">Molenbeek</a></li>
-					<li><a href="">Rixensart</a></li>
-
-				</ul>
-			<li><a href="Statistics.html">Statistics</a></li>
-			<li><a href="Map.html">Map</a></li>
-			<li><a href="StartABranch.html">Start a branch ?</a></li>
-			<li><a href="News.html">News</a></li>
-			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
-	</ul>
-
+{% load staticfiles %}
+	
+{% block content %}
 
 
 <!-- Fixed member data -->
@@ -113,3 +44,5 @@
 </tr>
 </table>
 </center>
+	
+{% endblock %}

@@ -18,7 +18,11 @@
     <section>
         <ul>
             {% for member in member_list %}
-                <li>{{ member.first_name }} {{ member.last_name }}<a href="{% url 'memberdetails' member.mail %}">details</a></li>
+                <li><a href="{% url 'memberdetails' member.mail %}">{{ member.first_name }} {{ member.last_name }}</a>
+                    {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32%} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+                        <a href="{% url 'deletememberfrombranch' branch.name member.mail %}">Delete from branch</a>
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
     </section>
