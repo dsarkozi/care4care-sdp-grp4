@@ -5,7 +5,7 @@ class ConfirmJobDoneForm(forms.Form):
     time_to_pay = forms.IntegerField(
         widget=NumberInput(
             attrs={'placeholder': 'Time allowance', 'autofocus': 'true'}
-        ), min_value=0
+        ), min_value=0, label=""
     )
     # Note : django avoid using NumberInput for field having localize property to True
     
