@@ -51,7 +51,7 @@ urlpatterns = patterns('',
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),
     
-    url(r'^list_messages$', ListMessages.as_view(), name='messageList'),
+    url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
 
 
