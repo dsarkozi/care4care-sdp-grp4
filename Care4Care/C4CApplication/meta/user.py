@@ -136,7 +136,7 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def accept_bill(self, job_number, job_creator_mail, helper_email, amount):
+    def accept_bill(self, job_number, job_creator_mail, amount):
         """
         Accepts the bill and transfers money to the helper
 
