@@ -1,20 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1>{{ member.first_name}} {{ member.last_name }}</h1>
-    <p>Email : {{ member.mail }}</p>
-    {% if member.telephone %}
-        <p>Fixed phone number : {{ member.telephone }}</p>
-    {% endif %}
-    {% if member.mobile %}
-        <p>Mobile phone number : {{ member.mobile }}</p>
-    {% endif %}
-    {% comment %}
-        TODO add other information if necessary
-    {% endcomment %}
-</body>
+	<head lang="en">
+	    <meta charset="UTF-8">
+	    <title></title>
+	</head>
+
+	<body>
+	    <h1>
+	    	{{ member.first_name}} {{ member.last_name }} :
+	    	{% if member.status %}
+	    		Actif
+	    	{% else %}
+	    		Inactif
+	    	{% endif %}
+	    </h1>
+	    
+	    <p>
+	    	Type of member :
+	    	{% for key, value in member.TAG_CHOICE %}
+	    		{% if key == member.tag %}
+					{{ value }}
+				{% endif %}
+	    	{% endfor %}
+	    </p>
+	    
+	    <p>
+	    	Branch(es) :
+	    	<ul>
+		    	{% for branch in member.branch.all %}
+		    		<li> {{ branch.name }} </li>
+		    	{% endfor %}
+		    </ul>
+	    </p>
+	    <p>Email : {{ member.mail }}</p>
+	    <p>Register date : {{ member.register_date }}</p>
+	    <p>Address : {{ member.address }}</p>
+	    
+	    {% if member.telephone %}
+	        <p>Fixed phone number : {{ member.telephone }}</p>
+	    {% endif %}
+	    {% if member.mobile %}
+	        <p>Mobile phone number : {{ member.mobile }}</p>
+	    {% endif %}
+	    
+	    {{ connected_member.mail }} <br/>
+	    {{ connected_member.relation.all }}<br/>
+	    {% for relation in connected_member.relation.all %}
+	    	{{ relation.first_name }} <br/>
+	    {% endfor %}
+	    
+	    {% if connected_member.mail != member.mail and member not in connected_member.relation %}
+	    	Boug !!! <br/>
+	    {% endif %}
+	    
+	</body>
 </html>

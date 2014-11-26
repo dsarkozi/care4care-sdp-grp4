@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.views.generic import ListView
+
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
 
@@ -12,10 +14,11 @@ from C4CApplication.views.BranchDetailsView import BranchDetailView
 from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 
 from C4CApplication.views.ProfileView import ProfileView
+from C4CApplication.views.MemberDetailsView import MemberDetailsView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
 from C4CApplication.views.ListMessages import ListMessages
-from django.views.generic import ListView
+
 from C4CApplication.views.viewMessage import ViewMessage
 
 from C4CApplication.views.AcceptBillView import AcceptBillView
@@ -41,14 +44,15 @@ urlpatterns = patterns('',
     url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
-    url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
+    url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
+    url(r'^favorites$', FavoritesView.as_view()),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription',name='inscription'),
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
-    url(r'^confirmbill/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
+    url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
 
     url(r'newjob/$', CreateJobView.as_view()),

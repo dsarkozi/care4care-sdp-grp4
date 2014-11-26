@@ -140,13 +140,12 @@ class Member(NonMember):
         type = 3
         return self.send_mail(self.db_member.mail, helper.mail, subject, content, type)
 
-    def refuse_bill(self, job_number, job_creator_mail, helper_email):
+    def refuse_bill(self, job_number, job_creator_mail):
         """
         Refuses the bill and warns the branch officer by email
 
         :param job_number: it's the number of the job created by the job_creator_mail
         :param job_creator_mail: The mail of the creator of the job
-        :param helper_email:
         :return: False if there was a problem and True otherwise.
         """
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
@@ -154,6 +153,16 @@ class Member(NonMember):
             return False
         job = job[0]
         mail_branch_officer = job.branch.branch_officer
+        
+        helper_email = None
+        if not job.type:  # offer
+            helper_email = job_creator_mail
+        else:  # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                if participant.mail != self.db_member.mail:
+                    helper_email = participant.mail
+                    break
         
         #Send the mails
         subject = "bill refused"
