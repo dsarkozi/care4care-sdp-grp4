@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+	
+<head>
+	<meta charset="utf-8"/>
+	<title>{% block title%}Care4Care - Fixed Structure{% endblock %}</title>
+	<link rel="stylesheet" href="../../static/css/home_page.css">
+	{% block link%} {% endblock%}
+</head>
+
+	
+<body>
+	{% block nav %}
+	<!-- Menu de navigation (structure fixe) -->
+	<ul class="navbar">
+			 <!-- Optionnel
+			
+				<li><a href="AboutUs.html">About us</a></li>
+				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
+				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
+				<li><a href="Help">Help</a></li>
+			
+			-->
+			<li><a href="{% url 'home' %}"> <b> <center> HOME </center> </b> </a></li>
+			<li><a href="Branches.html">Care4Care Branches</a></li>
+				<ul>
+					<li><a href="">Heembeek</a></li>
+					<li><a href="">Molenbeek</a></li>
+					<li><a href="">Rixensart</a></li>
+					
+				</ul>
+			<li><a href="Statistics.html">Statistics</a></li>
+			<li><a href="Map.html">Map</a></li>
+			<li><a href="StartABranch.html">Start a branch ?</a></li>
+			<li><a href="News.html">News</a></li>
+			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
+	</ul>
+	{% endblock %}
+	
+	{% block content %}
+
+	{% endblock %}
+</body>	
+</html>
