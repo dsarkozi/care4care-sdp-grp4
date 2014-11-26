@@ -29,7 +29,7 @@ class BranchOfficer(Member):
         :return: True if the current user is the branch officer of the member
         """
         member_branch = None
-        for branch in member.branch:
+        for branch in member.branch.all():
             if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
                 member_branch = branch
 
