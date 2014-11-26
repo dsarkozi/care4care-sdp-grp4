@@ -18,7 +18,7 @@ class LogoutView(RedirectView):
                 self.url = reverse_lazy("myc4c")
 
             else:  # If it's a simple lout out
-                
+
                 del request.session['email']
                 self.url = reverse_lazy("home")
 
