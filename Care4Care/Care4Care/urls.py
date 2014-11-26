@@ -29,6 +29,7 @@ from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 from C4CApplication.views.TransferRightsView import TransferRightsView
+from C4CApplication.views.CreateBranchView import CreateBranchView
 
 from C4CApplication.views.ChangeActivityView import ChangeActivityView
 from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedirectView
@@ -68,6 +69,7 @@ urlpatterns = patterns('',
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
+    url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
 
     url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
 
