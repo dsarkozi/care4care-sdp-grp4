@@ -274,6 +274,59 @@ class NonMember(User):
         job.save()
         return True
     
+    def delete_job(self, job_number):
+        """
+        Delete the number eme job of the user
+
+        :param job_number: The number of the job of the user to delete.
+        """
+        job = Job.objects.filter(mail=self.db_member.mail, number=job_number)
+        if len(job) != 1 :
+            return False
+        job = job[0]
+        job.delete()
+        return True
+    
+    def choose_participant_for_job(self, job_number, job_creator_mail, participant_mail):
+        """
+        Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
+        The chosen helper is warned by email
+
+        :param job_number: it's the number of the job created by the job_creator_mail
+        :param job_creator_mail: The mail of the creator of the job
+        :param participant_mail: The person that has been accepted for the job.
+        :return: False if there was a problem and True otherwise
+        """
+        job = Job.objects.filter(number=job_number, mail=job_creator_mail)
+        if len(job) != 1:
+            return False
+        job = job[0]
+        job.member_set.clear()  # We clear all relationships with the members (only one member can be accepted)
+        creator = Member.objects.filter(mail=job.mail)  # TODO -> show : je pref des filter, ca ne crash pas ca.
+        if len(creator) != 1:
+            return False
+        creator = creator[0]
+        job.member_set.add(creator)  # We add the creator of the job
+        helper = Member.objects.filter(mail=participant_mail)
+        if len(helper) != 1:
+            return False
+        helper = helper[0]
+        job.member_set.add(helper)
+        job.accepted = True
+        job.save()
+        
+        # We send a mail
+        subject = ''
+        content = ''
+        if job.type :   #Demand
+            subject = 'Your help is accepted'
+            content = 'Congratulation ! Your help has been accepted by '+str(creator.mail)+' for the job '+str(job.id)
+        else :  #Offer
+            subject = 'Your demand of help is accepted'
+            content = 'Congratulation ! Your demand of help has been accepted by '+str(creator.mail)+' for the job '+str(job.id)
+        type = 3
+        return self.send_mail(creator.mail, helper.mail, subject, content, type)
+    
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).

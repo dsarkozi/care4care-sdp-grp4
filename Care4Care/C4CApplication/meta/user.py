@@ -67,27 +67,6 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None,
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
-        """
-        Creates a help offer (the parameters will be used to fill the database).
-
-        :param branch_name: The branch to which belongs the job
-        :param date: The date of the job
-        :param is_demand: True if it's a demand, false otherwise
-        :param comment: Comment of the job
-        :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
-        :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
-        :param km: The number of km to do the job
-        :param time: The time to do the job
-        :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
-        :param address: The address where the job will be done
-        :param visibility: Which people can see the job.
-        :return: False if there was a problem and True otherwise.
-        """
-        return
-
-    @abc.abstractmethod
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
@@ -132,6 +111,15 @@ class User(object):
         :param address: The address where the job will be done
         :param visibility: Which people can see the job.
         :return: False if there was a problem and True otherwise.
+        """
+        return
+    
+    @abc.abstractmethod
+    def delete_job(self, job_number):
+        """
+        Delete the number eme job of the user
+
+        :param job_number: The number of the job of the user to delete.
         """
         return
 

@@ -37,7 +37,7 @@ urlpatterns = patterns('',
 
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view()),
-    url(r'^participatejob/(?P<pk>\d+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
+    url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
