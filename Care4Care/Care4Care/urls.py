@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.views.generic import ListView
+
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
 
@@ -16,7 +18,7 @@ from C4CApplication.views.MemberDetailsView import MemberDetailsView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
 from C4CApplication.views.ListMessages import ListMessages
-from django.views.generic import ListView
+
 from C4CApplication.views.viewMessage import ViewMessage
 
 from C4CApplication.views.AcceptBillView import AcceptBillView
