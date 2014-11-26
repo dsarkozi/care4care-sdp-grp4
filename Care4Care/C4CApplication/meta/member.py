@@ -8,47 +8,7 @@ class Member(NonMember):
     """
     This class represents a kind of Users called Members
     """
-    #TODO Why don't you put this on the specific file system_email ?
-    def send_mail(self, sender_mail, receiver_mail, subject, content, type):
-        """
-        Send a mail from from_mail to to_mail, with the subject, 
-        the content, and the type passed in parameter
-
-        :param sender_mail: mail of the sender
-        :param receiver_mail: mail of the receiver
-        :param subject: subject of the mail
-        :param content: content of the mail
-        :param type: type of the mail
-        :return: False if there was a problem and True otherwise
-        """
-        message = Message()
-        member_sender = models.Member.objects.filter(mail=sender_mail)
-        if len(member_sender)!=1 :
-            return False
-        message.member_sender = member_sender[0]
-        n = 0
-        list_message = member_sender[0].message_set.all()
-        for m in list_message:
-            if m.number > n:
-                n = m.number
-        message.number = n + 1
-        message.subject = subject
-        message.content = content
-        message.type = type
-        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
-        message.save()
-        
-        mailbox = Mailbox()
-        member_receiver = models.Member.objects.filter(mail=receiver_mail)
-        if len(member_receiver) != 1:
-            return False
-        mailbox.member_receiver = member_receiver[0]
-        mailbox.message = message
-        member_sender[0].save()  # TODO Member sender or mailbox.member ???
-        message.save()
-        mailbox.save()
-        
-        return True
+    
 
     def accept_help(self, job_number, job_creator_mail, helper_email):
         """

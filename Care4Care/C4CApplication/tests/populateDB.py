@@ -8,8 +8,7 @@ exec(open('./C4CApplication/tests/populateDB.py').read())
 '''
 
 # Creation de membre
-m1 = Member()
-m1.mail = "kim.mens@gmail.com"
+m1 = Member(mail="kim.mens@gmail.com")
 m1.password = "agentKim007"
 m1.first_name = "Kim"
 m1.last_name = "Mens"
@@ -20,8 +19,7 @@ m1.address = "Rue du Software, 3, Development, 2255"
 m1.time_credit = 59
 m1.save()
 
-m2 = Member()
-m2.mail = "yves.deville@gmail.com"
+m2 = Member(mail="yves.deville@gmail.com")
 m2.password = "agentYves007"
 m2.first_name = "Yves"
 m2.last_name = "Deville"
@@ -32,8 +30,7 @@ m2.address = "Rue de l'intelligence, 7, Artificial, 2261"
 m2.time_credit = 170
 m2.save()
 
-m3 = Member()
-m3.mail = "olivier.bonaventure@gmail.com"
+m3 = Member(mail="olivier.bonaventure@gmail.com")
 m3.password = "oboIsWatchingYou"
 m3.first_name = "Olivier"
 m3.last_name = "Bonaventure"
@@ -44,8 +41,7 @@ m3.address = "Rue du Computer, 27, Network, 2141"
 m3.time_credit = 18
 m3.save()
 
-m4 = Member()
-m4.mail = "armand.bosquillon@student.uclouvain.be"
+m4 = Member(mail="armand.bosquillon@student.uclouvain.be")
 m4.password = "Bouillakasha69"
 m4.first_name = "Armand"
 m4.last_name = "Bosquillon"
@@ -58,16 +54,14 @@ m4.save()
 
 
 #Creation de branch
-b1 = Branch()
-b1.name = "LLN"
+b1 = Branch(name="LLN")
 b1.town = "Louvain-La-Neuve"
 b1.mail = "kim.mens@gmail.com"
 m1.tag = 16
 b1.donation = 54
 b1.save()
 
-b2 = Branch()
-b2.name = "Nivelles"
+b2 = Branch(name="Nivelles")
 b2.town = "Nivelles"
 b2.mail = "yves.deville@gmail.com"
 m2.tag = 16

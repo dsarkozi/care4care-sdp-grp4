@@ -50,8 +50,7 @@ class User(object):
     @abc.abstractmethod
     def stop_participate_job(self, job_number, job_creator_mail):
         """
-        Puts the member on the list of possible helpers for a pending job.
-        The helped one will be warned by email (this email is the parameter 'job_creator_mail').
+        Remove the member on the list of possible helpers for a pending job.
 
         :param job_number: the if of the job to accept
         :param job_creator_mail: the email of the 'owner' of the job
@@ -264,22 +263,4 @@ class User(object):
         :param new_bp_admin_email:
         :return: False if there was a problem and True otherwise.
         """
-        return
-    
-    @abc.abstractmethod
-    def add_favorite(self, favorite_mail):
-        """
-        Add a favorite to self
-        :param favorite_mail : the mail of the favorite
-        :return : false if the member is not added to favorites (because it doesn't exist for example)
-        """
-        return
-    
-    @abc.abstractmethod
-    def remove_favorite(self, favorite_mail):
-        """
-        Remove a favorite to self
-        :param favorite_mail : the mail of the favorite
-        :return : false if the member is not removed from favorites (because it doesn't exist for example)
-        """  
         return

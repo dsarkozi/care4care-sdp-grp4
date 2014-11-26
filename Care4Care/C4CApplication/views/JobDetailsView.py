@@ -18,7 +18,6 @@ class JobDetailsView(DetailView):
         # Create the object representing the user
         #self.connected_member = create_user(self.request.session['email'])
         self.connected_member = create_user("kim.mens@gmail.com")
-        print("connected_member.mail = "+str(type(self.connected_member.db_member)))
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     
