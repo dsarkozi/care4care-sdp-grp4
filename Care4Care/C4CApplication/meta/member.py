@@ -151,11 +151,17 @@ class Member(NonMember):
         job.save()
         
         helped_one = None  # TODO What ? -> the helped one is simply the self.db_member
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helper_email:
-                helper = participant  # TODO unused
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+            print("offer")
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                print("Particpant : "+str(participant)+" -> helped_one : "+str(helped_one_email))
+                if participant.mail != helped_one_email:
+                    print('helper trouve')
+                    helper_mail = participant.mail
+                    break
         if helped_one is None:
             return False
         helper = models.Member.objects.filter(mail=helper_email)
