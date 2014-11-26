@@ -305,8 +305,8 @@ class NonMember(User):
                 break
         if helper_mail == '':
             return False
-        subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
-        content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
+        subject = 'The job number '+str(job.number)+' is done'
+        content = 'The job number '+str(job.number)+' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
     

@@ -28,3 +28,6 @@ class Nouveau_messageForm(forms.Form):
                     msg = "these Email addresse doesn't exist"
                     self.add_error("receveur", msg)
                 return cleaned_data  # N'oublions pas de renvoyer les données si tout est OK
+            
+class CronForm(forms.Form):
+    days = forms.ModelChoiceField(queryset=Message.objects.all().order_by('date'))
