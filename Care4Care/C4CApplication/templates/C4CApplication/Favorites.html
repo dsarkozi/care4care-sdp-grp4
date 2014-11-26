@@ -1,0 +1,7 @@
+List of your favorite members :
+<ul>
+{% for relation in member.relation.all %}
+	<li> {{relation.first_name}} {{relation.last_name}}
+	<a href="{% url 'removeFavorite' relation.mail %}" type="submit" value="Remove" class="participate-job">Remove</a> </li>
+{% endfor %}
+</ul>

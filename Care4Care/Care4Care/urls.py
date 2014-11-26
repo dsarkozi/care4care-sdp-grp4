@@ -14,8 +14,8 @@ from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
 from C4CApplication.views.ProfileView import ProfileView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
-
-
+from C4CApplication.views.FavoritesView import FavoritesView
+from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 urlpatterns = patterns('',
     # Examples:
@@ -34,6 +34,8 @@ urlpatterns = patterns('',
     url(r'^participatejob/(?P<pk>\d+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     url(r'^profile$', 'C4CApplication.views.test.profile'),
+    url(r'^favorites$', FavoritesView.as_view()),
+    url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
     url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
