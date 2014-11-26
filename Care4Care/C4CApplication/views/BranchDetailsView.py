@@ -26,8 +26,6 @@ class BranchDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(BranchDetailView, self).get_context_data()
         # Get the list of the visible members of a branch
-        print(context['branch'])
         self.member_list = self.user.get_visible_members(context['branch'])
-        print(self.member_list)
         context['member_list'] = self.member_list
         return context

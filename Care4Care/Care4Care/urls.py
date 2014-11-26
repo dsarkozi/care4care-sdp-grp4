@@ -28,6 +28,12 @@ from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
+
+from C4CApplication.views.ChangeActivityView import ChangeActivityView
+from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedirectView
+
+from C4CApplication.views.DeleteMemberFromBranchRedirectView import DeleteMemberFromBranchRedirectView
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Care4Care.views.home', name='home'),
@@ -36,6 +42,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
+    
+    url(r'^myc4c/changeActivity$', ChangeActivityView.as_view(), name='changeActivity'),
+    url(r'^myc4c/changeActivityRedirect/(?P<active>\w+)$', ChangeActivityRedirectView.as_view(), name='changeActivityRedirect'),
 
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^memberlist/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='memberlist'),
@@ -48,16 +57,16 @@ urlpatterns = patterns('',
     url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
     url(r'^memberdetailsredirect/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', MemberDetailsRedirectView.as_view(), name='memberdetailsredirect'),
-    
-    url(r'^favorites$', FavoritesView.as_view()),
+    url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^profile/(?P<pk>\d+)$', ProfileView.as_view(), name='profile'),
-    url(r'^inscription$', 'C4CApplication.views.inscription.inscription'),
+    url(r'^inscription$', 'C4CApplication.views.inscription.inscription',name='inscription'),
     url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
+    url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
 
     url(r'newjob/$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),

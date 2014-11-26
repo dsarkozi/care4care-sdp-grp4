@@ -294,3 +294,11 @@ class User(object):
         :return: the list of the visible members (of the branch specified if the parameter is not set to None)
         """
         return
+    
+    @abc.abstractmethod
+    def change_status(self, active):
+        """
+        :param active
+        :return: True
+        """
+        return
