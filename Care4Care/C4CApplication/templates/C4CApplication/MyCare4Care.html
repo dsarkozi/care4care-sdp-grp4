@@ -21,12 +21,12 @@
 <center>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
 <table style="margin-top:100px; margin-left:0px; ">
 <tr>
-    <td rowspan="2"><a href="newjob/demand" class="myButton">I need help</a></td>
+    <td rowspan="2"><a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a></td>
     <td><a href="#" class="myButton">Register job done</a></td>
-    <td rowspan="2"><a href="newjob/offer" class="myButton">I want to help</a></td>
+    <td rowspan="2"><a href={% url 'createJob' 'offer' %} class="myButton">I want to help</a></td>
 </tr>
 <tr>
-    <td><a href="donate/" class="myButton">Give time</a></td>
+    <td><a href="{% url 'donate' %}" class="myButton">Give time</a></td>
 </tr>
 </table>
 </center>
@@ -35,11 +35,11 @@
 <center>
 <table style="margin-top:150px; margin-left:0px; ">
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-    <td><a href="/list_messages/1" class="myButton">Messages</a></td>
-    <td><a href="/profile" class="myButton">Profile</a></td>
+    <td><a href="{% url 'messageList' 1 %}" class="myButton">Messages</a></td>
+    <td><a href="{% url 'profile' %}" class="myButton">Profile</a></td>
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="/favorites" class="myButton">Favorites</a></td>
-    <td><a href="accountstats/" class="myButton">Account & Stats</a></td>
+    <td><a href="{% url 'favorites' %}" class="myButton">Favorites</a></td>
+    <td><a href="{% url 'favorites' %}" class="myButton">Account & Stats</a></td>
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
 </tr>
 </table>
