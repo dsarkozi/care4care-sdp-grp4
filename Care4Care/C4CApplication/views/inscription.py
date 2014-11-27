@@ -14,7 +14,8 @@ class Inscription(FormView):
     model = Member
     template_name = 'C4CApplication/inscription.html'
     form_class = InscriptionForm
-    success_url = reverse_lazy('inscription')
+    success_url = reverse_lazy('home')
+
 
     def form_valid(self, form):
         prenom = form.cleaned_data['prenom']
@@ -39,7 +40,7 @@ class Inscription(FormView):
         member.first_name = prenom
         member.last_name = nom
         member.birthday = date_de_naissance
-        member.tag = Member.TAG_REVERSE[int(type_membre)]
+        member.tag = int(type_membre)
         
         #adresse
         member.address = rue+ ", " + numero + ", " + code_postal +", " +ville
