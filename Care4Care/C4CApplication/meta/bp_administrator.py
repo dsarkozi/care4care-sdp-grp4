@@ -79,7 +79,32 @@ class BPAdministrator(BranchOfficer):
         if len(member) != 1:
             return False
         member = member[0]
-        member.tag = Member.TAG[new_tag]
+        
+        
+        if member.tag & 4 : # if 4
+            if member.tag & 8 : # if 4 and 8
+                if new_tag == 4 or new_tag == 8 :
+                    member.tag = member.tag ^ new_tag
+                else :
+                    member.tag = new_tag
+            else : # not 8 but 4
+                if new_tag == 4 :
+                    member.tag = 2
+                elif new_tag == 8:
+                    member.tag = 12
+                else :
+                    member.tag = new_tag
+        else : # not 4
+            if member.tag & 8 : # not 4 but 8
+                if new_tag == 4 :
+                    member.tag = 12
+                elif new_tag == 8 :
+                    member.tag = 2
+                else :
+                    member.tag = new_tag
+            else : # not 4 and not 8
+                member.tag = new_tag
+                
         member.save()
         return True
 
