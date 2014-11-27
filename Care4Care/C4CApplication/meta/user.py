@@ -7,6 +7,12 @@ class User(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def delete(self): 
+        """
+        :return: True if this user has successfully been deleted
+        """
+
+    @abc.abstractmethod
     def is_job_visible(self, job, db_member):
         """
         :param job:

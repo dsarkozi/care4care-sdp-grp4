@@ -221,6 +221,7 @@ class BranchOfficer(Member):
         return True
 
     def is_member_visible(self, member):
+        if member.deleted : return False
         return True
 
     def get_visible_members(self, branch):

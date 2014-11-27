@@ -51,7 +51,8 @@ class VerifiedMember(Member):
         return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
 
     def is_member_visible(self, member):
-
+        if member.deleted : return False
+        
         #this line must be modified if we add the personal network
         return member.visibility & models.Member.MEMBER_VISIBILITY['anyone']\
                or member.visibility & models.Member.MEMBER_VISIBILITY['verified']\

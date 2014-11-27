@@ -41,10 +41,9 @@ class DeleteMemberBPAView(FormView):
 
         # value entered in the input field
         email_deleted_one = form.cleaned_data['email_deleted_one']
-        member = models.Member.objects.filter(mail=email_deleted_one)
-        if len(member) != 0 : member = member[0]
-        else : print("No such a member !") # pop up ?
         
-        # TODO supprimer le membre (desactiver son compte)
+        user = create_user(email_deleted_one)
+        if user is not None : user.delete()
+        else : print("No such a member !") # pop up ?
         
         return super(DeleteMemberBPAView, self).form_valid(form)
