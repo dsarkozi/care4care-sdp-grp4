@@ -73,7 +73,7 @@ class InscriptionForm(forms.Form):
                     elif not(date_de_naissance[5] is '0' or date_de_naissance[5] is '1'):
                         msg = "date has an invalid format."
                         self.add_error("date_de_naissance",msg)
-                    elif not ((date_de_naissance[8] is '0' )or (date_de_naissance[8] is '1') (ordate_de_naissance[8] is '2') or (date_de_naissance[8] is '3')):
+                    elif not ((date_de_naissance[8] is '0' )or (date_de_naissance[8] is '1') or(date_de_naissance[8] is '2') or (date_de_naissance[8] is '3')):
                         msg = "date has an invalid format."
                         self.add_error("date_de_naissance",msg)
                     #février et date bisextile
@@ -84,6 +84,8 @@ class InscriptionForm(forms.Form):
                     if len(mot_de_passe) <8:
                         msg = "your password is too short, it should be at least 8 characters long."
                         self.add_error("mot_de_passe",msg)
+                        
+                #address: vérifier qu'il n'y a pas de , dans les champs de l'address
                 return cleaned_data  # N'oublions pas de renvoyer les données si tout est OK
     
 
