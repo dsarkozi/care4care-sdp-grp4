@@ -9,9 +9,17 @@
 	    <h1>
 	    	{{ member.first_name}} {{ member.last_name }} :
 	    	{% if member.status %}
-	    		Actif
+	    		{% if connected_member.mail == member.mail %}
+	    			<a href="{% url 'changeActivity' %}" value="activity">Actif</a>
+	    		{% else %}
+	    			Actif
+	    		{% endif %}
 	    	{% else %}
-	    		Inactif
+	    		{% if connected_member.mail == member.mail %}
+	    			<a href="{% url 'changeActivity' %}" value="activity">Inactif</a>
+	    		{% else %}
+	    			Inactif
+	    		{% endif %}
 	    	{% endif %}
 	    </h1>
 	    
@@ -32,7 +40,7 @@
 		    	{% endfor %}
 		    </ul>
 	    </p>
-	    <p>Email : {{ member.mail }}</p>
+	    <p>Email : <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member.mail }}</a></p>
 	    <p>Register date : {{ member.register_date }}</p>
 	    <p>Address : {{ member.address }}</p>
 	    

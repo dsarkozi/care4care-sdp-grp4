@@ -1,0 +1,13 @@
+{% block create_branch %} 
+<form method="post">
+	{% csrf_token %}
+	Enter the informations about the new branch :  <br/>
+    <p>
+    Name : {{ create_branch_form.name }} <br/>
+    Town : {{ create_branch_form.town }} <br/>
+    Branch Officer : {{ create_branch_form.branch_off }} <br/>
+    Address : {{ create_branch_form.address }} <br/>
+    <input type="submit" value="Create new branch"/>
+    </p>
+</form>
+{% endblock %}

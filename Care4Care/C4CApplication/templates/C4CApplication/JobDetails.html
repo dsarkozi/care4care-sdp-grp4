@@ -37,6 +37,7 @@
 		{% block accept_bill %}
 		{% endblock %}
 		
+
 		
 	<table class="tab1" style="left:30em; top:1em" >
 	  <tr>
@@ -57,6 +58,14 @@
 		<td class="tab1-3">     Date of the job : </td>
 		
 		<td class="tab1-3">     {{ job.date }}    </td>
+		
+	  </tr>
+	  
+	  	 <tr>
+		<td class="tab1-3">     Mail : </td>
+		
+		<td class="tab1-3">     
+		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ job.mail }}  </a> </td>
 		
 	  </tr>
 		 
@@ -200,6 +209,7 @@
 	
 		<!-- Participants -->
 		
+
 		
 		{% if not job.accepted and connected_member.mail != job.mail %}
 			{% if connected_member in job.member_set.all %}
