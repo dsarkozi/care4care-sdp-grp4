@@ -9,7 +9,7 @@ class InscriptionForm(forms.Form):
     nom = forms.CharField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'nom' , 'size' : 21}))
     email = forms.EmailField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'Email' , 'size' : 44}))
     mot_de_passe = forms.CharField( max_length=100  , widget=forms.PasswordInput(attrs={'placeholder': 'mot de passe' , 'size' : 44}))
-    date_de_naissance = forms.CharField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'jj/mm/aaaa' , 'size' : 44}))
+    date_de_naissance = forms.CharField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'yyyy/mm/dd' , 'size' : 44}))
     #adresse
     numero =            forms.CharField( max_length=100  , widget=forms.NumberInput(attrs={'placeholder': 'numero' , 'size' : 10}))
     rue =    forms.CharField( max_length=100,   widget=forms.TextInput(attrs={'placeholder': 'rue' , 'size' : 32}))

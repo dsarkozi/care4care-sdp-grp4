@@ -87,5 +87,6 @@ urlpatterns = patterns('',
     url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
 
-  
+     
+     #test
 )
