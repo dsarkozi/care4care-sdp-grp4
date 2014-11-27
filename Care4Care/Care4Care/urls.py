@@ -38,6 +38,11 @@ from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedire
 
 from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
+from C4CApplication.views.inscription import Inscription
+from C4CApplication.views.modifProfile import ModifProfile
+from C4CApplication.views.nouveau_message import NewMessage
+
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -66,8 +71,8 @@ urlpatterns = patterns('',
     url(r'^memberdetailsredirect/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', MemberDetailsRedirectView.as_view(), name='memberdetailsredirect'),
     url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
-    url(r'^inscription$', 'C4CApplication.views.inscription.inscription',name='inscription'),
-    url(r'^new_message$', 'C4CApplication.views.nouveau_message.nouveau_message', name='newmessage'),
+    url(r'^inscription$', Inscription.as_view() , name='inscription'),
+    url(r'^newmessage$', NewMessage.as_view(), name='newmessage'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
@@ -86,6 +91,7 @@ urlpatterns = patterns('',
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
+    url(r'modifprofile/$', ModifProfile.as_view(), name='modifprofile'),
 
 
 )
