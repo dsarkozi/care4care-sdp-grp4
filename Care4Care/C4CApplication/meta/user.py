@@ -11,6 +11,7 @@ class User(object):
         """
         :return: True if this user has successfully been deleted
         """
+        return
 
     @abc.abstractmethod
     def is_job_visible(self, job, db_member):
@@ -19,6 +20,7 @@ class User(object):
         :param db_member:
         :return: True if the job created by the member is visible
         """
+        return
 
     @abc.abstractmethod
     def see_job_details(self, job_number, job_creator_mail):
@@ -86,7 +88,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def accept_help(self, job_number, job_creator_mail, helper_email):
         """
         Chooses the member (with email stored in 'helper_email') to do the job (with id stored in 'number')
@@ -123,26 +124,23 @@ class User(object):
     @abc.abstractmethod
     def delete_job(self, job_number):
         """
-        Delete the number eme job of the user
+        Delete the job of the user with the number 'job_number'
 
         :param job_number: The number of the job of the user to delete.
         """
         return
 
-    @abc.abstractmethod
     def accept_bill(self, job_number, job_creator_mail, amount):
         """
         Accepts the bill and transfers money to the helper
 
         :param job_number: it's the number of the job created by the job_creator_mail
         :param job_creator_mail: The mail of the creator of the job
-        :param helper_email:
         :param amount: amount of the bill
         :return: False if there was a problem and True otherwise.
         """
         return
 
-    @abc.abstractmethod
     def refuse_bill(self, job_number, job_creator_mail, helper_email):
         """
         Refuses the bill and warns the branch officer by email
@@ -154,7 +152,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def transfer_time(self, destination_email, time):
         """
         Transfers 'time' to a member with 'destination_email' as email
@@ -164,7 +161,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def make_donation(self, time, branch_name=None):
         """
         Makes a donation to the branch of the member
@@ -175,7 +171,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def delete_member_from_branch(self, branch_name, deleted_one_email):
         """
         Delete the member from the branch
@@ -187,7 +182,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def delete_member_from_site(self, deleted_one_email):
         """
         Put the status of the member as deleted (TODO add a deleted field to member ?)
@@ -196,7 +190,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def log_as_member(self, email, session):
         """
         Logs the current user as the one specified by the email (by modifying the session variables)
@@ -206,7 +199,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
         Set the control of a branch to an another branch_officer, which is represented by his mail
@@ -216,7 +208,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def modify_tag_member(self, email, new_tag):
         """
         Modify the tag of the member represented by the email,
@@ -227,7 +218,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def transfer_money_from_branch(self, time, branch_name, destination_email):
         """
         Make a gift by taking some time from the branch to the member represented
@@ -239,7 +229,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def create_branch(self, name, town, branch_officer_email=None, address=None):
         """
         Create a new branch with the parameter
@@ -251,7 +240,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def remove_branch(self, branch_name):
         """
         Remove a branch from the application
@@ -260,7 +248,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def transfer_bp_admin_rights(self, new_bp_admin_email):
         """
         The bp admin abandon his rights, and give them to someone else.
@@ -268,8 +255,7 @@ class User(object):
         :return: False if there was a problem and True otherwise.
         """
         return
-    
-    @abc.abstractmethod
+
     def add_favorite(self, favorite_mail):
         """
         Add a favorite to self
@@ -277,8 +263,7 @@ class User(object):
         :return : false if the member is not added to favorites (because it doesn't exist for example)
         """
         return
-    
-    @abc.abstractmethod
+
     def remove_favorite(self, favorite_mail):
         """
         Remove a favorite to self
@@ -311,7 +296,6 @@ class User(object):
         """
         return
 
-    @abc.abstractmethod
     def is_branch_officer(self, member):
         """
         :param member:
