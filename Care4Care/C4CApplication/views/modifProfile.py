@@ -4,6 +4,7 @@ from django.core.exceptions import PermissionDenied
 from C4CApplication.models.member import Member
 from C4CApplication.views.forms.modifProfileForm import ModifProfileForm
 from django.core.urlresolvers import reverse_lazy
+from C4CApplication.views.utils import create_user
 
 
 class ModifProfile(FormView):
@@ -12,6 +13,17 @@ class ModifProfile(FormView):
     form_class = ModifProfileForm
     success_url = reverse_lazy('modifprofile')
 
+    user = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'email' not in self.request.session:
+            raise PermissionDenied  # HTTP 403
+
+        # Create the object representing the user
+        self.user = create_user(self.request.session['email'])
+
+        return super(ModifProfile, self).dispatch(request, *args, **kwargs)
+    
     def form_valid(self, form):
         
         #adresse
@@ -42,5 +54,6 @@ class ModifProfile(FormView):
 
 
     def get_initial(self):
+        self.initial = {  'telephone_mobile':self.user.db_member.mobile}
         return self.initial.copy()
 
