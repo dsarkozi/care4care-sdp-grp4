@@ -58,3 +58,5 @@ target/
 
 # Eclipse
 .pydevproject
+
+*.sqlite3
