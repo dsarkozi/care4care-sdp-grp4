@@ -1,4 +1,6 @@
-from django.test import TestCase
+#from django.test import TestCase
+from django.core.files import File
+from django.core.files.images import ImageFile
 from C4CApplication.models import *
 
 
@@ -24,11 +26,11 @@ for job in list_job :
 
 # Creation de membre
 m1 = Member(mail="kim.mens@gmail.com")
-m1.password = "agentKim007"
+m1.password = "azertyuiop"
 m1.first_name = "Kim"
 m1.last_name = "Mens"
 m1.birthday = "1967-10-03"
-m1.tag = Member.TAG['member']
+m1.tag = Member.TAG['branch_officer']
 m1.mobile = "0477985632"
 m1.address = "Rue du Software, 3, Development, 2255"
 m1.time_credit = 59
@@ -36,11 +38,11 @@ m1.visibility = Member.MEMBER_VISIBILITY['anyone']
 m1.save()
 
 m2 = Member(mail="yves.deville@gmail.com")
-m2.password = "agentYves007"
+m2.password = "azertyuiop"
 m2.first_name = "Yves"
 m2.last_name = "Deville"
 m2.birthday = "1956-08-23"
-m2.tag = Member.TAG['member']
+m2.tag = Member.TAG['branch_officer']
 m2.mobile = "0478745963"
 m2.address = "Rue de l'intelligence, 7, Artificial, 2261"
 m2.time_credit = 170
@@ -48,7 +50,7 @@ m2.visibility = Member.MEMBER_VISIBILITY['anyone']
 m2.save()
 
 m3 = Member(mail="olivier.bonaventure@gmail.com")
-m3.password = "oboIsWatchingYou"
+m3.password = "azertyuiop"
 m3.first_name = "Olivier"
 m3.last_name = "Bonaventure"
 m3.birthday = "1970-05-25"
@@ -59,7 +61,7 @@ m3.time_credit = 18
 m3.save()
 
 m4 = Member(mail="armand.bosquillon@student.uclouvain.be")
-m4.password = "Bouillakasha69"
+m4.password = "azertyuiop"
 m4.first_name = "Armand"
 m4.last_name = "Bosquillon"
 m4.birthday = "1993-03-20"
@@ -69,8 +71,21 @@ m4.address = "Rue de l'Eglise, 40, Rixensart, 1330"
 m4.time_credit = 9999
 m4.save()
 
+#path = '/C4Capplication/data/images/images_profile/%s_picture' % (m4.mail)
+#path = './C4Capplication/static/images/%s_picture.jpg' % (m4.mail)
+path = './C4CApplication/static/images/armand.jpg'
+#path = path.replace('@', '.')
+#path = path.replace('.', '')
+#path = '.'+path+'.jpg'
+photo = File(open(path, 'r'))
+m4.picture = photo
+m4.save()
+
+print("m4.picture = "+str(m4.picture))
+print("m4.picture.file = "+str(m4.picture.url))
+
 m5 = Member(mail="mathieu.jadin@student.uclouvain.be")
-m5.password = "lamathieu"
+m5.password = "azertyuiop"
 m5.first_name = "Mathieu"
 m5.last_name = "Jadin"
 m5.birthday = "1993-01-31"
