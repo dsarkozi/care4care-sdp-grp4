@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-#Do your tests here
+#Do your db_script here

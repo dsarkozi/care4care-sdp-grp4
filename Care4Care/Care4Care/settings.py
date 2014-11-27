@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mathfilters',
-    'C4CApplication',
+    'C4CApplication'
 )
 
 MIDDLEWARE_CLASSES = (
