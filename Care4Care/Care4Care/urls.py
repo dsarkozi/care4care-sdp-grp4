@@ -79,7 +79,7 @@ urlpatterns = patterns('',
     url(r'^branchlistredirect/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)/(?P<action>\d+)$', BranchListRedirectView.as_view(), name='branchlistredirect'),
     url(r'^loginasmember/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', LoginAsMemberRedirectView.as_view(), name="loginasmember"),
 
-    url(r'newjob/$', CreateJobView.as_view()),
+    url(r'newjob/(?P<type>offer|demand)$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),

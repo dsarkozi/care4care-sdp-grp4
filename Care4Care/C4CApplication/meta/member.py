@@ -9,7 +9,7 @@ class Member(NonMember):
     This class represents a kind of Users called Members
     """
 
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
+    def create_job(self, branch_name=None, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None,
                    start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -48,6 +48,8 @@ class Member(NonMember):
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
+        if branch_name is None:
+            branch_name = self.db_member.branch[0]  #TODO How to get job branch ?
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
