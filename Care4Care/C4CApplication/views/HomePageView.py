@@ -2,6 +2,8 @@ from django.views.generic.edit import FormView
 from C4CApplication.views.FeedsMixingView import FeedsMixingView
 from C4CApplication.views.forms.LoginForm import LoginForm
 
+from C4CApplication import models
+
 
 class HomePageView(FeedsMixingView, FormView):
     template_name = "C4CApplication/HomePage.html"
@@ -16,6 +18,14 @@ class HomePageView(FeedsMixingView, FormView):
     def form_valid(self, form):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
+        
+        member = models.Member.objects.filter(mail=email)
+        if len(member) == 0 : # if member not found
+            return super(HomePageView, self).form_invalid(form)
+        member = member[0] # get the member 
+        if member.password != password : # if wrong password
+            return super(HomePageView, self).form_invalid(form)
+        
         self.request.session['email'] = email
         return super(HomePageView, self).form_valid(form)
 
