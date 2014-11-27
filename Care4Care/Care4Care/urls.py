@@ -93,5 +93,5 @@ urlpatterns = patterns('',
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
     url(r'modifprofile/$', ModifProfile.as_view(), name='modifprofile'),
 
-
+  
 )

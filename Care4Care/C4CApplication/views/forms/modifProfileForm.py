@@ -16,3 +16,40 @@ class ModifProfileForm(forms.Form):
     telephone_mobile = forms.CharField( max_length=100 , required=False , widget=forms.NumberInput(attrs={'placeholder': 'telephone mobile',' size' : 10}))
 
     renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoyé.", required=False)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
