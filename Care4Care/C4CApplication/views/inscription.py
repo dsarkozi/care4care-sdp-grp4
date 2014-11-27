@@ -34,18 +34,18 @@ class Inscription(FormView):
         telephone_fixe = form.cleaned_data['telephone_fixe']
         telephone_mobile = form.cleaned_data['telephone_mobile']
          
-        member = model.Member(mail = email )
+        member = Member(mail = email )
         member.password = mot_de_passe
         member.first_name = prenom
         member.last_name = nom
         member.birthday = date_de_naissance
-        member.tag = Member.TAG_REVERSE[type_membre]
+        member.tag = Member.TAG_REVERSE[int(type_membre)]
         
         #adresse
         member.address = rue+ ", " + numero + ", " + code_postal +", " +ville
         
         member.telephone = telephone_fixe
-        member.mobile = telephonde_mobile
+        member.mobile = telephone_mobile
         member.save()
         member.branch.add(Branch.objects.get(name = branch))
         
