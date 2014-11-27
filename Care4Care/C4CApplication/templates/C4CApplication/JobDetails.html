@@ -4,108 +4,212 @@
 <html>
 	<head lang="en">
 	    <meta charset="UTF-8">
+	    <link rel="stylesheet" href="../../static/css/home_page.css">
 	    <title></title>
 	</head>
 
 	<body>
+		<!-- Menu de navigation (structure fixe) -->
+	<ul class="navbar">
+			 <!-- Optionnel
+			
+				<li><a href="AboutUs.html">About us</a></li>
+				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
+				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
+				<li><a href="Help">Help</a></li>
+			
+			-->
+			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
+			<li><a href="Branches.html">Care4Care Branches</a></li>
+				<ul>
+					<li><a href="">Heembeek</a></li>
+					<li><a href="">Molenbeek</a></li>
+					<li><a href="">Rixensart</a></li>
+					
+				</ul>
+			<li><a href="Statistics.html">Statistics</a></li>
+			<li><a href="Map.html">Map</a></li>
+			<li><a href="StartABranch.html">Start a branch ?</a></li>
+			<li><a href="News.html">News</a></li>
+			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
+	</ul>
+	
 		{% block accept_bill %}
 		{% endblock %}
 		
-		<p>
-			Createur du job :
-			{% for member in job.member_set.all %}
-				{% if member.mail == job.mail %}
-					<a href="{% url 'memberdetails' member.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{member.first_name}} {{member.last_name}}</a>
-				{% endif %}
-			{% endfor %}
-		</p>
+
 		
-		<p>Mail of the creator of the job : <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ job.mail }}</a> </p>
-		
-		<p>Date of the job : {{ job.date }} </p>
-		
-		<p>
-			{% if job.start_time|mod:60 < 10 %}
-				Hour of the start : {{ job.start_time|intdiv:60 }}:0{{job.start_time|mod:60}}
-			{% else %}
-				Hour of the start : {{ job.start_time|intdiv:60 }}:{{job.start_time|mod:60}}
+	<table class="tab1" style="left:30em; top:1em" >
+	  <tr>
+		<th class=".tab1-3" colspan="6">Job details</th>
+	  </tr>
+	  
+    <tr>
+		<td class="tab1-3">    
+		Createur du job :    </td>
+		<td class="tab1-3">   {% for member in job.member_set.all %}
+			{% if member.mail == job.mail %}
+				<a href="{% url 'memberdetails' member.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{member.first_name}} {{member.last_name}}</a>
 			{% endif %}
-		</p>
+		{% endfor %} <br/>      </td>
 		
-		<p>
-			Frequency :
-			{% for key, value in job.FREQ %}
-				{% if key == job.frequency %}
-					{{ value }}
-				{% endif %}
-			{% endfor %}
-		</p>
+	  </tr>
+	 <tr>
+		<td class="tab1-3">     Date of the job : </td>
 		
-		<p>Km : {{ job.km }}</p>
+		<td class="tab1-3">     {{ job.date }}    </td>
 		
-		<p>
-			{% if job.time|mod:60 < 10 %}
-				Time : {{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
-			{% else %}
-				Time : {{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+	  </tr>
+	  
+	  	 <tr>
+		<td class="tab1-3">     Mail : </td>
+		
+		<td class="tab1-3">     
+		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ job.mail }}  </a> </td>
+		
+	  </tr>
+		 
+	 <tr>
+		<td class="tab1-3">  Hour of the start :    </td> 
+		
+		
+	
+		<td class="tab1-3"> {% if job.start_time|mod:60 < 10 %}
+		 {{ job.start_time|intdiv:60 }}:0{{job.start_time|mod:60}}  
+		 {% else %}
+		{{ job.start_time|intdiv:60 }}:{{job.start_time|mod:60}} 
+		{% endif %} <br/>  </td>
+		
+	  </tr>
+	  
+	  
+	  <tr>
+		<td class="tab1-3">    Frequency :    </td>
+		<td class="tab1-3">      
+		{% for key, value in job.FREQ %}
+			{% if key == job.frequency %}
+				{{ value }}
 			{% endif %}
-		</p>
+		{% endfor %} <br/>   </td>
 		
-		<p>
-			Category :
-			{% for key, value in job.CAT %}
-				{% if key == job.category %}
-					{{ value }}
-				{% endif %}
-			{% endfor %}
-		</p>
+	  </tr>
+	  <tr>
+		<td class="tab1-3">    
+		Km :    </td>
+		<td class="tab1-3">   
+		 {{ job.km }} <br/>      </td>
 		
-		<p>
-			Type of job :
-			{% if job.type %}
-				Demand
-			{% else %}
-				Offer
+	  </tr>
+	  <tr>
+		<td class="tab1-3">  Time :       </td>
+		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
+			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
+		{% else %}
+			{{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+		{% endif %} <br/>    </td>
+		
+	  </tr>
+	  <tr>
+		<td class="tab1-3">    Category :    </td>
+		<td class="tab1-3">   
+		{% for key, value in job.CAT %}
+			{% if key == job.category %}
+				{{ value }}
 			{% endif %}
-		</p>
+		{% endfor %} <br/>      </td>
 		
-		<p>Address : {{ job.address }}</p>
+	  </tr>
+	  <tr>
+		<td class="tab1-3">  
+		Type of job :      </td>
+		<td class="tab1-3">    
+		{% if job.type %}
+			Demand
+		{% else %}
+			Offer
+		{% endif %} <br/>     </td>
 		
-		<p>Job accepted : {{ job.accepted }}</p>
+	  </tr>
+	  <tr>
+		<td class="tab1-3">     Address :   </td>
+		<td class="tab1-3">    	 {{ job.address }} <br/>    </td>
 		
-		<p>Job done : {{ job.done }}</p>
+	  </tr>
+	
+	
+	 <tr>
+		<td class="tab1-3">   Job accepted :     </td>
+		<td class="tab1-3">     {{ job.accepted }}    </td>
 		
-		<p>Job payed : {{ job.payed }}</p>
+	  </tr>
+	  
+	  
+	   <tr>
+		<td class="tab1-3">  Job done :      </td>
+		<td class="tab1-3">  {{ job.done }}      </td>
 		
-		<p>
-			Visibility of the job :
-			{% for key, value in job.JOB_VISIBILITY_TUPLE %}
-				{% if key == job.visibility %}
-					{{ value }}
-				{% endif %}
-			{% endfor %}
-		</p>
+	  </tr>
+	  
+	  
+	  
+	   <tr>
+		<td class="tab1-3">  Job payed :      </td>
+		<td class="tab1-3">     {{ job.payed }}    </td>
 		
-		<p>Branch : {{ job.branch.name }}</p>
+	  </tr>
+	
+	 
+	   <tr>
+		<td class="tab1-3">    Visibility of the job :    </td>
+		<td class="tab1-3">     
+		{% for key, value in job.JOB_VISIBILITY_TUPLE %}
+			{% if key == job.visibility %}
+				{{ value }}
+			{% endif %}
+		{% endfor %}    </td>
 		
-		<p>Description : {{ job.description }}</p>
+	  </tr>
+	  
+	   
+	   <tr>
+		<td class="tab1-3">  Branch :       </td>
+		<td class="tab1-3">      {{ job.branch.name }}   </td>
 		
-		<!-- Participants -->
-		<p>
-			Participants :
-			<ul>
-			{% for member in job.member_set.all %}
-				<li>
-					{{member.first_name}} {{member.last_name}}
-					{% if not job.accepted and member.mail != connected_member.mail %}
-						{% if connected_member.mail == job.mail %}
-							<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job">Choice this member</a>
-						{% endif %}
+	  </tr>
+	  
+	   
+	   <tr>
+		<td class="tab1-3">   Description :     </td>
+		<td class="tab1-3">     {{ job.description }}      </td>
+		
+	  </tr>
+	  
+	   <tr>
+		<td class="tab1-3">  Participants :      </td>
+		<td class="tab1-3">   <ul>
+		{% for member in job.member_set.all %}
+			<li>
+				{{member.first_name}} {{member.last_name}}
+				{% if not job.accepted and member.mail != connected_member.mail %}
+					{% if connected_member.mail == job.mail %}
+						<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job"><br><i>--> Choose this member <--</i></br></a>
 					{% endif %}
-				</li>
-			{% endfor %}
-			</ul>
-		</p>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+		      </td>
+		
+	  </tr>
+	
+	
+
+	</table>
+		
+	
+		<!-- Participants -->
+		
+
 		
 		{% if not job.accepted and connected_member.mail != job.mail %}
 			{% if connected_member in job.member_set.all %}
