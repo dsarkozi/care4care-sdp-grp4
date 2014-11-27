@@ -213,16 +213,9 @@
 		
 		{% if not job.accepted and connected_member.mail != job.mail %}
 			{% if connected_member in job.member_set.all %}
-			<!--  <input type="submit" value="Stop participating"  class ="login-submit" 
-			onclick="self.location.href='{% url 'participatejob' job.id 'no_response@care4care.com' %}'"
-			style = "height:150px"> -->
-			
-			
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit"
-				 value="Participate" class="participate-job">Stop participating</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Stop participating</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" 
-				value="Participate" class="participate-job">Participate</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a>
 			{% endif %}
 		{% endif %}
 		
