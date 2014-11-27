@@ -1,44 +1,96 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <header>
-        <h1>
-            {{ branch.name }}
-        </h1>
-        <p>Area : {{ branch.town }}</p>
-        <p>Current donation amount : {{ branch.donation }}</p>
-        <p>Address of Branch office : {{ branch.address }}</p>
-        <p>Branch officer's email : {{ branch.branch_officer }}</p>
-    </header>
-    <h2>List of members</h2>
-    <section>
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+	
+{% block content %}
+
+
+
+     <center> <h1> Branch Details </h1>
+        
+    
+         <table class="tab1" style="top:5em; left:26em;" >
+	  <tr>
+		<th class=".tab1-3" colspan="6">{{ branch.name }}</th>
+	  </tr>
+	  
+	  <tr>
+		<td class="tab1-4">Area : </td>
+		<td class="tab1-3">{{ branch.town }}</td>
+	  </tr>
+	  	    
+	  	     <tr>
+		<td class="tab1-4">Current donation amount :</td>
+		<td class="tab1-3">{{ branch.donation }}</td>
+	  </tr>
+	   <tr>
+		<td class="tab1-4">Address of Branch office : </td>
+		<td class="tab1-3">{{ branch.address }}</td>
+	  </tr>
+	   <tr>
+		<td class="tab1-4">Branch officer's email : </td>
+		<td class="tab1-3">{{ branch.branch_officer }}</td>
+	  </tr>
+	</h1>
+	
+	 <tr>
+		<td class="tab1-4">Branch officer's email : </td>
+		<td class="tab1-3">{{ branch.branch_officer }}</td>
+	  </tr>
+	
+	<tr>
+		<th class=".tab1-3" colspan="6">List of members</th>
+	  </tr>
+	
+
+      
+    
         <ul>
             {% for member in member_list %}
-                <li><a href="{% url 'memberdetails' member.mail %}">{{ member.first_name }} {{ member.last_name }}</a>
+               
+               <tr>
+               <td class ="tab1-3" > 
+               
+             <a href="{% url 'memberdetails' member.mail %}">{{ member.first_name }} {{ member.last_name }} </a>
                     {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
                         {% if member.tag < 16 %}
-	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}">Remove from branch</a>
+	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}"
+	                        	onclick="return window.confirm('Are you sure you want to remove {{member.first_name}} {{member.last_name}} from {{ branch.name }} branch ?')"
+	                        	>Remove from branch</a>
 	                        
-	                        {% if member.tag != 4 and member.tag != 12 %}
-	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 1 %}">Promote to verified</a>
-	                        {% else %}
-	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 1 %}">No more verified</a>
-	                        {% endif %}
-	                        
-	                        {% if member.tag != 8 and member.tag != 12 %}
-	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 2 %}">Promote to volunteer</a>
-	                        {% else %}
-	                        	<a href="{% url 'branchlistredirect' branch.name member.mail 2 %}">No more volunteer</a>
+		                    {% if member.tag != 4 and member.tag != 12 %}
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}"
+		                        	onclick="return window.confirm('Are you sure you want to promote {{member.first_name}} {{member.last_name}} to verified ?')"
+		                        	>Promote to verified</a>
+		                    {% else %}
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}"
+		                        	onclick="return window.confirm('Are you sure you want to  revoke {{member.first_name}} {{member.last_name}} from verified ?')"
+		                        	>No more verified</a>
+		                    {% endif %}
+		                        
+		                    {% if member.tag != 8 and member.tag != 12 %}
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}"
+		                        	onclick="return window.confirm('Are you sure you want to promote {{member.first_name}} {{member.last_name}} to volunteer ?')"
+		                        	>Promote to volunteer</a>
+		                    {% else %}
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}"
+		                        	onclick="return window.confirm('Are you sure you want to revoke {{member.first_name}} {{member.last_name}} from volunteer ?')"
+		                        	>No more volunteer</a>
 	                        {% endif %}
                         {% endif %}
                     {% endif %}
-                </li>
+   
+                
+               </td>
+              
+               <td class ="tab1-3" > 
+              	 {{ member.mail }} 
+              	 </td>
+              	 </tr>		
             {% endfor %}
         </ul>
-    </section>
-</body>
-</html>
+        
+          </table>
+        </center>
+
+{% endblock %}

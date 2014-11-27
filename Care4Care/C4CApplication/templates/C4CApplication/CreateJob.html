@@ -1,12 +1,10 @@
+{% extends "C4CApplication/FixedStructure.html" %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Create job</title>
-    <link rel="stylesheet" href="{% static "css/create_job.css" %}">
-</head>
-<body>
+	
+{% block link %} <link rel="stylesheet" href="{% static "css/create_job.css" %}"> {% endblock %}
+	
+{% block content %}
 
 <form method="post">
     {% csrf_token %}
@@ -73,5 +71,4 @@
     <input type="submit" value="Post request" />
 </form>
 
-</body>
-</html>
+{% endblock %}
