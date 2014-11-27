@@ -48,46 +48,16 @@
 							<th>#KM</th>
 							<th>Comment</th>
 						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
+                        {% for job in helpedStats %}
+                            <tr>
+                                <td>{{ job.date }}</td>
+                                <td>{{ job.category }}</td>
+                                <td>{{ job.time }}</td>
+                                <td>??</td>
+                                <td>{{ job.km }}</td>
+                                <td>{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
 					</table>
 				</td>
 				<td>

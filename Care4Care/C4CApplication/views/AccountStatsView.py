@@ -12,6 +12,8 @@ class AccountStatsView(TemplateView):
     template_name = "C4CApplication/accountAndStats.html"
     user = None
     jobset = None
+    helpedset = None
+    helperset = None
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
@@ -24,6 +26,7 @@ class AccountStatsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountStatsView, self).get_context_data(**kwargs)
+        # General info
         context['jobAmount'] = self.jobset.count()
         context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(self.jobset.aggregate(Avg('time'))['time__avg']))
         context['jobTotalDistance'] = self.jobset.aggregate(Sum('km'))['km__sum']
@@ -37,4 +40,18 @@ class AccountStatsView(TemplateView):
         context['jobCategories'] = {
             key: format(value/len(self.jobset)*100, '.2f') for key, value in categoryStats.items()
         }
+
+        # Help received
+        self.helpedset = self.jobset.filter(type=True).order_by('-date')
+        helpedStats = list()
+        for job in self.helpedset:
+            helpedStats += [{
+                'date' : job.date,
+                'category' : Job.CAT_DICT[job.category],
+                'time' : job.time,
+                'km' : job.km,
+                'comment' : job.comment
+            }]
+        context['helpedStats'] = helpedStats
+
         return context
