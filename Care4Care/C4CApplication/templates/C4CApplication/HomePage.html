@@ -21,9 +21,9 @@
 
 	<!-- Buttons -->
 	<center> <h1> Welcome on Care4Care !</h1> 
-		<a href="newjob/offer" class="myButton">I want to help</a>
+		<a href="{% url 'createJob' 'offer' %}" class="myButton">I want to help</a>
 	<span>
-	<a href="newjob/demand" class="myButton">I need help</a>
+	<a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a>
 	</span>
 	</center>
 	
@@ -55,13 +55,13 @@
 	  	    
     {% for job in offer_list %} 
     <tr>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {% for key, value in job.CAT %}
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
 											{% if key == job.category %}
 												{{ value }}
 												{% endif %}
  											   {% endfor %}   </a></td>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.description|truncatewords:10  }} </a></td>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.address }} </a></td>
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.description|truncatewords:10  }} </a></td>
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
 	  </tr>
 	{% endfor %}
 	
@@ -81,14 +81,14 @@
 	  
 	   {% for job in demand_list %} 
 	  <tr>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}">
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
 											{% for key, value in job.CAT %}
 											{% if key == job.category %}
 												{{ value }}
 												{% endif %}
  											   {% endfor %}  </a></td>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.description|truncatewords:10  }} </a></td>
-		<td class="tab1-3"> <a href="jobdetails/{{job.id}}"> {{ job.address }} </a></td>
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.description|truncatewords:10  }} </a></td>
+		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
 	  </tr>
 	   {% endfor %}
 	   
