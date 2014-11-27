@@ -1,4 +1,11 @@
+{% extends "C4CApplication/FixedStructure.html" %}
+
 {% load staticfiles %}
+	
+{% block content %}
+
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -8,6 +15,7 @@
 <body>
     <form method="post">
         {% csrf_token %}
+        <h3> Choose branch(es) :</h3>
         <ul>
             {% for checkbox in branch_list_form.branch_list %}
                 <li>
@@ -15,7 +23,9 @@
                 </li>
             {% endfor %}
         </ul>
-        <input type="submit" value="Submit changes"/>
+        <input type="submit" value="Submit changes" class="myButton2"/>
     </form>
 </body>
 </html>
+{% endblock %}
+	
