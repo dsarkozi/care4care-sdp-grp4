@@ -42,16 +42,32 @@ class AccountStatsView(TemplateView):
         }
 
         # Help received
-        self.helpedset = self.jobset.filter(type=True).order_by('-date')
-        helpedStats = list()
-        for job in self.helpedset:
-            helpedStats += [{
-                'date' : job.date,
-                'category' : Job.CAT_DICT[job.category],
-                'time' : job.time,
-                'km' : job.km,
-                'comment' : job.comment
-            }]
-        context['helpedStats'] = helpedStats
+        context['helpedDone'] = self.queryset2list(
+            self.jobset.filter(type=True, done=True).order_by('-date')
+        )
+        context['helpedPending'] = self.queryset2list(
+            self.jobset.filter(type=True, done=False).order_by('-date')
+        )
+
+        # Help given
+        context['helperDone'] = self.queryset2list(
+            self.jobset.filter(type=False, done=True).order_by('-date')
+        )
+        context['helperPending'] = self.queryset2list(
+            self.jobset.filter(type=False, done=False).order_by('-date')
+        )
 
         return context
+
+    @staticmethod
+    def queryset2list(queryset):
+        dictlist = list()
+        for item in queryset:
+            dictlist += [{
+                'date' : item.date,
+                'category' : Job.CAT_DICT[item.category],
+                'time' : item.time,
+                'km' : item.km,
+                'comment' : item.comment
+            }]
+        return dictlist
