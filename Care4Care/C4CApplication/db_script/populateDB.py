@@ -4,7 +4,7 @@ from C4CApplication.models import *
 
 '''
 Commande a executer dans le terminal :
-exec(open('./C4CApplication/tests/populateDB.py').read())
+exec(open('./C4CApplication/db_script/populateDB.py').read())
 '''
 
 #Suppression des messages pour eviter les conflits
@@ -115,7 +115,7 @@ e1 = Message()
 e1.member_sender = m3   #Olivier Bonaventure
 e1.number = 1
 e1.subject = "Comment faire une donation ?"
-e1.content = "Bonjour, j'aimerai savoir comment il faut procéder pour faire une donation ? Corialement, Olivier."
+e1.content = "Bonjour, j'aimerai savoir comment il faut procï¿½der pour faire une donation ? Corialement, Olivier."
 e1.type = 2
 e1.date = "2014-11-20"
 e1.save()
@@ -187,7 +187,7 @@ j1.member_set.add(m4)
 j1.save()
 
 j2 = Job(mail="armand.bosquillon@student.uclouvain.be", number=2)
-j2.description = "Bonjour, j'ai besoin de quelqu'un pour m'amener à LLN exceptionnelement, \
+j2.description = "Bonjour, j'ai besoin de quelqu'un pour m'amener ï¿½ LLN exceptionnelement, \
                 car je n'ai pas de transport en commun ce jour la."
 j2.date = "2014-12-19"  #Lundi 19 decembre
 j2.start_time = 480 #8h *60
@@ -225,7 +225,7 @@ j3.member_set.add(m2)
 j3.save()
 
 j4 = Job(mail="yves.deville@gmail.com", number=1)
-j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles"
+j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire ï¿½ Bruxelles"
 j4.date = "2015-01-29"  #Jeudi 29 janvier
 j4.start_time = 540 #9h *60
 j4.frenquency = 1   #Once
@@ -243,8 +243,8 @@ j4.member_set.add(m1)
 j4.save()
 
 j5 = Job(mail="kim.mens@gmail.com", number=1)
-j5.description = "Bonjour, j'aimerai quelqu'un pour me conduire à Bruxelles.\
-                Plus précisement, à l'universite de Bruxelles."
+j5.description = "Bonjour, j'aimerai quelqu'un pour me conduire ï¿½ Bruxelles.\
+                Plus prï¿½cisement, ï¿½ l'universite de Bruxelles."
 j5.date = "2014-12-09"  #Vendredi 9 janvier
 j5.start_time = 540 #9h *60
 j5.frenquency = 1   #Once
@@ -263,7 +263,7 @@ j5.member_set.add(m4)
 j5.save()
 
 j6 = Job(mail="armand.bosquillon@student.uclouvain.be", number=3)
-j6.description = "Bonjour, je met à disposition mon aide pour faire du shopping a l'Esplanade."
+j6.description = "Bonjour, je met ï¿½ disposition mon aide pour faire du shopping a l'Esplanade."
 j6.date = "2015-01-24"  #Samedi 24 janvier
 j6.start_time = 780 #13h *60
 j6.frenquency = 1   #Once
@@ -271,14 +271,14 @@ j6.km = 0
 j6.time = 240    #4h *60
 j6.category = 1 #Transport
 j6.type = False  #False = Offer
-j6.address = "Place de l’Accueil 10 bte 1, 1348 Louvain-la-Neuve"
+j6.address = "Place de lï¿½Accueil 10 bte 1, 1348 Louvain-la-Neuve"
 j6.branch = b1
 j6.save()
 j6.member_set.add(m4)
 j6.save()
 
 j7 = Job(mail="mathieu.jadin@student.uclouvain.be", number=1)
-j7.description = "Bonjour, je met à disposition mon aide pour le projet Care4Care."
+j7.description = "Bonjour, je met ï¿½ disposition mon aide pour le projet Care4Care."
 j7.date = "2014-12-05"  #Vendredi 5 Decambre
 j7.start_time = 480 #8h *60
 j7.frenquency = 1   #Once
