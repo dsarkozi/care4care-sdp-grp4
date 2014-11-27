@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Branch',
             fields=[
-                ('name', models.CharField(serialize=False, max_length=50, primary_key=True)),
+                ('name', models.CharField(serialize=False, primary_key=True, max_length=50)),
                 ('town', models.CharField(max_length=200)),
                 ('branch_officer', models.EmailField(max_length=75)),
                 ('address', models.CharField(max_length=200)),
@@ -32,9 +32,9 @@ class Migration(migrations.Migration):
                 ('number', models.IntegerField()),
                 ('description', models.TextField()),
                 ('comment', models.CharField(max_length=200)),
-                ('date', models.DateField(default='2014-11-26')),
+                ('date', models.DateField(default='2014-11-27')),
                 ('start_time', models.IntegerField(default=0)),
-                ('frequency', models.SmallIntegerField(choices=[(0, 'Once'), (1, 'Daily'), (2, 'Weekly'), (3, 'Monthly'), (4, 'Yearly')], default=0)),
+                ('frequency', models.SmallIntegerField(default=0, choices=[(0, 'Once'), (1, 'Daily'), (2, 'Weekly'), (3, 'Monthly'), (4, 'Yearly')])),
                 ('km', models.SmallIntegerField(default=0)),
                 ('time', models.SmallIntegerField(default=0)),
                 ('category', models.SmallIntegerField(choices=[(1, 'Shopping'), (2, 'Visit'), (3, 'Transport')])),
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Member',
             fields=[
-                ('mail', models.EmailField(serialize=False, max_length=75, primary_key=True)),
+                ('mail', models.EmailField(serialize=False, primary_key=True, max_length=75)),
                 ('password', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=20)),
                 ('last_name', models.CharField(max_length=30)),
@@ -71,9 +71,10 @@ class Migration(migrations.Migration):
                 ('birthday', models.DateField(default='2014-01-01')),
                 ('tag', models.SmallIntegerField(default=1)),
                 ('status', models.BooleanField(default=True)),
+                ('deleted', models.BooleanField(default=False)),
                 ('mobile', models.CharField(max_length=15)),
                 ('telephone', models.CharField(max_length=15)),
-                ('register_date', models.DateField(default='2014-11-26')),
+                ('register_date', models.DateField(default='2014-11-27')),
                 ('dash_board_text', models.TextField()),
                 ('address', models.CharField(max_length=200)),
                 ('visibility', models.SmallIntegerField(default=2)),
@@ -92,7 +93,7 @@ class Migration(migrations.Migration):
                 ('number', models.IntegerField()),
                 ('subject', models.CharField(max_length=100)),
                 ('content', models.TextField()),
-                ('type', models.SmallIntegerField(choices=[(0, 'nothing'), (1, 'important'), (2, 'question'), (3, 'information')], default=0)),
+                ('type', models.SmallIntegerField(default=0, choices=[(0, 'nothing'), (1, 'important'), (2, 'question'), (3, 'information')])),
                 ('date', models.DateField()),
                 ('member_sender', models.ForeignKey(to='C4CApplication.Member')),
             ],
@@ -104,8 +105,8 @@ class Migration(migrations.Migration):
             name='Relationship',
             fields=[
                 ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
-                ('member_source', models.ForeignKey(related_name='source', to='C4CApplication.Member')),
-                ('member_target', models.ForeignKey(related_name='target', to='C4CApplication.Member')),
+                ('member_source', models.ForeignKey(to='C4CApplication.Member', related_name='source')),
+                ('member_target', models.ForeignKey(to='C4CApplication.Member', related_name='target')),
             ],
             options={
             },

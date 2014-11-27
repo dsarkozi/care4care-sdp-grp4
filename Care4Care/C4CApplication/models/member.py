@@ -43,6 +43,7 @@ class Member(models.Model):
     }
     tag = models.SmallIntegerField(default=1)    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive
+    deleted = models.BooleanField(default=False)
     mobile = models.CharField(max_length=15)
     telephone = models.CharField(max_length=15)
     register_date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))

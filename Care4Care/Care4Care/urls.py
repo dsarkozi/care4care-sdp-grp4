@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import ListView
+from C4CApplication.views.AccountStatsView import AccountStatsView
 
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
@@ -49,6 +50,7 @@ urlpatterns = patterns('',
     
     url(r'^myc4c/changeActivity$', ChangeActivityView.as_view(), name='changeActivity'),
     url(r'^myc4c/changeActivityRedirect/(?P<active>\w+)$', ChangeActivityRedirectView.as_view(), name='changeActivityRedirect'),
+    url(r'^myc4c/accountstats/$', AccountStatsView.as_view()),
 
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^memberlist/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='memberlist'),
@@ -79,7 +81,7 @@ urlpatterns = patterns('',
     url(r'^branchlistredirect/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)/(?P<action>\d+)$', BranchListRedirectView.as_view(), name='branchlistredirect'),
     url(r'^loginasmember/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', LoginAsMemberRedirectView.as_view(), name="loginasmember"),
 
-    url(r'newjob/$', CreateJobView.as_view()),
+    url(r'newjob/(?P<type>offer|demand)$', CreateJobView.as_view()),
     url(r'donate/$', DonateTimeView.as_view()),
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
