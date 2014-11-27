@@ -28,6 +28,11 @@ class Job(models.Model):
         (2, 'Visit'),
         (3, 'Transport'),
     )
+    CAT_DICT = {                #TODO Change this !
+        1 : 'Shopping',
+        2 : 'Visit',
+        3 : 'Transport'
+    }
     category = models.SmallIntegerField(choices=CAT)
     type = models.BooleanField(default=None) # True = demand, False = offer
     address = models.CharField(max_length=200)
