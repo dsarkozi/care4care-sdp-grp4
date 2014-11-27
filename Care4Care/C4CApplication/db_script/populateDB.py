@@ -6,7 +6,7 @@ from C4CApplication.models import *
 
 '''
 Commande a executer dans le terminal :
-exec(open('./C4CApplication/tests/populateDB.py').read())
+exec(open('./C4CApplication/db_script/populateDB.py').read())
 '''
 
 #Suppression des messages pour eviter les conflits
@@ -73,16 +73,16 @@ m4.save()
 
 #path = '/C4Capplication/data/images/images_profile/%s_picture' % (m4.mail)
 #path = './C4Capplication/static/images/%s_picture.jpg' % (m4.mail)
-path = './C4CApplication/static/images/armand.jpg'
+#path = './C4CApplication/static/images/armand.jpg'
 #path = path.replace('@', '.')
 #path = path.replace('.', '')
 #path = '.'+path+'.jpg'
-photo = File(open(path, 'r'))
-m4.picture = photo
-m4.save()
+#photo = File(open(path, 'r'))
+#m4.picture = photo
+#m4.save()
 
-print("m4.picture = "+str(m4.picture))
-print("m4.picture.file = "+str(m4.picture.url))
+#print("m4.picture = "+str(m4.picture))
+#print("m4.picture.file = "+str(m4.picture.url))
 
 m5 = Member(mail="mathieu.jadin@student.uclouvain.be")
 m5.password = "azertyuiop"
