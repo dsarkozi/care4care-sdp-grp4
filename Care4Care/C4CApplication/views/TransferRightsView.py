@@ -14,10 +14,6 @@ class TransferRightsView(FormView):
     success_url = reverse_lazy("myc4c")
     user = None
     
-    """def get_object(self):
-        job = super(ConfirmJobDoneView, self).get_object()
-        return job"""
-    
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
@@ -44,14 +40,8 @@ class TransferRightsView(FormView):
 
         # value entered in the input field
         email_new_BPAdmin = form.cleaned_data['email_new_BPAdmin']
-        member = models.Member.objects.filter(mail=email_new_BPAdmin)
-        if len(member) == 0 : print("No such a member !") # pop up ?
-        else : 
-            member = member[0]
-            # TODO do the transfer of right : set email_new_BPAdmin as BP Admin
-            member.tag = Member.TAG['bp_admin']
-            member.save()
-            
-            # remove rights of the current user ??
+        
+        res = self.user.transfer_bp_admin_rights(email_new_BPAdmin)
+        if res : print("No such a member !") # pop up ?
         
         return super(TransferRightsView, self).form_valid(form)

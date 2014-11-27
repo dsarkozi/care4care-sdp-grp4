@@ -30,7 +30,6 @@ def create_user(member_email):
         #if db_member is None:  # If the adress was faked
             #return None
 
-    user = None
     if member_tag & 32:  # BP Administrator
         user = BPAdministrator(db_member)
     elif member_tag & 16:  # Branch officer
