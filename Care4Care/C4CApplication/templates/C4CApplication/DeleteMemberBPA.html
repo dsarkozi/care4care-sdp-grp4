@@ -1,0 +1,10 @@
+{% block delete_member_bpa %} 
+<form method="post">
+	{% csrf_token %}
+	Enter the mail of the member to be deleted :  <br/>
+    <p>
+    {{ delete_member_bpa_form }}
+    <input type="submit" value="Delete"/>
+    </p>
+</form>
+{% endblock %}

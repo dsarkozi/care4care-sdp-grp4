@@ -24,6 +24,8 @@ def create_user(member_email):
         if len(db_member) != 1 : 
             return None 
         db_member = db_member[0]
+        if db_member.deleted : 
+            return None
         member_tag = db_member.tag
         #if db_member is None:  # If the adress was faked
             #return None

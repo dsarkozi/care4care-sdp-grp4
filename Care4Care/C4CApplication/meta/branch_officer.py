@@ -23,6 +23,18 @@ class BranchOfficer(Member):
     def accept_job(self, job_number, job_creator_mail):
         return self.accept_job_base(job_number, job_creator_mail, self.is_job_visible)
 
+    def is_branch_officer(self, member):
+        """
+        :param member:
+        :return: True if the current user is the branch officer of the member
+        """
+        member_branch = None
+        for branch in member.branch.all():
+            if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
+                member_branch = branch
+
+        return member_branch is not None
+
     def delete_member_from_branch(self, branch_name, deleted_one_email):
         """
         Delete the member from the branch
@@ -47,11 +59,29 @@ class BranchOfficer(Member):
         branch.save()
         return True
 
-    def log_as_member(self, email):
-        """
-        ????
-        """
-        raise PermissionError  # TODO
+    def log_as_member(self, email, session):
+
+        if email == self.db_member.mail:  # If the user is already logged as himself...
+            return False
+
+        member = models.Member.objects.filter(mail=email)
+        if len(member) != 1:
+            return False
+        member = member[0]
+
+        member_branch = None
+        for branch in member.branch:
+            if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
+                member_branch = branch
+
+        if member_branch is None:  # The branch officer have no power on this user
+            return False
+
+        # Change the session variable
+        session['super_user_mail'] = session['mail']
+        session['mail'] = email
+
+        return True
 
     def give_branch_control(self, branch_name, new_branch_officer_email):
         """
@@ -59,10 +89,10 @@ class BranchOfficer(Member):
         :param new_branch_officer_email: the new branch_officer that will control the branch
         :return: False if there was a problem and True otherwise.
         """
-        branch = Branch.objects.filter(name=branch_name)
-        if len(branch) != 1:
+        branchlist = Branch.objects.filter(name=branch_name)
+        if len(branchlist) != 1:
             return False
-        branh = branch[0]
+        branch = branchlist[0]
         if branch.branch_officer != self.db_member.mail:
             return False
         branch.branch_officer = new_branch_officer_email
@@ -84,14 +114,37 @@ class BranchOfficer(Member):
         member = member[0]
 
         member_branch = None
-        for branch in member.branch:
+        for branch in member.branch.all() :
             if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
                 member_branch = branch
 
         if member_branch is None:  # The branch officer have no power on this user
             return False
+        
+        if member.tag & 4 : # if 4
+            if member.tag & 8 : # if 4 and 8
+                if new_tag == 4 or new_tag == 8 :
+                    member.tag = member.tag ^ new_tag
+                else :
+                    member.tag = new_tag
+            else : # not 8 but 4
+                if new_tag == 4 :
+                    member.tag = 2
+                elif new_tag == 8:
+                    member.tag = 12
+                else :
+                    member.tag = new_tag
+        else : # not 4
+            if member.tag & 8 : # not 4 but 8
+                if new_tag == 4 :
+                    member.tag = 12
+                elif new_tag == 8 :
+                    member.tag = 2
+                else :
+                    member.tag = new_tag
+            else : # not 4 and not 8
+                member.tag = new_tag
 
-        member.tag = models.Member.TAG[new_tag]
         member.save()
         return True
 
@@ -168,6 +221,7 @@ class BranchOfficer(Member):
         return True
 
     def is_member_visible(self, member):
+        if member.deleted : return False
         return True
 
     def get_visible_members(self, branch):

@@ -13,6 +13,11 @@ class NonMember(User):
     def __init__(self, db_member):
         self.db_member = db_member
         
+    def delete(self): 
+        self.db_member.deleted = True
+        self.db_member.save()
+        return True
+           
     #TODO Why don't you put this on the specific file system_email ?
     def send_mail(self, sender_mail, receiver_mail, subject, content, type):
         """
@@ -405,6 +410,7 @@ class NonMember(User):
 
     def is_member_visible(self, member):
 
+        if member.deleted : return False
         #this line must be modified if we add the personal network
         return member.visibility & Member.MEMBER_VISIBILITY['anyone']\
                or (member.visibility & Member.MEMBER_VISIBILITY['favorites']

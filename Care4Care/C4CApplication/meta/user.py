@@ -7,6 +7,12 @@ class User(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def delete(self): 
+        """
+        :return: True if this user has successfully been deleted
+        """
+
+    @abc.abstractmethod
     def is_job_visible(self, job, db_member):
         """
         :param job:
@@ -191,10 +197,12 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def log_as_member(self, email):
+    def log_as_member(self, email, session):
         """
+        Logs the current user as the one specified by the email (by modifying the session variables)
         :param email: the email of the member to log in as
-        :return: the object Member or None if there is a problem
+        :param session: the dictionary containing the session variables
+        :return: False if there was a problem and True otherwise.
         """
         return
 
@@ -300,5 +308,13 @@ class User(object):
         """
         :param active
         :return: True
+        """
+        return
+
+    @abc.abstractmethod
+    def is_branch_officer(self, member):
+        """
+        :param member:
+        :return: True if the current user is the branch officer of the member
         """
         return
