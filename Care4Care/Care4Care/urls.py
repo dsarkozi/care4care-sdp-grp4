@@ -65,8 +65,7 @@ urlpatterns = patterns('',
     url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
     
-    url(r'^profile$', 'C4CApplication.views.test.profile'),
-    url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
+    #url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
     url(r'^memberdetailsredirect/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', MemberDetailsRedirectView.as_view(), name='memberdetailsredirect'),
     url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
@@ -89,8 +88,9 @@ urlpatterns = patterns('',
     url(r'donate/$', DonateTimeView.as_view(), name='donate'),
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
+    url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
     url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
-    url(r'modifprofile/$', ModifProfile.as_view(), name='modifprofile'),
+    url(r'^modifprofile/$', ModifProfile.as_view(), name='modifprofile'),
     
     
     
