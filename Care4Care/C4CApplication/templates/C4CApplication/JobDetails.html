@@ -39,7 +39,7 @@
 		
 
 		
-	<table class="tab1" style="left:30em; top:1em" >
+	<table class="tab1" style="left:32em; top:2em" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Job details</th>
 	  </tr>
@@ -192,7 +192,7 @@
 				{{member.first_name}} {{member.last_name}}
 				{% if not job.accepted and member.mail != connected_member.mail %}
 					{% if connected_member.mail == job.mail %}
-						<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="ChoiceMember" class="participate-job"><br><i>--> Choose this member <--</i></br></a>
+						<a href="{% url 'participatejob' job.id member.mail %}" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
 					{% endif %}
 				{% endif %}
 			</li>
@@ -213,14 +213,16 @@
 		
 		{% if not job.accepted and connected_member.mail != job.mail %}
 			{% if connected_member in job.member_set.all %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Stop participating</a>
+			 
+		       
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="myButton">Stop participating</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="participate-job">Participate</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="myButton">Participate</a>
 			{% endif %}
 		{% endif %}
 		
 		{% if not job.accepted and job.mail == connected_member.mail %}
-			<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="participate-job">Delete job</a> <br/>
+			<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="myButton">Delete job</a> <br/>
 		{% endif %}
 		
 		

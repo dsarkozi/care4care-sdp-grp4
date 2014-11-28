@@ -14,7 +14,8 @@ class Inscription(FormView):
     model = Member
     template_name = 'C4CApplication/inscription.html'
     form_class = InscriptionForm
-    success_url = reverse_lazy('inscription')
+    success_url = reverse_lazy('home')
+
 
     def form_valid(self, form):
         prenom = form.cleaned_data['prenom']
@@ -33,25 +34,26 @@ class Inscription(FormView):
             #infos faculatives
         telephone_fixe = form.cleaned_data['telephone_fixe']
         telephone_mobile = form.cleaned_data['telephone_mobile']
-        """  
-        member = models.Member(mail = email )
+         
+        member = Member(mail = email )
         member.password = mot_de_passe
         member.first_name = prenom
         member.last_name = nom
         member.birthday = date_de_naissance
-        member.tag = Member.TAG_REVERSE[type_membre]
+        member.tag = int(type_membre)
+        
         #adresse
-        member.address = numero+ " " + rue + " "+ " " + code_postal +" " +ville
-            
-        member.mobile = telephonde_mobile
-        member.address = "Rue de l'Eglise, 40, Rixensart, 1330"
-        member.time_credit = 9999
-        member.save()"""
+        member.address = rue+ ", " + numero + ", " + code_postal +", " +ville
+        
+        member.telephone = telephone_fixe
+        member.mobile = telephone_mobile
+        member.save()
+        member.branch.add(Branch.objects.get(name = branch))
         
         
         return super(Inscription, self).form_valid(form)
 
-
+"""
 def inscription(request):
  # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -82,7 +84,8 @@ def inscription(request):
             #infos faculatives
             telephone_fixe = form.cleaned_data['telephone_fixe']
             telephone_mobile = form.cleaned_data['telephone_mobile']
-            """  
+"""
+"""  
             member = models.Member(mail = email )
             member.password = mot_de_passe
             member.first_name = prenom
@@ -95,7 +98,9 @@ def inscription(request):
             member.mobile = telephonde_mobile
             member.address = "Rue de l'Eglise, 40, Rixensart, 1330"
             member.time_credit = 9999
-            member.save()"""
+            member.save()
+"""
+"""
             #return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
@@ -103,3 +108,4 @@ def inscription(request):
         form = InscriptionForm()
 
     return render(request, 'C4CApplication/inscription.html', locals())
+"""

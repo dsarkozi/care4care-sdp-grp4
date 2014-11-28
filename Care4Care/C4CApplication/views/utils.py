@@ -42,7 +42,7 @@ def create_user(member_email):
         user = VerifiedMember(db_member)
     elif member_tag & 2:  # Member
         user = Member(db_member)
-    elif db_member & 1:  # NonMember
+    elif member_tag & 1:  # NonMember
         user = NonMember(db_member)
     else:  # To avoid to give BP admin rights by default if the member_tag is unknown
         return Visitor()
