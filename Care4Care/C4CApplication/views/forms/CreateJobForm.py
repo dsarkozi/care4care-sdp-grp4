@@ -8,6 +8,20 @@ from C4CApplication.models.job import Job
 class CreateJobForm(forms.Form):
     #TODO Put some magical js for disabled fields toggle
 
+    branchList = None
+    #TODO Bug nest
+    def __init__(self, user=None, *args, **kwargs):
+        super(CreateJobForm, self).__init__(*args, **kwargs)
+        branchList = [('all', 'All of them')]
+        if user is not None:
+            for branch in user.branch.all():
+                branchList.append((branch.name, branch.name))
+        self.branchList = tuple(branchList)
+        self.fields['branches'] = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=branchList
+        )
+
     # Request details fieldset
     title = forms.CharField(
         widget=TextInput(

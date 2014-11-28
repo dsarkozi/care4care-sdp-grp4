@@ -14,10 +14,16 @@
     <article class = "first">
         <h3>Informations générales :</h3>
         <ul>
-            <li class="info">Nombre de jobs complétés : 45</li>
-            <li class="info">Average time per job : 01:49:35</li> 
-            <li class="info">J'ai conduit : 32km</li>
-            <li class="info">Les styles de job que je fais : 15% visits, 50% transport, 35% shopping</li>
+            <li class="info">Nombre de jobs complétés : {{ jobAmount }}</li>
+            <li class="info">Average time per job : {{ jobAverageTime }}</li>
+            <li class="info">J'ai conduit : {{ jobTotalDistance }} kilometers</li>
+            <li class="info">Les styles de job que je fais :
+                <ul>
+                    {% for catKey, catValue in jobCategories.items %}
+                        <li>{{ catValue }} % {{ catKey }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
         </ul>
     </article>
     
@@ -42,46 +48,16 @@
 							<th>#KM</th>
 							<th>Comment</th>
 						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
+                        {% for job in helpedDone %}
+                            <tr>
+                                <td>{{ job.date }}</td>
+                                <td>{{ job.category }}</td>
+                                <td>{{ job.time }}</td>
+                                <td>??</td>
+                                <td>{{ job.km }}</td>
+                                <td>{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
 					</table>
 				</td>
 				<td>
@@ -94,22 +70,16 @@
 							<th>#KM</th>
 							<th>Comment</th>
 						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
+						{% for job in helperDone %}
+                            <tr>
+                                <td>{{ job.date }}</td>
+                                <td>{{ job.category }}</td>
+                                <td>{{ job.time }}</td>
+                                <td>??</td>
+                                <td>{{ job.km }}</td>
+                                <td>{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
 					</table>
 				</td>
 			</tr>
@@ -125,22 +95,16 @@
 							<th>#KM</th>
 							<th>Comment</th>
 						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
+						{% for job in helpedPending %}
+                            <tr>
+                                <td>{{ job.date }}</td>
+                                <td>{{ job.category }}</td>
+                                <td>{{ job.time }}</td>
+                                <td>??</td>
+                                <td>{{ job.km }}</td>
+                                <td>{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
 					</table>
 			
 				</td>
@@ -154,22 +118,16 @@
 							<th>#KM</th>
 							<th>Comment</th>
 						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
-						<tr>
-							<td>14/03/2014</td>
-							<td>?????</td>
-							<td>5 hours</td>
-							<td>Armand</td>
-							<td>4km</td>
-							<td>Easy job</td>
-						</tr>
+						{% for job in helperPending %}
+                            <tr>
+                                <td>{{ job.date }}</td>
+                                <td>{{ job.category }}</td>
+                                <td>{{ job.time }}</td>
+                                <td>??</td>
+                                <td>{{ job.km }}</td>
+                                <td>{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
 					</table>
 				</td>
 			</tr>
