@@ -1,5 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+
 from django.views.generic import ListView
 from C4CApplication.views.AccountStatsView import AccountStatsView
 
@@ -97,6 +100,6 @@ urlpatterns = patterns('',
     url(r'^inscription$', Inscription.as_view() , name='inscription'),
 
 
-     
-     #test
 )
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
