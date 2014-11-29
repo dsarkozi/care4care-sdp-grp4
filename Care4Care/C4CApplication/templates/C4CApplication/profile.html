@@ -10,7 +10,11 @@
 <section>
     <h1 class = "entete"><span class="nom"> {{member.first_name}} {{member.last_name}}</span> <span class="tag"> {{ member.tag }} </span></h1>
     <article class = "first">
-       <img src="{% static "images/images_profile/armand.jpg"%}" alt="Photo de profil" id="photo" style="height:250px;"/>
+    	{% if member.picture %}
+       		<img src="{{ member.picture.url }}" alt="Photo de profil" id="photo" style="height:250px;"/>
+       	{% else %}
+       		<img src="{% static 'images/no_picture.jpg' %}" alt="Photo de profil" id="photo" style="height:250px;"/>
+       	{% endif %}
     </article>
     
     <article class = "second">

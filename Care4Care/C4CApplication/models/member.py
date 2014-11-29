@@ -3,6 +3,13 @@ from time import strftime, gmtime
 
 from django.db import models
 
+from django.core.files.storage import FileSystemStorage
+class OverwriteStorage(FileSystemStorage):
+    def get_available_name(self, name):
+        if self.exists(name):
+            self.delete(name)
+        return name
+
 
 class Member(models.Model): 
     
@@ -12,7 +19,7 @@ class Member(models.Model):
     last_name = models.CharField(max_length=30)
     '''def upload_path(self):
         return 'C4CApplication/static/images/images_profile/%s_picture' % (self.mail)'''
-    picture = models.ImageField(upload_to="images/images_profile/")
+    picture = models.ImageField(upload_to="images/images_profile/", storage=OverwriteStorage())
     birthday = models.DateField(default='2014-01-01')   #'yyyy-mm-dd'
     
     TAG_REVERSE = {

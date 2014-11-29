@@ -1,6 +1,4 @@
-#from django.test import TestCase
 from django.core.files import File
-from django.core.files.images import ImageFile
 from C4CApplication.models import *
 
 
@@ -53,6 +51,7 @@ m3 = Member(mail="olivier.bonaventure@gmail.com")
 m3.password = "azertyuiop"
 m3.first_name = "Olivier"
 m3.last_name = "Bonaventure"
+m3.picture = "images/images_profile/olivierbonaventuregmailcom.jpg"
 m3.birthday = "1970-05-25"
 m3.tag = Member.TAG['member']
 m3.mobile = "0476526987"
@@ -64,6 +63,8 @@ m4 = Member(mail="armand.bosquillon@student.uclouvain.be")
 m4.password = "azertyuiop"
 m4.first_name = "Armand"
 m4.last_name = "Bosquillon"
+path = "images/images_profile/%s" % (m4.mail)
+m4.picture = path.replace('@', '.').replace('.', '')+".jpg"
 m4.birthday = "1993-03-20"
 m4.tag = Member.TAG['member']
 m4.mobile = "0472695784"
@@ -71,30 +72,24 @@ m4.address = "Rue de l'Eglise, 40, Rixensart, 1330"
 m4.time_credit = 9999
 m4.save()
 
-#path = '/C4Capplication/data/images/images_profile/%s_picture' % (m4.mail)
-#path = './C4Capplication/static/images/%s_picture.jpg' % (m4.mail)
 #path = './C4CApplication/static/images/armand.jpg'
-#path = path.replace('@', '.')
-#path = path.replace('.', '')
-#path = '.'+path+'.jpg'
-#photo = File(open(path, 'r'))
+#photo = File(open(path))
+#m4.picture.save("armand.jpg", photo)
 #m4.picture = photo
 #m4.save()
-
-#print("m4.picture = "+str(m4.picture))
-#print("m4.picture.file = "+str(m4.picture.url))
 
 m5 = Member(mail="mathieu.jadin@student.uclouvain.be")
 m5.password = "azertyuiop"
 m5.first_name = "Mathieu"
 m5.last_name = "Jadin"
+path = "images/images_profile/%s" % (m5.mail)
+m5.picture = path.replace('@', '.').replace('.', '')+".jpg"
 m5.birthday = "1993-01-31"
 m5.tag = Member.TAG['bp_admin']
 m5.mobile = "0487693533"
 m5.address = "Rue du Leader, 3, LeaderVille, 2255"
 m5.time_credit = 10000000000
 m5.visibility = Member.MEMBER_VISIBILITY['anyone']
-m5.dash_board_text = "Oui, mon jeu de mot pour le mot de passe est pourri x )"
 m5.save()
 
 

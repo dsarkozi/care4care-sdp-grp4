@@ -95,9 +95,11 @@ USE_L10N = True
 USE_TZ = True
 
 
+MEDIA_URL  = '/data/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'C4CApplication/data/')
-
-MEDIA_URL  = '/C4CApplication/data/'
+MEDIAFILES_DIRS = (
+    os.path.join(BASE_DIR, 'C4CApplication/data/')
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
