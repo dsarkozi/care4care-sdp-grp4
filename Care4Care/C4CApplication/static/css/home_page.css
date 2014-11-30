@@ -99,9 +99,25 @@
 		  text-decoration: none;
 		}
 								
-						
-
-       
+			.btn {
+	  -webkit-border-radius: 0;
+	  -moz-border-radius: 0;
+	  border-radius: 0px;
+	  font-family: Georgia;
+	  color: #677fa8;
+	  font-size: 15px;
+	  background: white;
+	  padding: 5px 25px 5px 25px;
+	  border: solid navy 2px;
+	  text-decoration: none;
+	}
+	
+	.btn:hover {
+	  background: #ffffff;
+	  text-decoration: none;
+	}
+	
+	       
 
 			
 			
