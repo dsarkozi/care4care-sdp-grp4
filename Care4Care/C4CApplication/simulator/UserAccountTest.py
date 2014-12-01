@@ -7,8 +7,8 @@ import time
 
 
 class UserAccountTest(MySeleniumTests):
-
-    def test_login(self):
+    
+    def login_test(self):
         self.populate_db()
         
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -33,12 +33,20 @@ class UserAccountTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
-    
-    def login_test(self):
-        pass
         
     def logoff_test(self):
-        pass
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('olivier.bonaventure@gmail.com', 'azertyuiop')
+        
+        time.sleep(seconds)
+        page.log_out()
+        time.sleep()
+        
+        self.assertEqual(0, 0)
+        return True
+        
     
     def create_member_account_test(self):
         pass

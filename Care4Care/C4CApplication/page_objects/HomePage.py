@@ -28,7 +28,16 @@ class HomePage(Page):
         login_button = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
         login_button.click()
         
-        return MyCare4Care
+        return MyCare4Care(self.driver)
+    
+    def quick_login_successful(self, mail, password):
+        mail_input = self.driver.find_element(By.NAME, 'email')
+        mail_input.send_keys(mail)
+        password_input = self.driver.find_element(By.NAME, 'password')
+        password_input.send_keys(password)
+        login_button = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
+        login_button.click()
+        return MyCare4Care(self.driver)
 
     def click_on_job(id):
         pass
