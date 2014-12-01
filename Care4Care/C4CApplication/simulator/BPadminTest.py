@@ -29,3 +29,27 @@ class BranchOfficerTest(BranchOfficerTest):
         
         self.assertEqual(0, 0)
         return True
+    
+    def choose_branch_officer_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def change_branch_officer_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def resing_from_bp_admin_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
