@@ -10,7 +10,7 @@ from C4CApplication.views.forms.inscription import InscriptionForm
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
 
-class Inscription(FormView):
+class InscriptionView(FormView):
     model = Member
     template_name = 'C4CApplication/inscription.html'
     form_class = InscriptionForm
@@ -51,7 +51,7 @@ class Inscription(FormView):
         member.branch.add(Branch.objects.get(name = branch))
         
         
-        return super(Inscription, self).form_valid(form)
+        return super(InscriptionView, self).form_valid(form)
 
 """
 def inscription(request):

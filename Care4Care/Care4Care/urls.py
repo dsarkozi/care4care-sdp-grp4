@@ -22,9 +22,9 @@ from C4CApplication.views.MemberDetailsView import MemberDetailsView
 from C4CApplication.views.MemberDetailsRedirectView import MemberDetailsRedirectView
 
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
-from C4CApplication.views.ListMessages import ListMessages
+from C4CApplication.views.ListMessagesView import ListMessagesView
 
-from C4CApplication.views.viewMessage import ViewMessage
+from C4CApplication.views.MessageView import MessageView
 
 from C4CApplication.views.AcceptBillView import AcceptBillView
 from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
@@ -41,9 +41,9 @@ from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedire
 
 from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
-from C4CApplication.views.inscription import Inscription
-from C4CApplication.views.modifProfile import ModifProfile
-from C4CApplication.views.nouveau_message import NewMessage
+from C4CApplication.views.InscriptionView import InscriptionView
+from C4CApplication.views.ModifProfileView import ModifProfileView
+from C4CApplication.views.NewMessageView import NewMessageView
 
 
 
@@ -73,7 +73,7 @@ urlpatterns = patterns('',
     url(r'^memberdetailsredirect/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', MemberDetailsRedirectView.as_view(), name='memberdetailsredirect'),
     url(r'^favorites$', FavoritesView.as_view(), name='favorites'),
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
-    url(r'^newmessage$', NewMessage.as_view(), name='newmessage'),
+    url(r'^newmessage$', NewMessageView.as_view(), name='newmessage'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
@@ -90,14 +90,14 @@ urlpatterns = patterns('',
     url(r'newjob/(?P<type>offer|demand)$', CreateJobView.as_view(), name='createJob'),
     url(r'donate/$', DonateTimeView.as_view(), name='donate'),
     
-    url(r'^list_messages/(?P<received>\d+)$', ListMessages.as_view(), name='messageList'),
+    url(r'^list_messages/(?P<received>\d+)$', ListMessagesView.as_view(), name='messageList'),
     url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
-    url(r'^message/(?P<pk>\w+)/$', ViewMessage.as_view(), name='message'),
-    url(r'^modifprofile/$', ModifProfile.as_view(), name='modifprofile'),
+    url(r'^message/(?P<pk>\w+)/$', MessageView.as_view(), name='message'),
+    url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
     
     
     
-    url(r'^inscription$', Inscription.as_view() , name='inscription'),
+    url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
 
 
 )

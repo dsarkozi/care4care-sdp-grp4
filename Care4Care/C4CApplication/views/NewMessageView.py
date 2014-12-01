@@ -9,7 +9,7 @@ from C4CApplication.views.utils import create_user
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
 
-class NewMessage(FormView):
+class NewMessageView(FormView):
     model = Message
     template_name = 'C4CApplication/nouveau_message.html'
     form_class = Nouveau_messageForm
@@ -27,7 +27,7 @@ class NewMessage(FormView):
 
             member.send_mail(email_envoyeur,receveur,sujet,message,2)
         
-            return super(NewMessage, self).form_valid(form)
+            return super(NewMessageView, self).form_valid(form)
    
 """
 def nouveau_message(request):

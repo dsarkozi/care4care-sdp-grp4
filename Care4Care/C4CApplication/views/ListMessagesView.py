@@ -7,7 +7,7 @@ from C4CApplication.views.utils import create_user
 from C4CApplication.meta.user import User
 
 
-class ListMessages(ListView):
+class ListMessagesView(ListView):
     model = Message
     template_name = "C4CApplication/listMessages.html"
     paginate_by = 5
@@ -16,7 +16,7 @@ class ListMessages(ListView):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.user = create_user(self.request.session['email'])
-        return super(ListMessages, self).dispatch(request, *args, **kwargs)
+        return super(ListMessagesView, self).dispatch(request, *args, **kwargs)
     
     def get_queryset(self):
         if self.received is '1':
@@ -36,4 +36,4 @@ class ListMessages(ListView):
     
     def get(self, request, *args, **kwargs):
         self.received = kwargs['received']
-        return super(ListMessages, self).get(request, *args, **kwargs)
+        return super(ListMessagesView, self).get(request, *args, **kwargs)

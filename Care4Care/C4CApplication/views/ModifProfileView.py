@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from C4CApplication.views.utils import create_user
 
 
-class ModifProfile(FormView):
+class ModifProfileView(FormView):
     model = Member
     template_name = 'C4CApplication/modif_profile.html'
     form_class = ModifProfileForm
@@ -22,7 +22,7 @@ class ModifProfile(FormView):
         # Create the object representing the user
         self.user = create_user(self.request.session['email'])
 
-        return super(ModifProfile, self).dispatch(request, *args, **kwargs)
+        return super(ModifProfileView, self).dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):       
         #adresse
@@ -40,7 +40,7 @@ class ModifProfile(FormView):
         self.user.db_member.address = rue+ ", " + numero + ", " + code_postal +", " +ville
         self.user.db_member.save()
                   
-        return super(ModifProfile, self).form_valid(form)
+        return super(ModifProfileView, self).form_valid(form)
         
 
 
