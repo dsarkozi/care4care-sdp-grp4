@@ -45,6 +45,7 @@ from C4CApplication.views.inscription import Inscription
 from C4CApplication.views.modifProfile import ModifProfile
 from C4CApplication.views.nouveau_message import NewMessage
 
+from C4CApplication.tests import OIDTest
 
 
 urlpatterns = patterns('',
@@ -98,6 +99,8 @@ urlpatterns = patterns('',
     
     
     url(r'^inscription$', Inscription.as_view() , name='inscription'),
+
+    url(r'^tests/openid$', OIDTest.oidtest),
 
 
 )
