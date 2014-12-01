@@ -3,7 +3,7 @@
 {% load staticfiles %}
 		
 {% block menu %}
-	
+<center>
 	<form class="login" method="post">
     <h1> </h1>
     {% csrf_token %}
@@ -42,5 +42,6 @@
 	{% endfor %}
 	
 	</table>
+</center>
 {% endblock %}
 	
