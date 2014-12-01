@@ -1,4 +1,4 @@
-from C4CApplication.page_objects.Page import Page
+from C4CApplication.page_objects.Page import FixedPage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from selenium.webdriver.common.by import By
 
@@ -6,10 +6,7 @@ from selenium.webdriver.common.by import By
 import time
 
 
-class HomePage(Page):
-    
-    def __init__(self, driver):
-        super().__init__(driver)
+class HomePage(FixedPage):
         
     def login_successful(self, mail, password):
         #Checker l'url
