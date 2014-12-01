@@ -10,13 +10,13 @@
     {{ favIgnForm.email.errors }}
     {{ favIgnForm.email }} 
     <!-- <input type="email" name="email" class="login-input" placeholder="Email Address" autofocus> -->
-    <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;" >
+    <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;margin-top:2em;" >
    </form>
 	
 
      
 
-	<table class="tab1" style="margin-top:50px; top:15em; left:20em" >
+	<table class="tab1" style="margin-top:50px; top:15em; left:17em" >
 	  <tr>
 		<th class=".tab1-3" colspan="6" >Favorite members</th>
 	  </tr>
@@ -35,7 +35,7 @@
 		<td class="tab1-3"> {{relation.last_name}}  </td>
 		<td class="tab1-3"> {{relation.mail}} 		</td>
 		<td class="tab1-3"> <a href="{% url 'removeFavorite' relation.mail %}"
-							type="submit" value="Remove" class="participate-job"
+							type="submit" value="Remove" class="btn"
 							onclick="return window.confirm('Are you sure you want to remove {{relation.first_name}} {{relation.last_name}} from your favorites ?')"
 							>Remove</a>  </td>
 	</tr>
