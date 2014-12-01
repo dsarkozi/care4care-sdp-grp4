@@ -11,7 +11,7 @@
    	<table class="tab1" style="left:19em;top:16em;margin-top:3em;" >
    	
 	  <tr>
-		<th class=".tab1-3" colspan="6">Received Messages</th>
+		<th class=".tab1-3" colspan="6"> {% if received == '1' %} Received Messages {% else %} Sent Messages {% endif %}</th>
 	  </tr>
 		  <tr>
 		<td class="tab1-4">Sender</td>
@@ -19,10 +19,9 @@
 	  <td class="tab1-4">Date</td>
 	  <td class="tab1-4">Content</td>
 		
-	  </tr>
+	  </tr><tr>
 	    {% for message in object_list %}
 		{% if member.mail != message.member_sender.mail %} 
-	  
 	  <td class="tab1-3"> <p>{{message.member_sender.first_name }} {{message.member_sender.last_name}}</p>
 	  <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ message.member_sender.mail }}</a> </td>
 	  <td class="tab1-3">{{message.subject }}</td>
@@ -33,29 +32,6 @@
 	    <tr>
 	    {% endif %}
 		{% endfor %}
-	 
-
-	  <tr>
-		<th class=".tab1-3" colspan="6">Sent Messages</th>
-	  </tr>
-	  <td class="tab1-4">Sender</td>
-	  <td class="tab1-4">Subject</td>
-	  <td class="tab1-4">Date</td>
-	  <td class="tab1-4">Content</td>
-		
-	  </tr>
-	    {% for message in object_list %}
-		 {% if member.mail == message.member_sender.mail %} 
-	<td class="tab1-3"> <p>{{member.first_name}} {{member.last_name}}</p></td>
-	  <td class="tab1-3">{{message.subject }}</td>
-	  <td class="tab1-3">{{message.date }}</td>
-	  <td class="tab1-3">	<p>{{ message.content|truncatewords_html:10 }}</p>
-			<p><a href="{% url 'message' message.id %}" class = btn>Read more</a></td>
-	  </tr>
-
-        {% endif %}
-		{% endfor %}
-	  </table>
-	
+		</tr>
 	  
 {% endblock %}
