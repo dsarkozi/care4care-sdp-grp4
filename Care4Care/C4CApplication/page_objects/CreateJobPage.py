@@ -6,3 +6,6 @@ import time
 
 
 class CreateJobPage(FixedPage):
+    
+    def useless(self):
+        pass
