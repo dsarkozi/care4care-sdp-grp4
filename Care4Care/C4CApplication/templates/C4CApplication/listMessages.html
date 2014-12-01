@@ -21,7 +21,6 @@
 		
 	  </tr><tr>
 	    {% for message in object_list %}
-		{% if member.mail != message.member_sender.mail %} 
 	  <td class="tab1-3"> <p>{{message.member_sender.first_name }} {{message.member_sender.last_name}}</p>
 	  <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ message.member_sender.mail }}</a> </td>
 	  <td class="tab1-3">{{message.subject }}</td>
@@ -30,7 +29,6 @@
 			<p><a href="{% url 'message' message.id %}" class = btn>Read more</a></td>
 	  </tr>
 	    <tr>
-	    {% endif %}
 		{% endfor %}
 		</tr>
 	  
