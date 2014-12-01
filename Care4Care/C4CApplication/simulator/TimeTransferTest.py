@@ -13,3 +13,9 @@ class TimeTransferTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
+    
+    def donation_test(self):
+        pass
+    
+    def gift_test(self):
+        pass

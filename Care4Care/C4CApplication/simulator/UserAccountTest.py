@@ -33,3 +33,24 @@ class UserAccountTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
+    
+    def login_test(self):
+        pass
+        
+    def logoff_test(self):
+        pass
+    
+    def create_member_account_test(self):
+        pass
+    
+    def create_non_member_account_test(self):
+        pass
+    
+    def create_verified_member_test(self): #TODO keep this test?
+        pass
+    
+    def delete_account_test(self):
+        pass
+    
+    def update_to_volunteer_test(self):
+        pass
