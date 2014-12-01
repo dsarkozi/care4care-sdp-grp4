@@ -27,9 +27,9 @@ class InscriptionForm(forms.Form):
     
     #(('aucune', 'aucune'), ('bruxelles', 'bruxelles'))
     
-    member_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
-    branch = forms.CharField(max_length=3,
-                widget=forms.Select(choices=BRANCH_CHOICES))
+    #member_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+    member_type = forms.MultipleChoiceField(widget=forms.RadioSelect(), choices=CHOICES)
+    branch = forms.CharField(widget=forms.Select(choices=BRANCH_CHOICES))
     #birth_date = forms.DateField(required=False)
 
     
