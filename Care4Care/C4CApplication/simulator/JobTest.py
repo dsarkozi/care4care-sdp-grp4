@@ -18,18 +18,15 @@ class JobTest(MySeleniumTests):
         password_input.send_keys('azertyuiop')
         self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
         
+        # Create the page object
         self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
         page = CreateJobPage(self.selenium)
         
-        print("Page object created")
         # Test create job
         page = page.create_job_offer("New offer title", "New offer description", "Visit", "Only once", 
                          "March", "Specific day", "Anyone")
         
-        print("Job created")
-        #page = page.click_on_post_req()
-        
-        print("Done")
+        page = page.click_on_post_req()
         
         self.assertEqual(0, 0)
         return True
@@ -63,23 +60,20 @@ class JobTest(MySeleniumTests):
         
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        time.sleep(1)
         username_input = self.selenium.find_element_by_name("email")
         username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        time.sleep(1)
         password_input = self.selenium.find_element_by_name("password")
         password_input.send_keys('azertyuiop')
-        time.sleep(1)
         self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
-        time.sleep(1)
         
         # Test confirm job
         self.selenium.get('%s%s' % (self.live_server_url, '/confirmjobdone/1'))
+        
+        page = ConfirmJobDonePage(self.selenium)
+        page = page.enter_time_to_pay('40')
         time.sleep(1)
-        job_time_input = self.selenium.find_element_by_name("time_to_pay")
-        job_time_input.send_keys('40')
+        page = page.click_on_confirm()
         time.sleep(1)
-        self.selenium.find_element_by_xpath('//input[@value="Confirm"]').click()
         self.assertEqual(0, 0)
         return True
     

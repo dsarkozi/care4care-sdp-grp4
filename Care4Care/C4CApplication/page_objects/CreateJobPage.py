@@ -32,4 +32,4 @@ class CreateJobPage(FixedPage):
       
     def click_on_post_req(self):
         self.post_req_button.click()
-        #return HomePage(driver)
+        #return HomePage(driver) # TODO Quentin debug son HomePage
