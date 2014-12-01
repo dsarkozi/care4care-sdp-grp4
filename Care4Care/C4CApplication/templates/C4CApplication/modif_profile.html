@@ -1,33 +1,30 @@
-{% load static %}
-{% load static %}
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+	
+{% block content %}
 
 
-<!DOCTYPE html>   
-<html>
-    <head>
-        <meta charset="utf-8" />
-		<link rel = "  stylesheet" href = "{% static 'css/modifprofile.css' %}" type ="text/css"/> 
-        <title>Titre</title>
-    </head>
 
-    <body>
     	<form method = "post" >
     		{% csrf_token %}
    			<div id = "container">
         		<div id ="centreur">
         			<div id = "header">
-        				<h4 id = "titre"> PROFILE MODIFICATION </h4>
+        				<h3 id = "titre"> Edit profile </h3>
         			</div>
-   					<p> adresse: <br/>
-   						{{form.numero.errors}} {{form.numero}}  {{form.rue.errors}} {{form.rue}}</p>    				
+   					<h5> Address: </h5>
+   					<p>	{{form.numero.errors}} {{form.numero}}  {{form.rue.errors}} {{form.rue}}	</p>			
        				<p> {{form.code_postal.errors}} {{form.code_postal}}  {{form.ville.errors}} {{form.ville}} </p>
+       				<h5> Phone number:</h5>
    			    	<p> {{form.telephone_fixe.errors}} {{form.telephone_fixe}} </p>
+   			    	<h5> Mobile phone number:</h5>
     				<p> {{form.telephone_mobile.errors}} {{form.telephone_mobile}} </p>
     			</div>
-    			<p id = "envoyer"> <input type = "submit" name = "envoyer" > </p>
+    			<p id = "envoyer"> <input type = "submit" name = "envoyer" value= "Submit" class = btn ></p>
     		</div>
 		<form/>
-    </body>
-</html>
 
 <!--  -->
+	
+{% endblock %}
