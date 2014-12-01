@@ -41,7 +41,9 @@ class UserAccountTest(MySeleniumTests):
         page = page.click_on_sign_up()
         time.sleep(1)
         
-        
+        page = page.create_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
+                                  'Vie', 3, 6458, 'Multilife', 'member', 'LLN')
+        time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
