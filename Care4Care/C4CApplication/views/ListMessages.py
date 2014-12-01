@@ -18,6 +18,16 @@ class ListMessages(ListView):
         self.user = create_user(self.request.session['email'])
         return super(ListMessages, self).dispatch(request, *args, **kwargs)
     
+    def get_queryset(self):
+        if self.received is '1':
+            retour = Mailbox.objects.filter(member_receiver = self.user.db_member)
+            x = []
+            for mailbox in retour:
+                x.append(mailbox.message)
+            return x
+        else:
+            return Message.objects.filter(member_sender = self.user.db_member)
+    
     def get_context_data(self, **kwargs):
         context = ListView.get_context_data(self, **kwargs)
         context['received'] = self.received
