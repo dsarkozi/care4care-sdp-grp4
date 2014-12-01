@@ -5,7 +5,7 @@ from datetime import datetime
 from django.http import HttpResponseRedirect
 from C4CApplication.models import * 
 
-from C4CApplication.views.forms.inscription import InscriptionForm
+from C4CApplication.views.forms.InscriptionForm import InscriptionForm
 
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy

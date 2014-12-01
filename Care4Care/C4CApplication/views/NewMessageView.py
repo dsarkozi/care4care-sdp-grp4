@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
 from django.http import HttpResponseRedirect
-from C4CApplication.views.forms.nouveauMessageForm import Nouveau_messageForm
+from C4CApplication.views.forms.NewMessageForm import NewMessageForm
 from C4CApplication.models import *
 from C4CApplication.views.utils import create_user
 
@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse_lazy
 class NewMessageView(FormView):
     model = Message
     template_name = 'C4CApplication/nouveau_message.html'
-    form_class = Nouveau_messageForm
+    form_class = NewMessageForm
     success_url = reverse_lazy('newmessage')
 
     def form_valid(self, form):
@@ -32,7 +32,7 @@ class NewMessageView(FormView):
 """
 def nouveau_message(request):
     if request.method == 'POST':  # S'il s'agit d'une requête POST
-        form = Nouveau_messageForm(request.POST)  # Nous reprenons les données
+        form = NewMessageForm(request.POST)  # Nous reprenons les données
 
         if form.is_valid(): # Nous vérifions que les données envoyées sont valides
 
@@ -54,7 +54,7 @@ def nouveau_message(request):
             envoi = True
 
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
-        form = Nouveau_messageForm()  # Nous créons un formulaire vide
+        form = NewMessageForm()  # Nous créons un formulaire vide
 
     return render(request, 'C4CApplication/nouveau_message.html', locals())
 

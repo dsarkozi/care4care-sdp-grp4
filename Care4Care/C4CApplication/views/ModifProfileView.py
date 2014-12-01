@@ -2,7 +2,7 @@ from django.views.generic.edit import FormView
 from django.core.exceptions import PermissionDenied
 
 from C4CApplication.models.member import Member
-from C4CApplication.views.forms.modifProfileForm import ModifProfileForm
+from C4CApplication.views.forms.ModifProfileForm import ModifProfileForm
 from django.core.urlresolvers import reverse_lazy
 from C4CApplication.views.utils import create_user
 

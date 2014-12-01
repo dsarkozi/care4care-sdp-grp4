@@ -2,7 +2,7 @@
 from django import forms
 from C4CApplication.models import * 
 
-class Nouveau_messageForm(forms.Form):
+class NewMessageForm(forms.Form):
 
     receveur = forms.EmailField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'a:'}))
     sujet = forms.CharField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'sujet:'}) , required=False  )
