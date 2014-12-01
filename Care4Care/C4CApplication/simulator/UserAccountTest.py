@@ -6,7 +6,7 @@ from selenium import webdriver
 import time
 
 
-class SeleniumTestLogin(MySeleniumTests):
+class UserAccountTest(MySeleniumTests):
 
     def test_login(self):
         self.populate_db()

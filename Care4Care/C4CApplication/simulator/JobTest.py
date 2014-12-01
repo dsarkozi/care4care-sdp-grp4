@@ -2,7 +2,7 @@ from C4CApplication.simulator.super_class import MySeleniumTests
 import time
 
 
-class SeleniumTestJob(MySeleniumTests):
+class JobTest(MySeleniumTests):
 
     # test pour creer une demande de job (I need help)
     def test_offer_job(self):
