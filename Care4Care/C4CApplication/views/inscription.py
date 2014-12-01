@@ -18,32 +18,32 @@ class Inscription(FormView):
 
 
     def form_valid(self, form):
-        prenom = form.cleaned_data['prenom']
-        nom = form.cleaned_data['nom']
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
         email = form.cleaned_data['email']
-        mot_de_passe = form.cleaned_data['mot_de_passe']
-        date_de_naissance = form.cleaned_data['date_de_naissance']
+        password = form.cleaned_data['password']
+        birthdate = form.cleaned_data['birthdate']
         #adresse
-        numero = form.cleaned_data['numero']
-        rue = form.cleaned_data['rue']
-        code_postal = form.cleaned_data['code_postal']
-        ville = form.cleaned_data['ville']
+        number = form.cleaned_data['number']
+        street = form.cleaned_data['street']
+        zip = form.cleaned_data['zip']
+        town = form.cleaned_data['town']
         #type de membre
-        type_membre = form.cleaned_data['type_membre']
+        member_type = form.cleaned_data['member_type']
         branch = form.cleaned_data['branch']
             #infos faculatives
-        telephone_fixe = form.cleaned_data['telephone_fixe']
-        telephone_mobile = form.cleaned_data['telephone_mobile']
+        telephone_fixe = form.cleaned_data['fixe_phone']
+        telephone_mobile = form.cleaned_data['mobile_phone']
          
         member = Member(mail = email )
-        member.password = mot_de_passe
-        member.first_name = prenom
-        member.last_name = nom
-        member.birthday = date_de_naissance
-        member.tag = int(type_membre)
+        member.password = password
+        member.first_name = first_name
+        member.last_name = last_name
+        member.birthday = birthdate
+        member.tag = int(member_type)
         
         #adresse
-        member.address = rue+ ", " + numero + ", " + code_postal +", " +ville
+        member.address = street+ ", " + number + ", " + zip +", " +town
         
         member.telephone = telephone_fixe
         member.mobile = telephone_mobile
@@ -67,18 +67,18 @@ def inscription(request):
             # ...
             # redirect to a new URL:
             #infos perso
-            prenom = form.cleaned_data['prenom']
-            nom = form.cleaned_data['nom']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
-            mot_de_passe = form.cleaned_data['mot_de_passe']
-            date_de_naissance = form.cleaned_data['date_de_naissance']
+            password = form.cleaned_data['password']
+            birthdate = form.cleaned_data['birthdate']
             #adresse
-            numero = form.cleaned_data['numero']
-            rue = form.cleaned_data['rue']
-            code_postal = form.cleaned_data['code_postal']
-            ville = form.cleaned_data['ville']
+            number = form.cleaned_data['number']
+            street = form.cleaned_data['street']
+            zip = form.cleaned_data['zip']
+            town = form.cleaned_data['town']
             #type de membre
-            type_membre = form.cleaned_data['type_membre']
+            member_type = form.cleaned_data['member_type']
             branch = form.cleaned_data['branch']
 
             #infos faculatives
@@ -87,16 +87,16 @@ def inscription(request):
 """
 """  
             member = models.Member(mail = email )
-            member.password = mot_de_passe
-            member.first_name = prenom
-            member.last_name = nom
-            member.birthday = date_de_naissance
-            member.tag = Member.TAG_REVERSE[type_membre]
+            member.password = password
+            member.first_name = first_name
+            member.last_name = last_name
+            member.birthday = birthdate
+            member.tag = Member.TAG_REVERSE[member_type]
             #adresse
-            member.address = numero+ " " + rue + " "+ " " + code_postal +" " +ville
+            member.address = number+ " " + street + " "+ " " + zip +" " +town
             
             member.mobile = telephonde_mobile
-            member.address = "Rue de l'Eglise, 40, Rixensart, 1330"
+            member.address = "street de l'Eglise, 40, Rixensart, 1330"
             member.time_credit = 9999
             member.save()
 """
