@@ -1,4 +1,5 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
+from selenium.webdriver.support.ui import Select
 import time
 
 
@@ -32,9 +33,25 @@ class JobTest(MySeleniumTests):
         desc_input.send_keys('Description of a demand test')
         time.sleep(1)
         # TODO aller voir select sur internet
-        #categories_input = Select(self.selenium.find_element_by_name("categories"))
-        #categories_input.select_by_visible_text("Visit") 
-        #time.sleep(1)
+        categories = self.selenium.find_element_by_name('categories')
+        categories.click()
+        time.sleep(1)
+        
+        frequency = self.selenium.find_element_by_name('frequency')
+        frequency.click()
+        time.sleep(1)
+        
+        month_select = Select(self.selenium.find_element_by_tag_name("select"))
+        month_select.select_by_visible_text("March")
+        time.sleep(1)
+        
+        subfrequency = self.selenium.find_element_by_name('subfrequency')
+        subfrequency.click()
+        time.sleep(1)
+        
+        visibility = self.selenium.find_element_by_name('visibility')
+        visibility.click()
+        time.sleep(1)
         # TODO idem pour 'frequency', 'subfrequency', 'weekdays', 'dayparts', 
         #'specific' and 'visibility'
         self.selenium.find_element_by_xpath('//input[@value="Post request"]').click()
