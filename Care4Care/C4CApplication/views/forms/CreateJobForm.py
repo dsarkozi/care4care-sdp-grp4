@@ -42,7 +42,7 @@ class CreateJobForm(forms.Form):
     other = forms.CharField(
         required=False,
         widget=TextInput(
-            attrs={'placeholder':'Other', 'disabled':'true'}
+            attrs={'placeholder':'Other'}    #TODO disabled
         )
     )
     categories.choices.extend([('other','other')])
@@ -54,7 +54,7 @@ class CreateJobForm(forms.Form):
     )
     subfrequency = forms.ChoiceField(
         widget=forms.RadioSelect(
-            attrs={'disabled':'true'}
+            attrs={}   #TODO disabled
         ),
         choices=(('specific','Specific day'), ('weekday','Weekdays')),
     )
@@ -69,7 +69,7 @@ class CreateJobForm(forms.Form):
     )
     weekdays = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
-            attrs={'disabled':'true'}
+            attrs={}    #TODO disabled
         ),
         choices=WEEKDAYS
     )
@@ -81,13 +81,13 @@ class CreateJobForm(forms.Form):
     )
     dayparts = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
-            attrs={'disabled':'true'}
+            attrs={}   #TODO disabled
         ),
         choices=DAYPARTS
     )
     specific = forms.ChoiceField(
         widget=SelectDateWidget(
-            attrs={'id':'time_specific', 'disabled':'true'}
+            attrs={'id':'time_specific', }     #TODO disabled
         )
     )
 
