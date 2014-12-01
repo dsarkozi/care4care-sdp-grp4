@@ -22,7 +22,7 @@ class JobDetailsView(DetailView):
     def get_context_data(self, **kwargs):
         context = {}
         context = super(JobDetailsView, self).get_context_data(**context)
-        context['connected_member'] = self.connected_member.db_member
+        context['member'] = self.connected_member.db_member
         return context
 
     def get_object(self):
