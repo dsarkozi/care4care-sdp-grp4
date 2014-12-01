@@ -1,5 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
-from C4CApplication.page_objects.HomePage import HomePage
+#from C4CApplication.page_objects.HomePage import HomePage
 from selenium.webdriver.common.by import By
 
 
@@ -36,4 +36,4 @@ class MyCare4Care(FixedPage):
     def log_out(self):
         logout_button = self.driver.find_element(By.XPATH, '//input[@value="Logout"]')
         logout_button.click()
-        return HomePage(self.driver)
+        #return HomePage(self.driver)
