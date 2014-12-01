@@ -25,6 +25,12 @@ class CreateJobView(FormView):
         context['createJob'] = CreateJobForm(user=self.user.db_member, auto_id=False)
         return context
 
+    # def form_invalid(self, form):
+    #     branches = form.cleaned_data['branches']
+    #     print(branches)
+    #     print('all' in branches)
+    #     return super(CreateJobView, self).form_invalid(form)
+
     def form_valid(self, form):
         #TODO Call to create_job
         # self.user.create_job(
@@ -32,5 +38,12 @@ class CreateJobView(FormView):
         #     comment=form.cleaned_data['desc'],
         #
         # )
-
+        # branches = form.cleaned_data['branches']
+        # if 'all' in branches:
+        #     branches.remove('all')
+        # for branch in branches:
+        #     self.user.create_job(
+        #         branch_name=branch,
+        #         date=form.cleaned_data['']
+        #     )
         return super(CreateJobView, self).form_valid(form)

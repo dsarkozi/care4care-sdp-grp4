@@ -1,6 +1,6 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
-from C4CApplication.page_objects.CreateJobPage import CreateJobPage
+from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 from selenium.webdriver.common.by import By
 
 
@@ -36,4 +36,4 @@ class HomePage(FixedPage):
     
     def click_on_sign_up(self):
         self.sign_up_button.click()
-        return CreateJobPage(self.driver)
+        return InscriptionPage(self.driver)

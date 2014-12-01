@@ -1,45 +1,14 @@
+{% extends "C4CApplication/MyCare4Care.html" %}
 {% load mathfilters %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-	<head lang="en">
-	    <meta charset="UTF-8">
-	    <link rel="stylesheet" href="../../static/css/home_page.css">
-	    <title></title>
-	</head>
 
-	<body>
-		<!-- Menu de navigation (structure fixe) -->
-	<ul class="navbar">
-			 <!-- Optionnel
-			
-				<li><a href="AboutUs.html">About us</a></li>
-				<li><a href="WhatIsCare4Care.html">What is Care4Care ?</a></li>
-				<li><a href="HowDoesItWork.html">How does it work ?</a></li>
-				<li><a href="Help">Help</a></li>
-			
-			-->
-			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
-			<li><a href="Branches.html">Care4Care Branches</a></li>
-				<ul>
-					<li><a href="">Heembeek</a></li>
-					<li><a href="">Molenbeek</a></li>
-					<li><a href="">Rixensart</a></li>
-					
-				</ul>
-			<li><a href="Statistics.html">Statistics</a></li>
-			<li><a href="Map.html">Map</a></li>
-			<li><a href="StartABranch.html">Start a branch ?</a></li>
-			<li><a href="News.html">News</a></li>
-			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
-	</ul>
 	
 		{% block accept_bill %}
 		{% endblock %}
 		
-
+{% block menu %}
 		
-	<table class="tab1" style="left:32em; top:2em" >
+	<table class="tab1" style="left:32em; top:23em" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Job details</th>
 	  </tr>
@@ -47,9 +16,9 @@
     <tr>
 		<td class="tab1-3">    
 		Createur du job :    </td>
-		<td class="tab1-3">   {% for member in job.member_set.all %}
-			{% if member.mail == job.mail %}
-				<a href="{% url 'memberdetails' member.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{member.first_name}} {{member.last_name}}</a>
+		<td class="tab1-3">   {% for mem in job.member_set.all %}
+			{% if mem.mail == job.mail %}
+				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
 			{% endif %}
 		{% endfor %} <br/>      </td>
 		
@@ -187,12 +156,12 @@
 	   <tr>
 		<td class="tab1-3">  Participants :      </td>
 		<td class="tab1-3">   <ul>
-		{% for member in job.member_set.all %}
+		{% for mem in job.member_set.all %}
 			<li>
-				{{member.first_name}} {{member.last_name}}
-				{% if not job.accepted and member.mail != connected_member.mail %}
-					{% if connected_member.mail == job.mail %}
-						<a href="{% url 'participatejob' job.id member.mail %}" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
+				{{mem.first_name}} {{mem.last_name}}
+				{% if not job.accepted and mem.mail != member.mail %}
+					{% if member.mail == job.mail %}
+						<a href="{% url 'participatejob' job.id mem.mail %}" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
 					{% endif %}
 				{% endif %}
 			</li>
@@ -211,8 +180,8 @@
 		
 
 		
-		{% if not job.accepted and connected_member.mail != job.mail %}
-			{% if connected_member in job.member_set.all %}
+		{% if not job.accepted and member.mail != job.mail %}
+			{% if member in job.member_set.all %}
 			 
 		       
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="myButton">Stop participating</a>
@@ -221,12 +190,11 @@
 			{% endif %}
 		{% endif %}
 		
-		{% if not job.accepted and job.mail == connected_member.mail %}
-			<a href="{% url 'participatejob' job.id connected_member.mail %}" type="submit" value="DeleteJob" class="myButton">Delete job</a> <br/>
+		{% if not job.accepted and job.mail == member.mail %}
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="myButton">Delete job</a> <br/>
 		{% endif %}
+	{% endblock %}
 		
 		
 		{% block form_job_done %}
 		{% endblock %}
-	</body>
-</html>
