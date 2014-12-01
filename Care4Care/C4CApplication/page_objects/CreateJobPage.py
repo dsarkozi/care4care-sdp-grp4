@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from C4CApplication.page_objects.HomePage import HomePage
+#from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.FixedPage import FixedPage
 
 import time
@@ -32,4 +32,4 @@ class CreateJobPage(FixedPage):
       
     def click_on_post_req(self):
         self.post_req_button.click()
-        return HomePage(driver)
+        #return HomePage(driver)
