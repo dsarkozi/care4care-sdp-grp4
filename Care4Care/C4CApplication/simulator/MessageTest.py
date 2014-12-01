@@ -13,3 +13,19 @@ class MessageTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
+    
+    def delete_message_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def send_message_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
