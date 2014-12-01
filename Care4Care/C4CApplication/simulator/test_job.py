@@ -1,4 +1,5 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
+from selenium.webdriver.support.ui import Select
 import time
 
 
@@ -41,7 +42,7 @@ class SeleniumTestJob(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
 
-    def test_register_job_done(self):
+    """def test_register_job_done(self):
         self.populate_db()
         
         # log in
@@ -64,4 +65,4 @@ class SeleniumTestJob(MySeleniumTests):
         time.sleep(1)
         self.selenium.find_element_by_xpath('//input[@value="Confirm"]').click()
         self.assertEqual(0, 0)
-        return True
+        return True"""
