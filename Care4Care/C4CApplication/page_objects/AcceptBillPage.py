@@ -4,6 +4,4 @@ from selenium.webdriver.common.by import By
 import time
 
 
-class GiveTimePage(Page):
-        
-    
+class AcceptBillPage(Page):

@@ -1,5 +1,6 @@
-from C4CApplication.page_objects.Page import FixedPage
+from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.HomePage import HomePage
+from selenium.webdriver.common.by import By
 
 
 class MyCare4Care(FixedPage):
@@ -11,12 +12,27 @@ class MyCare4Care(FixedPage):
     def register_job_done(self):
         pass
     
-    def I_need_help(self):
+    def i_need_help(self):
         pass
     
-    def I_want_to_help(self):
+    def i_want_to_help(self):
         pass
         
+    def profile(self):
+        pass
+    
+    def messages(self):
+        pass
+    
+    def change(self):
+        pass
+    
+    def favorites(self):
+        pass
+    
+    def account_and_stats(self):
+        pass
+    
     def log_out(self):
         logout_button = self.driver.find_element(By.XPATH, '//input[@value="Logout"]')
         logout_button.click()
