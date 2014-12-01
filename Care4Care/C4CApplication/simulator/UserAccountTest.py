@@ -6,9 +6,9 @@ from selenium import webdriver
 import time
 
 
-class SeleniumTestLogin(MySeleniumTests):
-
-    def test_login(self):
+class UserAccountTest(MySeleniumTests):
+    
+    def login_test(self):
         self.populate_db()
         
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -33,3 +33,32 @@ class SeleniumTestLogin(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
+        
+    def logoff_test(self):
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('olivier.bonaventure@gmail.com', 'azertyuiop')
+        
+        time.sleep(seconds)
+        page.log_out()
+        time.sleep()
+        
+        self.assertEqual(0, 0)
+        return True
+        
+    
+    def create_member_account_test(self):
+        pass
+    
+    def create_non_member_account_test(self):
+        pass
+    
+    def create_verified_member_test(self): #TODO keep this test?
+        pass
+    
+    def delete_account_test(self):
+        pass
+    
+    def update_to_volunteer_test(self):
+        pass

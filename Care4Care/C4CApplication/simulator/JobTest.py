@@ -1,12 +1,11 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
-from selenium.webdriver.support.ui import Select
 import time
 
 
-class SeleniumTestJob(MySeleniumTests):
+class JobTest(MySeleniumTests):
 
     # test pour creer une demande de job (I need help)
-    def test_offer_job(self):
+    def offer_job_test(self):
         self.populate_db()
         
         # log in
@@ -41,8 +40,32 @@ class SeleniumTestJob(MySeleniumTests):
         self.selenium.find_element_by_xpath('//input[@value="Post request"]').click()
         self.assertEqual(0, 0)
         return True
+    
+    def ask_for_help_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def accept_offer_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def accept_help_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
 
-    """def test_register_job_done(self):
+    def confirm_job_is_done_test(self):
         self.populate_db()
         
         # log in
@@ -65,4 +88,28 @@ class SeleniumTestJob(MySeleniumTests):
         time.sleep(1)
         self.selenium.find_element_by_xpath('//input[@value="Confirm"]').click()
         self.assertEqual(0, 0)
-        return True"""
+        return True
+    
+    def feeds_update_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def see_details_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True
+    
+    def search_job_test(self):
+        self.populate_db()
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        self.assertEqual(0, 0)
+        return True

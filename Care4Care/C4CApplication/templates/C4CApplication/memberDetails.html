@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<head lang="en">
-	    <meta charset="UTF-8">
-	    <title></title>
-	</head>
+{% extends "C4CApplication/FixedStructure.html" %}
 
-	<body>
-	    <h1>
+{% load staticfiles %}
+	
+{% block content %}
+
+
+  <center> <h1> 
 	    	{{ member.first_name}} {{ member.last_name }} :
 	    	{% if member.status %}
 	    		{% if connected_member.mail == member.mail %}
@@ -23,43 +22,75 @@
 	    	{% endif %}
 	    </h1>
 	    
-	    <p>
-	    	Type of member :
-	    	{% for key, value in member.TAG_CHOICE %}
+	    
+	
+    
+         <table class="tab1"  style ="top:9em; left:28em;" >
+	  <tr>
+		<th class=".tab1-3" colspan="6">Member details</th>
+	  </tr>
+	  
+	  <tr>
+		<td class="tab1-4">Type of member : </td>
+		<td class="tab1-3">{% for key, value in member.TAG_CHOICE %}
 	    		{% if key == member.tag %}
 					{{ value }}
 				{% endif %}
-	    	{% endfor %}
-	    </p>
-	    
-	    <p>
-	    	Branch(es) :
-	    	<ul>
+	    	{% endfor %}</td>
+	  </tr>
+	   
+	   
+	   <tr>
+		<td class="tab1-4">Branch(es) : </td>
+		<td class="tab1-3">
 		    	{% for branch in member.branch.all %}
 		    		<li> {{ branch.name }} </li>
 		    	{% endfor %}
-		    </ul>
-	    </p>
-	    <p>Email : <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member.mail }}</a></p>
-	    <p>Register date : {{ member.register_date }}</p>
-	    <p>Address : {{ member.address }}</p>
-	    
-	    {% if member.telephone %}
-	        <p>Fixed phone number : {{ member.telephone }}</p>
-	    {% endif %}
+		    </td>
+	  </tr>
+	   
+	   <tr>
+		<td class="tab1-4">Email : </td>
+		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member.mail }}</a></td>
+	  </tr>
+	   
+      <tr>
+		<td class="tab1-4">Register date : </td>
+		<td class="tab1-3">{{ member.register_date }}</td>
+	  </tr>
+	  
+	   <tr>
+		<td class="tab1-4">Address : </td>
+		<td class="tab1-3">{{ member.address }}</td>
+	  </tr>
+	  
+	  {% if member.telephone %}
+	  <tr>
+		<td class="tab1-4">Fixed phone number : </td>
+		<td class="tab1-3">{{ member.telephone }}</td>
+	  </tr>
+	     {% endif %}
+	
 	    {% if member.mobile %}
-	        <p>Mobile phone number : {{ member.mobile }}</p>
+	    <tr>
+		<td class="tab1-4">Mobile phone number :</td>
+		<td class="tab1-3"> {{ member.mobile }}</td>
+	  </tr>
 	    {% endif %}
 	    
 	    
 	    
 	    {% if connected_member.mail != member.mail and member not in connected_member.relation.all %}
-	    	<a href="{% url 'memberdetailsredirect' member.mail %}" type="submit" value="AddRelation" class="add_relation">Add as a friend</a> <br/>
+	    	<a href="{% url 'memberdetailsredirect' member.mail %}" type="submit" value="AddRelation" 
+	    	class="myButton2">Add as a friend</a> <br/>
 	    {% endif %}
 
         {% if is_branch_officer or connected_member.tag == 32 %}
-            <p><a href="{% url 'loginasmember' member.mail %}">Log as member</a></p>
+            <p><a href="{% url 'loginasmember' member.mail %}" class="myButton2"  style ="color: #ffffff;">Log as member</a></p>
         {% endif %}
+        </table>
+	    </center>
 	    
-	</body>
-</html>
+{% endblock %}
+	
+
