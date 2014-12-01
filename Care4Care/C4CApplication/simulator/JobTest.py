@@ -1,60 +1,36 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
 from selenium.webdriver.support.ui import Select
+from C4CApplication.page_objects.CreateJobPage import CreateJobPage
 import time
 
 
 class JobTest(MySeleniumTests):
 
     # test pour creer une demande de job (I need help)
-    def offer_job_test(self):
+    def test_offer_job(self):
         self.populate_db()
         
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        time.sleep(1)
         username_input = self.selenium.find_element_by_name("email")
         username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        time.sleep(1)
         password_input = self.selenium.find_element_by_name("password")
         password_input.send_keys('azertyuiop')
-        time.sleep(1)
         self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
-        time.sleep(1)
         
-        print("Logged for create job")
-        
-        # Test create job
         self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
-        time.sleep(1)
-        title_input = self.selenium.find_element_by_name("title")
-        title_input.send_keys('New demand test')
-        time.sleep(1)
-        desc_input = self.selenium.find_element_by_name("desc")
-        desc_input.send_keys('Description of a demand test')
-        time.sleep(1)
-        # TODO aller voir select sur internet
-        categories = self.selenium.find_element_by_name('categories')
-        categories.click()
-        time.sleep(1)
+        page = CreateJobPage(self.selenium)
         
-        frequency = self.selenium.find_element_by_name('frequency')
-        frequency.click()
-        time.sleep(1)
+        print("Page object created")
+        # Test create job
+        page = page.create_job_offer(self, "New offer title", "New offer description", "Visit", "Only once", 
+                         "March", "Specific day", "Anyone")
         
-        month_select = Select(self.selenium.find_element_by_tag_name("select"))
-        month_select.select_by_visible_text("March")
-        time.sleep(1)
+        print("Job created")
+        page = page.click_on_post_req()
         
-        subfrequency = self.selenium.find_element_by_name('subfrequency')
-        subfrequency.click()
-        time.sleep(1)
+        print("Done")
         
-        visibility = self.selenium.find_element_by_name('visibility')
-        visibility.click()
-        time.sleep(1)
-        # TODO idem pour 'frequency', 'subfrequency', 'weekdays', 'dayparts', 
-        #'specific' and 'visibility'
-        self.selenium.find_element_by_xpath('//input[@value="Post request"]').click()
         self.assertEqual(0, 0)
         return True
     
