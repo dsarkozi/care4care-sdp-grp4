@@ -95,9 +95,7 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
     url(r'^message/(?P<pk>\w+)/$', MessageView.as_view(), name='message'),
     url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
-    
-    
-    
+        
     url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
 
     url(r'^tests/openid$', OIDTest.oidtest),
