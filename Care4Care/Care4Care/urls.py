@@ -101,6 +101,7 @@ urlpatterns = patterns('',
     url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
 
     url(r'^tests/openid$', OIDTest.oidtest),
+    url(r'^tests/openid2$', OIDTest.oidtest2)
 
 
 )
