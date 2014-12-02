@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse_lazy
 
 class InscriptionView(FormView):
     model = Member
-    template_name = 'C4CApplication/inscription.html'
+    template_name = 'C4CApplication/Inscription.html'
     form_class = InscriptionForm
     success_url = reverse_lazy('home')
 

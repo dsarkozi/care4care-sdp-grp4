@@ -1,0 +1,21 @@
+
+
+
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+	
+{% block content %}
+
+{% if envoi %}Votre message a bien été envoyé !{% endif %}
+<h2> New message</h2>
+<form  method="post">
+    {% csrf_token %}
+    <p>  {{form.receveur.errors}} {{form.receveur}}</p>
+    <p>  {{form.sujet.errors}} {{form.sujet}}</p>
+    <p>  {{form.message.errors}} {{form.message}}</p>
+    <p>  {{form.renvoi.errors}} {{form.renvoi}}</p>
+    <input type="submit" value="Submit" onclick="return window.confirm('Send this message ?')" />
+</form>
+{% endblock %}
+	
