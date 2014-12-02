@@ -9,7 +9,7 @@ import time
 
 class JobTest(MySeleniumTests):
 
-    # test pour creer une demande de job (I need help)
+    # test pour creer une demande de job (I need help -> demander un service)
     """def test_offer_job(self):
         self.populate_db()
         
@@ -34,7 +34,7 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    # test pour creer une offre de job (I want help)
+    # test pour creer une offre de job (I want to help -> offrir ses services)
     def test_demand_job(self):
         self.populate_db()
         
@@ -61,7 +61,6 @@ class JobTest(MySeleniumTests):
     """
     def test_accept_offer(self):
         self.populate_db()
-        print("Yolo")
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         username_input = self.selenium.find_element_by_name("email")
@@ -74,6 +73,15 @@ class JobTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
         
         page = JobDetailsPage(self.selenium)
+        time.sleep(1)
+        
+        print("Page created")
+        
+        page = page.click_on_participate()
+        time.sleep(1)
+        
+        print("Participate")
+        
         
         self.assertEqual(0, 0)
         return True
