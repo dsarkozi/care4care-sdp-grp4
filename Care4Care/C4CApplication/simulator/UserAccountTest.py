@@ -90,5 +90,9 @@ class UserAccountTest(MySeleniumTests):
         page = BranchListPage(self.selenium)
         time.sleep(1)
         
+        page.click_on_care4care_branches()
+        page = BranchListPage(self.selenium)
+        time.sleep(1)
+        
         self.assertEqual(0, 0)
         return True
