@@ -21,6 +21,10 @@ class BranchTest(MySeleniumTests):
         
         page = BranchListPage(self.selenium)
         time.sleep(1)
+        
+        page.click_on_new_branch(1)
+        time.sleep(1)
+        
         page = page.click_on_submit()
         
         self.assertEqual(0, 0)
