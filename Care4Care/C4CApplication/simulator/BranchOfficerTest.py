@@ -46,7 +46,7 @@ class BranchOfficerTest(MySeleniumTests):
         
         time.sleep(1)
         page = page.click_on_log_as_member()
-        time.sleep(1)
+        time.sleep(5)
         
         self.assertEqual(0, 0)
         return True
