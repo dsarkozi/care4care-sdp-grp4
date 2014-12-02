@@ -12,9 +12,7 @@ class BranchListPage(FixedPage):
         self.check_box = self.driver.find_elements_by_name('branch_list')
         self.submit_button = self.driver.find_element_by_xpath('//input[@value="Submit changes"]')
         
-    def click_on_new_branch(self, num): # TODO
-        for el in self.check_box : 
-            print(el)
+    def click_on_new_branch(self, num): 
         self.check_box[num].click()
         return self
         
