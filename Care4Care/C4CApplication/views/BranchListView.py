@@ -31,6 +31,8 @@ class BranchListView(FormView):
         branch_list_form = BranchListForm(auto_id=False, initial={'branch_list': branch_checked_name_list})
 
         context['branch_list_form'] = branch_list_form
+        member = Member.objects.get(mail=self.request.session['email'])
+        context['member'] = member
         return context
 
     def form_valid(self, form):
