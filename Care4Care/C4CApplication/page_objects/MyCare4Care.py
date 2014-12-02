@@ -5,6 +5,10 @@ from selenium.webdriver.common.by import By
 
 class MyCare4Care(FixedPage):
     
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.logout_button = self.driver.find_element(By.XPATH, '//a[@value="Logout"]')
+    
     def give_time(self):
         #give_time_button = self.driver.find_element(By.XPATH, )
         pass
@@ -34,6 +38,5 @@ class MyCare4Care(FixedPage):
         pass
     
     def log_out(self):
-        logout_button = self.driver.find_element(By.XPATH, '//input[@value="Logout"]')
-        logout_button.click()
+        self.logout_button.click()
         #return HomePage(self.driver)

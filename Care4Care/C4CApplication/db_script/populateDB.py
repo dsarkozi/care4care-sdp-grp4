@@ -36,7 +36,7 @@ def popule_db():
     m1.visibility = Member.MEMBER_VISIBILITY['anyone']
     m1.save()
     
-    m2 = Member(mail="yves.deville@gmail.com")
+    m2 = Member(mail="yves.delaville@gmail.com")
     m2.password = "azertyuiop"
     m2.first_name = "Yves"
     m2.last_name = "Deville"
@@ -48,7 +48,7 @@ def popule_db():
     m2.visibility = Member.MEMBER_VISIBILITY['anyone']
     m2.save()
     
-    m3 = Member(mail="olivier.bonaventure@gmail.com")
+    m3 = Member(mail="olivier.mauvaventure@gmail.com")
     m3.password = "azertyuiop"
     m3.first_name = "Olivier"
     m3.last_name = "Bonaventure"
@@ -87,7 +87,7 @@ def popule_db():
     m5.picture = path.replace('@', '.').replace('.', '')+".jpg"
     m5.birthday = "1993-01-31"
     m5.tag = Member.TAG['bp_admin']
-    m5.mobile = "0487693533"
+    m5.mobile = "0487793533"
     m5.address = "Rue du Leader, 3, LeaderVille, 2255"
     m5.time_credit = 10000000000
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']

@@ -32,12 +32,12 @@ class Member(models.Model):
     }
     
     TAG_CHOICE = (
-        (1, 'Non_member'),
+        (1, 'Non member'),
         (2, 'Member'),
         (4, 'Verified'),
         (8, 'Volunteer'),
-        (16, 'Branch_officer'),
-        (32, 'BP_admin'),
+        (16, 'Branch officer'),
+        (32, 'BP admin'),
     )
     
     TAG = {

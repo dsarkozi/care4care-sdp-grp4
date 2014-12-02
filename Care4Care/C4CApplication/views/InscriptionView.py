@@ -19,19 +19,19 @@ class InscriptionView(FormView):
 
     def form_valid(self, form):
         first_name = form.cleaned_data['first_name']
-        last_name = form.cleaned_data['last_name']
-        email = form.cleaned_data['email']
-        password = form.cleaned_data['password']
-        birthdate = form.cleaned_data['birthdate']
+        last_name  = form.cleaned_data['last_name']
+        email      = form.cleaned_data['email']
+        password   = form.cleaned_data['password']
+        birthdate  = form.cleaned_data['birthdate']
         #adresse
         number = form.cleaned_data['number']
         street = form.cleaned_data['street']
-        zip = form.cleaned_data['zip']
-        town = form.cleaned_data['town']
+        zip    = form.cleaned_data['zip']
+        town   = form.cleaned_data['town']
         #type de membre
         member_type = form.cleaned_data['member_type']
         branch = form.cleaned_data['branch']
-            #infos faculatives
+        #infos faculatives
         telephone_fixe = form.cleaned_data['fixe_phone']
         telephone_mobile = form.cleaned_data['mobile_phone']
          
