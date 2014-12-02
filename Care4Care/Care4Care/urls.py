@@ -64,7 +64,7 @@ urlpatterns = patterns('',
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
     url(r'^branchdetails/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='branchdetails'),
 
-    url(r'^logout$', LogoutView.as_view()),
+    url(r'^logout$', LogoutView.as_view(), name='logOut'),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view(), name='jobdetails'),
     url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
     url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
