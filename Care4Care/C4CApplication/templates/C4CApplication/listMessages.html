@@ -2,13 +2,15 @@
 
 {% load staticfiles %}
 		
+{% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
+		
 {% block menu %}
 
 <a href="/list_messages/1">Received Messages</a>
 <a href="/list_messages/0">Sent Messages</a>
 
-
-   	<table class="tab1" style="left:19em;top:16em;margin-top:3em;" >
+<section style="text-align: center;">
+   	<table class="tab1" >
    	
 	  <tr>
 		<th class=".tab1-3" colspan="6">Received Messages</th>
@@ -56,6 +58,6 @@
         {% endif %}
 		{% endfor %}
 	  </table>
-	
-	  
+</section>
+
 {% endblock %}
