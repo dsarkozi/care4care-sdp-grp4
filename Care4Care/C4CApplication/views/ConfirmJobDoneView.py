@@ -9,7 +9,8 @@ from C4CApplication.views.utils import create_user
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 
-class ConfirmJobDoneView(FormView, JobDetailsView):
+
+class ConfirmJobDoneView(JobDetailsView):
     
     template_name = "C4CApplication/ConfirmJobDoneView.html"
     form_class = ConfirmJobDoneForm

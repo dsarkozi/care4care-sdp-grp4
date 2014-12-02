@@ -23,7 +23,7 @@ class JobDetailsView(DetailView, FormView):
     def get_context_data(self, **kwargs):
         context = {}
         context = super(JobDetailsView, self).get_context_data(**context)
-        context['form'] = self.form
+        #TODO context['form'] = self.form
         context['member'] = self.connected_member.db_member
         return context
 
