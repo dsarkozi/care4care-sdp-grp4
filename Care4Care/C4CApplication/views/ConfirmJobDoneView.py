@@ -9,7 +9,8 @@ from C4CApplication.views.utils import create_user
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 
-class ConfirmJobDoneView(FormView, JobDetailsView):
+
+class ConfirmJobDoneView(JobDetailsView):
     
     template_name = "C4CApplication/ConfirmJobDoneView.html"
     form_class = ConfirmJobDoneForm
@@ -28,7 +29,6 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
 
         # Create the object representing the user
         self.user = create_user(self.request.session['email'])
-
         return super(ConfirmJobDoneView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
@@ -36,6 +36,7 @@ class ConfirmJobDoneView(FormView, JobDetailsView):
         
         # Creates the form and change the context
         confirm_job_done_form = ConfirmJobDoneForm(auto_id=False)
+        context['member'] = self.user.db_member
 
         context['confirm_job_done_form'] = confirm_job_done_form
         return context

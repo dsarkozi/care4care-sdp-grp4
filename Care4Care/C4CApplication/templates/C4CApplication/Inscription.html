@@ -17,9 +17,13 @@
    						<p>  {{form.password.errors}} {{form.password}} </p>  				
    						<p>  {{form.birthdate.errors}} {{form.birthdate}} </p>    				
     				
-   						<p> adresse: <br/>
+   						<p> Adresse: <br/>
    						  {{form.number.errors}} {{form.number}}  {{form.street.errors}} {{form.street}}</p>    				
        					<p> {{form.zip.errors}} {{form.zip}}  {{form.town.errors}} {{form.town}} </p>
+       					<p>
+    						Branch :<br/>
+    						{{form.branch.errors}}{{form.branch}}
+    					</p>
     			</div>
 					
     			<div id = "compte"> 
@@ -28,7 +32,6 @@
     						{{form.member_type.errors}}
     						{{form.member_type}}
     					</p>
-    					<p>  {{form.branch.errors}}{{form.branch}}</p>
     				</fieldset>
     			</div>   
     			<div id = "facultatives" >

@@ -29,6 +29,7 @@ class DeleteMemberBPAView(FormView):
         
         # Creates the form and change the context
         delete_member_bpa_form = DeleteMemberBPAForm(auto_id=False)
+        context['member'] = self.user.db_member
 
         context['delete_member_bpa_form'] = delete_member_bpa_form
         return context

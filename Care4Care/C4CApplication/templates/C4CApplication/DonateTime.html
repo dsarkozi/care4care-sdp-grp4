@@ -1,12 +1,8 @@
+{% extends "C4CApplication/FixedStructure.html" %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Donate time</title>
-    <link rel="stylesheet" href={% static "css/donate_time.css" %}>
-</head>
-<body>
+	
+{% block content %}
     <form method="post">
         {% csrf_token %}
         <fieldset>
@@ -33,5 +29,5 @@
         </fieldset>
         <input type="submit" value="Donate time" onclick="return window.confirm('Are you sure you want to give your time ?')">
     </form>
-</body>
-</html>
+
+{% endblock %}

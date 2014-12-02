@@ -9,7 +9,7 @@ from C4CApplication.meta.user import User
 
 class ListMessagesView(ListView):
     model = Message
-    template_name = "C4CApplication/listMessages.html"
+    template_name = "C4CApplication/ListMessages.html"
     paginate_by = 5
     
     def dispatch(self, request, *args, **kwargs):

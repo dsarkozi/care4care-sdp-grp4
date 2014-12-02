@@ -1,12 +1,15 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
 from selenium.webdriver.support.ui import Select
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
+from C4CApplication.page_objects.ConfirmJobDonePage import ConfirmJobDonePage
+from C4CApplication.page_objects.JobDetailsPage import JobDetailsPage
+
 import time
 
 
 class JobTest(MySeleniumTests):
 
-    # test pour creer une demande de job (I need help)
+    # test pour creer une demande de job (I need help -> demander un service)
     def test_offer_job(self):
         self.populate_db()
         
@@ -23,7 +26,7 @@ class JobTest(MySeleniumTests):
         page = CreateJobPage(self.selenium)
         
         # Test create job
-        page = page.create_job_offer("New offer title", "New offer description", "Visit", "Only once", 
+        page = page.create_job("New offer title", "New offer description", "LLN", "Visit", "Only once", 
                          "March", "Specific day", "Anyone")
         
         page = page.click_on_post_req()
@@ -31,31 +34,77 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    """def ask_for_help_test(self):
+    # test pour creer une offre de job (I want to help -> offrir ses services)
+    def test_demand_job(self):
         self.populate_db()
         
+        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        
+        # Create the page object
+        self.selenium.get('%s%s' % (self.live_server_url, '/newjob/offer'))
+        page = CreateJobPage(self.selenium)
+        
+        # Test create job
+        page = page.create_job("New demand title", "New demand description", "All of them", "Transpot", "Regularly", 
+                         None, None, "My favorites only")
+        
+        page = page.click_on_post_req()
         
         self.assertEqual(0, 0)
         return True
     
-    def accept_offer_test(self):
+    def test_accept_offer(self):
         self.populate_db()
-        
+        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        
+        # accept page
+        self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
+        
+        page = JobDetailsPage(self.selenium)
+        time.sleep(1)
+        
+        page = page.click_on_participate()
+        time.sleep(1)        
         
         self.assertEqual(0, 0)
         return True
     
-    def accept_help_test(self):
+    def test_accept_help(self):
         self.populate_db()
-        
+        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        
+        # accept page
+        self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
+        
+        page = JobDetailsPage(self.selenium)
+        time.sleep(1)
+        
+        # TODO Impossiiiiiiiiiiiible !
+        page = page.click_on_choose_member()
+        time.sleep(1)        
         
         self.assertEqual(0, 0)
         return True
-
-    def confirm_job_is_done_test(self):
+    
+    def test_confirm_job_is_done(self):
         self.populate_db()
         
         # log in
@@ -77,7 +126,7 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    def feeds_update_test(self):
+    def test_feeds_update(self):
         self.populate_db()
         
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -85,18 +134,11 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    def see_details_test(self):
+    # TODO wait for this to be implemented
+    def test_search_job(self):
         self.populate_db()
         
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         
         self.assertEqual(0, 0)
         return True
-    
-    def search_job_test(self):
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True"""

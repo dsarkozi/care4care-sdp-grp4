@@ -5,19 +5,25 @@
 {% block content %}
     	
 	 <!-- Login/Sign up -->
-	 
-    <form class="login" method="post" >
-    <h1>Care4Care</h1>
-    {% csrf_token %}
-    {{ loginForm.email.errors }}
-    {{ loginForm.email }}
-    {{ loginForm.password.errors }}
-    {{ loginForm.password }}
-    <input type="submit" value="Login" class="login-submit">
-    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
-    <p class="login-help"><a href=# >Forgot password?</a></p>
-    </form>
-
+	{% if not connected %}
+	    <form class="login" method="post" >
+	    <h1>Care4Care</h1>
+	    {% csrf_token %}
+	    {{ loginForm.email.errors }}
+	    {{ loginForm.email }}
+	    {{ loginForm.password.errors }}
+	    {{ loginForm.password }}
+	    <input type="submit" value="Login" class="login-submit">
+	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
+	    <p class="login-help"><a href=# >Forgot password?</a></p>
+	    </form>
+	{% else %}
+		<form class="login" method="post" >
+	    <h1>Care4Care</h1>
+	       <center><h3>Hello {{ member.first_name }} {{ member.last_name }} !</h3> <br/>
+	 <a href="{% url 'logOut' %}" class="btn" value="Logout">Logout</a> </center>
+	    </form>
+	{% endif %}
 
 	<!-- Buttons -->
 	<center> <h1> Welcome on Care4Care !</h1> 
@@ -39,10 +45,13 @@
 	</center>
 
 
+
     <!-- Feed tables -->
   <!-- Job offers table -->
-	
-	<table class="tab1" style="left:10em" >
+  <center>
+	<table style="margin-top:3em;">
+<td valign="top">
+	<table class="tab1"  >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
 	  </tr>
@@ -65,11 +74,11 @@
 	  </tr>
 	{% endfor %}
 	
-	</table>
-       
-     
-        <!-- Job demands table -->
-	<table class="tab1" style="left:42em" >
+</table>
+        </td>
+        
+  <td valign="top">
+	<table class="tab1" style="margin-left:1em;" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of demand</th>
 	  </tr>
@@ -93,5 +102,8 @@
 	   {% endfor %}
 	   
 	</table>
+	</td>
+	</table>	
+</center>
 	
 {% endblock %}

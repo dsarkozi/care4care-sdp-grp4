@@ -1,5 +1,7 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.BranchListPage import BranchListPage
+from C4CApplication.page_objects.MemberListPage import MemberListPage
 
 
 import time
@@ -23,9 +25,9 @@ class UserAccountTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('olivier.bonaventure@gmail.com', 'azertyuiop')
-        
+        page = page.quick_login_successful('olivier.mauvaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
+        
         page.log_out()
         time.sleep(1)
         
@@ -42,14 +44,35 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.create_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
-                                  'Vie', 3, 6458, 'Multilife', 'member', 'LLN')
+                                  'Vie', 3, 6458, 'Multilife', 'Nivelles')
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_successful('mister_nobody@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
     
     def test_create_non_member_account(self):
-        pass
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.click_on_sign_up()
+        time.sleep(1)
+        
+        page = page.create_non_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
+                                  'Vie', 3, 6458, 'Multilife', 'Nivelles')
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_successful('mister_nobody@gmail.com', 'azertyuiop')
+        time.sleep(1)
+        
+        self.assertEqual(0, 0)
+        return True
     
     def test_create_verified_member(self): #TODO keep this test?
         pass
@@ -58,4 +81,22 @@ class UserAccountTest(MySeleniumTests):
         pass
     
     def test_update_to_volunteer(self):
-        pass
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        time.sleep(1)
+        
+        page.click_on_care4care_branches()
+        page = BranchListPage(self.selenium)
+        time.sleep(1)
+        
+        page.click_on_branch_details(0)
+        page = MemberListPage(self.selenium)
+        time.sleep(1)
+        
+        page.click_on_promote_volunteer(0)
+        time.sleep(1)
+        
+        self.assertEqual(0, 0)
+        return True

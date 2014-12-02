@@ -1,0 +1,158 @@
+{% extends "C4CApplication/MyCare4Care.html" %}
+
+{% load staticfiles %}
+	
+{% block link %}
+<link rel="stylesheet" href="../../static/css/account_and_stats.css">
+
+{% endblock %}
+
+	
+{% block menu%}
+	
+<center>
+
+
+<section>
+
+    <article class = "first">
+    <table class=tab1 >
+    
+		<th class=".tab1-3" colspan="6" >General informations</th>
+	
+        <tr>
+       <td class="tab1-4" colspan="2">   Number of job completed </td>
+       <td> {{ jobAmount }}</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">    
+       Average time per job </td>
+       <td> {{ jobAverageTime }}</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">    I drove </td>
+       <td> {{ jobTotalDistance }} kilometers</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">     Type of job done </td>
+       <td>  {% for catKey, catValue in jobCategories.items %}
+                        {{ catValue }} % {{ catKey }}
+                    {% endfor %}</td>
+       </tr>
+       
+
+               
+    </article>
+    
+  
+
+			<tr>
+				<th   > </th>
+				<th  >Help received</th>
+				<th  >Help done</th>
+			</tr>
+			<tr>
+				<th >List of completed jobs</th>
+				<td  valign="top">
+					<table class = "Second table" cellpadding="5" cellspacing="30" >
+						<tr>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+						</tr>
+                        {% for job in helpedDone %}
+                            <tr>
+                                 <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
+					</table>
+				</td>
+				<td  valign="top">
+					<table class = "Second table" cellpadding="5" cellspacing="30" >
+						<tr>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+						</tr>
+						{% for job in helperDone %}
+                            <tr>
+                                 <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th>Waiting jobs</th>
+				<td>
+					<table class = "Second table" cellpadding="5" cellspacing="30">
+						<tr>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+						</tr>
+						{% for job in helpedPending %}
+                            <tr>
+                                <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
+					</table>
+			
+				</td>
+				<td  valign="top">
+					<table class = "Second table" cellpadding="5" cellspacing="30">
+						<tr>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+						</tr>
+						{% for job in helperPending %}
+                            <tr>
+                                  <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
+                            </tr>
+                        {% endfor %}
+					</table>
+				</td>
+			</tr>
+		</table>
+	
+	</article>
+    
+</section>   
+
+{% endblock %}

@@ -1,12 +1,13 @@
 from django.views.generic.edit import FormView
 from django.core.exceptions import PermissionDenied
+from C4CApplication.views.utils import create_user
 
 from C4CApplication.models.member import Member
 from C4CApplication.views.forms.BranchListForm import BranchListForm
 
 
 class BranchListView(FormView):
-    template_name = "C4CApplication/branchList.html"
+    template_name = "C4CApplication/BranchList.html"
     form_class = BranchListForm
     success_url = "branchlist"
     member = None
@@ -14,6 +15,7 @@ class BranchListView(FormView):
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
+        self.user = create_user(self.request.session['email'])
         return super(BranchListView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -31,6 +33,7 @@ class BranchListView(FormView):
         branch_list_form = BranchListForm(auto_id=False, initial={'branch_list': branch_checked_name_list})
 
         context['branch_list_form'] = branch_list_form
+        context['member'] = self.user.db_member
         return context
 
     def form_valid(self, form):

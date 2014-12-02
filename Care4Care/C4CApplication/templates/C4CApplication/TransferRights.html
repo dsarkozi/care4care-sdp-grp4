@@ -1,3 +1,10 @@
+
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+	
+{% block content %}
+
 {% block transfer_rights %} 
 <form method="post">
 	{% csrf_token %}
@@ -7,4 +14,5 @@
     <input type="submit" value="Change BP Admin"/>
     </p>
 </form>
+{% endblock %}
 {% endblock %}
