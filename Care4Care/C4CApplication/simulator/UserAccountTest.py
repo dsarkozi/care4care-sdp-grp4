@@ -23,9 +23,9 @@ class UserAccountTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('olivier.bonaventure@gmail.com', 'azertyuiop')
-        
+        page = page.quick_login_successful('olivier.mauvaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
+        
         page.log_out()
         time.sleep(1)
         
