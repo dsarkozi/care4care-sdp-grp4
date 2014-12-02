@@ -24,6 +24,11 @@ class ModifProfileView(FormView):
 
         return super(ModifProfileView, self).dispatch(request, *args, **kwargs)
     
+    def get_context_data(self, **kwargs):
+        context = super(ModifProfile, self).get_context_data(**kwargs)
+        context['member'] = self.user.db_member
+        return context
+    
     def form_valid(self, form):       
         #adresse
         numero = form.cleaned_data['numero']
