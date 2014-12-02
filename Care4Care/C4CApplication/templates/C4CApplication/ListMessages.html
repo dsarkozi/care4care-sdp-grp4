@@ -6,15 +6,24 @@
 
 {% block menu %}
 
-<a href="/list_messages/1">Received Messages</a>
-<a href="/list_messages/0">Sent Messages</a>
 
 
-   	<section style="text-align: center;">
-	      <table class="tab1" >
+
+   	<section style="text-align: center; ">
+	      <table class="tab1" style="top:18em;" >
 	   	
 		  <tr>
-			<th class=".tab1-3" colspan="6"> {% if received == '1' %} Received Messages {% else %} Sent Messages {% endif %}</th>
+			<th class=".tab1-3" colspan="6">
+			 {% if received == '1' %}
+			  <p> Received Messages </p>
+			  <p><a href="/list_messages/0" class = "btn";    >  Switch to Sent Messages</a></p>
+			
+			{% else %} 
+			<p> Sent Messages </p>
+			 <p><a href="/list_messages/1" class = "btn";>  Switch to Received Messages</a></p>
+			
+			
+			{% endif %}</th>
 		  </tr>
 			  <tr>
 			<td class="tab1-4">Sender</td>
