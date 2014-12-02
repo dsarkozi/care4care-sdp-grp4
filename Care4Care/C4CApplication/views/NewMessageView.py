@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 
 class NewMessageView(FormView):
     model = Message
-    template_name = 'C4CApplication/nouveau_message.html'
+    template_name = 'C4CApplication/NewMessage.html'
     form_class = NewMessageForm
     success_url = reverse_lazy('newmessage')
 

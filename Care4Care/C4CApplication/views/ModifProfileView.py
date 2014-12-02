@@ -9,11 +9,14 @@ from C4CApplication.views.utils import create_user
 
 class ModifProfileView(FormView):
     model = Member
-    template_name = 'C4CApplication/modif_profile.html'
+    template_name = 'C4CApplication/ModifProfile.html'
     form_class = ModifProfileForm
-    success_url = reverse_lazy('home')
-
+    #success_url = reverse_lazy('myc4c')
+    #success_url="/profile/%(self.user.email)s/"
     user = None
+    
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs={'pk': self.user.db_member.mail})
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
@@ -23,6 +26,11 @@ class ModifProfileView(FormView):
         self.user = create_user(self.request.session['email'])
 
         return super(ModifProfileView, self).dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(ModifProfileView, self).get_context_data(**kwargs)
+        context['member'] = self.user.db_member
+        return context
     
     def form_valid(self, form):       
         #adresse
