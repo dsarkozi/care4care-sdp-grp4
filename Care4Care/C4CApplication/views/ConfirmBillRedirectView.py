@@ -11,7 +11,7 @@ from django.core.exceptions import PermissionDenied
 class ConfirmBillRedirectView(RedirectView):
 
     url = reverse_lazy("myc4c")
-    user= None
+    user = None
     
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
