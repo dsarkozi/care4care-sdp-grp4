@@ -34,6 +34,7 @@ class BranchListView(FormView):
 
         context['branch_list_form'] = branch_list_form
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context
 
     def form_valid(self, form):

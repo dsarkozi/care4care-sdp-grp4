@@ -28,6 +28,9 @@
        				<p>
 	       				{% csrf_token %}
 	       				{{ form.picture.errors }} {{ form.picture }}
+	       				{% if member.picture %}
+	       					<a href="{% url 'modifprofileredirect' 0 %}" class="myButton2" style ="color:#ffffff;">Delete picture</a>
+	       				{% endif %}
        				</p>
        				
    					<h5> Address: </h5>
@@ -38,7 +41,10 @@
    			    	<h5> Mobile phone number:</h5>
     				<p> {{form.mobile_phone.errors}} {{form.mobile_phone}} </p>
     			</div>
-    			<p id = "envoyer"> <input type = "submit" name = "envoyer" value= "Submit" class = btn ></p>
+    			<p id = "envoyer"> 
+    				<input type = "submit" name = "envoyer" value= "Submit" class = btn >
+    				<a href="{% url 'modifprofileredirect' 1 %}" class="myButton2" style ="color:#ffffff;">Delete account</a>
+    			</p>
     		</div>
 		<form/>
 </section>  

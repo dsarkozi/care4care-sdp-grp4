@@ -24,6 +24,7 @@ class MemberDetailsView(DetailView):
         context = {}
         context = super(MemberDetailsView, self).get_context_data(**context)
         context['member'] = self.member.db_member
+        context['connected'] = 'email' in self.request.session
         context['is_branch_officer'] = self.member.is_branch_officer(context['member_shown'])
         return context
 

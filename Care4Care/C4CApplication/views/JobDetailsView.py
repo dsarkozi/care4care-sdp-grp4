@@ -25,6 +25,7 @@ class JobDetailsView(DetailView, FormView):
         context = super(JobDetailsView, self).get_context_data(**context)
         #TODO context['form'] = self.form
         context['member'] = self.member.db_member
+        context['connected'] = 'email' in self.request.session
         return context
 
     def form_valid(self, form):
