@@ -1,17 +1,44 @@
-<!DOCTYPE html>
+{% load staticfiles %}
+
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>OIDTest</title>
+    <title>Identity Card</title>
+    <style type="text/css">
+    .container label {
+        float:left;
+        text-align: right;
+        white-space: nowrap;
+        width: 12%;
+    }
+    .container input {
+        margin-left: 1%;
+        padding-left: 0.5em;
+        text-align: left;
+    }
+    .container img {
+        margin-left: 13%;
+    }
+    </style>
 </head>
 <body>
-<p>
-    Kind : {{ kind }} <br>
-    Claimed ID : {{ claimedID }} <br>
-    Services : {{ services }} <br>
-    OP_endpoint : {{ op_endpoint }} <br>
-    OP_local : {{ op_local }} <br>
-    Redirect URL : {{ redirect_url }}
-</p>
+<form class="container">
+    <img src="{% static 'images/photo.jpg' %}" /> <br>
+    <label for="fullname">Full name : </label><input type="text" id="fullname" value="{{ fullname }}" disabled> <br>
+    <label for="birthplace">Birth place : </label><input type="text" id="birthplace" value="{{ birth_place }}" disabled> <br>
+    <label for="birthdate">Birth date : </label><input type="text" id="birthdate" value="{{ birth_date }}" disabled> <br>
+    <label for="age">Age : </label><input type="text" id="age" value="{{ age }}" disabled> <br>
+    <label for="gender">Gender : </label><input type="text" id="gender" value="{{ gender }}" disabled> <br>
+    <label for="nationality">Nationality : </label><input type="text" id="nationality" value="{{ nationality }}" disabled> <br>
+    <label for="card-number">Card number : </label><input type="text" id="card-number" value="{{ card_number }}" disabled> <br>
+    <label for="card-validity-start">Valid from : </label><input type="text" id="card-validity-start" value="{{ card_validity_start }}" disabled> <br>
+    <label for="card-validity-end">Valid until : </label><input type="text" id="card-validity-end" value="{{ card_validity_end }}" disabled> <br>
+    <label for="register-number">Registry identification number : </label><input type="text" id="register-number" value="{{ register_number }}" disabled> <br>
+    <label for="address">Address : </label><input type="text" id="address" value="{{ address }}" disabled> <br>
+    <label for="postalCode">Postal Code : </label><input type="text" id="postalCode" value="{{ postal_code }}" disabled> <br>
+    <label for="city">City : </label><input type="text" id="city" value="{{ city }}" disabled>
+</form>
+<label><strong>Raw output : </strong></label><br>
+{{ printy }}
 </body>
 </html>

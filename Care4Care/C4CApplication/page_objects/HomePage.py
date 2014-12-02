@@ -11,9 +11,9 @@ class HomePage(FixedPage):
     
     def __init__(self, driver):
         super().__init__(driver)
-        self.mail_input = self.driver.find_element(By.NAME, 'email')
+        self.mail_input     = self.driver.find_element(By.NAME, 'email')
         self.password_input = self.driver.find_element(By.NAME, 'password')
-        self.login_button = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
+        self.login_button   = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
         self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@value="Sign up"]')
         
     def login_successful(self, mail, password):
