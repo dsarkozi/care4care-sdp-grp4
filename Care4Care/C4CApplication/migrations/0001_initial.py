@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import django.db.models.deletion
 import C4CApplication.models.member
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Job',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
                 ('mail', models.EmailField(max_length=75)),
                 ('number', models.IntegerField()),
@@ -48,8 +48,8 @@ class Migration(migrations.Migration):
                 ('done', models.BooleanField(default=False)),
                 ('payed', models.BooleanField(default=False)),
                 ('visibility', models.SmallIntegerField(default=1)),
-                ('branch', models.ForeignKey(blank=True, to='C4CApplication.Branch', null=True)),
-                ('occurence', models.ForeignKey(blank=True, to='C4CApplication.Job', null=True, on_delete=django.db.models.deletion.SET_NULL)),
+                ('branch', models.ForeignKey(blank=True, null=True, to='C4CApplication.Branch')),
+                ('regular_job', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, null=True, to='C4CApplication.Job')),
             ],
             options={
             },
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Mailbox',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('status', models.BooleanField(default=False)),
             ],
             options={
@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=20)),
                 ('last_name', models.CharField(max_length=30)),
-                ('picture', models.ImageField(storage=C4CApplication.models.member.OverwriteStorage(), upload_to='images/images_profile/')),
+                ('picture', models.ImageField(upload_to='images/images_profile/', storage=C4CApplication.models.member.OverwriteStorage())),
                 ('birthday', models.DateField(default='2014-01-01')),
                 ('tag', models.SmallIntegerField(default=1)),
                 ('status', models.BooleanField(default=True)),
@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('number', models.IntegerField()),
                 ('subject', models.CharField(max_length=100)),
                 ('content', models.TextField()),
@@ -109,9 +109,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Relationship',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
-                ('member_source', models.ForeignKey(to='C4CApplication.Member', related_name='source')),
-                ('member_target', models.ForeignKey(to='C4CApplication.Member', related_name='target')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('member_source', models.ForeignKey(related_name='source', to='C4CApplication.Member')),
+                ('member_target', models.ForeignKey(related_name='target', to='C4CApplication.Member')),
             ],
             options={
             },
