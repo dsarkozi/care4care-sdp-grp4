@@ -23,6 +23,7 @@ class CreateJobView(FormView):
     def get_context_data(self, **kwargs):
         context = super(CreateJobView, self).get_context_data(**kwargs)
         context['createJob'] = CreateJobForm(user=self.user.db_member, auto_id=False)
+        context['member'] = self.user.db_member
         return context
 
     # def form_invalid(self, form):

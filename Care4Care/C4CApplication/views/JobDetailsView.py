@@ -9,14 +9,14 @@ class JobDetailsView(DetailView, FormView):
     model = Job
     context_object_name = "job"
     template_name = "C4CApplication/JobDetails.html"
-    connected_member = None
+    member = None
     #TODO form class
     
     def dispatch(self, request, *args, **kwargs):
         # Create the object representing the user
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
-        self.connected_member = create_user(self.request.session['email'])
+        self.member = create_user(self.request.session['email'])
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     
@@ -24,7 +24,7 @@ class JobDetailsView(DetailView, FormView):
         context = {}
         context = super(JobDetailsView, self).get_context_data(**context)
         #TODO context['form'] = self.form
-        context['member'] = self.connected_member.db_member
+        context['member'] = self.member.db_member
         return context
 
     def form_valid(self, form):
