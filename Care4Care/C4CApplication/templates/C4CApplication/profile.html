@@ -14,9 +14,9 @@
     {% comment %} <span class="tag"> {{ member.tag }} </span> {% endcomment %}
     <article class = "first">
     	{% if member.picture %}
-       		<img src="{{ member.picture.url }}" alt="Photo de profil" id="photo" style="height:250px;"/>
+       		<img src="{{ member.picture.url }}" alt="Photo de profil" id="photo"/>
        	{% else %}
-       		<img src="{% static 'images/no_picture.jpg' %}" alt="Photo de profil" id="photo" style="height:250px;"/>
+       		<img src="{% static 'images/no_picture.jpg' %}" alt="Photo de profil" id="photo"/>
        	{% endif %}
     </article>
     
