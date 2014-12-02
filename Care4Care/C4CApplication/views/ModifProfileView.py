@@ -11,9 +11,12 @@ class ModifProfileView(FormView):
     model = Member
     template_name = 'C4CApplication/modif_profile.html'
     form_class = ModifProfileForm
-    success_url = reverse_lazy('home')
-
+    #success_url = reverse_lazy('myc4c')
+    #success_url="/profile/%(self.user.email)s/"
     user = None
+    
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs={'pk': self.user.db_member.mail})
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
