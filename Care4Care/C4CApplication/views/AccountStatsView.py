@@ -8,7 +8,7 @@ from C4CApplication.views.utils import create_user
 
 
 class AccountStatsView(TemplateView):
-    template_name = "C4CApplication/accountAndStats.html"
+    template_name = "C4CApplication/AccountAndStats.html"
     user = None
     jobset = None
 

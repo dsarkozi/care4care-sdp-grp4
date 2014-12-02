@@ -9,7 +9,7 @@ from C4CApplication.views.utils import create_user
 
 class ModifProfileView(FormView):
     model = Member
-    template_name = 'C4CApplication/modif_profile.html'
+    template_name = 'C4CApplication/ModifProfile.html'
     form_class = ModifProfileForm
     #success_url = reverse_lazy('myc4c')
     #success_url="/profile/%(self.user.email)s/"
