@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from C4CApplication.views.forms.NewMessageForm import NewMessageForm
 from C4CApplication.models import *
 from C4CApplication.views.utils import create_user
+from django.core.exceptions import PermissionDenied
 
 from django.views.generic import FormView
 from django.core.urlresolvers import reverse_lazy
@@ -14,20 +15,31 @@ class NewMessageView(FormView):
     template_name = 'C4CApplication/NewMessage.html'
     form_class = NewMessageForm
     success_url = reverse_lazy('newmessage')
+    
+    def dispatch(self, request, *args, **kwargs):
+        if 'email' not in self.request.session:
+            raise PermissionDenied  # HTTP 403
+        self.user = create_user(self.request.session['email'])
+        return super(NewMessageView, self).dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(NewMessageView, self).get_context_data(**kwargs)
+        context['member'] = self.user.db_member
+        return context
 
     def form_valid(self, form):
-            email_envoyeur = "kim.mens@gmail.com"
-            member = create_user(email_envoyeur)
+        email_envoyeur = "kim.mens@gmail.com"
+        member = create_user(email_envoyeur)
             
-            sujet = form.cleaned_data['sujet']
-            receveur = form.cleaned_data['receveur']
-            message = form.cleaned_data['message']
-            renvoi = form.cleaned_data['renvoi']
-            #sender_mail, receiver_mail, subject, content, type): #TODO type
+        sujet = form.cleaned_data['sujet']
+        receveur = form.cleaned_data['receveur']
+        message = form.cleaned_data['message']
+        renvoi = form.cleaned_data['renvoi']
+        #sender_mail, receiver_mail, subject, content, type): #TODO type
 
-            member.send_mail(email_envoyeur,receveur,sujet,message,2)
+        member.send_mail(email_envoyeur,receveur,sujet,message,2)
         
-            return super(NewMessageView, self).form_valid(form)
+        return super(NewMessageView, self).form_valid(form)
    
 """
 def nouveau_message(request):
