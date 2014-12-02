@@ -70,7 +70,7 @@ class BranchOfficer(Member):
         member = member[0]
 
         member_branch = None
-        for branch in member.branch:
+        for branch in member.branch.all():
             if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
                 member_branch = branch
 
@@ -78,8 +78,8 @@ class BranchOfficer(Member):
             return False
 
         # Change the session variable
-        session['super_user_mail'] = session['mail']
-        session['mail'] = email
+        session['super_user_mail'] = session['email']
+        session['email'] = email
 
         return True
 
