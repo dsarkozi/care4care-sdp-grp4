@@ -47,8 +47,9 @@
 
     <!-- Feed tables -->
   <!-- Job offers table -->
-		<section style="text-align: center; ">
-	<table class="tab1"  >
+		
+	<center>
+	<table class="tab1" style= "float:left;"  >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
 	  </tr>
@@ -71,11 +72,10 @@
 	  </tr>
 	{% endfor %}
 	
-	</table>
+</table>
        
-     
-        <!-- Job demands table -->
-	<table class="tab1" style="margin-left:32em;" >
+    
+	<table class="tab1"  style= "margin-top:3em;margin-left:2em;">
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of demand</th>
 	  </tr>
@@ -99,5 +99,6 @@
 	   {% endfor %}
 	   
 	</table>
-	</section>
+	</center>
+	
 {% endblock %}
