@@ -59,26 +59,26 @@
                {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
                		<td class ="tab1-4" > 
                         {% if member.tag < 16 %}
-	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}"
+	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}" value="remove_from_branch"
 	                        	onclick="return window.confirm('Are you sure you want to remove {{member.first_name}} {{member.last_name}} from {{ branch.name }} branch ?')"
 	                        	>Remove from branch</a>
 	                        
 		                    {% if member.tag != 4 and member.tag != 12 %}
-		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}"
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}" value="promote_verified"
 		                        	onclick="return window.confirm('Are you sure you want to promote {{member.first_name}} {{member.last_name}} to verified ?')"
 		                        	>Promote to verified</a>
 		                    {% else %}
-		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}"
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 1 %}" value="no_more_verified"
 		                        	onclick="return window.confirm('Are you sure you want to  revoke {{member.first_name}} {{member.last_name}} from verified ?')"
 		                        	>No more verified</a>
 		                    {% endif %}
 		                        
 		                    {% if member.tag != 8 and member.tag != 12 %}
-		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}"
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}" value="promote_volunteer"
 		                        	onclick="return window.confirm('Are you sure you want to promote {{member.first_name}} {{member.last_name}} to volunteer ?')"
 		                        	>Promote to volunteer</a>
 		                    {% else %}
-		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}"
+		                        <a href="{% url 'branchlistredirect' branch.name member.mail 2 %}" value="no_more_volunteer"
 		                        	onclick="return window.confirm('Are you sure you want to revoke {{member.first_name}} {{member.last_name}} from volunteer ?')"
 		                        	>No more volunteer</a>
 	                        {% endif %}
