@@ -1,0 +1,11 @@
+{% block transfer_rights %} 
+<form method="post">
+	{% csrf_token %}
+	Enter the email address of the member to become the new Branch Officer of the branch '{{ branch_name }}' :  <br/>
+    <p>
+    {{ form }}
+    <input type="submit" value="Change Branch officer"/>
+    </p>
+    <a href="{% url 'branchdetails' branch_name %}">Cancel</a>
+</form>
+{% endblock %}

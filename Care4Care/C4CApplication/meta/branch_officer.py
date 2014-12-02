@@ -93,8 +93,14 @@ class BranchOfficer(Member):
         if len(branchlist) != 1:
             return False
         branch = branchlist[0]
-        if branch.branch_officer != self.db_member.mail:
+        if branch.branch_officer != self.db_member.mail:  # If he is branch officer of this branch
             return False
+
+        new_branch_officer = Member.objects.filter(mail=new_branch_officer_email)
+        # If the member doesn't exist
+        if len(new_branch_officer) != 1 or (not new_branch_officer[0].deleted):
+            return False
+
         branch.branch_officer = new_branch_officer_email
         branch.save()
         return True

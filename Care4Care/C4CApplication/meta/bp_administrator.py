@@ -38,8 +38,13 @@ class BPAdministrator(BranchOfficer):
         :param deleted_one_email: the email of the person to delete
         :return: False if there was a problem and True otherwise.
         """
-        # TODO
-        raise PermissionError
+        deleted = Member.objects.filter(mail=deleted_one_email)
+        # If the member doesn't exist or if it's the bp admin
+        if len(deleted) != 1 or deleted_one_email == self.db_member.mail:
+            return False
+
+        deleted.deleted = True
+        return True
 
     def log_as_member(self, email, session):
 
@@ -60,8 +65,14 @@ class BPAdministrator(BranchOfficer):
         :return: False if there was a problem and True otherwise.
         """
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch)!=1 :
+        if len(branch) != 1:
             return False
+
+        new_branch_officer = Member.objects.filter(mail=new_branch_officer_email)
+        # If the member doesn't exist
+        if len(new_branch_officer) != 1 or (not new_branch_officer[0].deleted):
+            return False
+
         branch = branch[0]
         branch.branch_officer = new_branch_officer_email
         branch.save()

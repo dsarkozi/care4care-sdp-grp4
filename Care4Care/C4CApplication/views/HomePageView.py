@@ -24,7 +24,7 @@ class HomePageView(FeedsMixingView, FormView):
             context['connected'] = True
             member = Member.objects.get(mail=self.request.session['email'])
             context['member'] = member
-        else :
+        else:
             context['connected'] = False
         context['loginForm'] = LoginForm(auto_id=False)
         return context
@@ -34,10 +34,10 @@ class HomePageView(FeedsMixingView, FormView):
         password = form.cleaned_data['password']
         
         member = models.Member.objects.filter(mail=email)
-        if len(member) == 0 : # if member not found
+        if len(member) == 0 or :  # if member not found
             return super(HomePageView, self).form_invalid(form)
-        member = member[0] # get the member 
-        if member.password != password : # if wrong password
+        member = member[0]  # get the member
+        if member.password != password:  # if wrong password
             return super(HomePageView, self).form_invalid(form)
         
         self.request.session['email'] = email
