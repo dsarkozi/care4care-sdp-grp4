@@ -9,7 +9,7 @@
 
 
 
-   	<section style="text-align: center; ">
+   	<section style="text-align: center; margin-top:3em;">
 	      <table class="tab1" style="top:18em;" >
 	   	
 		  <tr>
@@ -17,11 +17,15 @@
 			 {% if received == '1' %}
 			  <p> Received Messages </p>
 			  <p><a href="/list_messages/0" class = "btn";    >  Switch to Sent Messages</a></p>
+			  <p>
+			  <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="btn">Write a new message</a>
+			  </p>
 			
 			{% else %} 
-			<p> Sent Messages </p>
+			<p> Sent Messages <p>
 			 <p><a href="/list_messages/1" class = "btn";>  Switch to Received Messages</a></p>
-			
+            <p> <a href="{% url 'newmessage' %}" type="submit" value="new_message" class="btn">Write a new message</a>
+			  </p></p>			
 			
 			{% endif %}</th>
 		  </tr>

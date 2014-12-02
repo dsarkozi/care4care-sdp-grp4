@@ -28,7 +28,8 @@ class TransferRightsView(FormView):
         
         # Creates the form and change the context
         transfer_rights_form = TransferRightsForm(auto_id=False)
-
+        context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         context['transfer_rights_form'] = transfer_rights_form
         return context
 

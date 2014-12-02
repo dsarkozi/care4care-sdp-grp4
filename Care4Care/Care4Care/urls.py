@@ -43,6 +43,7 @@ from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
 from C4CApplication.views.InscriptionView import InscriptionView
 from C4CApplication.views.ModifProfileView import ModifProfileView
+from C4CApplication.views.ModifProfileRedirectView import ModifProfileRedirectView
 from C4CApplication.views.NewMessageView import NewMessageView
 
 from C4CApplication.views.CreateBranchView import CreateBranchView
@@ -99,6 +100,7 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
     url(r'^message/(?P<pk>\w+)/$', MessageView.as_view(), name='message'),
     url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
+    url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
         
     url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
 

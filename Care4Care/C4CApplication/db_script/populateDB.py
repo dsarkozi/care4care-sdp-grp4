@@ -46,7 +46,7 @@ def popule_db():
     m1.birthday = "1967-10-03"
     m1.tag = Member.TAG['branch_officer']
     m1.mobile = "0477985632"
-    m1.address = "Rue du Software, 3, Development, 2255"
+    m1.address = "Rue du Software, 3, 2255, Development"
     m1.time_credit = 59
     m1.visibility = Member.MEMBER_VISIBILITY['anyone']
     m1.save()
@@ -58,20 +58,19 @@ def popule_db():
     m2.birthday = "1956-08-23"
     m2.tag = Member.TAG['branch_officer']
     m2.mobile = "0478745963"
-    m2.address = "Rue de l'intelligence, 7, Artificial, 2261"
+    m2.address = "Rue de l'intelligence, 7, 2261, Artificial"
     m2.time_credit = 170
     m2.visibility = Member.MEMBER_VISIBILITY['anyone']
     m2.save()
     
-    m3 = Member(mail="olivier.mauvaventure@gmail.com")
+    m3 = Member(mail="olivier.mauvaisaventure@gmail.com")
     m3.password = "azertyuiop"
     m3.first_name = "Olivier"
-    m3.last_name = "Mauvaventure"
-    m3.picture = "images/images_profile/olivierbonaventuregmailcom.jpg"
+    m3.last_name = "Mauvaisaventure"
     m3.birthday = "1970-05-25"
     m3.tag = Member.TAG['member']
     m3.mobile = "0476526987"
-    m3.address = "Rue du Computer, 27, Network, 2141"
+    m3.address = "Rue du Computer, 27, 2141, Network"
     m3.time_credit = 18
     m3.save()
     
@@ -84,7 +83,7 @@ def popule_db():
     m4.birthday = "1993-03-20"
     m4.tag = Member.TAG['member']
     m4.mobile = "0472695784"
-    m4.address = "Rue de l'Eglise, 40, Rixensart, 1330"
+    m4.address = "Rue de l'Eglise, 40, 1330, Rixensart"
     m4.time_credit = 9999
     m4.save()
     
@@ -103,7 +102,7 @@ def popule_db():
     m5.birthday = "1993-01-31"
     m5.tag = Member.TAG['bp_admin']
     m5.mobile = "0487793533"
-    m5.address = "Rue du Leader, 3, LeaderVille, 2255"
+    m5.address = "Rue du Leader, 3, 2255, LeaderVille"
     m5.time_credit = 10000000000
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']
     m5.save()
@@ -119,7 +118,7 @@ def popule_db():
     
     b2 = Branch(name="Nivelles")
     b2.town = "Nivelles"
-    b2.branch_officer = "yves.deville@gmail.com"
+    b2.branch_officer = "yves.delaville@gmail.com"
     m2.tag = 16
     b2.donation = 10
     b2.save()
@@ -192,7 +191,8 @@ def popule_db():
     r5.member_target = m2
     
     #Creation des jobs
-    j1 = Job(mail="armand.bosquillon@student.uclouvain.be", number=1)
+    j1 = Job(mail=m4.mail, number=1)   #Armand
+    j1.title = "Aide pour mes courses"
     j1.description = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
     j1.date = "2014-12-27"  #Samedi 27 decembre
     j1.start_time = 840 #14h *60
@@ -207,7 +207,8 @@ def popule_db():
     j1.member_set.add(m4)
     j1.save()
     
-    j2 = Job(mail="armand.bosquillon@student.uclouvain.be", number=2)
+    j2 = Job(mail=m4.mail, number=2)   #Armand
+    j2.title = "Me conduire a LLN"
     j2.description = "Bonjour, j'ai besoin de quelqu'un pour m'amener a LLN exceptionnelement, \
                     car je n'ai pas de transport en commun ce jour la."
     j2.date = "2014-12-19"  #Lundi 19 decembre
@@ -226,7 +227,8 @@ def popule_db():
     j2.member_set.add(m3)
     j2.save()
     
-    j3 = Job(mail="olivier.bonaventure@gmail.com", number=1)
+    j3 = Job(mail=m3.mail, number=1)    #Olivier
+    j3.title = "Visiter l'Atomium"
     j3.description = "Bonjour, j'aimerai visiter l'Atomium, mais je ne veux pas le faire seul.\
                     Quelqu'un pour m'accompagner ?"
     j3.date = "2015-01-27"  #Mardi 27 janvier
@@ -234,7 +236,7 @@ def popule_db():
     j3.frenquency = 1   #Once
     j3.km = 50
     j3.time = 120    #2h *60
-    j3.category = 2 #Transport
+    j3.category = 2 #Visite
     j3.type = True  #True = Demand
     j3.address = "Square de l'Atomium, B-1020 BRUXELLES"
     j3.accepted = True
@@ -245,14 +247,15 @@ def popule_db():
     j3.member_set.add(m2)
     j3.save()
     
-    j4 = Job(mail="yves.deville@gmail.com", number=1)
+    j4 = Job(mail=m2.mail, number=1) #Yves
+    j4.title = "Me conduire a Bruxelles"
     j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire a Bruxelles"
     j4.date = "2015-01-29"  #Jeudi 29 janvier
     j4.start_time = 540 #9h *60
     j4.frenquency = 1   #Once
     j4.km = 50
     j4.time = 120    #2h *60
-    j4.category = 2 #Transport
+    j4.category = 3 #Transport
     j4.type = True  #True = Demand
     j4.address = "Square de l'Atomium, B-1020 BRUXELLES"
     j4.accepted = True
@@ -263,7 +266,8 @@ def popule_db():
     j4.member_set.add(m1)
     j4.save()
     
-    j5 = Job(mail="kim.mens@gmail.com", number=1)
+    j5 = Job(mail=m1.mail, number=1)    #Kim
+    j5.title = "Me conduire a l'universite de Bruxelles"
     j5.description = "Bonjour, j'aimerai quelqu'un pour me conduire a Bruxelles.\
                     Plus precisement, a l'universite de Bruxelles."
     j5.date = "2014-12-09"  #Vendredi 9 janvier
@@ -271,7 +275,7 @@ def popule_db():
     j5.frenquency = 1   #Once
     j5.km = 50
     j5.time = 60    #1h *60
-    j5.category = 2 #Transport
+    j5.category = 3 #Transport
     j5.type = True  #True = Demand
     j5.address = "Avenue Franklin Roosevelt 50 - 1050 Bruxelles"
     j5.accepted = True
@@ -283,14 +287,15 @@ def popule_db():
     j5.member_set.add(m4)
     j5.save()
     
-    j6 = Job(mail="armand.bosquillon@student.uclouvain.be", number=3)
+    j6 = Job(mail=m4.mail, number=3)   #Armand
+    j6.title = "Aide shopping Esplanade"
     j6.description = "Bonjour, je met a disposition mon aide pour faire du shopping a l'Esplanade."
     j6.date = "2015-01-24"  #Samedi 24 janvier
     j6.start_time = 780 #13h *60
     j6.frenquency = 1   #Once
     j6.km = 0
     j6.time = 240    #4h *60
-    j6.category = 1 #Transport
+    j6.category = 1 #Shopping
     j6.type = False  #False = Offer
     j6.address = "Place de l'Accueil, 10 bte 1, 1348, Louvain-la-Neuve"
     j6.branch = b1
@@ -298,20 +303,56 @@ def popule_db():
     j6.member_set.add(m4)
     j6.save()
     
-    j7 = Job(mail="mathieu.jadin@student.uclouvain.be", number=1)
+    j7 = Job(mail=m5.mail, number=1)    #Mathieu Jadin
+    j7.title = "Aide Care4Care"
     j7.description = "Bonjour, je met a disposition mon aide pour le projet Care4Care."
     j7.date = "2014-12-05"  #Vendredi 5 Decambre
     j7.start_time = 480 #8h *60
     j7.frenquency = 1   #Once
     j7.km = 0
     j7.time = 2520    #4h *60
-    j7.category = 1 #Transport
+    j7.category = 4 #Other
+    j7.other_category = "Aide informatique"
     j7.type = False  #False = Offer
     j7.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Salle Intel"
     j7.branch = b1
     j7.save()
     j7.member_set.add(m5)
     j7.save()
+    
+    j8 = Job(mail=m1.mail, number=2)    #Kim
+    j8.title = "Projet Care4Care"
+    j8.description = "Bonjour, je donne mon aide pour le projet de Care4Care"
+    j8.start_time = 510 #8h30
+    j8.frequency = 2    #Weekly
+    j8.recursive_day = "lundi"
+    j8.km = 0
+    j8.time = 120   #2h
+    j8.category = 4 #Other
+    j8.other_category = "Aide projet"
+    j8.type = False #False = Offer
+    j8.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Barb93"
+    j8.branch = b1
+    j8.save()
+    
+    j9 = Job(mail=m1.mail, number=3)    #Kim
+    j9.title = j8.title
+    j9.description = j8.description
+    j9.date = "2014-12-29"
+    j9.start_time = j8.start_time #8h30
+    j9.frequency = 0    #Once
+    j9.km = j8.km
+    j9.time = j9.time   #2h
+    j9.category = j8.category #Other
+    j9.other_category = j8.other_category
+    j9.type = False #False = Offer
+    j9.address = j8.address
+    j9.branch = j8.branch
+    j9.regular_job = j8
+    j9.save()
+    j9.member_set.add(m1)
+    j9.member_set.add(m4)
+    j9.save()
     
     
     

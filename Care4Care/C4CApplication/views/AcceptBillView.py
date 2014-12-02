@@ -1,8 +1,6 @@
 from django.views.generic import DetailView
 from C4CApplication.models.member import Member
 from C4CApplication.models.job import Job
-from django.core.exceptions import PermissionDenied
-
 from C4CApplication.views.utils import create_user
 from django.core.exceptions import PermissionDenied
 
@@ -27,4 +25,5 @@ class AcceptBillView(DetailView):
 
         context = super(AcceptBillView, self).get_context_data()
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context

@@ -2,6 +2,7 @@ from django.views.generic.edit import FormView
 from C4CApplication.views.FeedsMixingView import FeedsMixingView
 from C4CApplication.views.forms.LoginForm import LoginForm
 from C4CApplication.models.member import Member
+from C4CApplication.models.branch import Branch
 
 from C4CApplication import models
 from django.core.urlresolvers import reverse_lazy
@@ -26,6 +27,12 @@ class HomePageView(FeedsMixingView, FormView):
             context['member'] = member
         else:
             context['connected'] = False
+            brs = Branch.objects.all()
+            branches = []
+            for i in range(2):
+                if brs[i] :
+                    branches.append(brs[i])
+            context['branches']=branches
         context['loginForm'] = LoginForm(auto_id=False)
         return context
 
