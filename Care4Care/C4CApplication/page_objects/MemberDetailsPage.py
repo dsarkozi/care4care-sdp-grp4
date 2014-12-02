@@ -9,7 +9,6 @@ import time
 class MemberDetailsPage(FixedPage): 
     def __init__(self, driver):
         super().__init__(driver)
-        print("Bonsoir")
         try: 
             self.favorite_button = self.driver.find_element_by_xpath('//input[@value="AddRelation"]')
         except NoSuchElementException: 
