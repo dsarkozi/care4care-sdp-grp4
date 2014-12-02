@@ -11,11 +11,9 @@ class BranchTest(MySeleniumTests):
         
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        
         
         self.selenium.get('%s%s' % (self.live_server_url, '/branchlist'))
         
