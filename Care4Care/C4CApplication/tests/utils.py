@@ -3,7 +3,10 @@ from pprintpp import pprint as pp
 
 def printy(*args):
     for arg in args:
-        pp(arg.__dict__)
+        if hasattr(arg, '__dict__'):
+            pp(arg.__dict__)
+        else:
+            pp(arg)
 
 def printy_set(*args):
     for arg in args:
