@@ -1,6 +1,7 @@
 from django.views.generic.edit import FormView
 from C4CApplication.views.FeedsMixingView import FeedsMixingView
 from C4CApplication.views.forms.LoginForm import LoginForm
+from C4CApplication.models.member import Member
 
 from C4CApplication import models
 from django.core.urlresolvers import reverse_lazy
@@ -19,7 +20,12 @@ class HomePageView(FeedsMixingView, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['connected'] = ('email' in self.request.session)
+        if 'email' in self.request.session:
+            context['connected'] = True
+            member = Member.objects.get(mail=self.request.session['email'])
+            context['member'] = member
+        else :
+            context['connected'] = False
         context['loginForm'] = LoginForm(auto_id=False)
         return context
 
