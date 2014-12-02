@@ -5,19 +5,19 @@
 {% block content %}
     	
 	 <!-- Login/Sign up -->
-	 
-    <form class="login" method="post" >
-    <h1>Care4Care</h1>
-    {% csrf_token %}
-    {{ loginForm.email.errors }}
-    {{ loginForm.email }}
-    {{ loginForm.password.errors }}
-    {{ loginForm.password }}
-    <input type="submit" value="Login" class="login-submit">
-    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
-    <p class="login-help"><a href=# >Forgot password?</a></p>
-    </form>
-
+	{% if not connected %}
+	    <form class="login" method="post" >
+	    <h1>Care4Care</h1>
+	    {% csrf_token %}
+	    {{ loginForm.email.errors }}
+	    {{ loginForm.email }}
+	    {{ loginForm.password.errors }}
+	    {{ loginForm.password }}
+	    <input type="submit" value="Login" class="login-submit">
+	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
+	    <p class="login-help"><a href=# >Forgot password?</a></p>
+	    </form>
+	{% endif %}
 
 	<!-- Buttons -->
 	<center> <h1> Welcome on Care4Care !</h1> 
