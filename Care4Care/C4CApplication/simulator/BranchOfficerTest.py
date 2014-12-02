@@ -12,14 +12,11 @@ class BranchOfficerTest(MySeleniumTests):
         
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('kim.mens@gmail.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         
         self.selenium.get('%s%s' % (self.live_server_url, '/branchdetails/LLN/'))
-        time.sleep(5)
+        time.sleep(1)
         
         page = MemberListPage(self.selenium)
         time.sleep(1)
@@ -35,11 +32,8 @@ class BranchOfficerTest(MySeleniumTests):
         
         # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('kim.mens@gmail.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         
         self.selenium.get('%s%s' % (self.live_server_url, '/memberdetails/olivier.mauvaventure%40gmail.com'))
         time.sleep(1)
