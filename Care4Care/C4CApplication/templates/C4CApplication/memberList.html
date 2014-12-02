@@ -9,7 +9,7 @@
      <center> <h1> Branch Details </h1>
         
     
-         <table class="tab1" style="top:5em; left:26em;" >
+        <table class="tab1" style="top:5em; left:26em;" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">{{ branch.name }}</th>
 	  </tr>
@@ -29,15 +29,10 @@
 	  </tr>
 	   <tr>
 		<td class="tab1-4">Branch officer's email : </td>
-		<td class="tab1-3">{{ branch.branch_officer }}</td>
-	  </tr>
-	</h1>
-	
-	 <tr>
-		<td class="tab1-4">Branch officer's email : </td>
-		<td class="tab1-3">{{ branch.branch_officer }}</td>
+		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ branch.branch_officer }}  </a></td>
 	  </tr>
 	
+	<table class="tab1" style="top:23em; left:26em;" >
 	<tr>
 		<th class=".tab1-3" colspan="6">List of members</th>
 	  </tr>
@@ -52,7 +47,17 @@
                <td class ="tab1-3" > 
                
              <a href="{% url 'memberdetails' member.mail %}">{{ member.first_name }} {{ member.last_name }} </a>
-                    {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+                    
+   
+                
+               </td>
+              
+               <td class ="tab1-3" > 
+               	 <a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ member.mail }}  </a>
+              	 </td>
+              	 
+               {% if current_member.tag == 16 and branch.branch_officer == current_member.mail or current_member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+               		<td class ="tab1-4" > 
                         {% if member.tag < 16 %}
 	                        <a href="{% url 'branchlistredirect' branch.name member.mail 0 %}"
 	                        	onclick="return window.confirm('Are you sure you want to remove {{member.first_name}} {{member.last_name}} from {{ branch.name }} branch ?')"
@@ -78,14 +83,8 @@
 		                        	>No more volunteer</a>
 	                        {% endif %}
                         {% endif %}
-                    {% endif %}
-   
-                
-               </td>
-              
-               <td class ="tab1-3" > 
-              	 {{ member.mail }} 
-              	 </td>
+               		</td>
+               {% endif %}
               	 </tr>		
             {% endfor %}
         </ul>
