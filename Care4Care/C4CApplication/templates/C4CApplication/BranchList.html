@@ -11,7 +11,7 @@
         <ul>
             {% for checkbox in branch_list_form.branch_list %}
                 <li>
-                    {{ checkbox.tag }} <a href="{% url 'memberlist' checkbox.choice_label %}">{{ checkbox.choice_label }}</a>
+                    {{ checkbox.tag }} <a href="{% url 'branchdetails' checkbox.choice_label %}">{{ checkbox.choice_label }}</a>
                 </li>
             {% endfor %}
         </ul>
