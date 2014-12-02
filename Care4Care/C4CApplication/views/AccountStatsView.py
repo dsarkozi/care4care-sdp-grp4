@@ -18,12 +18,15 @@ class AccountStatsView(TemplateView):
 
         # Create the object representing the user
         self.user = create_user(self.request.session['email'])
-        self.jobset = Job.objects.filter(mail=self.request.session['email'])     #TODO Change this with db_member.job
+#         self.jobset = Job.objects.filter(mail=self.request.session['email'])     #TODO Change this with db_member.job
+        self.jobset = self.user.db_member.job.all()
+        
         return super(AccountStatsView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(AccountStatsView, self).get_context_data(**kwargs)
         # General info
+        context['member'] = self.user.db_member
         context['jobAmount'] = self.jobset.count()
         context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(self.jobset.aggregate(Avg('time'))['time__avg']))
         context['jobTotalDistance'] = self.jobset.aggregate(Sum('km'))['km__sum']
