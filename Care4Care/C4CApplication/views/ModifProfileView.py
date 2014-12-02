@@ -30,6 +30,7 @@ class ModifProfileView(FormView):
     def get_context_data(self, **kwargs):
         context = super(ModifProfileView, self).get_context_data(**kwargs)
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context
     
     def form_valid(self, form):       

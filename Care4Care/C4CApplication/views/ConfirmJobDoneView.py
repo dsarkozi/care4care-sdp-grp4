@@ -37,6 +37,7 @@ class ConfirmJobDoneView(JobDetailsView):
         # Creates the form and change the context
         confirm_job_done_form = ConfirmJobDoneForm(auto_id=False)
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
 
         context['confirm_job_done_form'] = confirm_job_done_form
         return context

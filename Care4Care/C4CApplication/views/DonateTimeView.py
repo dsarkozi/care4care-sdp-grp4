@@ -21,4 +21,5 @@ class DonateTimeView(FormView):
         context = super(DonateTimeView, self).get_context_data(**kwargs)
         context['donateTime'] = DonateTimeForm(auto_id=False)
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context

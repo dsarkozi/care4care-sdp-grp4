@@ -24,6 +24,7 @@ class CreateJobView(FormView):
         context = super(CreateJobView, self).get_context_data(**kwargs)
         context['createJob'] = CreateJobForm(user=self.user.db_member, auto_id=False)
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context
 
     # def form_invalid(self, form):

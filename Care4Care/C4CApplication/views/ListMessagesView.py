@@ -32,6 +32,7 @@ class ListMessagesView(ListView):
         context = ListView.get_context_data(self, **kwargs)
         context['received'] = self.received
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context
     
     def get(self, request, *args, **kwargs):

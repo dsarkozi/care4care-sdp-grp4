@@ -29,4 +29,5 @@ class BranchDetailView(DetailView):
         self.member_list = self.user.get_visible_members(context['branch'])
         context['member_list'] = self.member_list
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context

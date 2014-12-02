@@ -17,6 +17,7 @@ class MyCare4CareView(TemplateView):
         context = super(MyCare4CareView, self).get_context_data(**kwargs)
         member = self.user.db_member
         context['member'] = member
+        context['connected'] = 'email' in self.request.session
         context['memberTag'] = member.TAG_REVERSE.get(member.tag)
         context['memberActivity'] = 'Active' if member.status else 'Inactive'
         return context
