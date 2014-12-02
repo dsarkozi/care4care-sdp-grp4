@@ -46,7 +46,7 @@ def popule_db():
     m1.birthday = "1967-10-03"
     m1.tag = Member.TAG['branch_officer']
     m1.mobile = "0477985632"
-    m1.address = "Rue du Software, 3, Development, 2255"
+    m1.address = "Rue du Software, 3, 2255, Development"
     m1.time_credit = 59
     m1.visibility = Member.MEMBER_VISIBILITY['anyone']
     m1.save()
@@ -58,7 +58,7 @@ def popule_db():
     m2.birthday = "1956-08-23"
     m2.tag = Member.TAG['branch_officer']
     m2.mobile = "0478745963"
-    m2.address = "Rue de l'intelligence, 7, Artificial, 2261"
+    m2.address = "Rue de l'intelligence, 7, 2261, Artificial"
     m2.time_credit = 170
     m2.visibility = Member.MEMBER_VISIBILITY['anyone']
     m2.save()
@@ -70,7 +70,7 @@ def popule_db():
     m3.birthday = "1970-05-25"
     m3.tag = Member.TAG['member']
     m3.mobile = "0476526987"
-    m3.address = "Rue du Computer, 27, Network, 2141"
+    m3.address = "Rue du Computer, 27, 2141, Network"
     m3.time_credit = 18
     m3.save()
     
@@ -83,7 +83,7 @@ def popule_db():
     m4.birthday = "1993-03-20"
     m4.tag = Member.TAG['member']
     m4.mobile = "0472695784"
-    m4.address = "Rue de l'Eglise, 40, Rixensart, 1330"
+    m4.address = "Rue de l'Eglise, 40, 1330, Rixensart"
     m4.time_credit = 9999
     m4.save()
     
@@ -102,7 +102,7 @@ def popule_db():
     m5.birthday = "1993-01-31"
     m5.tag = Member.TAG['bp_admin']
     m5.mobile = "0487793533"
-    m5.address = "Rue du Leader, 3, LeaderVille, 2255"
+    m5.address = "Rue du Leader, 3, 2255, LeaderVille"
     m5.time_credit = 10000000000
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']
     m5.save()
