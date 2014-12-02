@@ -2,21 +2,23 @@
 
 {% load staticfiles %}
 		
+{% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
+		
 {% block menu %}
-<center>
+<section style="text-align: center;">
 	<form class="login" method="post">
     <h1> </h1>
     {% csrf_token %}
     {{ favIgnForm.email.errors }}
     {{ favIgnForm.email }} 
     <!-- <input type="email" name="email" class="login-input" placeholder="Email Address" autofocus> -->
-    <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;margin-top:2em;" >
+    <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;" >
    </form>
 	
 
      
 
-	<table class="tab1" style="margin-top:50px; top:15em; left:17em" >
+	<table class="tab1" >
 	  <tr>
 		<th class=".tab1-3" colspan="6" >Favorite members</th>
 	  </tr>
@@ -42,6 +44,6 @@
 	{% endfor %}
 	
 	</table>
-</center>
+</section>
 {% endblock %}
 	

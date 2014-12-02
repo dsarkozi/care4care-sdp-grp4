@@ -8,7 +8,7 @@ from C4CApplication.views.utils import create_user
 
 
 class AccountStatsView(TemplateView):
-    template_name = "C4CApplication/accountAndStats.html"
+    template_name = "C4CApplication/AccountAndStats.html"
     user = None
     jobset = None
 
@@ -25,6 +25,7 @@ class AccountStatsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AccountStatsView, self).get_context_data(**kwargs)
         # General info
+        context['member'] = self.user.db_member
         context['jobAmount'] = self.jobset.count()
         context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(self.jobset.aggregate(Avg('time'))['time__avg']))
         context['jobTotalDistance'] = self.jobset.aggregate(Sum('km'))['km__sum']

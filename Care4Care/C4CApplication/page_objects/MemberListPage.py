@@ -6,3 +6,6 @@ import time
 
 
 class MemberListPage(FixedPage):
+    
+    def __init__(self, driver):
+        super().__init__(driver)

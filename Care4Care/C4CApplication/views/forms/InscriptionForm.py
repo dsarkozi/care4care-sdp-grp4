@@ -3,44 +3,32 @@ from C4CApplication.models import *
 from django import forms
 
 class InscriptionForm(forms.Form):
-#infos perso
-    #widget=forms.TextInput(attrs={'placeholder': 'Email' , 'size' : 44})
-    first_name = forms.CharField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'first name' , 'size' : 21}))
-    last_name = forms.CharField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'last name' , 'size' : 21}))
-    email = forms.EmailField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'email' , 'size' : 44}))
-    password = forms.CharField( max_length=100  , widget=forms.PasswordInput(attrs={'placeholder': 'password' , 'size' : 44}))
-    birthdate = forms.CharField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd' , 'size' : 44}))
+    #infos perso
+    first_name = forms.CharField( max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'first name',   'size' : 21}))
+    last_name  = forms.CharField( max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'last name',    'size' : 21}))
+    email      = forms.EmailField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'email',        'size' : 44}))
+    birthdate  = forms.CharField( max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd',   'size' : 44}))
+    password   = forms.CharField( max_length=100 , widget=forms.PasswordInput(attrs={'placeholder': 'password', 'size' : 44}))
     #adresse
-    number = forms.CharField( max_length=100  , widget=forms.NumberInput(attrs={'placeholder': 'number' , 'size' : 10}))
-    street = forms.CharField( max_length=100,   widget=forms.TextInput(attrs={'placeholder': 'street' , 'size' : 32}))
-    zip = forms.CharField( max_length=100  , widget=forms.NumberInput(attrs={'placeholder': 'zip' , 'size' : 10}))
-    town = forms.CharField( max_length=100  , widget=forms.TextInput(attrs={'placeholder': 'town',' size' : 32}))
-#type de membre
+    number = forms.CharField( max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'number', 'size' : 10}))
+    street = forms.CharField( max_length=100, widget=forms.TextInput(attrs={'placeholder': 'street',   'size' : 32}))
+    zip    = forms.CharField( max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'zip',    'size' : 10}))
+    town   = forms.CharField( max_length=100, widget=forms.TextInput(attrs={'placeholder': 'town',     'size' : 32}))
+    #type de membre
     CHOICES = (('1', 'non membre (valeur par defaut)'), ('2', 'membre'),('4','verified'),('8','volunteer'),('16','branch officer'),('32','bp administrator'))
-    
-        
     
     BRANCH_CHOICES = ()
     branch = Branch.objects.all()
     for b in branch:
         BRANCH_CHOICES = BRANCH_CHOICES +((b.name,b.name),)
     
-    #(('aucune', 'aucune'), ('bruxelles', 'bruxelles'))
-    
-    #member_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
-    member_type = forms.MultipleChoiceField(widget=forms.RadioSelect(), choices=CHOICES)
+    member_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
     branch = forms.CharField(widget=forms.Select(choices=BRANCH_CHOICES))
-    #birth_date = forms.DateField(required=False)
-
     
-#infos facultatives
-    fixe_phone = forms.CharField( max_length=100 , required=False , widget=forms.NumberInput(attrs={'placeholder': 'fixe phone',' size' : 10  }))
-    mobile_phone = forms.CharField( max_length=100 , required=False , widget=forms.NumberInput(attrs={'placeholder': 'mobile phone',' size' : 10}))
+    #infos facultatives
+    fixe_phone   = forms.CharField( max_length=100 , required=False , widget=forms.NumberInput(attrs={'placeholder': 'fixe phone',   'size' : 10  }))
+    mobile_phone = forms.CharField( max_length=100 , required=False , widget=forms.NumberInput(attrs={'placeholder': 'mobile phone', 'size' : 10}))
 
-
-
-    #renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoyé.", required=False)
-    
     def clean(self):
         isin = False
         members = Member.objects.all()
