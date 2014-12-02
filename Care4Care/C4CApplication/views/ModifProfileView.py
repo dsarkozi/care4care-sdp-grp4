@@ -25,7 +25,7 @@ class ModifProfileView(FormView):
         return super(ModifProfileView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
-        context = super(ModifProfile, self).get_context_data(**kwargs)
+        context = super(ModifProfileView, self).get_context_data(**kwargs)
         context['member'] = self.user.db_member
         return context
     
