@@ -127,7 +127,9 @@
 
 		
 		.login {
-		  margin: 50px auto;
+		  margin-right:1em;
+		  margin-top: 2em;
+		  /* margin: 50px auto; */
 		  padding: 18px 20px;
 		  width: 150px;
 		  background: #3f65b7;
