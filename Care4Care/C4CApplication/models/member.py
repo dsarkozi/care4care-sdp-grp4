@@ -1,4 +1,6 @@
 from time import strftime, gmtime
+import os
+from django.core.files import File
 
 
 from django.db import models
