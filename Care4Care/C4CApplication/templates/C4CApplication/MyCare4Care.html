@@ -16,15 +16,23 @@
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
     <td><a href="{% url 'favorites' %}" class="btn">Favorites</a></td>
     <td><a href="{% url 'accountstats' %}" class="btn">Account & Stats</a></td>
-    {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
-        <td><a href="{% url 'createbranch' %}" class="btn">Create a new branch</a></td>
-        <td><a href="{% url 'deletememberbpa' %}" class="btn">Delete a member</a></td>
-        <td><a href="{% url 'transferrights' %}" class="btn">Transfer rights</a></td>
+      {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
+        
+      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;">New branch</a></td>
+  <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;">Delete a member</a> </td> 
+     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;">Transfer rights</a></td>
+ 
     {% endif %}
+    
         <td><a href="{% url 'logOut' %}" class="btn" value="Logout">Logout</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
+  
 </tr>
 </table>
+
+
+
+
 </center>
 
 <!-- Fixed member data -->
@@ -37,7 +45,7 @@
 <!-- Buttons -->
 <div style="margin-bottom:3em;">
 <center>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-<table style="margin-top:40px; margin-left:0px; margin-bottom:20px; align:center;">
+<table style="margin-top:40px; margin-left:0px; margin-bottom:50px; align:center;">
 <tr>
     <td ><a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a></td>
     <td><a href={% url 'createJob' 'offer' %} class="myButton">I want to help</a></td>
