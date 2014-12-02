@@ -28,8 +28,8 @@ class JobDetailsView(DetailView, FormView):
         return context
 
     def form_valid(self, form):
-
         #TODO tratement de la date
+        pass
 
     def get_object(self):
         
