@@ -42,14 +42,35 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.create_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
-                                  'Vie', 3, 6458, 'Multilife', 'member', 'LLN')
+                                  'Vie', 3, 6458, 'Multilife', 'Nivelles')
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_successful('mister_nobody@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
     
     def test_create_non_member_account(self):
-        pass
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.click_on_sign_up()
+        time.sleep(1)
+        
+        page = page.create_non_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
+                                  'Vie', 3, 6458, 'Multilife', 'Nivelles')
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_successful('mister_nobody@gmail.com', 'azertyuiop')
+        time.sleep(1)
+        
+        self.assertEqual(0, 0)
+        return True
     
     def test_create_verified_member(self): #TODO keep this test?
         pass
