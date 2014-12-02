@@ -2,8 +2,8 @@
   		 /* Applied to all the html body... */
   		 body {
   		  top: 5em;
-  		  padding-right: 15em;
-  		  padding-left: 15em;
+  		  padding-right: 13em;
+  		  padding-left: 13em;
   		  font-family: Georgia, "Times New Roman",
           Times, serif;
   		  color: navy;
@@ -226,7 +226,7 @@
 		/* ---- Our customized table (class) ---- */
 		
 		    /* Table "container" */
-		.tab1  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe; position:absolute; top:28em } 	
+		.tab1  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;} 	
 
 			/* Cells */
 		.tab1 td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;
