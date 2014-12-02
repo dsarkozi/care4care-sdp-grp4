@@ -45,11 +45,13 @@
 	</center>
 
 
+
     <!-- Feed tables -->
   <!-- Job offers table -->
-		
-
-	<table class="tab1" style= "float:left;margin-top:2em;"  >
+  <center>
+	<table style="margin-top:3em;">
+<td valign="top">
+	<table class="tab1"  >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
 	  </tr>
@@ -73,9 +75,10 @@
 	{% endfor %}
 	
 </table>
-       
-    
-	<table class="tab1"  style= "float:right;margin-top:2em;">
+        </td>
+        
+  <td valign="top">
+	<table class="tab1" style="margin-left:1em;" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of demand</th>
 	  </tr>
@@ -99,6 +102,8 @@
 	   {% endfor %}
 	   
 	</table>
-
+	</td>
+	</table>	
+</center>
 	
 {% endblock %}
