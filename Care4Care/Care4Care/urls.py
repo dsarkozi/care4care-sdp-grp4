@@ -62,7 +62,7 @@ urlpatterns = patterns('',
     url(r'^myc4c/accountstats/$', AccountStatsView.as_view(), name='accountstats'),
 
     url(r'^branchlist$', BranchListView.as_view(), name='branchlist'),
-    url(r'^memberlist/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='memberlist'),
+    url(r'^branchdetails/(?P<pk>\w+)/$', BranchDetailView.as_view(), name='branchdetails'),
 
     url(r'^logout$', LogoutView.as_view()),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view(), name='jobdetails'),
