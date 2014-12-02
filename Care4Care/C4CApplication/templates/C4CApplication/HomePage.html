@@ -17,6 +17,12 @@
 	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
 	    <p class="login-help"><a href=# >Forgot password?</a></p>
 	    </form>
+	{% else %}
+		<form class="login" method="post" >
+	    <h1>Care4Care</h1>
+	    Hello {{ member.first_name }} {{ member.last_name }} ! <br/> <br/>
+	    <a href="{% url 'logOut' %}" class="btn" value="Logout">Logout</a>
+	    </form>
 	{% endif %}
 
 	<!-- Buttons -->

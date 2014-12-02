@@ -8,10 +8,25 @@ exec(open('./C4CApplication/db_script/populateDB.py').read())
 '''
 
 def popule_db():
+    #Suppression de tous les membres
+    list_member = Member.objects.all()
+    for member in list_member:
+        member.delete()
+        
+    #Suppression des branchs
+    list_branch = Branch.objects.all()
+    for branch in list_branch:
+        branch.delete()
+    
     #Suppression des messages pour eviter les conflits
     list_message = Message.objects.all()
     for message in list_message :
             message.delete()
+            
+    #Suppression des mailbox pour eviter les doublons
+    list_mailbox = Mailbox.objects.all()
+    for mailbox in list_mailbox :
+        mailbox.delete()
     
     #Suppression des relations pour eviter les doublons
     list_relation = Relationship.objects.all()
@@ -39,7 +54,7 @@ def popule_db():
     m2 = Member(mail="yves.delaville@gmail.com")
     m2.password = "azertyuiop"
     m2.first_name = "Yves"
-    m2.last_name = "Deville"
+    m2.last_name = "Delaville"
     m2.birthday = "1956-08-23"
     m2.tag = Member.TAG['branch_officer']
     m2.mobile = "0478745963"
@@ -51,7 +66,7 @@ def popule_db():
     m3 = Member(mail="olivier.mauvaventure@gmail.com")
     m3.password = "azertyuiop"
     m3.first_name = "Olivier"
-    m3.last_name = "Bonaventure"
+    m3.last_name = "Mauvaventure"
     m3.picture = "images/images_profile/olivierbonaventuregmailcom.jpg"
     m3.birthday = "1970-05-25"
     m3.tag = Member.TAG['member']
@@ -139,11 +154,6 @@ def popule_db():
     e2.type = 2
     e2.date = "2014-11-03"
     e2.save()
-    
-    #Suppression des mailbox pour eviter les doublons
-    list_mailbox = Mailbox.objects.all()
-    for mailbox in list_mailbox :
-        mailbox.delete()
     
     #Creation des mailboxs
     a1 = Mailbox()  # message e1 pour Kim Mens

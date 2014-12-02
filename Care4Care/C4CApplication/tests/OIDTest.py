@@ -2,11 +2,12 @@ from base64 import b64decode, standard_b64decode, urlsafe_b64decode
 from io import StringIO
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 import openid2rp
 from Care4Care.settings import STATICFILES_DIRS
 
-
+@never_cache
 def oidtest(request):
     ax = (("http://axschema.org/eid/card-validity/end",
            "http://axschema.org/person/gender",
@@ -61,6 +62,7 @@ def oidtest(request):
         # )
 
 @csrf_exempt
+@never_cache
 def oidtest2(request):
     # signed, claimedID = openid2rp.verify(request.POST, None, None, True)
     # printy(get_ax(request.POST))

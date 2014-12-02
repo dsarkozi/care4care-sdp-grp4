@@ -1,6 +1,7 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.BranchListPage import BranchListPage
+from C4CApplication.page_objects.MemberListPage import MemberListPage
 
 
 import time
@@ -83,15 +84,18 @@ class UserAccountTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('olivier.mauvaventure@gmail.com', 'azertyuiop')
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         page.click_on_care4care_branches()
         page = BranchListPage(self.selenium)
         time.sleep(1)
         
-        page.click_on_care4care_branches()
-        page = BranchListPage(self.selenium)
+        page.click_on_branch_details(0)
+        page = MemberListPage(self.selenium)
+        time.sleep(1)
+        
+        page.click_on_promote_volunteer(0)
         time.sleep(1)
         
         self.assertEqual(0, 0)
