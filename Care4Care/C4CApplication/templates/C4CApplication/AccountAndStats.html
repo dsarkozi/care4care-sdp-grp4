@@ -2,82 +2,100 @@
 
 {% load staticfiles %}
 	
-{% block link %}<link rel="stylesheet" href="../../static/css/account_and_stats.css">{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="../../static/css/account_and_stats.css">
+
+{% endblock %}
+
 	
 {% block menu%}
 	
 <center>
-<div style="border-width:2px;border-color:navy;border-style:solid;background-color:#96C9E7;margin-top:3em;">
+
 
 <section>
 
     <article class = "first">
-        <h3>General informations :</h3>
-        <ul>
-            <li class="info">Number of job completed : {{ jobAmount }}</li>
-            <li class="info">Average time per job : {{ jobAverageTime }}</li>
-            <li class="info">I drove : {{ jobTotalDistance }} kilometers</li>
-            <li class="info">Type of job done :
-                <ul>
-                    {% for catKey, catValue in jobCategories.items %}
-                        <li>{{ catValue }} % {{ catKey }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
+    <table class=tab1 >
+    
+		<th class=".tab1-3" colspan="6" >General informations</th>
+	
+        <tr>
+       <td class="tab1-4" colspan="2">   Number of job completed </td>
+       <td> {{ jobAmount }}</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">    
+       Average time per job </td>
+       <td> {{ jobAverageTime }}</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">    I drove </td>
+       <td> {{ jobTotalDistance }} kilometers</td>
+       </tr>
+       
+        <tr>
+       <td class="tab1-4" colspan="2">     Type of job done </td>
+       <td>  {% for catKey, catValue in jobCategories.items %}
+                        {{ catValue }} % {{ catKey }}
+                    {% endfor %}</td>
+       </tr>
+       
+
+               
     </article>
     
-    <article>
-		<h3>Your accomplished jobs :</h3>
-	  {% comment %} TODO : mettre variables django et boucle for pour remplir le tableau {% endcomment %}
-		<table class = "First table">
+  
+
 			<tr>
-				<th> </th>
-				<th>Help received</th>
-				<th>Help done</th>
+				<th   > </th>
+				<th  >Help received</th>
+				<th  >Help done</th>
 			</tr>
 			<tr>
-				<th>List of completed jobs</th>
-				<td>
-					<table class = "Second table" cellpadding="5" cellspacing="30">
+				<th >List of completed jobs</th>
+				<td  valign="top">
+					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<th>Date</th>
-							<th>Job Cat</th>
-							<th>Time Spent</th>
-							<th>For Whom</th>
-							<th>#KM</th>
-							<th>Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
 						</tr>
                         {% for job in helpedDone %}
                             <tr>
-                                <td>{{ job.date }}</td>
-                                <td>{{ job.category }}</td>
-                                <td>{{ job.time }}</td>
-                                <td>??</td>
-                                <td>{{ job.km }}</td>
-                                <td>{{ job.comment }}</td>
+                                 <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
 				</td>
-				<td>
-					<table class = "Second table" cellpadding="5" cellspacing="30">
+				<td  valign="top">
+					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<th>Date</th>
-							<th>Job Cat</th>
-							<th>Time Spent</th>
-							<th>For Whom</th>
-							<th>#KM</th>
-							<th>Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
 						</tr>
 						{% for job in helperDone %}
                             <tr>
-                                <td>{{ job.date }}</td>
-                                <td>{{ job.category }}</td>
-                                <td>{{ job.time }}</td>
-                                <td>??</td>
-                                <td>{{ job.km }}</td>
-                                <td>{{ job.comment }}</td>
+                                 <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
@@ -88,44 +106,44 @@
 				<td>
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<th>Date</th>
-							<th>Job Cat</th>
-							<th>Time Spent</th>
-							<th>For Whom</th>
-							<th>#KM</th>
-							<th>Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
 						</tr>
 						{% for job in helpedPending %}
                             <tr>
-                                <td>{{ job.date }}</td>
-                                <td>{{ job.category }}</td>
-                                <td>{{ job.time }}</td>
-                                <td>??</td>
-                                <td>{{ job.km }}</td>
-                                <td>{{ job.comment }}</td>
+                                <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
 			
 				</td>
-				<td>
+				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<th>Date</th>
-							<th>Job Cat</th>
-							<th>Time Spent</th>
-							<th>For Whom</th>
-							<th>#KM</th>
-							<th>Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
 						</tr>
 						{% for job in helperPending %}
                             <tr>
-                                <td>{{ job.date }}</td>
-                                <td>{{ job.category }}</td>
-                                <td>{{ job.time }}</td>
-                                <td>??</td>
-                                <td>{{ job.km }}</td>
-                                <td>{{ job.comment }}</td>
+                                  <td style = "border-width:1px;">{{ job.date }}</td>
+                                <td style = "border-width:1px;">{{ job.category }}</td>
+                                <td style = "border-width:1px;">{{ job.time }}</td>
+                             <td style = "border-width:1px;">??</td>
+                               <td style = "border-width:1px;">{{ job.km }}</td>
+                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
