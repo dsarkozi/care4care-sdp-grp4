@@ -20,7 +20,7 @@
 	{% else %}
 		<form class="login" method="post" >
 	    <h1>Care4Care</h1>
-	    Hello {{ member.first_name }} {{ member.last_name }} ! <br/> <br/>
+	    <h2>Hello {{ member.first_name }} {{ member.last_name }} !</h2> <br/> <br/>
 	    <a href="{% url 'logOut' %}" class="btn" value="Logout">Logout</a>
 	    </form>
 	{% endif %}
