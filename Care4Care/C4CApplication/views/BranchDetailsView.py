@@ -28,5 +28,5 @@ class BranchDetailView(DetailView):
         # Get the list of the visible members of a branch
         self.member_list = self.user.get_visible_members(context['branch'])
         context['member_list'] = self.member_list
-        context['current_member'] = self.user.db_member
+        context['member'] = self.user.db_member
         return context
