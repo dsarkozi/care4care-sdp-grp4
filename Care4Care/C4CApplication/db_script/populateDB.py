@@ -335,6 +335,23 @@ def popule_db():
     j8.branch = b1
     j8.save()
     
+    j9 = Job(mail=m1.mail, number=3)    #Kim
+    j9.title = j8.title
+    j9.description = j8.description
+    j9.date = "2014-12-29"
+    j9.start_time = j8.start_time #8h30
+    j9.frequency = 1    #Once
+    j9.km = j8.km
+    j9.time = j9.time   #2h
+    j9.category = j8.category #Other
+    j9.other_category = j8.other_category
+    j9.type = False #False = Offer
+    j9.address = j8.address
+    j9.branch = j8.branch
+    j9.save()
+    j9.member_set.add(m1)
+    j9.member_set.add(m4)
+    j9.save()
     
     
     
