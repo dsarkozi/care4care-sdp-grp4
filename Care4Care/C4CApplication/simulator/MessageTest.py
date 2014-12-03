@@ -6,7 +6,7 @@ import time
 
 class MessageTest(MySeleniumTests):
 
-    def test_see_message_received(self):
+    """def test_see_message_received(self):
         self.populate_db()
         
         # log in
@@ -47,7 +47,7 @@ class MessageTest(MySeleniumTests):
         time.sleep(1)
         
         self.assertEqual(0, 0)
-        return True
+        return True"""
     
     def test_send_message(self):
         self.populate_db()
@@ -71,6 +71,10 @@ class MessageTest(MySeleniumTests):
         
         page = page.click_on_submit()
         time.sleep(2)
+        
+        # get mails envoyes
+        # prendre le dernier 
+        # regarder si ca correspond au champs mis plus haut
         
         self.assertEqual(0, 0)
         return True
