@@ -356,6 +356,41 @@ def popule_db():
     j9.member_set.add(m4)
     j9.save()
     
+    j10 = Job(mail=m2.mail, number=2)    #Kim
+    j10.title = "Projet Zombies"
+    j10.description = "Bonjour, je donne mon aide pour le projet de Zombies"
+    j10.start_time = 510 #8h30
+    j10.frequency = 2    #Monthly
+    j10.recursive_day = "10, 20, 30"
+    j10.km = 0
+    j10.time = 120   #2h
+    j10.category = 4 #Other
+    j10.other_category = "Aide projet"
+    j10.type = False #False = Offer
+    j10.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Barb01"
+    j10.branch = b1
+    j10.save()
+    j10.member_set.add(m1)
+    j10.save()
+    
+    j11 = Job(mail=m2.mail, number=3)    #Kim
+    j11.title = j10.title
+    j11.description = j10.description
+    j11.date = "2014-12-20"
+    j11.start_time = j10.start_time #8h30
+    j11.frequency = 0    #Once
+    j11.km = j10.km
+    j11.time = j10.time   #2h
+    j11.category = j10.category #Other
+    j11.other_category = j10.other_category
+    j11.type = False #False = Offer
+    j11.address = j10.address
+    j11.branch = j10.branch
+    j11.regular_job = j10
+    j11.save()
+    j11.member_set.add(m1)
+    j11.member_set.add(m4)
+    j11.save()
     
     
 popule_db()

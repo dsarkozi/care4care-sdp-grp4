@@ -51,7 +51,7 @@
 			{% endif %}
 		{% endif %}
 		
-		{% if not job.accepted and job.mail == member.mail %}
+		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
 			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">Delete job</a> </br>
 		{% endif %}
 		</p>
@@ -69,6 +69,16 @@
 		{% endfor %} <br/>      </td>
 		
 	  </tr>
+	  
+	  {% if job.regular_job != None %}
+		  <tr>
+			<td class="tab1-4"> Regular job :    </td>
+			<td class="tab1-3">
+				<a href="{% url 'jobdetails' job.regular_job.id %}" type="submit" value="get_regular" class="get_regular">Go to the regular job</a>
+			</td>
+			
+		  </tr>
+	  {% endif %}
 	  
 	  {% if job.frequency == 0 %}
 		  <tr>
@@ -241,9 +251,48 @@
 	
 	
 
-	</table>
+	</table> </br> </br>
+	
+	<!-- Table for the job(s) of the regular job -->
+	
+	{% if job.frequency != 0 %}
+		<table class="tab1" style="top:27em" >
+			<tr>
+				<th>Date of the job</th>
+				<th>Participants</th>
+				<th>Accepted</th>
+				<th>Done</th>
+				<th>Payed</th>
+				<th>Action</th>
+			</tr>
+			{% for j in job.job_set.all %}
+				<tr>
+					<td><a href="{% url 'jobdetails' j.id %}">{{j.date}}</a></td>
+					<td>
+						<ul>
+							{% for participant in j.member_set.all %}
+								<li><a href="{% url 'memberdetails' participant.mail %}">{{participant.first_name}} {{participant.last_name}}</a></li>
+							{% endfor %}
+						</ul>
+					</td>
+					<td>{{j.accepted}}</td>
+					<td>{{j.done}}</td>
+					<td>{{j.payed}}</td>
+					<td>
+						{% if not j.accepted and member.mail != j.mail %}
+							{% if member in j.member_set.all %}
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">Stop participating</a>
+							{% else %}
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">Participate</a></br>
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table> </br> </br> </br>
+	{% endif %}
 		
-	{% endblock %}
+	 {% endblock %}
 		
 		
 		{% block form_job_done %}

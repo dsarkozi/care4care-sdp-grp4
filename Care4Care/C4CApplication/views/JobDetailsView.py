@@ -31,14 +31,30 @@ class JobDetailsView(DetailView, FormView):
     def get_context_data(self, **kwargs):
         context = {}
         context = super(JobDetailsView, self).get_context_data(**context)
-        context['form'] = JobRegularForm(job=self.job, auto_id=False)
+        if self.job.frequency == 2 :
+            context['form'] = JobRegularForm(job=self.job, nbr_prop=2, auto_id=False)
+        else :
+            context['form'] = JobRegularForm(job=self.job, auto_id=False)
         context['member'] = self.member.db_member
         context['connected'] = 'email' in self.request.session
         return context
 
     def form_valid(self, form):
-        #TODO tratement de la date
+        '''
+        Here, the self.job is so the regular job.
+        '''
         self.success_url += str(self.job.id)
+        
+        date = form.cleaned_data['proposition']
+        creator_of_regular_job = create_user(self.job.mail)
+        new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, date, self.job.type, '', '',\
+                                          self.job.start_time, 0, self.job.km, self.job.time, self.job.category,\
+                                          self.job.other_category, self.job.address, 'anyone', '')
+        if new_job :
+            new_job.visibility = self.job.visibility
+            self.job.job_set.add(new_job)
+            new_job.member_set.add(self.member.db_member)
+        
         return super(JobDetailsView, self).form_valid(form)
 
     def get_object(self):
