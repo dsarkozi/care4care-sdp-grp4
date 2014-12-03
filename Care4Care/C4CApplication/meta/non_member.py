@@ -18,6 +18,16 @@ class NonMember(User):
         for job in jobs_of_member:
             if job.accepted and not job.payed:
                 return False
+
+        for job in jobs_of_member:
+            # He is the creator of the job => we delete the job
+            if not job.accepted and job.mail == self.db_member.mail:
+                job.delete()
+            elif not job.accepted and job.mail != self.db_member.mail:
+                job.member_set.all().remove(self.db_member)  # We remove him from the list of participants
+
+        self.db_member.deleted = True
+        self.db_member.save()
         return True
            
     #TODO Why don't you put this on the specific file system_email ?

@@ -15,8 +15,11 @@ class NewMessageView(FormView):
     model = Message
     template_name = 'C4CApplication/NewMessage.html'
     form_class = NewMessageForm
-    success_url = reverse_lazy('newmessage')
+    #success_url = reverse_lazy('messageList')
     user = None
+    
+    def get_success_url(self):
+        return reverse_lazy('messageList', kwargs={'received': 2})
     
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
