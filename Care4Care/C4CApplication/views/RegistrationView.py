@@ -17,14 +17,15 @@ class RegistrationView(FormView):
 
     def post(self, request, *args, **kwargs):
         ax = RegistrationView.get_ax(request.POST)
-        self.form = RegistrationForm(
-            initial={
-                'first_name' : ax['firstname'].split(maxsplit=1)[0],
-                'last_name' : ax['lastname'],
-                'address' : ax['address'],
-                'birthday' : ax['birth_date']
-            }
-        )
+        if ax:
+            self.form = RegistrationForm(
+                initial={
+                    'first_name' : ax['firstname'].split(maxsplit=1)[0],
+                    'last_name' : ax['lastname'],
+                    'address' : ax['address'],
+                    'birthday' : ax['birth_date']
+                }
+            )
         return super(RegistrationView, self).post(request, *args, **kwargs)
 
     @staticmethod
