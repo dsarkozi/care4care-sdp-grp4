@@ -50,7 +50,7 @@ class ModifProfileView(FormView):
         self.user.db_member.mobile = mobile_phone
         self.user.db_member.telephone = fixed_phone
         
-        self.user.db_member.address = street+ ", " + number + ", " + zip_num +", " +town
+        self.user.db_member.address = street + ", " + number + ", " + zip_num + ", " + town
 
         self.user.db_member.save()
                   
