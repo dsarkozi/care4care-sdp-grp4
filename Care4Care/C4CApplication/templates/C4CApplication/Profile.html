@@ -12,7 +12,7 @@
 background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
     <h1 class = "entete"><span class="nom"> {{member_shown.first_name}} {{member_shown.last_name}}</span></h1> 
     {% comment %} <span class="tag"> {{ member_shown.tag }} </span> {% endcomment %}
-    <article class = "first">
+    <article class = "first" style="margin-left:3em;margin-top:1em;">
     	{% if member_shown.picture %}
        		<img src="{{ member_shown.picture.url }}" alt="Photo de profil" id="photo" />
        	{% else %}
@@ -20,7 +20,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
        	{% endif %}
     </article>
     
-    <article class = "second">
+    <article class = "second" style="margin-right:2em;">
    
     	<h3>Compte :</h3>
         <ul style = "list-style-type: none;"> 

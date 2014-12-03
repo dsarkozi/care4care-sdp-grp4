@@ -1,7 +1,10 @@
 #photo
 {
-	max-width:300px;
+	max-width:350px;
     max-height:250px;
+    border-color:navy;
+    border-width:2px;
+    border-style:solid;
 }
 
 .nom
