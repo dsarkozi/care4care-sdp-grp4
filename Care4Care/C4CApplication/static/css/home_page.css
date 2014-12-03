@@ -7,7 +7,8 @@
   		  font-family: Georgia, "Times New Roman",
           Times, serif;
   		  color: navy;
-  		  background-color: #DFF2FF }
+  		  background-color: #DFF2FF;
+  		  overflow:hidden }
   		  
 		 	
 		  /* Customizes navigation menu */

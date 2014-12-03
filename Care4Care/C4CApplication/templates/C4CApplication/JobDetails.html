@@ -1,20 +1,65 @@
-{% extends "C4CApplication/MyCare4Care.html" %}
-{% load mathfilters %}
-{% load staticfiles %}
+{% extends "C4CApplication/FixedStructure.html" %}
 
-{% block menu %}
+{% load staticfiles %}
+	{% load mathfilters %}
+{% block content %}
+
+
+
+
+<!-- Navbar -->
+<center>
+<table style="top:1em; margin-left:0px;margin-bottom:2em; ">
+<tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
+	<td><a href="{% url 'messageList' 1 %}" class="btn" style="border-bottom: 5px solid navy;">Messages</a></td>
+	<td><a href="{% url 'profile' member.mail %}" class="btn" style="border-bottom: 5px solid navy;">Profile</a></td>
+    <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
+    <td><a href="{% url 'favorites' %}" class="btn" style="border-bottom: 5px solid navy;">Favorites</a></td>
+    <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">Account & Stats</a></td>
+      {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
+        
+      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">New branch</a></td>
+  <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Delete a member</a> </td> 
+     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Transfer rights</a></td>
+ 
+    {% endif %}
+    
+        <td><a href="{% url 'logOut' %}" class="btn" value="Logout" style="border-bottom: 5px solid navy;">Logout</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
+    <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
+  
+</tr>
+</table>
+
+
 
     {% block accept_bill %}
 		{% endblock %}
 
-		
-	<table class="tab1" style="left:32em; top:23em" >
+<center>
+	<table class="tab1" style="top:27em" >
 	  <tr>
-		<th class=".tab1-3" colspan="6">Job details</th>
+		<th class=".tab1-3" colspan="6"> <p>Job details</p>
+		<p>
+		{% if not job.accepted and member.mail != job.mail %}
+			{% if member in job.member_set.all %}
+			 
+		       
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Stop participating</a>
+			{% else %}
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Participate</a></br>
+			{% endif %}
+		{% endif %}
+		
+		{% if not job.accepted and job.mail == member.mail %}
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn" ">Delete job</a> </br>
+		</p>
+		{% endif %}
+		
+		</th>
 	  </tr>
 	  
     <tr>
-		<td class="tab1-3">    
+		<td class="tab1-4">    
 		Createur du job :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
@@ -24,14 +69,14 @@
 		
 	  </tr>
 	 <tr>
-		<td class="tab1-3">     Date of the job : </td>
+		<td class="tab1-4">     Date of the job : </td>
 		
 		<td class="tab1-3">     {{ job.date }}    </td>
 		
 	  </tr>
 	  
 	  	 <tr>
-		<td class="tab1-3">     Mail : </td>
+		<td class="tab1-4">     Mail : </td>
 		
 		<td class="tab1-3">     
 		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ job.mail }}  </a> </td>
@@ -39,7 +84,7 @@
 	  </tr>
 		 
 	 <tr>
-		<td class="tab1-3">  Hour of the start :    </td> 
+		<td class="tab1-4">  Hour of the start :    </td> 
 		
 		
 	
@@ -53,7 +98,7 @@
 	  
 	  
 	  <tr>
-		<td class="tab1-3">    Frequency :    </td>
+		<td class="tab1-4">    Frequency :    </td>
 		<td class="tab1-3">      
 		{% for key, value in job.FREQ %}
 			{% if key == job.frequency %}
@@ -63,14 +108,14 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-3">    
+		<td class="tab1-4">    
 		Km :    </td>
 		<td class="tab1-3">   
 		 {{ job.km }} <br/>      </td>
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-3">  Time :       </td>
+		<td class="tab1-4">  Time :       </td>
 		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
 			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
 		{% else %}
@@ -79,7 +124,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-3">    Category :    </td>
+		<td class="tab1-4">    Category :    </td>
 		<td class="tab1-3">   
 		{% for key, value in job.CAT %}
 			{% if key == job.category %}
@@ -89,7 +134,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-3">  
+		<td class="tab1-4">  
 		Type of job :      </td>
 		<td class="tab1-3">    
 		{% if job.type %}
@@ -100,21 +145,21 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-3">     Address :   </td>
+		<td class="tab1-4">     Address :   </td>
 		<td class="tab1-3">    	 {{ job.address }} <br/>    </td>
 		
 	  </tr>
 	
 	
 	 <tr>
-		<td class="tab1-3">   Job accepted :     </td>
+		<td class="tab1-4">   Job accepted :     </td>
 		<td class="tab1-3">     {{ job.accepted }}    </td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
-		<td class="tab1-3">  Job done :      </td>
+		<td class="tab1-4">  Job done :      </td>
 		<td class="tab1-3">  {{ job.done }}      </td>
 		
 	  </tr>
@@ -122,14 +167,14 @@
 	  
 	  
 	   <tr>
-		<td class="tab1-3">  Job payed :      </td>
+		<td class="tab1-4">  Job payed :      </td>
 		<td class="tab1-3">     {{ job.payed }}    </td>
 		
 	  </tr>
 	
 	 
 	   <tr>
-		<td class="tab1-3">    Visibility of the job :    </td>
+		<td class="tab1-4">    Visibility of the job :    </td>
 		<td class="tab1-3">     
 		{% for key, value in job.JOB_VISIBILITY_TUPLE %}
 			{% if key == job.visibility %}
@@ -141,20 +186,20 @@
 	  
 	   
 	   <tr>
-		<td class="tab1-3">  Branch :       </td>
+		<td class="tab1-4">  Branch :       </td>
 		<td class="tab1-3">      {{ job.branch.name }}   </td>
 		
 	  </tr>
 	  
 	   
 	   <tr>
-		<td class="tab1-3">   Description :     </td>
+		<td class="tab1-4">   Description :     </td>
 		<td class="tab1-3">     {{ job.description }}      </td>
 		
 	  </tr>
 	  
 	   <tr>
-		<td class="tab1-3">  Participants :      </td>
+		<td class="tab1-4">  Participants :      </td>
 		<td class="tab1-3">   <ul>
 		{% for mem in job.member_set.all %}
 			<li>
@@ -175,26 +220,10 @@
 
 	</table>
 		
-	
-		<!-- Participants -->
-		
-
-		
-		{% if not job.accepted and member.mail != job.mail %}
-			{% if member in job.member_set.all %}
-			 
-		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="myButton">Stop participating</a>
-			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="myButton">Participate</a>
-			{% endif %}
-		{% endif %}
-		
-		{% if not job.accepted and job.mail == member.mail %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="myButton">Delete job</a> <br/>
-		{% endif %}
 	{% endblock %}
 		
 		
 		{% block form_job_done %}
 		{% endblock %}
+		</center>		
+		
