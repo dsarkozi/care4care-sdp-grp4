@@ -14,13 +14,15 @@ class OverwriteStorage(FileSystemStorage):
 
 
 class Member(models.Model): 
-    
+    #TODO Flavor it
+    #TODO postalCode ? city ?
+    #TODO Set optional fields with blank=True
     mail = models.EmailField(primary_key=True)
     password = models.CharField(max_length=100)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    picture = models.ImageField(null=True, upload_to="images/images_profile/", storage=OverwriteStorage())
-    birthday = models.DateField(default='2014-01-01')   #'yyyy-mm-dd'
+    picture = models.ImageField(null=True, upload_to="images/images_profile/", storage=OverwriteStorage())  #TODO Where does this upload to ?
+    birthday = models.DateField(default='2014-01-01')   #'yyyy-mm-dd'   #TODO default ? Really ?
     
     TAG_REVERSE = {
         1         : 'non_member',      #000001

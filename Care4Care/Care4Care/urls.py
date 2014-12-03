@@ -8,6 +8,7 @@ from C4CApplication.views.AccountStatsView import AccountStatsView
 
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
+from C4CApplication.views.EIDRedirectView import EIDRedirectView
 
 from C4CApplication.views.HomePageView import HomePageView
 from C4CApplication.views.LogoutView import LogoutView
@@ -30,6 +31,7 @@ from C4CApplication.views.AcceptBillView import AcceptBillView
 from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 
 from C4CApplication.views.FavoritesView import FavoritesView
+from C4CApplication.views.RegistrationView import RegistrationView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 from C4CApplication.views.TransferRightsView import TransferRightsView
@@ -101,7 +103,8 @@ urlpatterns = patterns('',
     url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
     url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
         
-    url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
+    url(r'^registration$', RegistrationView.as_view() , name='registration'),
+    url(r'^registration/eidrequest$', EIDRedirectView.as_view()),
 
     url(r'^tests/openid$', OIDTest.oidtest),
     url(r'^tests/openid2$', OIDTest.oidtest2)
