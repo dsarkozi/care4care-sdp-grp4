@@ -42,7 +42,7 @@ background-color:#ffffff;margin-top:3em;width:40em; height:49em;margin-bottom:2e
        				
        				
        						<h5> Status : 
-        	{% if member_shown.status %}
+        	{% if member.status %}
 	    		
 	    		<font color="green"><tt> ACTIVE </tt></font> </h5>
 	    	
@@ -51,7 +51,7 @@ background-color:#ffffff;margin-top:3em;width:40em; height:49em;margin-bottom:2e
 	    			
 	    		
 	    	{% else %}
-	    		
+
 	    			<font color="red"><tt> INACTIVE </tt></font> </h5>
 	    		
 	    			 <a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px; margin-left:1em;">Switch to active</a>
@@ -67,15 +67,13 @@ background-color:#ffffff;margin-top:3em;width:40em; height:49em;margin-bottom:2e
    			    	<p> {{form.fixed_phone.errors}} {{form.fixed_phone}} </p>
    			    	<h5> Mobile phone number:</h5>
     				<p> {{form.mobile_phone.errors}} {{form.mobile_phone}} </p>
-    				
-    				
     		
     				
     			</div>
     			<p id = "envoyer" style="margin-bottom:2em;"> 
     			</br>
     				<input type = "submit" name = "envoyer" value= "Submit" class = btn >
-    				<a href="{% url 'modifprofileredirect' 1 %}" class=btn ">Delete account</a>
+    				<a href="{% url 'modifprofileredirect' 1 %}" class="btn ">Delete account</a>
     			</p>
     		</div>
 		<form/> 
