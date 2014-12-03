@@ -41,7 +41,7 @@ class HomePageView(FeedsMixingView, FormView):
         password = form.cleaned_data['password']
         
         member = models.Member.objects.filter(mail=email)
-        if len(member) == 0 or :  # if member not found
+        if len(member) == 0 or member[0].deleted:  # if member not found
             return super(HomePageView, self).form_invalid(form)
         member = member[0]  # get the member
         if member.password != password:  # if wrong password

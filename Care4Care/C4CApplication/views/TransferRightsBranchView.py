@@ -44,7 +44,7 @@ class TransferRightsBranchView(FormView):
         email_new_branch_officer = form.cleaned_data['email_new_branch_officer']
         res = self.user.give_branch_control(self.kwargs['branch_name'], email_new_branch_officer)
         if not res:
-            self.form_invalid()
+            self.form_invalid(form)
             print("No such a member !")  # pop up ?
         
         return super(TransferRightsBranchView, self).form_valid(form)
