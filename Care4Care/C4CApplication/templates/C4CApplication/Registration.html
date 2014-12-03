@@ -11,7 +11,7 @@
   </button>
     	<form method="post" >
     		{% csrf_token %}
-{#            {{ form.errors }}#}
+            {{ form.errors }}
    			<fieldset>
                 <legend>Account credentials</legend>
                 {{ form.mail.label }} : {{ form.mail }} <br>

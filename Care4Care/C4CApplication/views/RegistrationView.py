@@ -1,12 +1,13 @@
 from base64 import urlsafe_b64decode
 from django.core.urlresolvers import reverse_lazy
+from django.http.request import QueryDict
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
 from C4CApplication.views.forms.RegistrationForm import RegistrationForm
 from Care4Care.settings import STATICFILES_DIRS
 
 
-class RegistrationView(FormView):
+class RegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = "C4CApplication/Registration.html"
     success_url = reverse_lazy('home')
@@ -17,8 +18,7 @@ class RegistrationView(FormView):
         return super(RegistrationView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        if 'ax' not in request.session.keys():
-            request.session['ax'] = {}
+        request.session['ax'] = {}
         return super(RegistrationView, self).get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
@@ -27,7 +27,7 @@ class RegistrationView(FormView):
         if not self.ax:
             self.ax = RegistrationView.get_ax(self.request.POST)
         if self.ax:
-            data = {
+            ax_data = {
                     'first_name' : self.ax['firstname'].split(maxsplit=1)[0],
                     'last_name' : self.ax['lastname'],
                     'address' : self.ax['address'],
@@ -35,12 +35,12 @@ class RegistrationView(FormView):
                     'birthday_month' : self.ax['birth_month'],
                     'birthday_year' : self.ax['birth_year']
             }
-            kwargs.update(
-                {
-                    'data' : data,
-                    'eid' : True
-                }
-            )
+            data = QueryDict('', mutable=True)
+            data.update(ax_data)
+            if 'data' in kwargs.keys():
+                data.update(kwargs['data'])
+            kwargs['data'] = data
+            kwargs.update({'eid' : True})
         else:
             kwargs.update({'eid' : False})
         self.request.session['ax'] = self.ax
@@ -48,6 +48,7 @@ class RegistrationView(FormView):
 
     def form_valid(self, form):
         self.request.session.pop('ax')
+        form.save()
         return super(RegistrationView, self).form_valid(form)
 
     @staticmethod
