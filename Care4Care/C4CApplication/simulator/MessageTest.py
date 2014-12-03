@@ -1,8 +1,8 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
+from C4CApplication.page_objects.ListMessagesPage import ListMessagesPage
 
 
 import time
-
 
 class MessageTest(MySeleniumTests):
 
@@ -18,7 +18,8 @@ class MessageTest(MySeleniumTests):
         self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
-        # TODO page 
+        page = ListMessagesPage(self.selenium)
+        
         
         self.assertEqual(0, 0)
         return True
