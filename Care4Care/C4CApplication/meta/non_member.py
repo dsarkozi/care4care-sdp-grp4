@@ -14,8 +14,10 @@ class NonMember(User):
         self.db_member = db_member
         
     def delete(self): 
-        self.db_member.deleted = True
-        self.db_member.save()
+        jobs_of_member = self.db_member.job.all()
+        for job in jobs_of_member:
+            if job.accepted and not job.payed:
+                return False
         return True
            
     #TODO Why don't you put this on the specific file system_email ?

@@ -9,6 +9,9 @@ class BranchOfficer(Member):
     """
     This class represents a kind of Users called Branch Officers
     """
+    
+    def delete(self):
+        return False
 
     def is_job_visible(self, job, db_member):
         # The branch officer can see all the jobs
