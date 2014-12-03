@@ -15,8 +15,8 @@ class Job(models.Model):
     
     FREQ = (
         (0, 'Once'),
-        (2, 'Weekly'),
-        (3, 'Monthly'),
+        (1, 'Weekly'),
+        (2, 'Monthly'),
     )
     frequency = models.SmallIntegerField(choices=FREQ, default=0)
     recursive_day = models.CharField(blank=True, max_length=150)
@@ -60,7 +60,7 @@ class Job(models.Model):
     }
     visibility = models.SmallIntegerField(default=JOB_VISIBILITY['anyone'])
     branch = models.ForeignKey('Branch', blank=True, null=True)
-    regular_job = models.ForeignKey('Job', blank=True, null=True, on_delete=models.SET_NULL)
+    regular_job = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)
     
     class Meta:
         app_label = 'C4CApplication'
