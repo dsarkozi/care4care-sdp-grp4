@@ -25,6 +25,7 @@ class RegistrationView(FormView):
                 'birthday' : ax['birth_date']
             }
         )
+        return super(RegistrationView, self).post(request, *args, **kwargs)
 
     @staticmethod
     def get_ax(response):
