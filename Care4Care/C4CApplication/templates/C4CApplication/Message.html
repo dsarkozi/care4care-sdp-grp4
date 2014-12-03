@@ -1,19 +1,25 @@
+{% extends "C4CApplication/MyCare4Care.html" %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1>{{ message.subject }} </h1>
-	<p>from: {{ message.member_sender.mail }},</p>
-    <p>to:
+
+{% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
+
+{% block menu %}
+
+<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;margin-top:3em; width:50em;">
+
+<div style="margin-left:30px; margin-right:30px;">
+    <h1 style="text-align : center;">{{ message.subject }} </h1>
+	<p> <div style="font-weight: bold;"> From : </div> {{ message.member_sender.mail }},</p>
+    <p><div style="font-weight: bold;"> To : </div>
         {% for mailbox in message.mailbox_set.all %}
             {{ mailbox.member_receiver.mail }},
         {% endfor %}
     </p>
-    <p>date: the {{ message.date|date:"DATE_FORMAT" }}</p>
-	<div >message :<br />{{ message.content|linebreaks }}</div>
-</body>
-</html>
+    <p><div style="font-weight: bold;"> Date : </div> The {{ message.date|date:"DATE_FORMAT" }}</p>
+	<div ><div style="font-weight: bold;"> Message : </div>{{ message.content|linebreaks }}</div>
+</div>
+</section>
+
+{% endblock %}
