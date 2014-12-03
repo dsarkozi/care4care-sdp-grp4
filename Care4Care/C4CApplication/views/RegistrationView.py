@@ -1,5 +1,6 @@
 from base64 import urlsafe_b64decode
 from django.core.urlresolvers import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormView
 from C4CApplication.views.forms.RegistrationForm import RegistrationForm
 from Care4Care.settings import STATICFILES_DIRS
@@ -9,24 +10,45 @@ class RegistrationView(FormView):
     form_class = RegistrationForm
     template_name = "C4CApplication/Registration.html"
     success_url = reverse_lazy('home')
-    form = None
+    ax = None
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(RegistrationView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        self.form = RegistrationForm()
+        if 'ax' not in request.session.keys():
+            request.session['ax'] = {}
         return super(RegistrationView, self).get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        ax = RegistrationView.get_ax(request.POST)
-        if ax:
-            self.form = RegistrationForm(
-                initial={
-                    'first_name' : ax['firstname'].split(maxsplit=1)[0],
-                    'last_name' : ax['lastname'],
-                    'address' : ax['address'],
-                    'birthday' : ax['birth_date']
+    def get_form_kwargs(self):
+        kwargs = super(RegistrationView, self).get_form_kwargs()
+        self.ax = self.request.session['ax']
+        if not self.ax:
+            self.ax = RegistrationView.get_ax(self.request.POST)
+        if self.ax:
+            data = {
+                    'first_name' : self.ax['firstname'].split(maxsplit=1)[0],
+                    'last_name' : self.ax['lastname'],
+                    'address' : self.ax['address'],
+                    'birthday_day' : self.ax['birth_day'],
+                    'birthday_month' : self.ax['birth_month'],
+                    'birthday_year' : self.ax['birth_year']
+            }
+            kwargs.update(
+                {
+                    'data' : data,
+                    'eid' : True
                 }
             )
-        return super(RegistrationView, self).post(request, *args, **kwargs)
+        else:
+            kwargs.update({'eid' : False})
+        self.request.session['ax'] = self.ax
+        return kwargs
+
+    def form_valid(self, form):
+        self.request.session.pop('ax')
+        return super(RegistrationView, self).form_valid(form)
 
     @staticmethod
     def get_ax(response):
