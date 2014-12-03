@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import C4CApplication.models.member
 import django.db.models.deletion
+import C4CApplication.models.member
 
 
 class Migration(migrations.Migration):
@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Job',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=100)),
                 ('mail', models.EmailField(max_length=75)),
                 ('number', models.IntegerField()),
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(default='2014-12-03')),
                 ('start_time', models.IntegerField(default=0)),
                 ('frequency', models.SmallIntegerField(default=0, choices=[(0, 'Once'), (1, 'Weekly'), (2, 'Monthly')])),
-                ('recursive_day', models.CharField(max_length=150, blank=True)),
+                ('recursive_day', models.CharField(blank=True, max_length=150)),
                 ('km', models.SmallIntegerField(default=0)),
                 ('time', models.SmallIntegerField(default=0)),
                 ('category', models.SmallIntegerField(choices=[(1, 'Shopping'), (2, 'Visit'), (3, 'Transport'), (4, 'Other')])),
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('payed', models.BooleanField(default=False)),
                 ('visibility', models.SmallIntegerField(default=1)),
                 ('branch', models.ForeignKey(null=True, blank=True, to='C4CApplication.Branch')),
-                ('regular_job', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, null=True, blank=True, to='C4CApplication.Job')),
+                ('regular_job', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True, to='C4CApplication.Job')),
             ],
             options={
             },
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Mailbox',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('status', models.BooleanField(default=False)),
             ],
             options={
@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=20)),
                 ('last_name', models.CharField(max_length=30)),
-                ('picture', models.ImageField(storage=C4CApplication.models.member.OverwriteStorage(), blank=True, null=True, upload_to='images/images_profile/')),
+                ('picture', models.ImageField(null=True, storage=C4CApplication.models.member.OverwriteStorage(), blank=True, upload_to='images/images_profile/')),
                 ('birthday', models.DateField(blank=True)),
                 ('tag', models.SmallIntegerField(default=1)),
                 ('status', models.BooleanField(default=True)),
@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('number', models.IntegerField()),
                 ('subject', models.CharField(max_length=100)),
                 ('content', models.TextField()),
@@ -109,9 +109,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Relationship',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
-                ('member_source', models.ForeignKey(related_name='source', to='C4CApplication.Member')),
-                ('member_target', models.ForeignKey(related_name='target', to='C4CApplication.Member')),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('member_source', models.ForeignKey(to='C4CApplication.Member', related_name='source')),
+                ('member_target', models.ForeignKey(to='C4CApplication.Member', related_name='target')),
             ],
             options={
             },
@@ -124,7 +124,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='member',
             name='relation',
-            field=models.ManyToManyField(to='C4CApplication.Member', through='C4CApplication.Relationship'),
+            field=models.ManyToManyField(through='C4CApplication.Relationship', to='C4CApplication.Member'),
             preserve_default=True,
         ),
         migrations.AddField(
