@@ -14,6 +14,9 @@ class BranchOfficerTest(BranchOfficerTest):
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
+        page = page.BP_click_on_new_branch()
+        time.sleep(1)
+        
         #TODO
         
         self.assertEqual(0, 0)

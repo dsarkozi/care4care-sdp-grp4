@@ -18,7 +18,7 @@
     <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">Account & Stats</a></td>
       {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
         
-      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">New branch</a></td>
+      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;" value="new_branch">New branch</a></td>
   <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Delete a member</a> </td> 
      <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Transfer rights</a></td>
  
