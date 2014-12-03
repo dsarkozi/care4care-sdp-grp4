@@ -45,6 +45,7 @@ class RegistrationForm(ModelForm):
             self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
             self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
             self.fields['address'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['birthday'].widget.attrs.update({'disabled' : 'true'})
 
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect,
