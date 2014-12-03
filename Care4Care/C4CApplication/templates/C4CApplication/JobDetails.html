@@ -44,23 +44,24 @@
 			{% if member in job.member_set.all %}
 			 
 		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Stop participating</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">Stop participating</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Participate</a></br>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
+				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. Check the occurences of the job at the end of this description.'); return false;}">Participate</a></br>
 			{% endif %}
 		{% endif %}
 		
 		{% if not job.accepted and job.mail == member.mail %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn" ">Delete job</a> </br>
-		</p>
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">Delete job</a> </br>
 		{% endif %}
+		</p>
 		
 		</th>
 	  </tr>
 	  
     <tr>
 		<td class="tab1-4">    
-		Createur du job :    </td>
+		Creator of the job :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
 				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
@@ -68,12 +69,15 @@
 		{% endfor %} <br/>      </td>
 		
 	  </tr>
-	 <tr>
-		<td class="tab1-4">     Date of the job : </td>
-		
-		<td class="tab1-3">     {{ job.date }}    </td>
-		
-	  </tr>
+	  
+	  {% if job.frequency == 0 %}
+		  <tr>
+			<td class="tab1-4">     Date of the job : </td>
+			
+			<td class="tab1-3">     {{ job.date }}    </td>
+			
+		  </tr>
+	  {% endif %}
 	  
 	  	 <tr>
 		<td class="tab1-4">     Mail : </td>
@@ -115,7 +119,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-4">  Time :       </td>
+		<td class="tab1-4">  Duration :       </td>
 		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
 			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
 		{% else %}
@@ -129,6 +133,9 @@
 		{% for key, value in job.CAT %}
 			{% if key == job.category %}
 				{{ value }}
+				{% if key == 4 %}
+					: {{ job.other_category }}
+				{% endif %}
 			{% endif %}
 		{% endfor %} <br/>      </td>
 		
@@ -150,7 +157,7 @@
 		
 	  </tr>
 	
-	
+	 {% if job.frequency == 0 %}
 	 <tr>
 		<td class="tab1-4">   Job accepted :     </td>
 		<td class="tab1-3">     {{ job.accepted }}    </td>
@@ -165,12 +172,13 @@
 	  </tr>
 	  
 	  
-	  
 	   <tr>
 		<td class="tab1-4">  Job payed :      </td>
 		<td class="tab1-3">     {{ job.payed }}    </td>
 		
 	  </tr>
+	  
+	  {% endif %}
 	
 	 
 	   <tr>
@@ -187,7 +195,7 @@
 	   
 	   <tr>
 		<td class="tab1-4">  Branch :       </td>
-		<td class="tab1-3">      {{ job.branch.name }}   </td>
+		<td class="tab1-3">      <a href="{% url 'branchdetails' job.branch.name %}" type="submit" value="branch" class="branch">{{ job.branch.name }}</a>   </td>
 		
 	  </tr>
 	  
@@ -197,24 +205,39 @@
 		<td class="tab1-3">     {{ job.description }}      </td>
 		
 	  </tr>
-	  
-	   <tr>
-		<td class="tab1-4">  Participants :      </td>
-		<td class="tab1-3">   <ul>
-		{% for mem in job.member_set.all %}
-			<li>
-				{{mem.first_name}} {{mem.last_name}}
-				{% if not job.accepted and mem.mail != member.mail %}
-					{% if member.mail == job.mail %}
-						<a href="{% url 'participatejob' job.id mem.mail %}" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
+	   
+	   {% if job.frequency == 0 %}
+		   <tr>
+			<td class="tab1-4">  Participants :      </td>
+			<td class="tab1-3">   <ul>
+			{% for mem in job.member_set.all %}
+				<li>
+					<a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a>
+					{% if not job.accepted and mem.mail != member.mail %}
+						{% if member.mail == job.mail %}
+							<a href="{% url 'participatejob' job.id mem.mail %}" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
+						{% endif %}
 					{% endif %}
-				{% endif %}
-			</li>
-		{% endfor %}
-		</ul>
-		      </td>
-		
-	  </tr>
+				</li>
+			{% endfor %}
+			</ul>
+			      </td>
+			
+		  </tr>
+	  {% else %}
+	     <tr>
+			<td class="tab1-4">  Occurence of the job :      </td>
+			<td class="tab1-3">
+				<form method="post">
+   			 	{% csrf_token %}
+   			 			Possibilities : <br/>
+   			 			{{form.proposition}}
+   			 			<input type="submit" value="Participate" />
+   			 	</form>
+			 </td>
+			
+		  </tr>
+	  {% endif %}
 	
 	
 

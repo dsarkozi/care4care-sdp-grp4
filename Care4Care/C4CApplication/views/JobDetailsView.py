@@ -1,36 +1,45 @@
 from django.views.generic import DetailView
+from django.views.generic import FormView
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.comments import get_form
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
-from django.views.generic import FormView
+from C4CApplication.views.forms.JobRegularForm import JobRegularForm
+from gc import get_objects
+
 
 class JobDetailsView(DetailView, FormView):
     
     model = Job
     context_object_name = "job"
     template_name = "C4CApplication/JobDetails.html"
+    success_url = "/jobdetails/"
     member = None
-    #TODO form class
+    form_class = JobRegularForm
+    job = None
     
     def dispatch(self, request, *args, **kwargs):
         # Create the object representing the user
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.member = create_user(self.request.session['email'])
+        self.job = self.get_object()
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
         context = {}
         context = super(JobDetailsView, self).get_context_data(**context)
-        #TODO context['form'] = self.form
+        context['form'] = JobRegularForm(job=self.job, auto_id=False)
         context['member'] = self.member.db_member
         context['connected'] = 'email' in self.request.session
         return context
 
     def form_valid(self, form):
         #TODO tratement de la date
-        pass
+        self.success_url += str(self.job.id)
+        return super(JobDetailsView, self).form_valid(form)
 
     def get_object(self):
         

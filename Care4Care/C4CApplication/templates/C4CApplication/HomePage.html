@@ -31,10 +31,10 @@
 	<span>
 	<a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a>
 	</span>
-	</center>
+	
 	
 	<!-- Galerie photos -->
-	<center>
+
 	<table style="margin-top:50px; margin-left:0px; border: 3px solid navy; "> 
 	<tr>
         <!--  <td ><img src="{% static "images/thumb.jpg"%}" alt="titre" width= 240px height= 200px/></td> -->
@@ -43,13 +43,13 @@
 		<td ><img src="{% static "images/old.jpg"%}" alt="titre" width= 240px height= 200px/></td>
         <!--  <td ><img src="{% static "images/swag.jpg"%}" alt="titre" width= 240px height= 200px/></td> -->
 	</table> 
-	</center>
+
 
 
 
     <!-- Feed tables -->
   <!-- Job offers table -->
-  <center>
+
 	<table style="margin-top:3em;">
 <td valign="top">
 	<table class="tab1"  >
@@ -63,18 +63,16 @@
 		<td class="tab1-4">Location</td>
 	  </tr>
 	  	    
-    {% for job in offer_list %} 
-	    {% if job.frequency == 0 %}
-		    <tr>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
-													{% if key == job.category %}
-														{{ value }}
-														{% endif %}
-		 											   {% endfor %}   </a></td>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
-			 </tr>
-		{% endif %}
+    {% for job in offer_list %}
+	    <tr>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
+												{% if key == job.category %}
+													{{ value }}
+													{% endif %}
+	 											   {% endfor %}   </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
+		 </tr>
 	{% endfor %}
 	
 </table>
@@ -92,19 +90,17 @@
 		<td class="tab1-4">Location</td>
 	  </tr>
 	  
-	  {% for job in demand_list %} 
-		  {% if job.frequency == 0 %}
-			  <tr>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
-													{% for key, value in job.CAT %}
-													{% if key == job.category %}
-														{{ value }}
-														{% endif %}
-		 											   {% endfor %}  </a></td>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
-				<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
-			  </tr>
-		  {% endif %}
+	  {% for job in demand_list %}
+		  <tr>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
+												{% for key, value in job.CAT %}
+												{% if key == job.category %}
+													{{ value }}
+													{% endif %}
+	 											   {% endfor %}  </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
+		  </tr>
 	  {% endfor %}
 	   
 	</table>

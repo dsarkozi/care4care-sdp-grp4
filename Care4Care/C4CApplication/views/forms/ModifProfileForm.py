@@ -13,13 +13,13 @@ class ModifProfileForm(forms.Form):
     street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'street', 'size' : 32}))
     zip     = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'zip',    'size' : 10}))
     town    = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'town',   'size' : 32}))
-    picture = forms.ImageField()
     
     #infos facultatives
+    picture = forms.ImageField(required=False)
     fixed_phone  = forms.CharField(max_length=100, required=False, widget=forms.NumberInput(attrs={'placeholder': 'fixed phone',' size' : 88  }))
     mobile_phone = forms.CharField(max_length=100, required=False, widget=forms.NumberInput(attrs={'placeholder': 'mobile phone',' size' : 10}))
 
-    #renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoy��.", required=False)
+    #renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoy������.", required=False)
     
     def clean(self):
         cleaned_data = super(ModifProfileForm, self).clean()
@@ -36,34 +36,8 @@ class ModifProfileForm(forms.Form):
                 
         
 
-        #address: vérifier qu'il n'y a pas de , dans les champs de l'address
-        return cleaned_data  # N'oublions pas de renvoyer les données si tout est OK
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        #address: v��rifier qu'il n'y a pas de , dans les champs de l'address
+        return cleaned_data  # N'oublions pas de renvoyer les donn��es si tout est OK
     
     
     

@@ -35,15 +35,17 @@ class ModifProfileView(FormView):
         #adresse
         number = form.cleaned_data['number']
         street = form.cleaned_data['street']
-        zip = form.cleaned_data['zip']
+        zip_num = form.cleaned_data['zip']
         town = form.cleaned_data['town']
         #infos faculatives
         fixed_phone = form.cleaned_data['fixed_phone']
         mobile_phone = form.cleaned_data['mobile_phone']
         picture = form.cleaned_data['picture']
-        image_name = "%s" % (self.user.db_member.mail)
-        image_name = image_name.replace('@', '.').replace('.', '')+".jpg"
-        picture.name = image_name
+        if picture is not None:
+            image_name = "%s" % self.user.db_member.mail
+            image_name = image_name.replace('@', '.').replace('.', '')+".jpg"
+            picture.name = image_name
+            self.user.db_member.picture = picture
         
         self.user.db_member.mobile = mobile_phone
         self.user.db_member.telephone = fixed_phone
