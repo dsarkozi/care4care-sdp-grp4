@@ -3,8 +3,7 @@
   		 
   		 /* Applied to all the html body... */
   		 body {
-  		 
-  		  min-width:600px;
+  		  min-width:1200px;
   		  max-width:2000px;
   		  max-width:100%;
   		  top: 5em;
