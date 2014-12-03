@@ -7,7 +7,13 @@
 </head>
 <body>
     <h1>{{ message.subject }} </h1>
-	<p >from: {{ message.member_sender.mail }}, the {{ message.date|date:"DATE_FORMAT" }}</p>
-	<div >{{ message.content|linebreaks }}</div>
+	<p>from: {{ message.member_sender.mail }},</p>
+    <p>to:
+        {% for mailbox in message.mailbox_set.all %}
+            {{ mailbox.member_receiver.mail }},
+        {% endfor %}
+    </p>
+    <p>date: the {{ message.date|date:"DATE_FORMAT" }}</p>
+	<div >message :<br />{{ message.content|linebreaks }}</div>
 </body>
 </html>
