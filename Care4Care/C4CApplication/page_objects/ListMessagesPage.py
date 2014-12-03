@@ -1,11 +1,12 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
+from C4CApplication.page_objects.NewMessagePage import NewMessagePage
 from selenium.webdriver.common.by import By
 
 
 class ListMessagesPage(FixedPage):
     
     def __init__(self, driver):
-        self.driver = driver # TODO
+        super().__init__(driver)
         buttons = self.driver.find_elements_by_xpath('//a[@class="btn"]') # all elements of the class "btn"
         
         self.switch_button = None
@@ -32,10 +33,10 @@ class ListMessagesPage(FixedPage):
     
     def click_on_new_message(self):
         self.new_message_button.click()
-        return self
+        return NewMessagePage(self.driver)
     
     def click_on_switch(self):
         if self.switch_button is not None: 
             self.switch_button.click()
-        else: print("Switch button not found !")
+        else: print("Switch button not found !") # strange but this bug occurred once
         return ListMessagesPage(self.driver)
