@@ -1,7 +1,6 @@
 from C4CApplication.meta import VerifiedMember, VolunteerMember
 from C4CApplication.models import Job
 
-from C4CApplication import models
 
 class VolunteerVerified(VolunteerMember, VerifiedMember):
     """

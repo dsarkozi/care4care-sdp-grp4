@@ -5,9 +5,9 @@ from C4CApplication.models import *
 
 class NewMessageForm(forms.Form):
 
-    receveur = forms.EmailField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'a:'}))
-    sujet = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'sujet:'}), required=False)
-    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'votre message'}))
+    receveur = forms.EmailField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'to:'}))
+    sujet = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'subject:'}), required=False)
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'your message'}))
     
     def clean(self):              
                 isin = False
