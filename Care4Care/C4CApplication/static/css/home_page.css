@@ -1,7 +1,11 @@
  
+  	
+  		 
   		 /* Applied to all the html body... */
   		 body {
-  		 width:90%
+  		  min-width:1200px;
+  		  max-width:2000px;
+  		  max-width:100%;
   		  top: 5em;
   		  padding-right: 13em;
   		  padding-left: 13em;
@@ -9,6 +13,7 @@
           Times, serif;
   		  color: navy;
   		  background-color: #DFF2FF;
+  		  margin: auto;
   		 }
   		  
 		 	

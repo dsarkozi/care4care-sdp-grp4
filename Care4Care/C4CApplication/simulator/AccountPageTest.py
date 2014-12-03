@@ -3,7 +3,7 @@ from C4CApplication.simulator.super_class import MySeleniumTests
 
 import time
 
-
+""" Test inutile ? -> on fais ca dans les test de db """
 class AccountPageTest(MySeleniumTests):
 
     def see_pending_jobs_test(self):
