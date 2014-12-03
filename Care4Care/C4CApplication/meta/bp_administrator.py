@@ -174,8 +174,9 @@ class BPAdministrator(BranchOfficer):
         member.save()
         return True
 
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
+                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+                   recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -194,6 +195,7 @@ class BPAdministrator(BranchOfficer):
         """
 
         job = Job()
+        job.title = title
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
@@ -202,12 +204,15 @@ class BPAdministrator(BranchOfficer):
                 n = j.number
         job.number = n+1
         job.comment = comment
+        job.description = description
         job.date = date
         job.start_time = start_time
         job.frequency = frequency
+        job.recursive_day = recursive_day
         job.km = km
         job.time = time
         job.category = category
+        job.other_category = other_category
         job.type = is_demand
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
@@ -216,9 +221,9 @@ class BPAdministrator(BranchOfficer):
         if len(branch) != 1:
             return False
         job.branch = branch[0]
-        job.member_set = self.db_member
+        job.member_set.add(self.db_member)
         job.save()
-        return True
+        return job
 
     def create_branch(self, name, town, branch_officer_email=None, address=None):
         """
