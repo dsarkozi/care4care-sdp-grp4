@@ -51,7 +51,8 @@ class ModifProfileView(FormView):
         self.user.db_member.address = street+ ", " + number + ", " + zip +", " +town
         
         self.user.db_member.picture = picture
-        
+        self.user.db_member.password = password
+
         self.user.db_member.save()
                   
         return super(ModifProfileView, self).form_valid(form)
