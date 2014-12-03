@@ -11,7 +11,7 @@
   </button>
     	<form method="post" >
     		{% csrf_token %}
-            {{ form.errors }}
+            <!--{{ form.errors }}-->
    			<fieldset>
                 <legend>Account credentials</legend>
                 {{ form.mail.label }} : {{ form.mail }} <br>
@@ -29,10 +29,11 @@
         <fieldset>
             <legend>Miscellaneous</legend>
             {{ form.picture.label }} : {{ form.picture }} <br>
-            {{ form.branch.label }}
-            {% for branch in form.branch %}
-                {{ branch }}
-            {% endfor %}
+            {{ form.branch.label }} : {{ form.branch }}
+            <!--{% for branch in form.branch %}-->
+                <!--{{ branch }}-->
+            <!--{% endfor %} <br>-->
+            {{ form.tag.label }} : {{ form.tag }}
         </fieldset>
         <input type="submit" value="Register">
 		</form>

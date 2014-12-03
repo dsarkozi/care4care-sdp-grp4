@@ -48,7 +48,9 @@ class RegistrationView(CreateView):
 
     def form_valid(self, form):
         self.request.session.pop('ax')
-        form.save()
+        member = form.save(commit=False)
+        member.tag = form.cleaned_data['tag']
+        member.save()
         return super(RegistrationView, self).form_valid(form)
 
     @staticmethod

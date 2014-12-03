@@ -1,4 +1,5 @@
 import datetime
+from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
@@ -22,7 +23,7 @@ class RegistrationForm(ModelForm):
             'branch',
         )
         labels = {
-            'mail' : 'E-mail address'
+            'mail' : 'E-mail address',
         }
 
 
@@ -35,7 +36,7 @@ class RegistrationForm(ModelForm):
         self.fields['password'].widget = PasswordInput()
 
         self.fields['birthday'].widget = SelectDateWidget(
-            years=range(1900, 2050),
+            years=range(1900, 2050),        #TODO Change this to more dynamic values
         )
         self.fields['birthday'].initial = datetime.date.today()
 
@@ -44,3 +45,9 @@ class RegistrationForm(ModelForm):
             self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
             self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
             self.fields['address'].widget.attrs.update({'disabled' : 'true'})
+
+        self.fields['tag'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=((1, "Without time crediting"), (2, "With time crediting")),
+            label="Account type"
+        )
