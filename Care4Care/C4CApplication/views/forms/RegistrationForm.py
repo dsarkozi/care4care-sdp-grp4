@@ -27,6 +27,7 @@ class RegistrationForm(ModelForm):
 
 
     def __init__(self, *args, **kwargs):
+        eid = kwargs.pop('eid')
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['branch'].widget = CheckboxSelectMultiple()
         self.fields['branch'].queryset = Branch.objects.all()
@@ -39,3 +40,7 @@ class RegistrationForm(ModelForm):
         self.fields['birthday'].initial = datetime.date.today()
 
         self.auto_id = False
+        if eid:
+            self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['address'].widget.attrs.update({'disabled' : 'true'})
