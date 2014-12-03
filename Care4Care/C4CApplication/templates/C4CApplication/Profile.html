@@ -7,13 +7,12 @@
 {% block menu%}
 	
 <center>
-<div style="border-width:2px;border-color:navy;border-style:solid;
-background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
 
+<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
     <h1 class = "entete"><span class="nom"> {{member_shown.first_name}} {{member_shown.last_name}}</span></h1> 
     {% comment %} <span class="tag"> {{ member_shown.tag }} </span> {% endcomment %}
-    
-    <article class = "first" style="margin-left:3em;margin-right:2em;margin-top:1em;">
+    <article class = "first" style="margin-left:3em;margin-top:1em;">
     	{% if member_shown.picture %}
        		<img src="{{ member_shown.picture.url }}" alt="Photo de profil" id="photo" />
        	{% else %}
@@ -21,7 +20,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
        	{% endif %}
     </article>
     
-    <article class = "second" style="margin-left:2em;margin-right:2em;">
+    <article class = "second" style="margin-right:2em;">
    
     	<h3>Compte :</h3>
         <ul style = "list-style-type: none;"> 
@@ -36,20 +35,15 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
             
             
             {% endif %}</li>
-            <li class="info"> Status:
-            
-
+            <li class="info">
+            {% if member.mail == member_shown.mail %}
+             Status:
+ 
 	    	{% if member_shown.status %}
-	    		{% if member.mail == member_shown.mail %}
-	    			<a href="{% url 'changeActivity' %}" value="activity">Active</a>
-	    		{% else %}
-	    			Actif
-	    		{% endif %}
+	    		
+	    			Active
 	    	{% else %}
-	    		{% if member.mail == member_shown.mail %}
-	    			<a href="{% url 'changeActivity' %}" value="activity">Inactive</a>
-	    		{% else %}
-	    			Inactif
+	    			Inactive
 	    		{% endif %}
 	    	{% endif %}
 	    
@@ -81,7 +75,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
         
         
     </article>
-</div>  
+</section>  
 <td></br><a href="{% url 'modifprofile' %}" class="btn">Edit profile</a></td>
 
 </center>

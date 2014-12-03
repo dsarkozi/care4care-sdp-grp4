@@ -35,7 +35,7 @@ from C4CApplication.views.RegistrationView import RegistrationView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 from C4CApplication.views.TransferRightsView import TransferRightsView
-from C4CApplication.views.CreateBranchView import CreateBranchView
+from C4CApplication.views.TransferRightsBranchView import TransferRightsBranchView
 from C4CApplication.views.DeleteMemberBPAView import DeleteMemberBPAView
 
 from C4CApplication.views.ChangeActivityView import ChangeActivityView
@@ -87,6 +87,7 @@ urlpatterns = patterns('',
 
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
     url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
+    url(r'^transferrightsbranch/(?P<branch_name>\w+)/$', TransferRightsBranchView.as_view(), name='transferrightsbranch'),
 
     url(r'^deletememberbpa/$', DeleteMemberBPAView.as_view(), name='deletememberbpa'),
     #url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),

@@ -28,7 +28,6 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise.
         """
 
-        # TODO Why my aggregate solution does not work :p ?
         job = Job()
         job.mail = self.db_member.mail
         n = 0
@@ -49,7 +48,7 @@ class Member(NonMember):
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
         if branch_name is None:
-            branch_name = self.db_member.branch[0]  #TODO How to get job branch ?
+            branch_name = self.db_member.branch[0]
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
@@ -58,7 +57,6 @@ class Member(NonMember):
         job.save()
         return True
 
-    #TODO Where do you change the time ?
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).

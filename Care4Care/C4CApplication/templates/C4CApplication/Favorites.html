@@ -6,11 +6,13 @@
 		
 {% block menu %}
 <section style="text-align: center;">
-	<form class="login" method="post">
+	<form class="login" method="post" >
     <h1> </h1>
+    <div style="width:100%;">
     {% csrf_token %}
     {{ favIgnForm.email.errors }}
     {{ favIgnForm.email }} 
+    </div>
     <!-- <input type="email" name="email" class="login-input" placeholder="Email Address" autofocus> -->
     <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;" >
    </form>

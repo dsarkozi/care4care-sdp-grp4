@@ -96,8 +96,34 @@ class BranchOfficer(Member):
         if len(branchlist) != 1:
             return False
         branch = branchlist[0]
-        if branch.branch_officer != self.db_member.mail:
+        if branch.branch_officer != self.db_member.mail:  # If he is branch officer of this branch
             return False
+
+        new_branch_officer = models.Member.objects.filter(mail=new_branch_officer_email)
+        # If the member doesn't exist
+        if len(new_branch_officer) != 1 or new_branch_officer[0].deleted:
+            return False
+        new_branch_officer = new_branch_officer[0]
+
+        # Change rights
+        branch = branchlist[0]
+        old_branch_officer = models.Member.objects.filter(mail=branch.branch_officer)
+        if len(old_branch_officer) != 1:  # If the branch officer doesn't exists
+            return False
+        old_branch_officer = old_branch_officer[0]
+        keep_tag = False
+        for branch in Branch.objects.all():
+            # If the branch officer handles other branches
+            if branch.name != branch_name and branch.branch_officer == old_branch_officer.mail:
+                keep_tag = True
+                break
+
+        if not keep_tag:  # The branch officer looses its tags
+            old_branch_officer.tag ^= 16  # We revoke its branch officer rights
+            old_branch_officer.tag |= 12  # We degrade him to a volunteer and verified member
+
+        new_branch_officer.tag |= 16  # We promote him branch officer
+
         branch.branch_officer = new_branch_officer_email
         branch.save()
         return True
@@ -123,7 +149,7 @@ class BranchOfficer(Member):
 
         if member_branch is None:  # The branch officer have no power on this user
             return False
-        
+
         if member.tag & 4 : # if 4
             if member.tag & 8 : # if 4 and 8
                 if new_tag == 4 or new_tag == 8 :
