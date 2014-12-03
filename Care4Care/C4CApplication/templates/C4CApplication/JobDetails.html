@@ -61,7 +61,7 @@
 	  
     <tr>
 		<td class="tab1-4">    
-		Createur du job :    </td>
+		Creator of the job :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
 				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
@@ -119,7 +119,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-4">  Time :       </td>
+		<td class="tab1-4">  Duration :       </td>
 		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
 			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
 		{% else %}
@@ -157,7 +157,7 @@
 		
 	  </tr>
 	
-	
+	 {% if job.frequency == 0 %}
 	 <tr>
 		<td class="tab1-4">   Job accepted :     </td>
 		<td class="tab1-3">     {{ job.accepted }}    </td>
@@ -172,12 +172,13 @@
 	  </tr>
 	  
 	  
-	  
 	   <tr>
 		<td class="tab1-4">  Job payed :      </td>
 		<td class="tab1-3">     {{ job.payed }}    </td>
 		
 	  </tr>
+	  
+	  {% endif %}
 	
 	 
 	   <tr>
@@ -231,7 +232,7 @@
    			 	{% csrf_token %}
    			 			Possibilities : <br/>
    			 			{{form.proposition}}
-   			 			<input type="submit" value="Post request" />
+   			 			<input type="submit" value="Participate" />
    			 	</form>
 			 </td>
 			

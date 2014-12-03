@@ -70,10 +70,12 @@ class JobRegularForm(forms.Form):
     def __init__(self, job=None, nbr_prop=5, *args, **kwargs):
         super(JobRegularForm, self).__init__(*args, **kwargs)
         PROPOSITION = ()
-        if job.frequency == 1:  #Weekly
-            PROPOSITION = JobRegularForm.get_propositions_weekly(job, nbr_prop)
-        elif job.frequency == 2:    #monthly
-            PROPOSITION = get_propositions_monthly(job, nbr_prop)
-        else :
-            pass
+        if job is not None :
+            if job.frequency == 1:  #Weekly
+                PROPOSITION = JobRegularForm.get_propositions_weekly(job, nbr_prop)
+            elif job.frequency == 2:    #monthly
+                PROPOSITION = get_propositions_monthly(job, nbr_prop)
+            else :
+                pass
         self.fields['proposition'] = forms.CharField(widget=forms.Select(choices=PROPOSITION))
+        

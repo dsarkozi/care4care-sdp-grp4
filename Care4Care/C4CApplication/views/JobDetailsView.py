@@ -6,6 +6,7 @@ from django.contrib.comments import get_form
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
 from C4CApplication.views.forms.JobRegularForm import JobRegularForm
+from gc import get_objects
 
 
 class JobDetailsView(DetailView, FormView):
@@ -13,6 +14,7 @@ class JobDetailsView(DetailView, FormView):
     model = Job
     context_object_name = "job"
     template_name = "C4CApplication/JobDetails.html"
+    success_url = "/jobdetails/"
     member = None
     form_class = JobRegularForm
     job = None
@@ -22,6 +24,7 @@ class JobDetailsView(DetailView, FormView):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.member = create_user(self.request.session['email'])
+        self.job = self.get_object()
 
         return super(JobDetailsView, self).dispatch(request, *args, **kwargs)
     
@@ -35,11 +38,11 @@ class JobDetailsView(DetailView, FormView):
 
     def form_valid(self, form):
         #TODO tratement de la date
-        pass
+        self.success_url += str(self.job.id)
+        return super(JobDetailsView, self).form_valid(form)
 
     def get_object(self):
         
         job = super(JobDetailsView, self).get_object()
-        self.job = job
     
         return job
