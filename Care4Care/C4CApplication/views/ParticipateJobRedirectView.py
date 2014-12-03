@@ -10,13 +10,13 @@ class ParticipateJobRedirectView(RedirectView):
     
     url = ""
     
-    connected_member = None
+    user = None
 
     def dispatch(self, request, *args, **kwargs):
         # Create the object representing the user
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
-        self.connected_member = create_user(self.request.session['email'])
+        self.user = create_user(self.request.session['email'])
 
         return super(ParticipateJobRedirectView, self).dispatch(request, *args, **kwargs)
 
@@ -33,23 +33,23 @@ class ParticipateJobRedirectView(RedirectView):
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         job = job[0]
         
-        #Test du connected_member
-        if self.connected_member==None:
+        #Test du user
+        if self.user==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
-        if self.connected_member.db_member==None:
+        if self.user.db_member==None:
             return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)
         
         #Actions buttons
-        if mail_member_choiced == self.connected_member.db_member.mail :    #Clicked on delete job
+        if mail_member_choiced == self.user.db_member.mail :    #Clicked on delete job
             #TODO Demand confirmation
-            self.connected_member.delete_job(job.number)
+            self.user.delete_job(job.number)
             self.url = "/"
         elif mail_member_choiced != 'no_response@care4care.com' :    #Clicked on Choice this member
-            self.connected_member.choose_participant_for_job(job.number, job.mail, mail_member_choiced)
+            self.user.choose_participant_for_job(job.number, job.mail, mail_member_choiced)
         else :  #Clicked on participate/stop participating
-            if self.connected_member.db_member in job.member_set.all() :
-                self.connected_member.stop_participate_job(job.number, job.mail)
+            if self.user.db_member in job.member_set.all() :
+                self.user.stop_participate_job(job.number, job.mail)
             elif not job.accepted :
-                self.connected_member.accept_job(job.number, job.mail)
+                self.user.accept_job(job.number, job.mail)
         
         return super(ParticipateJobRedirectView, self).get(request, *args, **kwargs)

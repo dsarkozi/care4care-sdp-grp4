@@ -13,7 +13,7 @@ class DonateTimeView(FormView):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.user = create_user(self.request.session['email'])
-        return super(FavoritesView, self).dispatch(request, *args, **kwargs)
+        return super(DonateTimeView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
         if 'email' not in self.request.session:

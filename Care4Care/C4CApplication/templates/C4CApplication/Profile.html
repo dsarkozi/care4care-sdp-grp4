@@ -7,25 +7,24 @@
 {% block menu%}
 	
 <center>
-<div style="border-width:2px;border-color:navy;border-style:solid;
-background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
 
-<section>
+<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
     <h1 class = "entete"><span class="nom"> {{member_shown.first_name}} {{member_shown.last_name}}</span></h1> 
     {% comment %} <span class="tag"> {{ member_shown.tag }} </span> {% endcomment %}
-    <article class = "first">
+    <article class = "first" style="margin-left:3em;margin-top:1em;">
     	{% if member_shown.picture %}
-       		<img src="{{ member_shown.picture.url }}" alt="Photo de profil" id="photo"/>
+       		<img src="{{ member_shown.picture.url }}" alt="Photo de profil" id="photo" />
        	{% else %}
        		<img src="{% static 'images/no_picture.jpg' %}" alt="Photo de profil" id="photo"/>
        	{% endif %}
     </article>
     
-    <article class = "second">
+    <article class = "second" style="margin-right:2em;">
    
     	<h3>Compte :</h3>
         <ul style = "list-style-type: none;"> 
-            <li class="info">Statut : 
+            <li class="info">Type : 
             
             {% if member_shown.tag == 1 %} Non member 
             {% elif member_shown.tag == 2 %} Member
@@ -36,8 +35,20 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
             
             
             {% endif %}</li>
+            <li class="info">
+            {% if member.mail == member_shown.mail %}
+             Status:
+ 
+	    	{% if member_shown.status %}
+	    		
+	    			Active
+	    	{% else %}
+	    			Inactive
+	    		{% endif %}
+	    	{% endif %}
+	    
+	        </li>
             <li class="info">Mail : {{ member_shown.mail }}</li>
-            <li class="info">Mot de passe : *********</li> 
             <li class="info">Date d'inscription : {{ member_shown.register_date}}</li>
         </ul>
         
@@ -66,7 +77,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
     </article>
 </section>  
 <td></br><a href="{% url 'modifprofile' %}" class="btn">Edit profile</a></td>
-</div>
+
 </center>
 
 {% endblock %}

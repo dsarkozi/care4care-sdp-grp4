@@ -6,18 +6,25 @@
 
 {% block menu%}
 
-<center>
-<div style="border-width:2px;border-color:navy;border-style:solid;background-color:#96C9E7;margin-top:3em;">
 
-<section>
+
+
+
+<center>
+<div style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;margin-top:3em;width:40em; height:49em;margin-bottom:2em;">
     	<form method = "post" enctype="multipart/form-data" action=".">
     		{% csrf_token %}
    			<div id = "container">
         		<div id ="centreur">
         			<div id = "header">
         				<h1 id = "titre"> Edit profile </h1>
+        		
         			</div>
-        			<h5>Profil picture :</h5>
+     
+ 
+        			
+        			<h5>Profile picture :</h5>
         			<p>
 	        			{% if member.picture %}
 	       					<img src="{{ member.picture.url }}" alt="Photo de profil" id="photo"/>
@@ -29,9 +36,29 @@
 	       				{% csrf_token %}
 	       				{{ form.picture.errors }} {{ form.picture }}
 	       				{% if member.picture %}
-	       					<a href="{% url 'modifprofileredirect' 0 %}" class="myButton2" style ="color:#ffffff;">Delete picture</a>
+	       			
+	       					<a href="{% url 'modifprofileredirect' 0 %}" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">Delete picture</a></p>
 	       				{% endif %}
-       				</p>
+       				
+       				
+       						<h5> Status : 
+        	{% if member_shown.status %}
+	    		
+	    		<font color="green"><tt> ACTIVE </tt></font> </h5>
+	    	
+	    			<a href="{% url 'changeActivityRedirect' False %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">Switch to inactive</a>
+	    		
+	    			
+	    		
+	    	{% else %}
+	    		
+	    			<font color="red"><tt> INACTIVE </tt></font> </h5>
+	    		
+	    			 <a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px; margin-left:1em;">Switch to active</a>
+	    			 
+	
+	    	{% endif %}
+       				
        				
    					<h5> Address: </h5>
    					<p>	{{form.street.errors}} {{form.street}} {{form.number.errors}} {{form.number}} </p>			
@@ -40,14 +67,18 @@
    			    	<p> {{form.fixed_phone.errors}} {{form.fixed_phone}} </p>
    			    	<h5> Mobile phone number:</h5>
     				<p> {{form.mobile_phone.errors}} {{form.mobile_phone}} </p>
+    				
+    				
+    		
+    				
     			</div>
-    			<p id = "envoyer"> 
+    			<p id = "envoyer" style="margin-bottom:2em;"> 
+    			</br>
     				<input type = "submit" name = "envoyer" value= "Submit" class = btn >
-    				<a href="{% url 'modifprofileredirect' 1 %}" class="myButton2" style ="color:#ffffff;">Delete account</a>
+    				<a href="{% url 'modifprofileredirect' 1 %}" class=btn ">Delete account</a>
     			</p>
     		</div>
-		<form/>
-</section>  
+		<form/> 
 </div>
 </center>
 <!--  -->
