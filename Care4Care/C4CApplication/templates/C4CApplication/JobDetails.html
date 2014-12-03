@@ -44,14 +44,15 @@
 			{% if member in job.member_set.all %}
 			 
 		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Stop participating</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">Stop participating</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn" ">Participate</a></br>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
+				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. Check the occurences of the job at the end of this description.'); return false;}">Participate</a></br>
 			{% endif %}
 		{% endif %}
 		
 		{% if not job.accepted and job.mail == member.mail %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn" ">Delete job</a> </br>
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">Delete job</a> </br>
 		{% endif %}
 		</p>
 		
@@ -60,7 +61,7 @@
 	  
     <tr>
 		<td class="tab1-4">    
-		Createur du job :    </td>
+		Creator of the job :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
 				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
@@ -118,7 +119,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-4">  Time :       </td>
+		<td class="tab1-4">  Duration :       </td>
 		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
 			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
 		{% else %}
@@ -156,7 +157,7 @@
 		
 	  </tr>
 	
-	
+	 {% if job.frequency == 0 %}
 	 <tr>
 		<td class="tab1-4">   Job accepted :     </td>
 		<td class="tab1-3">     {{ job.accepted }}    </td>
@@ -171,12 +172,13 @@
 	  </tr>
 	  
 	  
-	  
 	   <tr>
 		<td class="tab1-4">  Job payed :      </td>
 		<td class="tab1-3">     {{ job.payed }}    </td>
 		
 	  </tr>
+	  
+	  {% endif %}
 	
 	 
 	   <tr>
@@ -230,7 +232,7 @@
    			 	{% csrf_token %}
    			 			Possibilities : <br/>
    			 			{{form.proposition}}
-   			 			<input type="submit" value="Post request" />
+   			 			<input type="submit" value="Participate" />
    			 	</form>
 			 </td>
 			
