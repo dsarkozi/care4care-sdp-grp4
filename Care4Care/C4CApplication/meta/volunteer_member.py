@@ -1,8 +1,9 @@
-from C4CApplication.meta import Member
 from C4CApplication.models import Job
-from C4CApplication import models
 
-class VolunteerMember(Member):
+from C4CApplication.meta.member import Member as MetaMember
+
+
+class VolunteerMember(MetaMember):
     """
     This class represents a kind of Users called Volunteer Members
     """

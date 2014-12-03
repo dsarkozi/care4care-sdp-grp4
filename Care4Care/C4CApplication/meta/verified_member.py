@@ -1,9 +1,10 @@
-from C4CApplication.meta import Member
 from C4CApplication.models import Job
 from C4CApplication import models
 
+from C4CApplication.meta.member import Member as MetaMember
 
-class VerifiedMember(Member):
+
+class VerifiedMember(MetaMember):
     """
     This class represents a kind of Users called Verified Members
     """

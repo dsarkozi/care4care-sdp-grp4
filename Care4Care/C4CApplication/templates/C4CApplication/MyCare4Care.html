@@ -11,8 +11,8 @@
 <center>
 <table style="top:1em; margin-left:0px;">
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn" style="border-bottom: 5px solid navy;">Messages</a></td>
-	<td><a href="{% url 'profile' member.mail %}" class="btn" style="border-bottom: 5px solid navy;">Profile</a></td>
+	<td><a href="{% url 'messageList' 1 %}" class="btn" style="width:90%;max-width:100%;border-bottom: 5px solid navy;">Messages</a></td>
+	<td><a href="{% url 'profile' %}" class="btn" style="width:90%;border-bottom: 5px solid navy;">Profile</a></td>
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
     <td><a href="{% url 'favorites' %}" class="btn" style="border-bottom: 5px solid navy;">Favorites</a></td>
     <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">Account & Stats</a></td>

@@ -7,13 +7,12 @@ from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse_lazy
 
 
-
 class DeleteStorage(FileSystemStorage):
     def delete_image(self, name):
         if self.exists(name):
             self.delete(name)
             return True
-        else :
+        else:
             return False
 
 
@@ -34,21 +33,22 @@ class ModifProfileRedirectView(RedirectView):
         
         action = kwargs['action']
         
-        if action=='0': #Delete image
+        if action == '0':  # Delete image
             self.url= reverse_lazy("modifprofile")
-            image_name = "images/images_profile/%s" % (self.user.db_member.mail)
+            image_name = "images/images_profile/%s" % self.user.db_member.mail
             image_name = image_name.replace('@', '.').replace('.', '')+".jpg"
             DeleteStorage().delete_image(image_name)
             self.user.db_member.picture = None
             self.user.db_member.save()
-        elif action=='1':  #Delete member
-            if not self.user.delete() :
-                self.url= reverse_lazy("modifprofile")
+        elif action == '1':  # Delete member
+            if not self.user.delete():
+                self.url = reverse_lazy("modifprofile")
                 return super(ModifProfileRedirectView, self).get(request, *args, **kwargs)
             if 'email' in request.session:
                 del request.session['email']
-                self.url = reverse_lazy("home")
-        else :  #Sinon
-            self.url="/"
+
+            self.url = reverse_lazy("home")
+        else:
+            self.url = reverse_lazy("home")
         
         return super(ModifProfileRedirectView, self).get(request, *args, **kwargs)
