@@ -18,7 +18,7 @@ background-color:#ffffff;margin-top:3em; width:50em;">
         {% endfor %}
     </p>
     <p><div style="font-weight: bold;"> Date : </div> The {{ message.date|date:"DATE_FORMAT" }}</p>
-	<div ><div style="font-weight: bold;"> Message : </div><br />{{ message.content|linebreaks }}</div>
+	<div ><div style="font-weight: bold;"> Message : </div>{{ message.content|linebreaks }}</div>
 </div>
 </section>
 
