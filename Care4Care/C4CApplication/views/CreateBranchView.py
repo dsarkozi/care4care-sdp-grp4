@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse_lazy
 class CreateBranchView(FormView):
     template_name = "C4CApplication/CreateBranch.html"
     form_class = CreateBranchForm
-    success_url = reverse_lazy("myc4c")
+    success_url = reverse_lazy("profile")
     user = None
     
     def dispatch(self, request, *args, **kwargs):

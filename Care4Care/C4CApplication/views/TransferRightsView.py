@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 class TransferRightsView(FormView):
     template_name = "C4CApplication/TransferRights.html"
     form_class = TransferRightsForm
-    success_url = reverse_lazy("myc4c")
+    success_url = reverse_lazy("profile")
     user = None
     
     def dispatch(self, request, *args, **kwargs):

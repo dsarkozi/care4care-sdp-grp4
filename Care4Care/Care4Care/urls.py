@@ -99,7 +99,7 @@ urlpatterns = patterns('',
     url(r'donate/$', DonateTimeView.as_view(), name='donate'),
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessagesView.as_view(), name='messageList'),
-    url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
+    url(r'^profile$', ProfileView.as_view(), name='profile'),
     url(r'^message/(?P<pk>\w+)/$', MessageView.as_view(), name='message'),
     url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
     url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
