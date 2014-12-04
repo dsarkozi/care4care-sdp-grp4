@@ -75,7 +75,8 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
     			<p id = "envoyer" > 
     
     				<input type = "submit" name = "envoyer" value= "Submit" class = btn >
-    				<p><a href="{% url 'modifprofileredirect' 1 %}" class="btn" style="padding: 4px 8px 4px 8px;font-size:12px;background:red;">Delete account ?</a>
+    				<p><a href="{% url 'modifprofileredirect' 1 %}" onclick="return window.confirm('Are you sure you want to delete your account ?')" class="myButton2" 
+    				style="padding: 4px 8px 4px 8px;font-size:12px;">Delete account ?</a>
     				
     			</p>
     		</div>
