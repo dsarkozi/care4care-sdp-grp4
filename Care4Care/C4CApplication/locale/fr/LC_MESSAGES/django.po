@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 15:26+0000\n"
+"POT-Creation-Date: 2014-12-04 15:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,6 +246,38 @@ msgstr "PRÉNOM"
 #: templates/C4CApplication/Favorites.html:31
 msgid "MAIL"
 msgstr "MAIL"
+
+#: templates/C4CApplication/FixedStructure_old.html:62
+msgid "HOME"
+msgstr "PAGE D'ACCUEIL"
+
+#: templates/C4CApplication/FixedStructure_old.html:63
+#, fuzzy
+#| msgid "Create a branch"
+msgid "Care4Care Branches"
+msgstr "Créer une branche"
+
+#: templates/C4CApplication/FixedStructure_old.html:70
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: templates/C4CApplication/FixedStructure_old.html:71
+msgid "Map"
+msgstr "Carte"
+
+#: templates/C4CApplication/FixedStructure_old.html:72
+#, fuzzy
+#| msgid "Create a branch"
+msgid "Start a branch"
+msgstr "Créer une branche"
+
+#: templates/C4CApplication/FixedStructure_old.html:73
+msgid "News"
+msgstr "Nouvelles"
+
+#: templates/C4CApplication/FixedStructure_old.html:74
+msgid "Jobs@Care4Care"
+msgstr ""
 
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"

@@ -7,16 +7,6 @@ from calendar import monthrange
 
 class JobRegularForm(forms.Form):
     
-    WEEKDAYS_DIC = {
-        'monday'    : 0,
-        'tuesday'   : 1,
-        'wednesday' : 2,
-        'thursday'  : 3,
-        'friday'    : 4,
-        'saturday'  : 5,
-        'sunday'    : 6,
-    }
-    
     def job_already_created(job, date):
         for j in job.job_set.all():
             if j.date == date:
@@ -58,24 +48,7 @@ class JobRegularForm(forms.Form):
         day = min(date.day,calendar.monthrange(year,month)[1])
         return datetime.date(year,month,day)
     
-    
-    def purify_days_week(recursive_day):
-        '''
-        :param recursive_day: string recursive_day from job
-        :return: the list of the number corresponding to the days in the string recursive_day, and sorted
-        '''
-        recursive_day = recursive_day.split(',')
-        list_days = []
-        for e in recursive_day:
-            if e != '':
-                temp = e.split(' ')
-                for ee in temp:
-                    if ee != '':
-                        list_days.append(JobRegularForm.WEEKDAYS_DIC[ee])
-        list_days.sort()
-        return list_days
-    
-    def purify_days_month(recursive_day):
+    def purify_days(recursive_day):
         '''
         :param recursive_day: string recursive_day from job
         :return: the list of the number corresponding to the days in the string recursive_day, and sorted
@@ -95,7 +68,7 @@ class JobRegularForm(forms.Form):
         date = time.strftime("%Y-%m-%d")
         date = date.split('-')
         date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
-        list_day = JobRegularForm.purify_days_week(job.recursive_day)
+        list_day = JobRegularForm.purify_days(job.recursive_day)
         list_proposition = ()
         for i in range(nbr_prop) :
             for day in list_day:
@@ -109,7 +82,7 @@ class JobRegularForm(forms.Form):
         date = time.strftime("%Y-%m-%d")
         date = date.split('-')
         date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
-        list_day = JobRegularForm.purify_days_month(job.recursive_day)
+        list_day = JobRegularForm.purify_days(job.recursive_day)
         list_proposition = ()
         for i in range(nbr_prop) :
             for day in list_day:

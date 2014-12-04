@@ -6,10 +6,11 @@
 	
 {% block menu%}
 	
-<center>
+
 
 <section style="border-width:2px;border-color:navy;border-style:solid;
-background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
+background-color:#ffffff;margin-top:3em;width:50em; height:29em;">
+
     <h1 class = "entete"><span class="nom"> {{member_shown.first_name}} {{member_shown.last_name}}</span></h1> 
     {% comment %} <span class="tag"> {{ member_shown.tag }} </span> {% endcomment %}
     <article class = "first" style="margin-left:3em;margin-top:1em;">
@@ -61,12 +62,14 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
             <li class="info">Mobile phone : {{member_shown.mobile}}</li>
             <li class="info">Address : {{member_shown.street}}, {{member_shown.zip}}, {{member_shown.town}}</li>
         </ul>
-        
+        </br>
+        <center><a href="{% url 'modifprofile' %}" class="btn">Edit profile</a></center>
         
     </article>
-</section>  
-<td></br><a href="{% url 'modifprofile' %}" class="btn">Edit profile</a></td>
+    
+</section>
 
-</center>
+
+
 
 {% endblock %}
