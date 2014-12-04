@@ -14,7 +14,7 @@ class ModifProfileView(FormView):
     user = None
     
     def get_success_url(self):
-        return reverse_lazy('profile', kwargs={'pk': self.user.db_member.mail})
+        return reverse_lazy('profile')
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
