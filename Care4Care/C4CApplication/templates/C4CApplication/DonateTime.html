@@ -1,22 +1,22 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block content %}
     <form method="post">
         {% csrf_token %}
         <fieldset>
-            <legend>Donation message</legend>
+            <legend> {% trans "Donation message" %}</legend>
             {{ donateTime.message }}
         </fieldset>
         <fieldset>
-            <legend>Donation amount</legend>
+            <legend> {% trans "Donation amount" %}</legend>
             {{ donateTime.days }} <label> days, </label>
             {{ donateTime.hours }} <label> hours, </label>
             {{ donateTime.minutes }} <label> minutes. </label>
         </fieldset>
         <fieldset>
-            <legend>Donation recipient</legend>
+            <legend>{% trans "Donation recipient" %}</legend>
             <ul>
             {% for recipient in donateTime.receiver %}
                 {% if forloop.last %}
