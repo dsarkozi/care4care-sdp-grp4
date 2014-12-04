@@ -3,7 +3,7 @@
 {% load staticfiles %}
 	
 {% block link %} <link rel="stylesheet" href="{% static "css/create_job.css" %}"> {% endblock %}
-	
+{% load i18n %}
 {% block content %}
 
 <section style="padding:1em;border-width:2px;border-color:navy;border-style:solid;margin-left:20%;
@@ -12,15 +12,15 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
 <form method="post">
     {% csrf_token %}
     <fieldset>
-        <legend>Request details</legend>
+        <legend>{% trans "Request details" %}</legend>
         {{ createJob.title }} <br>
         <p id="job_desc_field">
             {{ createJob.desc }}
         </p>
-        <label>Branch : </label>{{ createJob.branches }}
+        <label> {% trans "Branch" %} : </label>{{ createJob.branches }}
     </fieldset>
     <fieldset>
-        <legend>Job category</legend>
+        <legend> {% trans "Job category"%}</legend>
         <ul>
         {% for choice in createJob.categories %}
             {% if forloop.last %}
@@ -32,7 +32,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         </ul>
     </fieldset>
     <fieldset>
-        <legend>Job timeline</legend>
+        <legend>{% trans "Job timeline"%}</legend>
         <ul>
             {% for freq in createJob.frequency %}
                 {% if forloop.first %}
@@ -69,10 +69,10 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         </ul>
     </fieldset>
     <fieldset>
-        <legend>Job visibility</legend>
+        <legend>{% trans "Job visibility"%}</legend>
         {{ createJob.visibility }}
     </fieldset>
-    <input type="submit" value="Post request" />
+    <input type="submit" value= {% trans "Post request" %} /> 
 </form>
 
 {% endblock %}

@@ -248,10 +248,11 @@ class BPAdministrator(BranchOfficer):
         if len(branch_officer) != 1 or branch_officer[0].deleted:  # If the member does not exist
             return False
         branch_officer = branch_officer[0]
-        branch_officer.tag &= 16  # We upgrade his rights
+        branch_officer.tag = 16  # We upgrade his rights
 
         branch.branch_officer = branch_officer_email
         branch.save()
+        branch_officer.save()
         return True
 
     def remove_branch(self, branch_name):
@@ -268,10 +269,23 @@ class BPAdministrator(BranchOfficer):
         branch_officer = Member.objects.filter(mail=branch.branch_officer)
         if len(branch_officer) != 1:
             return False
-        branch_officer[0].tag ^= 16  # We degrade his rights
+        branch_officer = branch_officer[0]
+        
+        #Change rights
+        keep_tag = False
+        for branch in Branch.objects.all():
+            # If the branch officer handles other branches
+            if branch.name != branch_name and branch.branch_officer == branch_officer.mail:
+                keep_tag = True
+                break
+
+        if not keep_tag:  # The branch officer looses its tags
+            branch_officer.tag ^= 16  # We revoke its branch officer rights
+            branch_officer.tag |= 12  # We degrade him to a volunteer and verified member
         
         branch.member_set.clear()
         branch.delete()
+        branch_officer.save()
         return True
 
     def transfer_bp_admin_rights(self, new_bp_admin_email):

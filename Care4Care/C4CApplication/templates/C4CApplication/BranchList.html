@@ -12,11 +12,13 @@ background-color:#ffffff;width:15em;height:auto;padding:2em;>
         {% csrf_token %}
         <h3> {% trans "Choose branch(es)"%} :</h3>
         <ul style="list-style-type: none;" > 
-            {% for checkbox in branch_list_form.branch_list %}
+        <table>
+           <tr><td> {% for checkbox in branch_list_form.branch_list %}
                 <li style="display:block" >
                     {{ checkbox.tag }} <a href="{% url 'branchdetails' checkbox.choice_label %}" value="branch_details">{{ checkbox.choice_label }}</a>
                 </li>
             {% endfor %}
+            </td></tr></table>
         </ul>
       
         <input type="submit" value= {% trans "Submit changes"%} class="btn"/>

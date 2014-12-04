@@ -11,7 +11,15 @@
     
         <table class="tab1" style="top:5em; left:26em;" >
 	  <tr>
-		<th class=".tab1-3" colspan="6">{{ branch.name }}</th>
+		<th class=".tab1-3" colspan="6">
+			{{ branch.name }} <br/>
+			{% if member.tag == 32 %}
+				<a href="{% url 'branchlistredirect' branch.name 'no_response@care4care.com' 3 %}" class ='btn'
+				   onclick="return window.confirm('Are you sure you want to delete this branch ?')">
+					Delete the branch
+				</a>
+			{% endif %}
+		</th>
 	  </tr>
 	  
 	  <tr>

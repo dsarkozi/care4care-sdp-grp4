@@ -21,11 +21,11 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<li><a href="{% url 'home' %}" value="home"><center> <b>  HOME </b> </a></li></center> 
+			<li><a href="{% url 'home' %}" value="home"><center>  HOME </a></li></center> 
 			{% if connected %}
-				<li><a href="{% url 'profile' %}">MyCare4Care</a></li>
+				<li><a href="{% url 'profile' %}"> MyCare4Care</a></li>
 			{% endif %}
-			<li><a href="{% url 'branchlist' %}" value="branch_list">Care4Care Branches</a></li>
+			<li><a href="{% url 'branchlist' %}" value="branch_list">  Care4Care Branches   </a></li>
 				<ul>
 					{% if connected %}
 						{% for br in member.branch.all %}
