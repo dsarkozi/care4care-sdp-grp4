@@ -340,7 +340,7 @@ def popule_db():
     j8.description = "Bonjour, je donne mon aide pour le projet de Care4Care"
     j8.start_time = 510 #8h30
     j8.frequency = 1    #Weekly
-    j8.recursive_day = "monday"
+    j8.recursive_day = "0"
     j8.km = 0
     j8.duration = 120   #2h
     j8.category = 4 #Other
