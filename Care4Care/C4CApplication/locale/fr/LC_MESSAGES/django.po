@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 14:32+0000\n"
+"POT-Creation-Date: 2014-12-04 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,6 +147,34 @@ msgstr "INACTIF"
 msgid "Time for doing the job (in minutes)"
 msgstr "Temps requis à fin d'effectuer la tâche (en minutes) "
 
+#: templates/C4CApplication/CreateBranch.html:17
+msgid "Create a branch"
+msgstr "Créer une branche"
+
+#: templates/C4CApplication/CreateBranch.html:18
+msgid "Name"
+msgstr "Nom"
+
+#: templates/C4CApplication/CreateBranch.html:19
+msgid "Town(s) of the branch"
+msgstr "Ville(s) de la branche"
+
+#: templates/C4CApplication/CreateBranch.html:20
+msgid "Branch Officer"
+msgstr "Administrateur de branche"
+
+#: templates/C4CApplication/CreateBranch.html:21
+msgid "Street"
+msgstr "Rue"
+
+#: templates/C4CApplication/CreateBranch.html:22
+msgid "Zip"
+msgstr "Code postal"
+
+#: templates/C4CApplication/CreateBranch.html:23
+msgid "Town"
+msgstr "Ville"
+
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"
 msgstr "Identifiants de compte"
@@ -162,6 +190,9 @@ msgstr "divers"
 #: templates/C4CApplication/Registration.html:80
 msgid "Register"
 msgstr "Enregistrement"
+
+#~ msgid "Town(s)"
+#~ msgstr "Ville(s)"
 
 #, fuzzy
 #~| msgid "Job Cat"
