@@ -4,19 +4,23 @@
 	
 {% block content %}
 
-
+<center>
+<div style="margin-top:2em;border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;width:15em;height:auto;padding:2em;>
     <form method="post">
         {% csrf_token %}
         <h3> Choose branch(es) :</h3>
-        <ul>
+        <ul style="list-style-type: none;" > 
             {% for checkbox in branch_list_form.branch_list %}
-                <li>
+                <li style="display:block" >
                     {{ checkbox.tag }} <a href="{% url 'branchdetails' checkbox.choice_label %}" value="branch_details">{{ checkbox.choice_label }}</a>
                 </li>
             {% endfor %}
         </ul>
+      
         <input type="submit" value="Submit changes" class="btn"/>
     </form>
-
+</center>
+</div>
 
 {% endblock %}

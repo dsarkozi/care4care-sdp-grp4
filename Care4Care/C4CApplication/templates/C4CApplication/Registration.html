@@ -4,7 +4,13 @@
 	<style type="text/css">
 
     </style>
+    
+    
+ 
 {% block content %}
+   <center>
+<section style="margin-top:2em;border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;width:20em;height:auto;padding:2em;>
   <button onclick="location.href='registration/eidrequest'">
       <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle">
       Prefill form with eID data
@@ -36,5 +42,8 @@
         </fieldset>
         <input type="submit" value="Register">
 		</form>
+
+
+</section>
 
 {% endblock %}
