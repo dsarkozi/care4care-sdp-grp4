@@ -1,7 +1,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-		
+{% load i18n %}
 {% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
 		
 {% block menu %}
@@ -14,7 +14,7 @@
     {{ favIgnForm.email }} 
     </div>
     <!-- <input type="email" name="email" class="login-input" placeholder="Email Address" autofocus> -->
-    <input type="submit" name = "fav_add_button" value="Add to Favorites" class="login-submit" style ="font-size: 12px;" >
+    <input type="submit" name = "fav_add_button"  value={% trans "Add to Favorites"%} class="login-submit" style ="font-size: 12px;" >
    </form>
 	
 
@@ -22,13 +22,13 @@
 
 	<table class="tab1" style="top:17em;" >
 	  <tr>
-		<th class=".tab1-3" colspan="6" >Favorite members</th>
+		<th class=".tab1-3" colspan="6" >{% trans "Favorite members"%}</th>
 	  </tr>
 	  
 	  <tr>
-		<td class="tab1-4">NAME			</td>
-		<td class="tab1-4">FIRST NAME	</td>
-		<td class="tab1-4"> MAIL		</td>
+		<td class="tab1-4">{% trans "NAME"%}			</td>
+		<td class="tab1-4">{% trans "FIRST NAME"%}	</td>
+		<td class="tab1-4"> {% trans "MAIL"%}		</td>
 		<td class="tab1-4"> 	</td>
 
 	  </tr>
