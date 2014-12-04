@@ -122,6 +122,21 @@ def popule_db():
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']
     m5.save()
     
+    m6 = Member(mail="dr.robotnik@gmail.com")
+    m6.password = "azertyuiop"
+    m6.first_name = "Docteur"
+    m6.last_name = "Robotnik"
+    m6.gender = 'M'
+    m6.birthday = "1957-11-23"
+    m6.tag = Member.TAG['non_member']
+    m6.mobile = "0477987632"
+    m6.street = "Boosaardigheidstraat, 3"
+    m6.zip = "8500"
+    m6.town = "Nivelles"
+    m6.time_credit = -999999
+    m6.visibility = Member.MEMBER_VISIBILITY['anyone']
+    m6.save()
+    
     
     #Creation de branch
     b1 = Branch(name="LLN")
@@ -144,11 +159,13 @@ def popule_db():
     m3.branch.add(b1)
     m4.branch.add(b1)
     m5.branch.add(b1)
+    m6.branch.add(b2)
     m1.save()
     m2.save()
     m3.save()
     m4.save()
     m5.save()
+    m6.save()
     
     #Creation de messages
     e1 = Message()
