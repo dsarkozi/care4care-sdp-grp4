@@ -33,18 +33,16 @@
 			
 		/* Customizes navigation menu items */
 		  ul.navbar li {
-		   max-width:120%;
 		   list-style-type: none;
 			   background: white;
 				margin: 0.5em 0;
-				padding: 0.3em; 
+				padding: 0.5em; 
 				border-right: 1em solid navy }
 		
 			
 		  ul.navbar li a:hover{
-		
 		  		color:red;
-		  		font-weight: bold;
+		  	
 		  
 		  	}
 		  		
