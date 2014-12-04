@@ -38,6 +38,7 @@ class ModifProfileView(FormView):
         town = form.cleaned_data['town']
         #infos faculatives
         fixed_phone = form.cleaned_data['fixed_phone']
+        password = form.cleaned_data['new_password']
         mobile_phone = form.cleaned_data['mobile_phone']
         picture = form.cleaned_data['picture']
         if picture is not None:
