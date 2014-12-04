@@ -1,6 +1,8 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
 from C4CApplication.page_objects.ListMessagesPage import ListMessagesPage
 
+from C4CApplication.models import Member, Message
+
 
 import time
 
@@ -66,15 +68,19 @@ class MessageTest(MySeleniumTests):
         page = page.click_on_new_message()
         time.sleep(1)
         
-        page = page.fill_in_info("kim.mens@gmail.com", "Test subject", "Test content !\nYeah that's right !")
+        page = page.fill_in_info("kim.mens@gmail.com", "Test subject", "Test content ! Yeah that's right !")
         time.sleep(2)
         
         page = page.click_on_submit()
         time.sleep(2)
         
-        # get mails envoyes
-        # prendre le dernier 
-        # regarder si ca correspond au champs mis plus haut
+        sender = Member.objects.filter(mail='kim.mens@gmail.com')
+        if len(sender) == 1: sender = sender[0]
+        else: self.assertEqual(0, 1) # end the test
+        mails = Message.objects.filter(member_sender=sender) # list of sent mails
+        last_mail = mails[len(mails)-1] # mail we just created
+
+        self.assertEqual(last_mail.subject, "Test subject")
+        self.assertEqual(last_mail.content, "Test content ! Yeah that's right !")
         
-        self.assertEqual(0, 0)
         return True
