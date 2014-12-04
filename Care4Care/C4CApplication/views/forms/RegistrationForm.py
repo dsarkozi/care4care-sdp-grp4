@@ -12,7 +12,7 @@ class RegistrationForm(ModelForm):
         model = Member
         fields = (
             'mail',
-            'password',
+            _('password'),
             'first_name',
             'last_name',
             'gender',
