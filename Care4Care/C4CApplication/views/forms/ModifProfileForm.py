@@ -6,7 +6,7 @@ from C4CApplication.models.member import Member
 class ModifProfileForm(forms.Form):
 
     new_password   = forms.CharField( max_length=100 , required=False , widget=forms.PasswordInput(attrs={'placeholder': 'new_password', 'size' : 44}))
-    password   = forms.CharField( max_length=100  , widget=forms.PasswordInput(attrs={'placeholder': 'password', 'size' : 44}))
+    #password   = forms.CharField( max_length=100 , required=False  , widget=forms.PasswordInput(attrs={'placeholder': 'password', 'size' : 44}))
 
     #adresse
     street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'street, number, more information', 'size' : 32}))
@@ -22,8 +22,8 @@ class ModifProfileForm(forms.Form):
         cleaned_data = super(ModifProfileForm, self).clean()
         new_password = ''  
         new_password = cleaned_data.get('new_password')
-        password = ''
-        password = cleaned_data.get('new_password')
+        #password = ''
+        #password = cleaned_data.get('new_password')
         
         #mot de passe
         if new_password:
