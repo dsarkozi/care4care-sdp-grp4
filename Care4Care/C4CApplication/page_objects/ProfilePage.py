@@ -1,5 +1,6 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 from selenium.webdriver.common.by import By
+import time
 
 
 class ProfilePage(FixedPage):
@@ -10,4 +11,5 @@ class ProfilePage(FixedPage):
     
     def click_on_modif_profile(self):
         self.modif_profile_button.click()
+        time.sleep(1)
         return self
