@@ -65,7 +65,7 @@ class UserAccountTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        page = page.quick_login_successful('dr.robotnik@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         page = ProfilePage(self.selenium)
@@ -73,8 +73,12 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         page = ModifProfilePage(self.selenium)
-        #page.click_on_modif_profile()
+        page.click_on_delete_account()
         time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_fail('dr.robotnik@gmail.com', 'azertyuiop')
+        time.sleep(3)
         
         self.assertEqual(0, 0)
         return True

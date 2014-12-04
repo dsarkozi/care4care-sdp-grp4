@@ -30,7 +30,7 @@ class ProfileTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, '/modifprofile/'))
         
         page = ModifProfilePage(self.selenium)
-        page = page.fill_in_info("15", "Rue bidon", "9999", "Bouseville", "010010010", "0456880045")
+        page = page.fill_in_info("Rue bidon, 15", "9999", "Bouseville", "010010010", "0456880045")
         time.sleep(1)
         
         page = page.click_on_submit()
