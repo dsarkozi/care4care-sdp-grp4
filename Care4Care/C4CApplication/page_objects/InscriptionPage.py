@@ -83,8 +83,12 @@ class InscriptionPage(FixedPage):
         
         return self
         
+    def click_on_submit(self):
+        self.submit.click()
+        return self
         
-    def create_member(self, first_name, last_name, email, password, birthdate, \
+    # useless
+    """def create_member(self, first_name, last_name, email, password, birthdate, \
                       street, number, zip, town, branch, fixe_phone='', mobile_phone=''):
         
         self.set_global_field(first_name, last_name, email, password, birthdate, \
@@ -114,4 +118,4 @@ class InscriptionPage(FixedPage):
         
         self.submit.click()
         
-        return self
+        return self"""

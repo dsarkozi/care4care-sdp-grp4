@@ -10,7 +10,7 @@ import time
 
 class UserAccountTest(MySeleniumTests):
     
-    """def test_login(self):
+    def test_login(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         
@@ -33,7 +33,7 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         self.assertEqual(0, 0)
-        return True"""
+        return True
     
     def test_create_member_account(self):
         self.populate_db()
@@ -46,34 +46,15 @@ class UserAccountTest(MySeleniumTests):
         
         page = InscriptionPage(self.selenium)
         page = page.set_global_field('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', 'M', '14',\
-                         'juin', '1920', 'Multilife', '6458', 'Nivelles', '', '', [0, 1], 0)
+                         'juin', '1920', 'Multilife', '6458', 'Nivelles', '010564339', '0477662396', [0, 1], 0)
         time.sleep(1)
         
-        
-        time.sleep(1)
+        page = page.click_on_submit()
+        time.sleep(5)
         
         self.assertEqual(0, 0)
         return True
     
-    """def test_create_non_member_account(self):
-        self.populate_db()
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        time.sleep(1)
-        
-        page = HomePage(self.selenium)
-        page = page.click_on_sign_up()
-        time.sleep(1)
-        
-        page = page.create_non_member('Mister', 'Nobody', 'mister_nobody@gmail.com', 'azertyuiop', '1920-06-14',\
-                                  'Vie', 3, 6458, 'Multilife', 'Nivelles')
-        time.sleep(1)
-        
-        page = HomePage(self.selenium)
-        page = page.login_successful('mister_nobody@gmail.com', 'azertyuiop')
-        time.sleep(1)
-        
-        self.assertEqual(0, 0)
-        return True
     
     def test_create_verified_member(self): #TODO keep this test?
         pass
@@ -100,4 +81,4 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         self.assertEqual(0, 0)
-        return True"""
+        return True
