@@ -19,7 +19,7 @@ class ChangeActivityRedirectView(RedirectView):
         return super(ChangeActivityRedirectView, self).dispatch(request, *args, **kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
-        self.url = reverse("profile", args=[self.user.db_member.mail])
+        self.url = reverse("profile")
         return self.url
 
     @never_cache
