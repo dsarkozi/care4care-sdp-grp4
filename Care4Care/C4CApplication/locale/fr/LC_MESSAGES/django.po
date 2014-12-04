@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 13:25+0000\n"
+"POT-Creation-Date: 2014-12-04 13:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/C4CApplication/AcceptBill.html:5
+msgid "The following job has been marked as done by"
+msgstr "La tâche suivante à été exécutée par"
+
+#: templates/C4CApplication/AcceptBill.html:6
+msgid "Please confirm that the information below is correct "
+msgstr ""
+"S'il vous plait confirmez que les informations suivantes sont correctes"
+
+#: templates/C4CApplication/AcceptBill.html:8
+msgid "Confirm"
+msgstr "Confirmez"
+
+#: templates/C4CApplication/AcceptBill.html:9
+msgid "Contest"
+msgstr "Concours"
 
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"
