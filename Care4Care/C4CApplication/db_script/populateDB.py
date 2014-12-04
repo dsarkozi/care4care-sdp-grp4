@@ -43,10 +43,13 @@ def popule_db():
     m1.password = "azertyuiop"
     m1.first_name = "Kim"
     m1.last_name = "Mens"
+    m1.gender = 'M'
     m1.birthday = "1967-10-03"
     m1.tag = Member.TAG['branch_officer']
     m1.mobile = "0477985632"
-    m1.address = "Rue du Software, 3, 2255, Development"
+    m1.street = "Rue du Software, 3"
+    m1.zip = "2255"
+    m1.town = "Development"
     m1.time_credit = 59
     m1.visibility = Member.MEMBER_VISIBILITY['anyone']
     m1.save()
@@ -55,10 +58,13 @@ def popule_db():
     m2.password = "azertyuiop"
     m2.first_name = "Yves"
     m2.last_name = "Delaville"
+    m2.gender = 'M'
     m2.birthday = "1956-08-23"
     m2.tag = Member.TAG['branch_officer']
     m2.mobile = "0478745963"
-    m2.address = "Rue de l'intelligence, 7, 2261, Artificial"
+    m2.street = "Rue de l'intelligence, 7"
+    m2.zip = "2261"
+    m2.town = "Artificial"
     m2.time_credit = 170
     m2.visibility = Member.MEMBER_VISIBILITY['anyone']
     m2.save()
@@ -67,10 +73,13 @@ def popule_db():
     m3.password = "azertyuiop"
     m3.first_name = "Olivier"
     m3.last_name = "Mauvaisaventure"
+    m3.gender = 'M'
     m3.birthday = "1970-05-25"
     m3.tag = Member.TAG['member']
     m3.mobile = "0476526987"
-    m3.address = "Rue du Computer, 27, 2141, Network"
+    m3.street = "Rue du Computer, 27"
+    m3.zip = "2141"
+    m3.town= "Network"
     m3.time_credit = 18
     m3.save()
     
@@ -78,12 +87,15 @@ def popule_db():
     m4.password = "azertyuiop"
     m4.first_name = "Armand"
     m4.last_name = "Bosquillon"
+    m4.gender = 'M'
     path = "images/images_profile/%s" % (m4.mail)
     m4.picture = path.replace('@', '.').replace('.', '')+".jpg"
     m4.birthday = "1993-03-20"
     m4.tag = Member.TAG['member']
     m4.mobile = "0472695784"
-    m4.address = "Rue de l'Eglise, 40, 1330, Rixensart"
+    m4.street = "Rue de l'Eglise, 40"
+    m4.zip = "1330"
+    m4.town = "Rixensart"
     m4.time_credit = 9999
     m4.save()
     
@@ -97,12 +109,15 @@ def popule_db():
     m5.password = "azertyuiop"
     m5.first_name = "Mathieu"
     m5.last_name = "Jadin"
+    m5.gender = 'M'
     path = "images/images_profile/%s" % (m5.mail)
     m5.picture = path.replace('@', '.').replace('.', '')+".jpg"
     m5.birthday = "1993-01-31"
     m5.tag = Member.TAG['bp_admin']
     m5.mobile = "0487793533"
-    m5.address = "Rue du Leader, 3, 2255, LeaderVille"
+    m5.street = "Rue du Leader, 3"
+    m5.zip = "2255"
+    m5.town = "LeaderVille"
     m5.time_credit = 10000000000
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']
     m5.save()
@@ -201,7 +216,9 @@ def popule_db():
     j1.time = 60    #1h *60
     j1.category = 1 #Shopping
     j1.type = True  #True = Demand
-    j1.address = m4.address
+    j1.street = m4.street
+    j1.zip = m4.zip
+    j1.town = m4.town
     j1.branch = b1
     j1.save()
     j1.member_set.add(m4)
@@ -218,7 +235,9 @@ def popule_db():
     j2.time = 60    #1h *60
     j2.category = 3 #Transport
     j2.type = True  #True = Demand
-    j2.address = m4.address
+    j2.street = m4.street
+    j2.zip = m4.zip
+    j2.town = m4.town
     j2.visibility = Job.JOB_VISIBILITY['favorites']
     j2.branch = b1
     j2.save()
@@ -238,7 +257,9 @@ def popule_db():
     j3.time = 120    #2h *60
     j3.category = 2 #Visite
     j3.type = True  #True = Demand
-    j3.address = "Square de l'Atomium, B-1020 BRUXELLES"
+    j3.street = "Square de l'Atomium"
+    j3.zip = "1020"
+    j3.town = "Bruxelles"
     j3.accepted = True
     j3.visibility = Job.JOB_VISIBILITY['favorites']
     j3.branch = b1
@@ -257,7 +278,9 @@ def popule_db():
     j4.time = 120    #2h *60
     j4.category = 3 #Transport
     j4.type = True  #True = Demand
-    j4.address = "Square de l'Atomium, B-1020 BRUXELLES"
+    j4.street = "Square de l'Atomium"
+    j4.zip = "1020"
+    j4.town = "Bruxelles"
     j4.accepted = True
     j4.done = True
     j4.branch = b1
@@ -277,7 +300,9 @@ def popule_db():
     j5.time = 60    #1h *60
     j5.category = 3 #Transport
     j5.type = True  #True = Demand
-    j5.address = "Avenue Franklin Roosevelt 50 - 1050 Bruxelles"
+    j5.street = "Avenue Franklin Roosevelt, 50"
+    j5.zip = "1050"
+    j5.town = "Bruxelles"
     j5.accepted = True
     j5.done = True
     j5.done = True
@@ -297,7 +322,9 @@ def popule_db():
     j6.time = 240    #4h *60
     j6.category = 1 #Shopping
     j6.type = False  #False = Offer
-    j6.address = "Place de l'Accueil, 10 bte 1, 1348, Louvain-la-Neuve"
+    j6.street = "Place de l'Accueil, 10 bte 1"
+    j6.zip = "1348"
+    j6.town = "Louvain-la-Neuve"
     j6.branch = b1
     j6.save()
     j6.member_set.add(m4)
@@ -314,7 +341,9 @@ def popule_db():
     j7.category = 4 #Other
     j7.other_category = "Aide informatique"
     j7.type = False  #False = Offer
-    j7.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Salle Intel"
+    j7.street = "Place Sainte Barbe, 2 bte L6.11.01, Salle Intel"
+    j7.zip = "1348"
+    j7.town = "Louvain-la-Neuve"
     j7.branch = b1
     j7.save()
     j7.member_set.add(m5)
@@ -331,7 +360,9 @@ def popule_db():
     j8.category = 4 #Other
     j8.other_category = "Aide projet"
     j8.type = False #False = Offer
-    j8.address = "Place Sainte Barbe, 2 bte L6.11.01 B-1348 Louvain-la-Neuve, Barb93"
+    j8.street = "Place Sainte Barbe, 2 bte L6.11.01, Barb93"
+    j8.zip = "1348"
+    j8.town = "Louvain-la-Neuve"
     j8.branch = b1
     j8.save()
     j8.member_set.add(m1)
@@ -348,7 +379,9 @@ def popule_db():
     j9.category = j8.category #Other
     j9.other_category = j8.other_category
     j9.type = False #False = Offer
-    j9.address = j8.address
+    j9.street = j8.street
+    j9.zip = j8.zip
+    j9.town = j8.town
     j9.branch = j8.branch
     j9.regular_job = j8
     j9.save()
@@ -356,6 +389,45 @@ def popule_db():
     j9.member_set.add(m4)
     j9.save()
     
+    j10 = Job(mail=m2.mail, number=2)    #Kim
+    j10.title = "Projet Zombies"
+    j10.description = "Bonjour, je donne mon aide pour le projet de Zombies"
+    j10.start_time = 510 #8h30
+    j10.frequency = 2    #Monthly
+    j10.recursive_day = "10, 20, 30"
+    j10.km = 0
+    j10.time = 120   #2h
+    j10.category = 4 #Other
+    j10.other_category = "Aide projet"
+    j10.type = False #False = Offer
+    j10.street = "Place Sainte Barbe, 2 bte L6.11.01, Barb01"
+    j10.zip = "1348"
+    j10.town = "Louvain-la-Neuve"
+    j10.branch = b1
+    j10.save()
+    j10.member_set.add(m1)
+    j10.save()
+    
+    j11 = Job(mail=m2.mail, number=3)    #Kim
+    j11.title = j10.title
+    j11.description = j10.description
+    j11.date = "2014-12-20"
+    j11.start_time = j10.start_time #8h30
+    j11.frequency = 0    #Once
+    j11.km = j10.km
+    j11.time = j10.time   #2h
+    j11.category = j10.category #Other
+    j11.other_category = j10.other_category
+    j11.type = False #False = Offer
+    j11.street = j10.street
+    j11.zip = j10.zip
+    j11.town = j10.town
+    j11.branch = j10.branch
+    j11.regular_job = j10
+    j11.save()
+    j11.member_set.add(m1)
+    j11.member_set.add(m4)
+    j11.save()
     
     
 popule_db()

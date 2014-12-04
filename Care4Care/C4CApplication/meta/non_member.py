@@ -18,6 +18,16 @@ class NonMember(User):
         for job in jobs_of_member:
             if job.accepted and not job.payed:
                 return False
+
+        for job in jobs_of_member:
+            # He is the creator of the job => we delete the job
+            if not job.accepted and job.mail == self.db_member.mail:
+                job.delete()
+            elif not job.accepted and job.mail != self.db_member.mail:
+                job.member_set.all().remove(self.db_member)  # We remove him from the list of participants
+
+        self.db_member.deleted = True
+        self.db_member.save()
         return True
            
     #TODO Why don't you put this on the specific file system_email ?
@@ -230,8 +240,9 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
+                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+                   recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -264,13 +275,17 @@ class NonMember(User):
                 return False
 
         job = Job()
+        job.title = title
         job.number = number+1
         job.accepted = False
         job.address = address
         job.category = category
+        job.other_category = other_category
         job.comment = comment
+        job.description = description
         job.done = False
         job.frequency = frequency
+        job.recursive_day = recursive_day
         job.km = km
         job.mail = self.db_member.mail
         job.payed = False
@@ -284,15 +299,15 @@ class NonMember(User):
         job.member_set = [self.db_member]
 
         job.save()
-        return True
+        return job
     
-    def delete_job(self, job_number):
+    def delete_job(self, job_id):
         """
         Delete the number eme job of the user
 
         :param job_number: The number of the job of the user to delete.
         """
-        job = Job.objects.filter(mail=self.db_member.mail, number=job_number)
+        job = Job.objects.filter(id=job_id)
         if len(job) != 1 :
             return False
         job = job[0]

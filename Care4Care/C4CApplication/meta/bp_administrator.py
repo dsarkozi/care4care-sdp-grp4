@@ -1,7 +1,7 @@
 from time import strftime, gmtime
 
 
-from C4CApplication.meta import BranchOfficer
+from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.models import Member, Branch, Job
 
 
@@ -38,12 +38,25 @@ class BPAdministrator(BranchOfficer):
         :param deleted_one_email: the email of the person to delete
         :return: False if there was a problem and True otherwise.
         """
-        deleted = Member.objects.filter(mail=deleted_one_email)
+        deleted_member = Member.objects.filter(mail=deleted_one_email)
         # If the member doesn't exist or if it's the bp admin
-        if len(deleted) != 1 or deleted_one_email == self.db_member.mail:
+        if len(deleted_member) != 1 or deleted_one_email == self.db_member.mail:
             return False
+        deleted_member = deleted_member[0]
 
-        deleted.deleted = True
+        # Delete all jobs that the member to delete is involved in
+        jobs_of_member = self.db_member.job.all()
+        for job in jobs_of_member:
+            # He is the creator of the job => we delete the job
+            if not job.accepted and job.mail == self.db_member.mail:
+                job.delete()
+            elif not job.accepted and job.mail != self.db_member.mail:
+                job.member_set.all().remove(self.db_member)  # We remove him from the list of participants
+            elif not job.payed:  # If the job is accepted but pending, we remove it
+                job.delete()
+
+        deleted_member.deleted = True
+        deleted_member.save()
         return True
 
     def log_as_member(self, email, session):
@@ -161,8 +174,9 @@ class BPAdministrator(BranchOfficer):
         member.save()
         return True
 
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
+                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+                   recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -181,6 +195,7 @@ class BPAdministrator(BranchOfficer):
         """
 
         job = Job()
+        job.title = title
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
@@ -189,12 +204,15 @@ class BPAdministrator(BranchOfficer):
                 n = j.number
         job.number = n+1
         job.comment = comment
+        job.description = description
         job.date = date
         job.start_time = start_time
         job.frequency = frequency
+        job.recursive_day = recursive_day
         job.km = km
         job.time = time
         job.category = category
+        job.other_category = other_category
         job.type = is_demand
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
@@ -203,9 +221,9 @@ class BPAdministrator(BranchOfficer):
         if len(branch) != 1:
             return False
         job.branch = branch[0]
-        job.member_set = self.db_member
+        job.member_set.add(self.db_member)
         job.save()
-        return True
+        return job
 
     def create_branch(self, name, town, branch_officer_email=None, address=None):
         """
@@ -257,6 +275,7 @@ class BPAdministrator(BranchOfficer):
         member = member[0]
         member.tag = Member.TAG['bp_admin']
         self.db_member.tag = Member.TAG['verified']
+        # TODO !!! -> tag change
         member.save()
         self.db_member.save()
         return True

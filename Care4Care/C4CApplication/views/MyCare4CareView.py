@@ -6,6 +6,7 @@ from C4CApplication.views.utils import create_user
 
 class MyCare4CareView(TemplateView):
     template_name = "C4CApplication/MyCare4Care.html"
+    user = None
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:

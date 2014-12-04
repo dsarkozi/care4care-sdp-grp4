@@ -13,11 +13,10 @@ from C4CApplication.views.utils import create_user
 class HomePageView(FeedsMixingView, FormView):
     template_name = "C4CApplication/HomePage.html"
     form_class = LoginForm
-    #success_url = "myc4c/"
     
     def get_success_url(self):
         self.user = create_user(self.request.session['email'])
-        return reverse_lazy('profile', kwargs={'pk': self.user.db_member.mail})
+        return reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
@@ -41,6 +40,7 @@ class HomePageView(FeedsMixingView, FormView):
         password = form.cleaned_data['password']
         
         member = models.Member.objects.filter(mail=email)
+
         if len(member) == 0 or member[0].deleted:  # if member not found
             return super(HomePageView, self).form_invalid(form)
         member = member[0]  # get the member
@@ -49,19 +49,3 @@ class HomePageView(FeedsMixingView, FormView):
         
         self.request.session['email'] = email
         return super(HomePageView, self).form_valid(form)
-
-    def demand_job_list(self):
-        member = None # get_member TODO
-        return member.get_visible_jobs_list(True)
-        
-    def offert_job_list(self):
-        member = None # get_member TODO
-        return member.get_visible_jobs_list(False)
-    
-    def click_on_job(self, job_number, job_creator_mail):
-        member = None # get_member TODO
-        # unserailize member
-        
-        job = member.see_job_details(job_number, job_creator_mail)
-        
-        # redirect to job page

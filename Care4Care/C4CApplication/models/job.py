@@ -2,6 +2,7 @@ from time import strftime, gmtime
 
 
 from django.db import models
+from localflavor.be.forms import BEPostalCodeField
 
 
 class Job(models.Model):
@@ -38,7 +39,9 @@ class Job(models.Model):
     category = models.SmallIntegerField(choices=CAT)
     other_category = models.CharField(max_length=100)
     type = models.BooleanField(default=None) # True = demand, False = offer
-    address = models.CharField(max_length=200)
+    street = models.CharField(max_length=200)   #Street and number
+    zip = models.CharField(max_length=4)
+    town = models.CharField(max_length=100)
     accepted = models.BooleanField(default=False)
     done = models.BooleanField(default=False)
     payed = models.BooleanField(default=False)

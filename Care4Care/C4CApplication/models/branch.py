@@ -1,10 +1,14 @@
 from django.db import models
+from localflavor.be.forms import BEPostalCodeField
+
 
 class Branch(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     town = models.CharField(max_length=200)
     branch_officer = models.EmailField()
-    address = models.CharField(max_length=200)
+    street = models.CharField(max_length=200)   #Street and number
+    zip = models.CharField(max_length=4)
+    town = models.CharField(max_length=100)
     donation = models.IntegerField(default=0)
 
     def __str__(self):

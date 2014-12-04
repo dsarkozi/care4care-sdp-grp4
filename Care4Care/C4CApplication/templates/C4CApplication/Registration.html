@@ -17,7 +17,7 @@ background-color:#ffffff;width:20em;height:auto;padding:2em;>
   </button>
     	<form method="post" >
     		{% csrf_token %}
-{#            {{ form.errors }}#}
+            <!--{{ form.errors }}-->
    			<fieldset>
                 <legend>Account credentials</legend>
                 {{ form.mail.label }} : {{ form.mail }} <br>
@@ -27,7 +27,10 @@ background-color:#ffffff;width:20em;height:auto;padding:2em;>
             <legend>Personal information</legend>
             {{ form.first_name.label }} : {{ form.first_name }} <br>
             {{ form.last_name.label }} : {{ form.last_name }} <br>
-            {{ form.address.label }} : {{ form.address }} <br>
+            {{ form.gender.label }} : {{ form.gender }} <br>
+            {{ form.street.label }} : {{ form.street }} <br>
+            {{ form.zip.label }} : {{ form.zip }} <br>
+            {{ form.town.label }} : {{ form.town }} <br>
             {{ form.telephone.label }} : {{ form.telephone }} <br>
             {{ form.mobile.label }} : {{ form.mobile }} <br>
             {{ form.birthday.label }} : {{ form.birthday }}
@@ -35,10 +38,11 @@ background-color:#ffffff;width:20em;height:auto;padding:2em;>
         <fieldset>
             <legend>Miscellaneous</legend>
             {{ form.picture.label }} : {{ form.picture }} <br>
-            {{ form.branch.label }}
-            {% for branch in form.branch %}
-                {{ branch }}
-            {% endfor %}
+            {{ form.branch.label }} : {{ form.branch }}
+            <!--{% for branch in form.branch %}-->
+                <!--{{ branch }}-->
+            <!--{% endfor %} <br>-->
+            {{ form.tag.label }} : {{ form.tag }}
         </fieldset>
         <input type="submit" value="Register">
 		</form>
