@@ -4,7 +4,7 @@ from C4CApplication.page_objects.HomePage import HomePage
 import time
 
 
-class HelperSimulation(MySeleniumTests):
+class HelpedSimulation(MySeleniumTests):
     
     def test_simulation(self):
         self.populate_db()
@@ -28,11 +28,11 @@ class HelperSimulation(MySeleniumTests):
         page = page.login_successful("kim.mens@gmail.com","azertyuiop") # TODO set new email
         
         time.sleep(3)
-        page = page.click_on_i_want_to_help() # CreateJobPage
+        page = page.click_on_i_need_help() # CreateJobPage
         
         # page = page.put_job_offer_info
         # page.post
         
-        # maybe show how to select a job offer and participate
+        # show how to accept a participation
         
         return True
