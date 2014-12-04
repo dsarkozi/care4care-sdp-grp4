@@ -204,8 +204,9 @@ class BranchOfficer(MetaMember):
         member.save()
         return True
     
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
-                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
+                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
                    recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -244,7 +245,9 @@ class BranchOfficer(MetaMember):
         job.category = category
         job.other_category = other_category
         job.type = is_demand
-        job.address = address
+        job.street = street
+        job.zip = zip
+        job.town = town
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
         branch = Branch.objects.filter(name=branch_name)

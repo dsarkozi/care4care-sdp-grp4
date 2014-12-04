@@ -22,7 +22,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
     
     <article class = "second" style="margin-right:2em;">
    
-    	<h3>Compte :</h3>
+    	<h3>Account :</h3>
         <ul style = "list-style-type: none;"> 
             <li class="info">Type : 
             
@@ -49,28 +49,16 @@ background-color:#ffffff;margin-top:3em;width:50em; height:25em;">
 	    
 	        </li>
             <li class="info">Mail : {{ member_shown.mail }}</li>
-            <li class="info">Date d'inscription : {{ member_shown.register_date}}</li>
+            <li class="info">Registration date : {{ member_shown.register_date}}</li>
         </ul>
         
-        <h3>Informations personnelles :</h3>
+        <h3>Personal information :</h3>
         <ul style = "list-style-type: none;">
-            <li class="info">Nom : {{member_shown.first_name}} {{member_shown.last_name}}</li>
-            <li class="info">Date de naissance : {{member_shown.birthday}}</li> 
-            <li class="info">Mobile : {{member_shown.mobile}}</li>
-            <li class="info">Telephone : {{member_shown.telephone}}</li>
-            <li class="info">Adresse : {{member_shown.address}}</li>
-        </ul>
-                
-         {% comment %}
-        <h4>Adresse :</h4>
-        <ul>
-       
-            <li class="info">Rue : rue de l'Eglise</li>
-            <li class="info">Numéro : 40</li>
-            <li class="info">Code postal : 1330</li>
-            <li class="info">Ville : Rixensart</li> 
-            <li class="info">Pays : Belgique</li>
-        {% endcomment %}
+            <li class="info">Name : {{member_shown.first_name}} {{member_shown.last_name}}</li>
+            <li class="info">Birthdate : {{member_shown.birthday}}</li> 
+            <li class="info">Fixed phone : {{member_shown.telephone}}</li>
+            <li class="info">Mobile phone : {{member_shown.mobile}}</li>
+            <li class="info">Address : {{member_shown.street}}, {{member_shown.zip}}, {{member_shown.town}}</li>
         </ul>
         
         

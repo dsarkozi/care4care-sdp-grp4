@@ -15,15 +15,21 @@ class RegistrationForm(ModelForm):
             'password',
             'first_name',
             'last_name',
+            'gender',
             'picture',
             'birthday',
             'mobile',
             'telephone',
-            'address',
+            'street',
+            'town',
+            'zip',
             'branch',
         )
         labels = {
             'mail' : 'E-mail address',
+            'street' : 'Street',
+            'town' : 'City',
+            'zip' : 'Postal code',
         }
 
 
@@ -44,11 +50,17 @@ class RegistrationForm(ModelForm):
         if eid:
             self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
             self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['address'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['street'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['zip'].widget.attrs.update({'disabled' : 'true'})
+            self.fields['town'].widget.attrs.update({'disabled' : 'true'})
             self.fields['birthday'].widget.attrs.update({'disabled' : 'true'})
 
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=((1, "Without time crediting"), (2, "With time crediting")),
             label="Account type"
+        )
+        self.fields['gender'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=(('M', 'M'), ('F', 'F'))
         )

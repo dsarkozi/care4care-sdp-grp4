@@ -240,8 +240,9 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
-                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
+                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
                    recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -278,7 +279,9 @@ class NonMember(User):
         job.title = title
         job.number = number+1
         job.accepted = False
-        job.address = address
+        job.street = street
+        job.zip = zip
+        job.town = town
         job.category = category
         job.other_category = other_category
         job.comment = comment

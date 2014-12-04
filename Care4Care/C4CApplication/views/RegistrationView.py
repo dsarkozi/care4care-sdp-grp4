@@ -30,7 +30,10 @@ class RegistrationView(CreateView):
             ax_data = {
                     'first_name' : self.ax['firstname'].split(maxsplit=1)[0],
                     'last_name' : self.ax['lastname'],
-                    'address' : self.ax['address'],
+                    'gender' : self.ax['gender'],
+                    'street' : self.ax['address'],
+                    'town' : self.ax['city'],
+                    'zip' : self.ax['postal_code'],
                     'birthday_day' : self.ax['birth_day'],
                     'birthday_month' : self.ax['birth_month'],
                     'birthday_year' : self.ax['birth_year']
@@ -50,6 +53,7 @@ class RegistrationView(CreateView):
         self.request.session.pop('ax')
         member = form.save(commit=False)
         member.tag = form.cleaned_data['tag']
+        member.gender = form.cleaned_data['gender']
         member.save()
         return super(RegistrationView, self).form_valid(form)
 
@@ -82,7 +86,8 @@ class RegistrationView(CreateView):
                # "http://axschema.org/eid/nationality" : 'nationality',
                "http://axschema.org/namePerson/last" : 'lastname',
                "http://axschema.org/namePerson" : 'fullname',
-               "http://axschema.org/eid/age" : 'age'
+               "http://axschema.org/eid/age" : 'age',
+               "http://axschema.org/person/gender" : 'gender',
         }
         for key, value in ax.items():
             if key.endswith('photo'):

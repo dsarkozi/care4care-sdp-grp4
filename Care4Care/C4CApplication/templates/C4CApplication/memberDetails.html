@@ -59,9 +59,14 @@
 		<td class="tab1-3">{{ member_shown.register_date }}</td>
 	  </tr>
 	  
+	  <tr>
+		<td class="tab1-4">Gender : </td>
+		<td class="tab1-3">{{ member_shown.gender }}</td>
+	  </tr>
+	  
 	   <tr>
 		<td class="tab1-4">Address : </td>
-		<td class="tab1-3">{{ member_shown.address }}</td>
+		<td class="tab1-3">{{ member_shown.street }}, {{ member_shown.zip }}, {{ member_shown.town }}</td>
 	  </tr>
 	  
 	  {% if member_shown.telephone %}
