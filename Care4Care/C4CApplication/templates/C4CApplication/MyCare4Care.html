@@ -1,7 +1,8 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
 {% load staticfiles %}
-	
+{% load mathfilters %}
+
 {% block content %}
 
 
@@ -45,6 +46,11 @@
 <center>
 <h1> Hello, {{ member.first_name }} ! </h1>
 
+{% if member.time_credit >= 0 %}
+	<h3> You have {{member.time_credit|intdiv:1440}} days {{member.time_credit|mod:1440|intdiv:60}} hours {{member.time_credit|mod:60}} minutes</h3>
+{% else %}
+	<h3> You are in debt of {{0|sub:member.time_credit|intdiv:1440}} days {{0|sub:member.time_credit|mod:1440|intdiv:60}} hours {{0|sub:member.time_credit|mod:60}} minutes</h3>
+{% endif %}
 
 
 

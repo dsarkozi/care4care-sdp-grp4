@@ -24,7 +24,7 @@ class UserAccountTest(MySeleniumTests):
         return True
         
         
-    def test_logoff(self):
+    """def test_logoff(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
@@ -98,4 +98,4 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(2)
         
         self.assertEqual(0, 0)
-        return True
+        return True"""

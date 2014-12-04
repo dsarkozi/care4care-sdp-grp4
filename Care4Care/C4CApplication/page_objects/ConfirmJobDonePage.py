@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 import time
 
-# A quoi sert la fixedPage ? Il faut la mettre ici aussi ?
+
 class ConfirmJobDonePage(FixedPage):
     
     def __init__(self, driver):

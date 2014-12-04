@@ -190,6 +190,8 @@ class Member(NonMember):
         :param destination_email: the email address of the member to transfer time
         :return: False if there was a problem and True otherwise.
         """
+        if self.db_member.mail == destination_email:
+            return False
         sender_gift = self.db_member
         receiver_gift = models.Member.objects.filter(mail=destination_email)
         if len(receiver_gift) != 1:

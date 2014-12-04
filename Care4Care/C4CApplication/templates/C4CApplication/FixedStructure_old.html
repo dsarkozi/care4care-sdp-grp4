@@ -1,6 +1,6 @@
 
 <!-- Fixed Structure -->
-
+{% load i18n %}
 		<head>
 				<meta charset="utf-8"/>
 		</head>
@@ -59,19 +59,19 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<li><a href="HomePage.html"> <b> <center> HOME</a> </center> </b> </li>
-			<li><a href="Branches.html">Care4Care Branches</a></li>
+			<li><a href="HomePage.html"> <b> <center>{% trans "HOME"%}</a> </center> </b> </li>
+			<li><a href="Branches.html">{% trans "Care4Care Branches"%}</a></li>
 				<ul>
 					<li><a href="">Heembeek</a></li>
 					<li><a href="">Molenbeek</a></li>
 					<li><a href="">Rixensart</a></li>
 					
 				</ul>
-			<li><a href="Statistics.html">Statistics</a></li>
-			<li><a href="Map.html">Map</a></li>
-			<li><a href="StartABranch.html">Start a branch ?</a></li>
-			<li><a href="News.html">News</a></li>
-			<li><a href="Jobs@Care4Care.html">Jobs@Care4Care</a></li>
+			<li><a href="Statistics.html">{% trans "Statistics"%}</a></li>
+			<li><a href="Map.html">{% trans "Map"%}</a></li>
+			<li><a href="StartABranch.html">{% trans "Start a branch"%} ?</a></li>
+			<li><a href="News.html">{% trans "News"%}</a></li>
+			<li><a href="Jobs@Care4Care.html">{% trans "Jobs@Care4Care"%}</a></li>
 	</ul>
 		
 	

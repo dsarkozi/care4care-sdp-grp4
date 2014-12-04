@@ -7,7 +7,7 @@
 {% block menu %}
 
 <section style="border-width:2px;border-color:navy;border-style:solid;
-background-color:#ffffff;margin-top:3em; width:50em;">
+background-color:#ffffff;width:40%; height:auto;padding:1em;">
 
 <div style="margin-left:30px; margin-right:30px;">
 {% if envoi %}Votre message a bien été envoyé !{% endif %}
@@ -18,7 +18,7 @@ background-color:#ffffff;margin-top:3em; width:50em;">
     <p>  {{form.sujet.errors}} {{form.sujet}}</p>
     <p>  {{form.message.errors}} {{form.message}}</p>
     <p>  {{form.renvoi.errors}} {{form.renvoi}}</p>
-    <input type="submit" value="Submit" onclick="return window.confirm('Send this message ?')" />
+    <input type="submit" value="Send" class= "btn" onclick="return window.confirm('Send this message ?')" />
 </form>
 
 </div>

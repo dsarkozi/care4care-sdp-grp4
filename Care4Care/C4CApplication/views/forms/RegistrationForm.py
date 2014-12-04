@@ -5,14 +5,14 @@ from django.forms.models import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
-
+from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(ModelForm):
     class Meta:
         model = Member
         fields = (
             'mail',
-            'password',
+            _('password'),
             'first_name',
             'last_name',
             'gender',
