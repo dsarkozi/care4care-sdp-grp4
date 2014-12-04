@@ -12,7 +12,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
 <form method="post">
     {% csrf_token %}
     <fieldset>
-        <legend>{% trans "Request details" %}</legend>
+        <legend><h3>{% trans "Request details" %}</h3></legend>
         {{ createJob.title }} <br>
         <p id="job_desc_field">
             {{ createJob.desc }}

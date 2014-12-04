@@ -31,7 +31,7 @@ class ConfirmBillRedirectView(RedirectView):
         member = create_user(self.request.session['email'])
         
         if confirmation == 1 : # pressed confirm
-            member.accept_bill(job.number, job.mail, job.time)
+            member.accept_bill(job.number, job.mail, job.duration)
         else : # pressed contest
             res = member.refuse_bill(job.number, job.mail)
             
