@@ -1,4 +1,4 @@
-from C4CApplication.unit_test.super_class import MySeleniumTests
+from C4CApplication.unit_tests.super_class import MySeleniumTests
 from selenium.webdriver.support.ui import Select
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
 from C4CApplication.page_objects.ConfirmJobDonePage import ConfirmJobDonePage
