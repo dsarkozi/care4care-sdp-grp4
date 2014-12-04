@@ -1,5 +1,5 @@
 {% extends "C4CApplication/FixedStructure.html" %}
-
+{% load i18n %}
 {% load staticfiles %}
 	
 {% block content %}
@@ -11,36 +11,36 @@
         			<div id = "header">
         				<h4 id = "titre"> INSCRIPTION </h4>
         			</div>
-    				<fieldset>	<legend> Personnel informations </legend>
+    				<fieldset>	<legend>  {% trans "Personnal informations" %} </legend>
     					<p>  <div class = "left">{{form.first_name.errors}} {{form.first_name}} </div> <div class = "right">{{form.last_name.errors}} {{form.last_name}} </div> </br></p>
     					<p>  {{form.email.errors}} {{form.email}}</p>
    						<p>  {{form.password.errors}} {{form.password}} </p>  				
    						<p>  {{form.birthdate.errors}} {{form.birthdate}} </p>    				
     				
-   						<p> Adresse: <br/>
+   						<p> {%trans "Address: " %} <br/>
    						  {{form.number.errors}} {{form.number}}  {{form.street.errors}} {{form.street}}</p>    				
        					<p> {{form.zip.errors}} {{form.zip}}  {{form.town.errors}} {{form.town}} </p>
        					<p>
-    						Branch :<br/>
+    						{%trans "Branch "%} :<br/>
     						{{form.branch.errors}}{{form.branch}}
     					</p>
     			</div>
 					
     			<div id = "compte"> 
-    				<fieldset>	<legend> Member type </legend>     			
-    					<p> Member type:<br/>
+    				<fieldset>	<legend> {% trans "Member type"%} </legend>     			
+    					<p> {% trans "Member type"%}: <br/>
     						{{form.member_type.errors}}
     						{{form.member_type}}
     					</p>
     				</fieldset>
     			</div>   
     			<div id = "facultatives" >
-    				<fieldset>	<legend> Optional informations </legend> 
+    				<fieldset>	<legend> {%trans "Optional information"%} </legend> 
    			    		<p> {{form.fixe_phone.errors}} {{form.fixe_phone}} </p>
     					<p> {{form.mobile_phone.errors}} {{form.mobile_phone}} </p>
     				</fieldset>   				
     			</div>
-    			<p id = "envoyer"> <input type = "submit" name = "envoyer" > </p>
+    			<p id = "envoyer"> <input type = "submit" name = {%trans "Send"%} ></p>
     		</div>
 		<form/>
 	
