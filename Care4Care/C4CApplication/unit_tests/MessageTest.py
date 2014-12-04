@@ -1,4 +1,4 @@
-from C4CApplication.simulator.super_class import MySeleniumTests
+from C4CApplication.unit_test.super_class import MySeleniumTests
 from C4CApplication.page_objects.ListMessagesPage import ListMessagesPage
 
 from C4CApplication.models import Member, Message
