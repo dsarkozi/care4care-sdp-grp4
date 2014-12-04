@@ -26,7 +26,7 @@ class HomePage(FixedPage):
         time.sleep(1)
         self.login_button.click()
         
-        return MyCare4Care(self.driver)
+        return MyCare4Care(self.driver) 
     
     def quick_login_successful(self, mail, password):
         self.mail_input.send_keys(mail)
