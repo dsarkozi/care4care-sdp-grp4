@@ -43,7 +43,6 @@ from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedire
 
 from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
-from C4CApplication.views.InscriptionView import InscriptionView
 from C4CApplication.views.ModifProfileView import ModifProfileView
 from C4CApplication.views.ModifProfileRedirectView import ModifProfileRedirectView
 from C4CApplication.views.NewMessageView import NewMessageView

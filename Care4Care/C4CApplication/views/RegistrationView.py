@@ -30,7 +30,9 @@ class RegistrationView(CreateView):
             ax_data = {
                     'first_name' : self.ax['firstname'].split(maxsplit=1)[0],
                     'last_name' : self.ax['lastname'],
-                    'address' : self.ax['address'],
+                    'street' : self.ax['address'],
+                    'town' : self.ax['city'],
+                    'zip' : self.ax['postal_code'],
                     'birthday_day' : self.ax['birth_day'],
                     'birthday_month' : self.ax['birth_month'],
                     'birthday_year' : self.ax['birth_year']
