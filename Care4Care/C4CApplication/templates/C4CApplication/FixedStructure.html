@@ -23,9 +23,9 @@
 			-->
 			<li><a href="{% url 'home' %}" value="home"><center> <b>  HOME </b> </a></li></center> 
 			{% if connected %}
-				<li><a href="{% url 'profile' %}">MyCare4Care</a></li>
+				<li><a href="{% url 'profile' %}"><b> MyCare4Care </b></a></li>
 			{% endif %}
-			<li><a href="{% url 'branchlist' %}" value="branch_list">Care4Care Branches</a></li>
+			<li><a href="{% url 'branchlist' %}" value="branch_list">  <b> C4C Branches  </b> </a></li>
 				<ul>
 					{% if connected %}
 						{% for br in member.branch.all %}

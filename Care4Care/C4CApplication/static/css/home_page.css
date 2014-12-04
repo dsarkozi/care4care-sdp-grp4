@@ -21,16 +21,20 @@
 		  /* Customizes navigation menu */
 	      ul.navbar{
 	        list-style-type: none;
-   			padding: 0;
+   			padding : 0;
   			margin: 0;
     		position: absolute;
     		top: 4em;
 			left: 1em;
 			} 
 			
+			li{list-style-type: none;}
+			
 			
 		/* Customizes navigation menu items */
 		  ul.navbar li {
+		   max-width:120%;
+		   list-style-type: none;
 			   background: white;
 				margin: 0.5em 0;
 				padding: 0.3em; 
@@ -38,11 +42,22 @@
 		
 			
 		  ul.navbar li a:hover{
+		
 		  		color:red;
-		  		font-size:16px;
+		  		font-weight: bold;
+		  
 		  	}
 		  		
-		  table a:hover{color:#58FAAC;}
+		  table a:hover{
+		   -webkit-transition: all 0.2s ease;
+        -moz-transition:    all 0.2s ease;
+        -o-transition:      all 0.2s ease;
+        -ms-transition:     all 0.2s ease;
+        transition:         all 0.2s ease;
+        color:red;
+       
+		  		
+		 }
 		  
 		 /* Deletes link underlines */		
 		  a{
@@ -94,6 +109,7 @@
 		  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
 		  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
 		  text-decoration: none;
+		  color: #eec81b;
 		}
 		
 		.myButton2 a hover:
@@ -159,7 +175,6 @@
 
 		
 		.login {
-		  margin-right:1em;
 		  margin-top: 4em;
 		  /* margin: 50px auto; */
 		  padding: 18px 20px;
@@ -262,7 +277,7 @@
 		.tab1  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;} 	
 
 			/* Cells */
-		.tab1 td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;
+		.tab1 td{font-family:Georgia, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;
 		        border-width:2px;overflow:hidden;word-break:normal;border-color:navy;color:#669;
 		        background-color:#e8edff;width:140px;height:20px; 
 		 }
@@ -273,8 +288,8 @@
 		         border-color:navy;color:#039;background-color:#b9c9fe;}
  
  			/* Particular rows */
-		.tab1 .tab1-3{text-align:center  }
-		.tab1 .tab1-4{background-color:#D2E4FC }
+		.tab1 .tab1-3{text-align:center; }
+		.tab1 .tab1-4{background-color:#D2E4FC;font-family:Arial; }
 		
 		
 		/* ---- FAVORITES BUTTON ---- */
