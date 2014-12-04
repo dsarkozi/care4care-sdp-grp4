@@ -49,7 +49,8 @@ class JobDetailsView(DetailView, FormView):
         creator_of_regular_job = create_user(self.job.mail)
         new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, date, self.job.type, '', '',\
                                           self.job.start_time, 0, self.job.km, self.job.time, self.job.category,\
-                                          self.job.other_category, self.job.address, 'anyone', '')
+                                          self.job.other_category, self.job.street, self.job.zip, self.job.town,\
+                                          'anyone', '')
         if new_job :
             new_job.visibility = self.job.visibility
             self.job.job_set.add(new_job)

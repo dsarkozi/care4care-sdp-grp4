@@ -21,9 +21,21 @@ class CreateBranchForm(forms.Form):
         ), label="Branch officer mail"
     )
     
-    address = forms.CharField(
+    street = forms.CharField(
         widget=TextInput(
-            attrs={'placeholder':'number, street, postal code'}
-        ), label="Name of the branch "
+            attrs={'placeholder':'street, number, more details'}
+        ), label="Street of the branch "
+    )
+    
+    zip = forms.CharField(
+        widget=TextInput(
+            attrs={'placeholder':'postal code'}
+        ), label="Zip of the branch "
+    )
+    
+    town = forms.CharField(
+        widget=TextInput(
+            attrs={'placeholder':'town'}
+        ), label="Town of the branch "
     )
     

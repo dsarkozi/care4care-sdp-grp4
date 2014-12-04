@@ -9,8 +9,7 @@ class ModifProfileForm(forms.Form):
     password   = forms.CharField( max_length=100  , widget=forms.PasswordInput(attrs={'placeholder': 'password', 'size' : 44}))
 
     #adresse
-    number  = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'number', 'size' : 10}))
-    street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'street', 'size' : 32}))
+    street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'street, number, more information', 'size' : 32}))
     zip     = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'zip',    'size' : 10}))
     town    = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'town',   'size' : 32}))
     

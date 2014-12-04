@@ -174,8 +174,9 @@ class BPAdministrator(BranchOfficer):
         member.save()
         return True
 
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
-                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
+                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
                    recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
@@ -214,7 +215,9 @@ class BPAdministrator(BranchOfficer):
         job.category = category
         job.other_category = other_category
         job.type = is_demand
-        job.address = address
+        job.street = street
+        job.zip = zip
+        job.town = town
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
         branch = Branch.objects.filter(name=branch_name)
@@ -225,7 +228,7 @@ class BPAdministrator(BranchOfficer):
         job.save()
         return job
 
-    def create_branch(self, name, town, branch_officer_email=None, address=None):
+    def create_branch(self, name, branch_town, branch_officer_email=None, street='', zip='', town=''):
         """
         Create a new branch with the parameter
         :param name: name of the new branch
@@ -236,8 +239,10 @@ class BPAdministrator(BranchOfficer):
         """
         branch = Branch()
         branch.name = name
+        branch.town = branch_town
+        branch.street = street
+        branch.zip = zip
         branch.town = town
-        branch.address = address
 
         branch_officer = Member.objects.filter(mail=branch_officer_email)
         if len(branch_officer) != 1 or branch_officer[0].deleted:  # If the member does not exist

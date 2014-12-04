@@ -33,9 +33,8 @@ class ModifProfileView(FormView):
     
     def form_valid(self, form):
         #adresse
-        number = form.cleaned_data['number']
         street = form.cleaned_data['street']
-        zip_num = form.cleaned_data['zip']
+        zip = form.cleaned_data['zip']
         town = form.cleaned_data['town']
         #infos faculatives
         fixed_phone = form.cleaned_data['fixed_phone']
@@ -50,7 +49,9 @@ class ModifProfileView(FormView):
         self.user.db_member.mobile = mobile_phone
         self.user.db_member.telephone = fixed_phone
         
-        self.user.db_member.address = street+ ", " + number + ", " + zip +", " +town
+        self.user.db_member.street = street
+        self.user.db_member.zip = zip
+        self.user.db_member.town = town
         
         self.user.db_member.picture = picture
         self.user.db_member.password = password
@@ -60,12 +61,7 @@ class ModifProfileView(FormView):
         return super(ModifProfileView, self).form_valid(form)
 
     def get_initial(self):
-        address = self.user.db_member.address
-        table = address.split(',')
-        #street+ ", " + number + ", " + zip +", " +town
-        street = table[0]
-        number = table[1][1:]
-        zip = table[2][1:]
-        town = table[3][1:]
-        self.initial = {'number':number, 'street':street, 'zip':zip , 'town':town,'fixed_phone':self.user.db_member.telephone,  'mobile_phone':self.user.db_member.mobile}
+        self.initial = {'street':self.user.db_member.street, 'zip':self.user.db_member.zip ,\
+                        'town':self.user.db_member.town,'fixed_phone':self.user.db_member.telephone,\
+                        'mobile_phone':self.user.db_member.mobile}
         return self.initial.copy()

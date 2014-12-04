@@ -101,8 +101,10 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None,
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
+                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
+                   recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -228,7 +230,7 @@ class User(object):
         """
         return
 
-    def create_branch(self, name, town, branch_officer_email=None, address=None):
+    def create_branch(self, name, branch_town, branch_officer_email=None, street='', zip='', town=''):
         """
         Create a new branch with the parameter
         :param name: name of the new branch
