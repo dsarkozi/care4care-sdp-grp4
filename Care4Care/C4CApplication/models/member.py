@@ -4,6 +4,7 @@ from django.core.files import File
 
 
 from django.db import models
+from localflavor.be.forms import BEPostalCodeField
 
 from django.core.files.storage import FileSystemStorage
 class OverwriteStorage(FileSystemStorage):
@@ -13,15 +14,13 @@ class OverwriteStorage(FileSystemStorage):
         return name
 
 
-class Member(models.Model): 
-    #TODO Flavor it
-    #TODO postalCode ? city ?
-    #TODO Set optional fields with blank=True
+class Member(models.Model):
     mail = models.EmailField(primary_key=True)
     password = models.CharField(max_length=100)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    picture = models.ImageField(null=True, blank=True, upload_to="images/images_profile/", storage=OverwriteStorage())  #TODO Where does this upload to ?
+    gender = models.CharField(max_length=1)
+    picture = models.ImageField(null=True, blank=True, upload_to="images/images_profile/", storage=OverwriteStorage())
     birthday = models.DateField(blank=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
     
     TAG_REVERSE = {
@@ -57,7 +56,9 @@ class Member(models.Model):
     telephone = models.CharField(max_length=15)
     register_date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))
     dash_board_text = models.TextField()
-    address = models.CharField(max_length=200)
+    street = models.CharField(max_length=200)   #Street and number
+    zip = models.CharField(max_length=4)
+    town = models.CharField(max_length=100)
     
     MEMBER_VISIBILITY = { # every bit of the number corresponds to one option
         'anyone'     : 1,   #0001
