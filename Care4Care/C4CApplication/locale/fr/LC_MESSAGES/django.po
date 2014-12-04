@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 14:42+0000\n"
+"POT-Creation-Date: 2014-12-04 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,9 @@ msgid "Name"
 msgstr "Nom"
 
 #: templates/C4CApplication/CreateBranch.html:19
-msgid "Town(s) of the branch"
+#, fuzzy
+#| msgid "Town(s) of the branch"
+msgid "Town(s) of the Branch"
 msgstr "Ville(s) de la branche"
 
 #: templates/C4CApplication/CreateBranch.html:20
@@ -174,6 +176,76 @@ msgstr "Code postal"
 #: templates/C4CApplication/CreateBranch.html:23
 msgid "Town"
 msgstr "Ville"
+
+#: templates/C4CApplication/CreateBranch.html:24
+#, fuzzy
+#| msgid "Submit changes"
+msgid "Submit"
+msgstr "Envoyez les changements"
+
+#: templates/C4CApplication/CreateJob.html:15
+msgid "Request details"
+msgstr "Demande de détails"
+
+#: templates/C4CApplication/CreateJob.html:20
+msgid "Branch"
+msgstr "Branche"
+
+#: templates/C4CApplication/CreateJob.html:23
+msgid "Job category"
+msgstr "Catégorie de la tâche"
+
+#: templates/C4CApplication/CreateJob.html:35
+msgid "Job timeline"
+msgstr "Ligne du temps de la tâche"
+
+#: templates/C4CApplication/CreateJob.html:72
+msgid "Job visibility"
+msgstr "Visibilitée de la tâche"
+
+#: templates/C4CApplication/CreateJob.html:75
+msgid "Post request"
+msgstr "Poster la demande"
+
+#: templates/C4CApplication/DeleteMemberBPA.html:19
+msgid "Enter the mail of the member to be deleted"
+msgstr "Entrez le mail du membre à supprimer"
+
+#: templates/C4CApplication/DeleteMemberBPA.html:22
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/C4CApplication/DonateTime.html:9
+msgid "Donation message"
+msgstr "Message de don"
+
+#: templates/C4CApplication/DonateTime.html:13
+msgid "Donation amount"
+msgstr "Montant du don"
+
+#: templates/C4CApplication/DonateTime.html:19
+msgid "Donation recipient"
+msgstr "Bénéficiaire de don"
+
+#: templates/C4CApplication/Favorites.html:17
+msgid "Add to Favorites"
+msgstr "Ajouter aux Favoris"
+
+#: templates/C4CApplication/Favorites.html:25
+msgid "Favorite members"
+msgstr "Membre favoris"
+
+#: templates/C4CApplication/Favorites.html:29
+msgid "NAME"
+msgstr "NOM"
+
+#: templates/C4CApplication/Favorites.html:30
+msgid "FIRST NAME"
+msgstr "PRÉNOM"
+
+#: templates/C4CApplication/Favorites.html:31
+msgid "MAIL"
+msgstr "MAIL"
 
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"
