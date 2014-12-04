@@ -1,19 +1,20 @@
  
-  	
+  
+ 
   		 
   		 /* Applied to all the html body... */
   		 body {
-  		  min-width:1200px;
-  		  max-width:2000px;
-  		  max-width:100%;
+  		  width:100%
   		  top: 5em;
   		  padding-right: 13em;
   		  padding-left: 13em;
+  		  padding-top: 1em;
   		  font-family: Georgia, "Times New Roman",
           Times, serif;
   		  color: navy;
   		  background-color: #DFF2FF;
   		  margin: auto;
+  		  
   		 }
   		  
 		 	
@@ -111,14 +112,15 @@
 		}
 								
 			.btn {
+			max-width:100%;
 	  -webkit-border-radius: 0;
 	  -moz-border-radius: 0;
 	  border-radius: 0px;
 	  font-family: Georgia;
 	  color: #677fa8;
-	  font-size: 14px;
+	  font-size: 90%;
 	  background: white;
-	  padding: 5px 25px 5px 25px;
+	  padding: 5px 15px 5px 15px;
 	  border: solid navy 2px;
 	  text-decoration: none;
 	}
@@ -142,7 +144,7 @@
 		  margin-top: 2em;
 		  /* margin: 50px auto; */
 		  padding: 18px 20px;
-		  width: 150px;
+		  width: 10%;
 		  background: #3f65b7;
 		  background-clip: padding-box;
 		  border: 2px solid navy;
