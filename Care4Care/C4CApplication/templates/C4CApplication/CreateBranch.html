@@ -3,7 +3,7 @@
 {% load staticfiles %}
 	
 {% block menu %}
-
+{% load i18n %}
 
 {% block create_branch %}
 
@@ -14,14 +14,14 @@ background-color:#ffffff;padding:2em;width:40%; height:auto;margin-bottom:3em;">
 	{% csrf_token %}
 	
 	
-      <h2> Create a branch</h2>
-        <p> Name : {{ create_branch_form.name }} </p>
-        <p> Town : {{ create_branch_form.town }} </p>
-        <p> Branch Officer : {{ create_branch_form.branch_off }} </p>
-	    <p> Street : {{ create_branch_form.street }} </p>
-	    <p> Zip : {{ create_branch_form.zip }} </p>
-	    <p> Town : {{ create_branch_form.town }} </p>
-	    <input type="submit" value="Submit" class = "btn"/>
+      <h2> {%trans "Create a branch" %}</h2>
+        <p> {%trans "Name" %} : {{ form.name }} {{form.name.errors}} </p>
+        <p> {%trans "Town(s) of the Branch"%} : {{ form.branch_town }} {{form.branch_town.errors}}</p>
+        <p> {%trans "Branch Officer"%} : {{ form.branch_off }} {{form.branch_off.errors}}</p>
+	    <p> {%trans "Street"%} : {{ form.street }} </p>
+	    <p> {%trans "Zip"%} : {{ form.zip }} </p>
+	    <p> {%trans "Town"%} : {{ form.town }} </p>
+	    <input type="submit" value={% trans "Submit" %} class = "btn"/>
 
     
 </form>

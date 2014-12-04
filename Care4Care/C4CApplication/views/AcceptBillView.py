@@ -25,5 +25,9 @@ class AcceptBillView(DetailView):
 
         context = super(AcceptBillView, self).get_context_data()
         context['member'] = self.user.db_member
+        if (context['job'].type):
+            context['helper'] = (context['job'].member_set.all())[1]
+        else:
+            context['helper'] = (context['job'].member_set.all())[0]
         context['connected'] = 'email' in self.request.session
         return context

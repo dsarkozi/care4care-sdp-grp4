@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 10:18+0000\n"
+"POT-Creation-Date: 2014-12-04 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,198 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: templates/C4CApplication/Inscription.html:14
-msgid "Personnal informations"
-msgstr "Informations personnelles"
+#: templates/C4CApplication/AcceptBill.html:5
+msgid "The following job has been marked as done by"
+msgstr "La tâche suivante à été exécutée par"
 
-#: templates/C4CApplication/Inscription.html:20
-msgid "Address: "
-msgstr "Adresse: "
+#: templates/C4CApplication/AcceptBill.html:6
+msgid "Please confirm that the information below is correct "
+msgstr ""
+"S'il vous plait confirmez que les informations suivantes sont correctes"
 
-#: templates/C4CApplication/Inscription.html:24
-msgid "Branch "
-msgstr "Branche"
+#: templates/C4CApplication/AcceptBill.html:8
+#: templates/C4CApplication/ConfirmJobDoneView.html:9
+msgid "Confirm"
+msgstr "Confirmez"
 
-#: templates/C4CApplication/Inscription.html:30
-#: templates/C4CApplication/Inscription.html:31
-msgid "Member type"
-msgstr "Type de membre"
+#: templates/C4CApplication/AcceptBill.html:9
+msgid "Contest"
+msgstr "Concours"
 
-#: templates/C4CApplication/Inscription.html:38
-msgid "Optional information"
-msgstr "Informations optionnelles "
+#: templates/C4CApplication/AccountAndStats.html:21
+msgid "General informations"
+msgstr "renseignements personnels"
 
-#: templates/C4CApplication/Inscription.html:43
-msgid "Send"
-msgstr "Envoyer"
+#: templates/C4CApplication/AccountAndStats.html:24
+msgid "Number of job completed"
+msgstr "nombre de tâches complètées"
+
+#: templates/C4CApplication/AccountAndStats.html:30
+msgid "Average time per job"
+msgstr "temps moyen par tâche"
+
+#: templates/C4CApplication/AccountAndStats.html:35
+msgid " I drove"
+msgstr "j'ai conduit"
+
+#: templates/C4CApplication/AccountAndStats.html:36
+msgid "kilometers "
+msgstr "kilomètres"
+
+#: templates/C4CApplication/AccountAndStats.html:40
+msgid " Type of job done"
+msgstr "Type de job effectué"
+
+#: templates/C4CApplication/AccountAndStats.html:54
+msgid " Help received"
+msgstr "Aide reçue"
+
+#: templates/C4CApplication/AccountAndStats.html:55
+msgid "Help done "
+msgstr "Aide offerte"
+
+#: templates/C4CApplication/AccountAndStats.html:58
+msgid "List of completed jobs"
+msgstr "Liste des tâche accomplies"
+
+#: templates/C4CApplication/AccountAndStats.html:62
+#: templates/C4CApplication/AccountAndStats.html:84
+#: templates/C4CApplication/AccountAndStats.html:109
+#: templates/C4CApplication/AccountAndStats.html:132
+msgid "Date"
+msgstr "Date"
+
+#: templates/C4CApplication/AccountAndStats.html:63
+#: templates/C4CApplication/AccountAndStats.html:85
+#: templates/C4CApplication/AccountAndStats.html:110
+#: templates/C4CApplication/AccountAndStats.html:133
+msgid "Job Cat"
+msgstr "Catégorie de la tâche"
+
+#: templates/C4CApplication/AccountAndStats.html:64
+#: templates/C4CApplication/AccountAndStats.html:86
+#: templates/C4CApplication/AccountAndStats.html:111
+#: templates/C4CApplication/AccountAndStats.html:134
+msgid "Time Spent"
+msgstr "Temps passé"
+
+#: templates/C4CApplication/AccountAndStats.html:65
+#: templates/C4CApplication/AccountAndStats.html:87
+#: templates/C4CApplication/AccountAndStats.html:112
+#: templates/C4CApplication/AccountAndStats.html:135
+msgid "For Whom"
+msgstr "Pour qui"
+
+#: templates/C4CApplication/AccountAndStats.html:67
+#: templates/C4CApplication/AccountAndStats.html:89
+#: templates/C4CApplication/AccountAndStats.html:114
+#: templates/C4CApplication/AccountAndStats.html:137
+msgid "Comment"
+msgstr "Commentaire"
+
+#: templates/C4CApplication/AccountAndStats.html:105
+msgid "Waiting jobs"
+msgstr "tâches en attente"
+
+#: templates/C4CApplication/BranchList.html:13
+msgid "Choose branch(es)"
+msgstr "Choisissez une ou (plusieurs) branche(s)"
+
+#: templates/C4CApplication/BranchList.html:22
+msgid "Submit changes"
+msgstr "Envoyez les changements"
+
+#: templates/C4CApplication/ChangeActivity.html:16
+msgid "Utility of having a status"
+msgstr "Utilitée d'avoir un status"
+
+#: templates/C4CApplication/ChangeActivity.html:17
+msgid "Description of the utility of the status"
+msgstr "Description de l'utilitée du status"
+
+#: templates/C4CApplication/ChangeActivity.html:22
+msgid "Do you want to be"
+msgstr "Voulez-vous être"
+
+#: templates/C4CApplication/ChangeActivity.html:22
+msgid "ACTIVE"
+msgstr "ACTIF"
+
+#: templates/C4CApplication/ChangeActivity.html:23
+msgid "or"
+msgstr "ou"
+
+#: templates/C4CApplication/ChangeActivity.html:23
+msgid "INACTIVE"
+msgstr "INACTIF"
+
+#: templates/C4CApplication/ConfirmJobDoneView.html:7
+msgid "Time for doing the job (in minutes)"
+msgstr "Temps requis à fin d'effectuer la tâche (en minutes) "
+
+#: templates/C4CApplication/CreateBranch.html:17
+msgid "Create a branch"
+msgstr "Créer une branche"
+
+#: templates/C4CApplication/CreateBranch.html:18
+msgid "Name"
+msgstr "Nom"
+
+#: templates/C4CApplication/CreateBranch.html:19
+msgid "Town(s) of the branch"
+msgstr "Ville(s) de la branche"
+
+#: templates/C4CApplication/CreateBranch.html:20
+msgid "Branch Officer"
+msgstr "Administrateur de branche"
+
+#: templates/C4CApplication/CreateBranch.html:21
+msgid "Street"
+msgstr "Rue"
+
+#: templates/C4CApplication/CreateBranch.html:22
+msgid "Zip"
+msgstr "Code postal"
+
+#: templates/C4CApplication/CreateBranch.html:23
+msgid "Town"
+msgstr "Ville"
+
+#: templates/C4CApplication/Registration.html:28
+msgid "Account credential"
+msgstr "Identifiants de compte"
+
+#: templates/C4CApplication/Registration.html:36
+msgid "Personal information"
+msgstr "renseignements personnels"
+
+#: templates/C4CApplication/Registration.html:54
+msgid "Miscellaneous"
+msgstr "divers"
+
+#: templates/C4CApplication/Registration.html:80
+msgid "Register"
+msgstr "Enregistrement"
+
+#~ msgid "Town(s)"
+#~ msgstr "Ville(s)"
+
+#, fuzzy
+#~| msgid "Job Cat"
+#~ msgid " Job Cat"
+#~ msgstr "Catégorie de la tâche"
+
+#, fuzzy
+#~| msgid "Time Spent"
+#~ msgid " Time Spent"
+#~ msgstr "Temps passé"
+
+#, fuzzy
+#~| msgid "For Whom"
+#~ msgid " For Whom"
+#~ msgstr "Pour qui"
+
+#, fuzzy
+#~| msgid "Comment"
+#~ msgid " Comment"
+#~ msgstr "Commentaire"

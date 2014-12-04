@@ -1,7 +1,8 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
+
 {% block content %}
 
 <center>
@@ -9,7 +10,7 @@
 background-color:#ffffff;width:15em;height:auto;padding:2em;>
     <form method="post">
         {% csrf_token %}
-        <h3> Choose branch(es) :</h3>
+        <h3> {% trans "Choose branch(es)"%} :</h3>
         <ul style="list-style-type: none;" > 
             {% for checkbox in branch_list_form.branch_list %}
                 <li style="display:block" >
@@ -18,7 +19,7 @@ background-color:#ffffff;width:15em;height:auto;padding:2em;>
             {% endfor %}
         </ul>
       
-        <input type="submit" value="Submit changes" class="btn"/>
+        <input type="submit" value= {% trans "Submit changes"%} class="btn"/>
     </form>
 </center>
 </div>

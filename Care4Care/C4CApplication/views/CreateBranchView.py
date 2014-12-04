@@ -43,7 +43,7 @@ class CreateBranchView(FormView):
             self.user = models.Member.objects.get(mail=self.request.session['email'])
 
         # create the branch with the values entered in the input field
-        self.user.create_branch(self, form.cleaned_data['name'], form.cleaned_data['town'],\
+        res = self.user.create_branch(form.cleaned_data['name'], form.cleaned_data['branch_town'],\
                                 form.cleaned_data['branch_off'], form.cleaned_data['street'],\
                                 form.cleaned_data['zip'], form.cleaned_data['town'])
 
