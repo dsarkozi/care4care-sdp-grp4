@@ -1,6 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 #from C4CApplication.page_objects.HomePage import HomePage
-from C4CApplication.page_objects.CreateBranchView import CreateBranchView
 from selenium.webdriver.common.by import By
 
 

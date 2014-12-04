@@ -1,7 +1,7 @@
 from C4CApplication.simulator.super_class import MySeleniumTests
-#from C4CApplication.page_objects.HomePage import HomePage
-#from C4CApplication.page_objects.BranchListPage import BranchListPage
-#from C4CApplication.page_objects.MemberListPage import MemberListPage
+from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.BranchListPage import BranchListPage
+from C4CApplication.page_objects.MemberListPage import MemberListPage
 from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 
 
@@ -22,7 +22,7 @@ class UserAccountTest(MySeleniumTests):
         return True
         
         
-    def test_logoff(self):
+    """def test_logoff(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
@@ -81,4 +81,4 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         self.assertEqual(0, 0)
-        return True
+        return True"""
