@@ -24,12 +24,13 @@ class Member(models.Model):
     birthday = models.DateField(blank=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
     
     TAG_REVERSE = {
-        1         : 'non_member',      #000001
-        2         : 'member',          #000010
-        4         : 'verified',        #000100
-        8         : 'volunteer',       #001000
-        16        : 'branch_officer',  #010000
-        32        : 'bp_admin',        #100000
+        1         : 'non_member',               #000001
+        2         : 'member',                   #000010
+        4         : 'verified',                 #000100
+        8         : 'volunteer',                #001000
+        12        : 'volunteer and verified',   #001100
+        16        : 'branch_officer',           #010000
+        32        : 'bp_admin',                 #100000
     }
     
     TAG_CHOICE = (
@@ -37,17 +38,19 @@ class Member(models.Model):
         (2, 'Member'),
         (4, 'Verified'),
         (8, 'Volunteer'),
+        (12, 'Volunteer and verified'),
         (16, 'Branch officer'),
         (32, 'BP admin'),
     )
     
     TAG = {
-        'non_member'     : 1,   #000001
-        'member'         : 2,   #000010
-        'verified'       : 4,   #000100
-        'volunteer'      : 8,   #001000
-        'branch_officer' : 16,  #010000
-        'bp_admin'       : 32,  #100000
+        'non_member'             : 1,   #000001
+        'member'                 : 2,   #000010
+        'verified'               : 4,   #000100
+        'volunteer'              : 8,   #001000
+        'volunteer and verified' : 12,  #001100
+        'branch_officer'         : 16,  #010000
+        'bp_admin'               : 32,  #100000
     }
     tag = models.SmallIntegerField(default=1)    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive

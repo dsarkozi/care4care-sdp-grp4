@@ -25,7 +25,10 @@ class BranchListRedirectView(RedirectView):
         action = kwargs['action']
         
         self.url = reverse_lazy("branchdetails", kwargs={'pk': branch_name})
-        if action=='0' :  #Remove the member from the branch
+        if action=='3': #Delete branch
+            self.url = reverse_lazy("home")
+            self.user.remove_branch(branch_name)
+        elif action=='0' :  #Remove the member from the branch
             self.user.delete_member_from_branch(branch_name, mail_member)
         elif action=='1' :    #Promote/de-promote to verified
             self.user.modify_tag_member(mail_member, 4)
