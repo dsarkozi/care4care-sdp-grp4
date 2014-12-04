@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+from django.utils.translation import gettext_lazy as _
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -60,6 +60,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware', 
 )
 
 ROOT_URLCONF = 'Care4Care.urls'
@@ -95,6 +96,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+#setting de l'internationalisation
+SITE_ID = 1
+USE_I18N = True
+USE_L10N = True
+DEF_ULT_LANGUAGE = 1
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale')
+)
+LANGUAGES =(
+    ('fr' , ('French')),
+    ('en', ('English')),
+)
+
 
 MEDIA_URL  = '/data/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'C4CApplication/data/')
@@ -105,6 +119,8 @@ MEDIAFILES_DIRS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STATIC_ROOT = '/var/www/care4care.be/static/'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'C4CApplication/static'),
@@ -113,4 +129,7 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'C4CApplication/templates'),
+    "django.core.context_processors.i18n",
 )
+
+

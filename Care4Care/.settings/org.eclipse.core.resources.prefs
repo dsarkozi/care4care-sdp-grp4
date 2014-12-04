@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//C4CApplication/views/forms/JobRegularForm.py=utf-8
 encoding//C4CApplication/views/forms/ModifProfileForm.py=UTF-8
+=======
+encoding//C4CApplication/views/forms/InscriptionForm.py=utf-8
+>>>>>>> branch 'dev' of https://github.com/dsarkozi/care4care-sdp-grp4.git
