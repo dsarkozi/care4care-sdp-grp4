@@ -39,15 +39,13 @@ class CreateBranchView(FormView):
     
     def form_valid(self, form):
         # TODO test if the member has session variables !! -> redirection
-        if CreateBranchView.user is None:
-            CreateBranchView.user = models.Member.objects.get(mail=self.request.session['email'])
+        if self.user is None:
+            self.user = models.Member.objects.get(mail=self.request.session['email'])
 
         # create the branch with the values entered in the input field
-        new_branch = Branch(name=form.cleaned_data['name'])
-        new_branch.town = form.cleaned_data['town']
-        new_branch.branch_off = form.cleaned_data['branch_off']
-        new_branch.address = form.cleaned_data['address']
-        new_branch.save()
+        self.user.create_branch(self, form.cleaned_data['name'], form.cleaned_data['town'],\
+                                form.cleaned_data['branch_off'], form.cleaned_data['street'],\
+                                form.cleaned_data['zip'], form.cleaned_data['town'])
 
         
         return super(CreateBranchView, self).form_valid(form)
