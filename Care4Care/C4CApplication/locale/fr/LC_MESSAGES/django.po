@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 14:23+0000\n"
+"POT-Creation-Date: 2014-12-04 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,7 @@ msgstr ""
 "S'il vous plait confirmez que les informations suivantes sont correctes"
 
 #: templates/C4CApplication/AcceptBill.html:8
+#: templates/C4CApplication/ConfirmJobDoneView.html:9
 msgid "Confirm"
 msgstr "Confirmez"
 
@@ -141,6 +142,10 @@ msgstr "ou"
 #: templates/C4CApplication/ChangeActivity.html:23
 msgid "INACTIVE"
 msgstr "INACTIF"
+
+#: templates/C4CApplication/ConfirmJobDoneView.html:7
+msgid "Time for doing the job (in minutes)"
+msgstr "Temps requis à fin d'effectuer la tâche (en minutes) "
 
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"
