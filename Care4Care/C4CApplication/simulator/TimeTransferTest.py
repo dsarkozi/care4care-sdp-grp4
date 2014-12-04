@@ -38,7 +38,7 @@ class TimeTransferTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_donate()       
-        
+        # buug ...
         time.sleep(5)
         
         # Get time account after donation
