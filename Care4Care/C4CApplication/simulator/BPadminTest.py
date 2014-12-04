@@ -1,83 +1,89 @@
-from C4CApplication.simulator.BranchOfficerTest import BranchOfficerTest
-from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.simulator.super_class import MySeleniumTests
+#from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
+from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
+from C4CApplication.page_objects.TransferRightsPage import TransferRightsPage
 
 
 import time
 
 
-class BranchOfficerTest(BranchOfficerTest):
+class BPadminTest(MySeleniumTests):
 
-    def create_branch_test(self):
+    def test_create_branch(self):
         self.populate_db()
+        
+        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
         time.sleep(1)
         
-        page = page.BP_click_on_new_branch()
+        self.selenium.get('%s%s' % (self.live_server_url, '/createbranch/'))
         time.sleep(1)
         
-        #TODO
+        page = CreateBranchPage(self.selenium)
+        time.sleep(2)
+        
+        page = page.fill_in_info('Bxl', 'Bruxelles', 'mathieu.jadin@student.uclouvain.be', "Rue de la deadline trop courte, 42, shit")
+        time.sleep(3)
+        
+        page = page.click_on_submit()
+        time.sleep(2)
+        
+        self.assertEqual(0, 0)
+        return True
+
+    
+    def test_change_branch_officer(self):
+        self.populate_db()
+
+        # log in
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        time.sleep(1)
+        
+        self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/LLN/'))
+        time.sleep(1)
+        
+        page = TransferRightsBranchPage(self.selenium)
+        page = page.set_email_new_branch_off("kim.mens@gmail.com")
+        time.sleep(3)
+        
+        page = page.click_on_change()
+        time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
     
-    def handle_volunteers_request_test(self):
+    def test_resing_from_bp_admin(self):
         self.populate_db()
+
+        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys('azertyuiop')
+        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
         time.sleep(1)
         
-        #TODO
-        
-        self.assertEqual(0, 0)
-        return True
-    
-    def handle_verified_member_request_test(self):
-        self.populate_db()
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        self.selenium.get('%s%s' % (self.live_server_url, '/transferrights/'))
         time.sleep(1)
         
-        #TODO
+        page = TransferRightsPage(self.selenium)
+        page = page.set_email_new_bpa("kim.mens@gmail.com")
+        time.sleep(3)
         
-        self.assertEqual(0, 0)
-        return True
-    
-    def choose_branch_officer_test(self):
-        self.populate_db()
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
-        time.sleep(1)
-        
-        #TODO
-        
-        self.assertEqual(0, 0)
-        return True
-    
-    def change_branch_officer_test(self):
-        self.populate_db()
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
-        time.sleep(1)
-        
-        #TODO
-        
-        self.assertEqual(0, 0)
-        return True
-    
-    def resing_from_bp_admin_test(self):
-        self.populate_db()
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
-        time.sleep(1)
-        
-        #TODO
+        page = page.click_on_change()
+        time.sleep(3)
         
         self.assertEqual(0, 0)
         return True

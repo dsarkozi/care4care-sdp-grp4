@@ -8,7 +8,7 @@ import time
 
 class MessageTest(MySeleniumTests):
 
-    """def test_see_message_received(self):
+    def test_see_message_received(self):
         self.populate_db()
         
         # log in
@@ -49,7 +49,7 @@ class MessageTest(MySeleniumTests):
         time.sleep(1)
         
         self.assertEqual(0, 0)
-        return True"""
+        return True
     
     def test_send_message(self):
         self.populate_db()
