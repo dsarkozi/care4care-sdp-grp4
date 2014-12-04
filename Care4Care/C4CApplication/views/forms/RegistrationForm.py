@@ -29,7 +29,7 @@ class RegistrationForm(ModelForm):
             'mail' : 'E-mail address',
             'street' : 'Street',
             'town' : 'City',
-            'zip' : 'Postal code'
+            'zip' : 'Postal code',
         }
 
 
@@ -60,5 +60,7 @@ class RegistrationForm(ModelForm):
             choices=((1, "Without time crediting"), (2, "With time crediting")),
             label="Account type"
         )
-        self.fields['gender'].widget = forms.RadioSelect
-        self.fields['gender'].choices = (('M', 'M'), ('F', 'F'))
+        self.fields['gender'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=(('M', 'M'), ('F', 'F'))
+        )
