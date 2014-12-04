@@ -14,7 +14,7 @@
 	    {{ loginForm.password.errors }}
 	    {{ loginForm.password }}
 	    <input type="submit" value="Login" class="login-submit">
-	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='inscription'">
+	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='registration'">
 	    <p class="login-help"><a href=# >Forgot password?</a></p>
 	    </form>
 	{% else %}
@@ -26,56 +26,61 @@
 	{% endif %}
 
 	<!-- Buttons -->
-	<center> <h1> Welcome on Care4Care !</h1> 
+	<center> <h1 style="margin-bottom:1em;"> Welcome on Care4Care !</h1> 
 		<a href="{% url 'createJob' 'offer' %}" class="myButton">I want to help</a>
 	<span>
 	<a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a>
 	</span>
-	</center>
+	
 	
 	<!-- Galerie photos -->
-	<center>
-	<table style="margin-top:50px; margin-left:0px; border: 2px solid navy;"> 
-	<tr> 
+
+	<table style="margin-top:50px; margin-left:0px; border: 3px solid navy; "> 
+	<tr>
+        <!--  <td ><img src="{% static "images/thumb.jpg"%}" alt="titre" width= 240px height= 200px/></td> -->
 		<td><img src="{% static "images/retraite.jpg"%}" alt="titre" width= 240px height= 200px /></td>
 		<td ><img src="{% static "images/care.jpg"%}" alt="titre" width= 240px height= 200px /></td>
 		<td ><img src="{% static "images/old.jpg"%}" alt="titre" width= 240px height= 200px/></td>
-	</tr> 
+        <!--  <td ><img src="{% static "images/swag.jpg"%}" alt="titre" width= 240px height= 200px/></td> -->
 	</table> 
-	</center>
+
+
 
 
     <!-- Feed tables -->
   <!-- Job offers table -->
-		
 
-	<table class="tab1" style= "float:left;margin-top:2em;"  >
+	<table style="margin-top:3em;">
+<td valign="top">
+	<table class="tab1"  >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
 	  </tr>
 	  
 	  <tr>
 		<td class="tab1-4">Job category</td>
-		<td class="tab1-4">Description</td>
+		<td class="tab1-4">Title</td>
 		<td class="tab1-4">Location</td>
 	  </tr>
 	  	    
-    {% for job in offer_list %} 
-    <tr>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
-											{% if key == job.category %}
-												{{ value }}
-												{% endif %}
- 											   {% endfor %}   </a></td>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.description|truncatewords:10  }} </a></td>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
-	  </tr>
+    {% for job in offer_list %}
+	    <tr>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
+												{% if key == job.category %}
+													{{ value }}
+													{% endif %}
+	 											   {% endfor %}   </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
+		 </tr>
 	{% endfor %}
 	
 </table>
-       
-    
-	<table class="tab1"  style= "float:right;margin-top:2em;">
+        </td>
+        
+        <!-- Job demand table -->
+  <td valign="top">
+	<table class="tab1" style="margin-left:1em;" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">Recent feeds of demand</th>
 	  </tr>
@@ -85,20 +90,22 @@
 		<td class="tab1-4">Location</td>
 	  </tr>
 	  
-	   {% for job in demand_list %} 
-	  <tr>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
-											{% for key, value in job.CAT %}
-											{% if key == job.category %}
-												{{ value }}
-												{% endif %}
- 											   {% endfor %}  </a></td>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.description|truncatewords:10  }} </a></td>
-		<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
-	  </tr>
-	   {% endfor %}
+	  {% for job in demand_list %}
+		  <tr>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
+												{% for key, value in job.CAT %}
+												{% if key == job.category %}
+													{{ value }}
+													{% endif %}
+	 											   {% endfor %}  </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.address }} </a></td>
+		  </tr>
+	  {% endfor %}
 	   
 	</table>
-
+	</td>
+	</table>	
+</center>
 	
 {% endblock %}

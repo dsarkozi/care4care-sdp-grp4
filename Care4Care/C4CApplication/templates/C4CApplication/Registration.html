@@ -1,0 +1,41 @@
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+	<style type="text/css">
+
+    </style>
+{% block content %}
+  <button onclick="location.href='registration/eidrequest'">
+      <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle">
+      Prefill form with eID data
+  </button>
+    	<form method="post" >
+    		{% csrf_token %}
+            <!--{{ form.errors }}-->
+   			<fieldset>
+                <legend>Account credentials</legend>
+                {{ form.mail.label }} : {{ form.mail }} <br>
+                {{ form.password.label }} : {{ form.password }} <br>
+   			</fieldset>
+        <fieldset>
+            <legend>Personal information</legend>
+            {{ form.first_name.label }} : {{ form.first_name }} <br>
+            {{ form.last_name.label }} : {{ form.last_name }} <br>
+            {{ form.address.label }} : {{ form.address }} <br>
+            {{ form.telephone.label }} : {{ form.telephone }} <br>
+            {{ form.mobile.label }} : {{ form.mobile }} <br>
+            {{ form.birthday.label }} : {{ form.birthday }}
+        </fieldset>
+        <fieldset>
+            <legend>Miscellaneous</legend>
+            {{ form.picture.label }} : {{ form.picture }} <br>
+            {{ form.branch.label }} : {{ form.branch }}
+            <!--{% for branch in form.branch %}-->
+                <!--{{ branch }}-->
+            <!--{% endfor %} <br>-->
+            {{ form.tag.label }} : {{ form.tag }}
+        </fieldset>
+        <input type="submit" value="Register">
+		</form>
+
+{% endblock %}

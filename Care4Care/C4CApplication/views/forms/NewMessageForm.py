@@ -2,18 +2,18 @@
 from django import forms
 from C4CApplication.models import * 
 
+
 class NewMessageForm(forms.Form):
 
-    receveur = forms.EmailField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'a:'}))
-    sujet = forms.CharField(max_length=100 , widget=forms.TextInput(attrs={'placeholder': 'sujet:'}) , required=False  )
-    message = forms.CharField(widget=forms.Textarea(attrs = {'placeholder': 'votre message'})  )
-    renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoye.", required=False)
+    receveur = forms.EmailField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'to:'}))
+    sujet = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'subject:'}), required=False)
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'your message'}))
     
     def clean(self):              
                 isin = False
                 members = Member.objects.all()
 
-                cleaned_data = super(Nouveau_messageForm, self).clean()
+                cleaned_data = super(NewMessageForm, self).clean()
                 receveur = cleaned_data.get('receveur')        
                 
                 if receveur:

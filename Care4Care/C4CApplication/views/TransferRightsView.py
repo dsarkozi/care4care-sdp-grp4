@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 class TransferRightsView(FormView):
     template_name = "C4CApplication/TransferRights.html"
     form_class = TransferRightsForm
-    success_url = reverse_lazy("myc4c")
+    success_url = reverse_lazy("profile")
     user = None
     
     def dispatch(self, request, *args, **kwargs):
@@ -28,7 +28,8 @@ class TransferRightsView(FormView):
         
         # Creates the form and change the context
         transfer_rights_form = TransferRightsForm(auto_id=False)
-
+        context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         context['transfer_rights_form'] = transfer_rights_form
         return context
 
@@ -42,6 +43,7 @@ class TransferRightsView(FormView):
         email_new_BPAdmin = form.cleaned_data['email_new_BPAdmin']
         
         res = self.user.transfer_bp_admin_rights(email_new_BPAdmin)
-        if res : print("No such a member !") # pop up ?
+        if not res:
+            print("No such a member !")  # pop up ?
         
         return super(TransferRightsView, self).form_valid(form)

@@ -21,7 +21,8 @@ class FavoritesView(FormView):
     def get_context_data(self, **kwargs):
         context = super(FavoritesView, self).get_context_data(**kwargs)
         context['favIgnForm'] = FavIgnForm()
-        context['member'] = Member.objects.filter(mail=self.request.session['email'])[0]
+        context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         return context
     
     def form_valid(self, form):

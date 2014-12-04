@@ -1,26 +1,29 @@
 
 
+
+
+
+
+
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
 	
 {% block menu %}
 
+{% block transfer_rights %} 
 
-
-{% block delete_member_bpa %} 
-<center>
 
 <section style="border-width:2px;border-color:navy;border-style:solid;
 background-color:#ffffff;margin-top:3em;width:40%; height:auto;">
 <form method="post">
 	{% csrf_token %}
-	<br/>
-	Enter the mail of the member to be deleted :  <br/>
+	Enter the email address of the member to become the new Branch Officer of the branch '{{ branch_name }}' :  <br/>
     <p>
-    {{ delete_member_bpa_form }}
-    <input type="submit" value="Delete" onclick="return window.confirm('Are you sure you want to delete this member ?')"/>
+    {{ form }}
+    <input type="submit" value="Change Branch officer"/>
     </p>
+    <a href="{% url 'branchdetails' branch_name %}">Cancel</a>
 </form>
 </section>
 {% endblock %}

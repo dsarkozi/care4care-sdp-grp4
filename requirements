@@ -4,3 +4,4 @@ selenium==2.44.0
 django-mathfilters==0.3.0
 pprintpp==0.2.1
 openid2rp==1.12
+django-localflavor==1.0

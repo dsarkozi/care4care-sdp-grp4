@@ -29,7 +29,13 @@
 	  </tr>
 	   <tr>
 		<td class="tab1-4">Branch officer's email : </td>
-		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ branch.branch_officer }}  </a></td>
+		<td class="tab1-3">
+            <a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ branch.branch_officer }}  </a>
+            {% if member.tag == 16 and branch.branch_officer == member.mail or member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+                <br />
+                <a href="{% url 'transferrightsbranch' branch.name %}">Change branch officer</a>
+            {% endif %}
+        </td>
 	  </tr>
 	
 	<table class="tab1" style="top:23em; left:26em;" >
@@ -58,7 +64,7 @@
               	 
                {% if member.tag == 16 and branch.branch_officer == member.mail or member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
                		<td class ="tab1-4" >
-                        {% if mem.tag < 16 %} value="remove_from_branch"
+                        {% if mem.tag < 16 %}
 	                        <a href="{% url 'branchlistredirect' branch.name mem.mail 0 %}" value="remove_from_branch"
 	                        	onclick="return window.confirm('Are you sure you want to remove {{mem.first_name}} {{mem.last_name}} from {{ branch.name }} branch ?')"
 	                        	>Remove from branch</a>

@@ -6,15 +6,15 @@
 
 
   <center> <h1> 
-	    	{{ member.first_name}} {{ member.last_name }} :
-	    	{% if member.status %}
-	    		{% if connected_member.mail == member.mail %}
+	    	{{ member_shown.first_name}} {{ member_shown.last_name }} :
+	    	{% if member_shown.status %}
+	    		{% if member.mail == member_shown.mail %}
 	    			<a href="{% url 'changeActivity' %}" value="activity">Actif</a>
 	    		{% else %}
 	    			Actif
 	    		{% endif %}
 	    	{% else %}
-	    		{% if connected_member.mail == member.mail %}
+	    		{% if member.mail == member_shown.mail %}
 	    			<a href="{% url 'changeActivity' %}" value="activity">Inactif</a>
 	    		{% else %}
 	    			Inactif
@@ -32,8 +32,8 @@
 	  
 	  <tr>
 		<td class="tab1-4">Type of member : </td>
-		<td class="tab1-3">{% for key, value in member.TAG_CHOICE %}
-	    		{% if key == member.tag %}
+		<td class="tab1-3">{% for key, value in member_shown.TAG_CHOICE %}
+	    		{% if key == member_shown.tag %}
 					{{ value }}
 				{% endif %}
 	    	{% endfor %}</td>
@@ -43,7 +43,7 @@
 	   <tr>
 		<td class="tab1-4">Branch(es) : </td>
 		<td class="tab1-3">
-		    	{% for branch in member.branch.all %}
+		    	{% for branch in member_shown.branch.all %}
 		    		<li> {{ branch.name }} </li>
 		    	{% endfor %}
 		    </td>
@@ -51,42 +51,42 @@
 	   
 	   <tr>
 		<td class="tab1-4">Email : </td>
-		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member.mail }}</a></td>
+		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member_shown.mail }}</a></td>
 	  </tr>
 	   
       <tr>
 		<td class="tab1-4">Register date : </td>
-		<td class="tab1-3">{{ member.register_date }}</td>
+		<td class="tab1-3">{{ member_shown.register_date }}</td>
 	  </tr>
 	  
 	   <tr>
 		<td class="tab1-4">Address : </td>
-		<td class="tab1-3">{{ member.address }}</td>
+		<td class="tab1-3">{{ member_shown.address }}</td>
 	  </tr>
 	  
-	  {% if member.telephone %}
+	  {% if member_shown.telephone %}
 	  <tr>
 		<td class="tab1-4">Fixed phone number : </td>
-		<td class="tab1-3">{{ member.telephone }}</td>
+		<td class="tab1-3">{{ member_shown.telephone }}</td>
 	  </tr>
 	     {% endif %}
 	
-	    {% if member.mobile %}
+	    {% if member_shown.mobile %}
 	    <tr>
 		<td class="tab1-4">Mobile phone number :</td>
-		<td class="tab1-3"> {{ member.mobile }}</td>
+		<td class="tab1-3"> {{ member_shown.mobile }}</td>
 	  </tr>
 	    {% endif %}
 	    
 	    
 	    
-	    {% if connected_member.mail != member.mail and member not in connected_member.relation.all %}
-	    	<a href="{% url 'memberdetailsredirect' member.mail %}" type="submit" value="AddRelation" 
+	    {% if member.mail != member_shown.mail and member_shown not in member.relation.all %}
+	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" type="submit" value="AddRelation" 
 	    	class="myButton2">Add as a friend</a> <br/>
 	    {% endif %}
 
-        {% if is_branch_officer or connected_member.tag == 32 %}
-            <p><a href="{% url 'loginasmember' member.mail %}" class="myButton2"  style ="color: #ffffff;">Log as member</a></p>
+        {% if is_branch_officer or member.tag == 32 %}
+            <p><a href="{% url 'loginasmember' member_shown.mail %}" class="myButton2"  style ="color: #ffffff;">Log as member</a></p>
         {% endif %}
         </table>
 	    </center>

@@ -1,14 +1,19 @@
 from time import strftime, gmtime
-from C4CApplication.meta import Member
-from C4CApplication.models import Branch, Job
 
 from C4CApplication import models
+from C4CApplication.models.branch import Branch
+from C4CApplication.models.job import Job
+
+from C4CApplication.meta.member import Member as MetaMember
 
 
-class BranchOfficer(Member):
+class BranchOfficer(MetaMember):
     """
     This class represents a kind of Users called Branch Officers
     """
+    
+    def delete(self):
+        return False
 
     def is_job_visible(self, job, db_member):
         # The branch officer can see all the jobs
@@ -93,8 +98,34 @@ class BranchOfficer(Member):
         if len(branchlist) != 1:
             return False
         branch = branchlist[0]
-        if branch.branch_officer != self.db_member.mail:
+        if branch.branch_officer != self.db_member.mail:  # If he is branch officer of this branch
             return False
+
+        new_branch_officer = models.Member.objects.filter(mail=new_branch_officer_email)
+        # If the member doesn't exist
+        if len(new_branch_officer) != 1 or new_branch_officer[0].deleted:
+            return False
+        new_branch_officer = new_branch_officer[0]
+
+        # Change rights
+        branch = branchlist[0]
+        old_branch_officer = models.Member.objects.filter(mail=branch.branch_officer)
+        if len(old_branch_officer) != 1:  # If the branch officer doesn't exists
+            return False
+        old_branch_officer = old_branch_officer[0]
+        keep_tag = False
+        for branch in Branch.objects.all():
+            # If the branch officer handles other branches
+            if branch.name != branch_name and branch.branch_officer == old_branch_officer.mail:
+                keep_tag = True
+                break
+
+        if not keep_tag:  # The branch officer looses its tags
+            old_branch_officer.tag ^= 16  # We revoke its branch officer rights
+            old_branch_officer.tag |= 12  # We degrade him to a volunteer and verified member
+
+        new_branch_officer.tag |= 16  # We promote him branch officer
+
         branch.branch_officer = new_branch_officer_email
         branch.save()
         return True
@@ -120,7 +151,7 @@ class BranchOfficer(Member):
 
         if member_branch is None:  # The branch officer have no power on this user
             return False
-        
+
         if member.tag & 4 : # if 4
             if member.tag & 8 : # if 4 and 8
                 if new_tag == 4 or new_tag == 8 :
@@ -173,8 +204,9 @@ class BranchOfficer(Member):
         member.save()
         return True
     
-    def create_job(self, branch_name, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, 
-                   start_time=0, frequency=0, km=0, time=0, category=1, address=None, visibility='volunteer'):
+    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False, comment=None, description='',
+                   start_time=0, frequency=0, km=0, time=0, category=1, other_category='', address=None, visibility='volunteer',
+                   recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -192,8 +224,8 @@ class BranchOfficer(Member):
         :return: False if there was a problem and True otherwise.
         """
 
-        # TODO Why my aggregate solution does not work :p ?
         job = Job()
+        job.title = title
         job.mail = self.db_member.mail
         n = 0
         jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
@@ -202,12 +234,15 @@ class BranchOfficer(Member):
                 n = j.number
         job.number = n+1
         job.comment = comment
+        job.description = description
         job.date = date
         job.start_time = start_time
         job.frequency = frequency
+        job.recursive_day = recursive_day
         job.km = km
         job.time = time
         job.category = category
+        job.other_category = other_category
         job.type = is_demand
         job.address = address
         job.visibility = Job.JOB_VISIBILITY[visibility]
@@ -216,9 +251,9 @@ class BranchOfficer(Member):
         if len(branch) != 1:
             return False
         job.branch = branch[0]
-        job.member_set = self.db_member
+        job.member_set.add(self.db_member)
         job.save()
-        return True
+        return job
 
     def is_member_visible(self, member):
         if member.deleted : return False

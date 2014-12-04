@@ -2,7 +2,6 @@ from django.core.exceptions import PermissionDenied
 from django.db.models.aggregates import Avg, Sum
 from django.views.generic.base import TemplateView
 import time
-
 from C4CApplication.models.job import Job
 from C4CApplication.views.utils import create_user
 
@@ -26,6 +25,7 @@ class AccountStatsView(TemplateView):
         context = super(AccountStatsView, self).get_context_data(**kwargs)
         # General info
         context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
         context['jobAmount'] = self.jobset.count()
         context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(self.jobset.aggregate(Avg('time'))['time__avg']))
         context['jobTotalDistance'] = self.jobset.aggregate(Sum('km'))['km__sum']

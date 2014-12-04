@@ -4,19 +4,23 @@ from C4CApplication.models.member import Member
 from C4CApplication.views.utils import create_user
 from C4CApplication.meta.user import User
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
 
 
 class ChangeActivityRedirectView(RedirectView):
 
-    
-    url = reverse_lazy("myc4c")
+    url = None
+    user = None
     
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         self.user = create_user(self.request.session['email'])
         return super(ChangeActivityRedirectView, self).dispatch(request, *args, **kwargs)
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.url = reverse("profile", args=[self.user.db_member.mail])
+        return self.url
 
     @never_cache
     def get(self, request, *args, **kwargs):

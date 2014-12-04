@@ -8,6 +8,7 @@ from C4CApplication.views.AccountStatsView import AccountStatsView
 
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
+from C4CApplication.views.EIDRedirectView import EIDRedirectView
 
 from C4CApplication.views.HomePageView import HomePageView
 from C4CApplication.views.LogoutView import LogoutView
@@ -30,10 +31,11 @@ from C4CApplication.views.AcceptBillView import AcceptBillView
 from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
 
 from C4CApplication.views.FavoritesView import FavoritesView
+from C4CApplication.views.RegistrationView import RegistrationView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
 
 from C4CApplication.views.TransferRightsView import TransferRightsView
-from C4CApplication.views.CreateBranchView import CreateBranchView
+from C4CApplication.views.TransferRightsBranchView import TransferRightsBranchView
 from C4CApplication.views.DeleteMemberBPAView import DeleteMemberBPAView
 
 from C4CApplication.views.ChangeActivityView import ChangeActivityView
@@ -41,8 +43,8 @@ from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedire
 
 from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
-from C4CApplication.views.InscriptionView import InscriptionView
 from C4CApplication.views.ModifProfileView import ModifProfileView
+from C4CApplication.views.ModifProfileRedirectView import ModifProfileRedirectView
 from C4CApplication.views.NewMessageView import NewMessageView
 
 from C4CApplication.views.CreateBranchView import CreateBranchView
@@ -84,6 +86,7 @@ urlpatterns = patterns('',
 
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
     url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
+    url(r'^transferrightsbranch/(?P<branch_name>\w+)/$', TransferRightsBranchView.as_view(), name='transferrightsbranch'),
 
     url(r'^deletememberbpa/$', DeleteMemberBPAView.as_view(), name='deletememberbpa'),
     #url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
@@ -95,11 +98,13 @@ urlpatterns = patterns('',
     url(r'donate/$', DonateTimeView.as_view(), name='donate'),
     
     url(r'^list_messages/(?P<received>\d+)$', ListMessagesView.as_view(), name='messageList'),
-    url(r'^profile/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', ProfileView.as_view(), name='profile'),
+    url(r'^profile$', ProfileView.as_view(), name='profile'),
     url(r'^message/(?P<pk>\w+)/$', MessageView.as_view(), name='message'),
     url(r'^modifprofile/$', ModifProfileView.as_view(), name='modifprofile'),
+    url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
         
-    url(r'^inscription$', InscriptionView.as_view() , name='inscription'),
+    url(r'^registration$', RegistrationView.as_view() , name='registration'),
+    url(r'^registration/eidrequest$', EIDRedirectView.as_view()),
 
     url(r'^tests/openid$', OIDTest.oidtest),
     url(r'^tests/openid2$', OIDTest.oidtest2)

@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse_lazy
 class DeleteMemberBPAView(FormView):
     template_name = "C4CApplication/DeleteMemberBPA.html"
     form_class = DeleteMemberBPAForm
-    success_url = reverse_lazy("myc4c")
+    success_url = reverse_lazy("profile")
     user = None
     
     def dispatch(self, request, *args, **kwargs):
@@ -29,21 +29,19 @@ class DeleteMemberBPAView(FormView):
         
         # Creates the form and change the context
         delete_member_bpa_form = DeleteMemberBPAForm(auto_id=False)
+        context['member'] = self.user.db_member
+        context['connected'] = 'email' in self.request.session
 
         context['delete_member_bpa_form'] = delete_member_bpa_form
         return context
 
-    
     def form_valid(self, form):
-        # TODO test if the member has session variables !! -> redirection
         if DeleteMemberBPAView.user is None:
             DeleteMemberBPAView.user = models.Member.objects.get(mail=self.request.session['email'])
 
         # value entered in the input field
         email_deleted_one = form.cleaned_data['email_deleted_one']
-        
-        user = create_user(email_deleted_one)
-        if user is not None : user.delete()
-        else : print("No such a member !") # pop up ?
+
+        self.user.delete_member_from_site(email_deleted_one)
         
         return super(DeleteMemberBPAView, self).form_valid(form)
