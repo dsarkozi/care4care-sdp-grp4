@@ -1,5 +1,5 @@
-from time import strftime, gmtime
-from C4CApplication.meta import NonMember#, SystemEmail
+from C4CApplication.meta import NonMember
+from C4CApplication.meta.time import Time
 from C4CApplication.models import Message, Job, Branch, Mailbox
 from C4CApplication import models
 
@@ -9,7 +9,7 @@ class Member(NonMember):
     This class represents a kind of Users called Members
     """
 
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
                    comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
                    other_category='', street='', zip = '', town = '', visibility='volunteer',\
                    recursive_day=''):

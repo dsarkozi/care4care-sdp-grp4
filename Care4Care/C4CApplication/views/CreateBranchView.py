@@ -36,9 +36,7 @@ class CreateBranchView(FormView):
         context['create_branch_form'] = create_branch_form
         return context
 
-    
     def form_valid(self, form):
-        # TODO test if the member has session variables !! -> redirection
         if self.user is None:
             self.user = models.Member.objects.get(mail=self.request.session['email'])
 

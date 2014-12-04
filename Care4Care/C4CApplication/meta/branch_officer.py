@@ -1,4 +1,4 @@
-from time import strftime, gmtime
+from C4CApplication.meta.time import Time
 
 from C4CApplication import models
 from C4CApplication.models.branch import Branch
@@ -204,7 +204,7 @@ class BranchOfficer(MetaMember):
         member.save()
         return True
     
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
                    comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
                    other_category='', street='', zip = '', town = '', visibility='volunteer',\
                    recursive_day=''):
