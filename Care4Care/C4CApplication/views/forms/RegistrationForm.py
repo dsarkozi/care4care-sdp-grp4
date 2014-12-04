@@ -22,7 +22,7 @@ class RegistrationForm(ModelForm):
             'telephone',
             'street',
             'town',
-            'zip'
+            'zip',
             'branch',
         )
         labels = {
