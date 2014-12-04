@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 14:06+0000\n"
+"POT-Creation-Date: 2014-12-04 14:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,56 +79,44 @@ msgid "Date"
 msgstr "Date"
 
 #: templates/C4CApplication/AccountAndStats.html:63
+#: templates/C4CApplication/AccountAndStats.html:85
 #: templates/C4CApplication/AccountAndStats.html:110
 #: templates/C4CApplication/AccountAndStats.html:133
 msgid "Job Cat"
 msgstr "Catégorie de la tâche"
 
 #: templates/C4CApplication/AccountAndStats.html:64
+#: templates/C4CApplication/AccountAndStats.html:86
 #: templates/C4CApplication/AccountAndStats.html:111
 #: templates/C4CApplication/AccountAndStats.html:134
 msgid "Time Spent"
 msgstr "Temps passé"
 
 #: templates/C4CApplication/AccountAndStats.html:65
+#: templates/C4CApplication/AccountAndStats.html:87
 #: templates/C4CApplication/AccountAndStats.html:112
 #: templates/C4CApplication/AccountAndStats.html:135
 msgid "For Whom"
 msgstr "Pour qui"
 
 #: templates/C4CApplication/AccountAndStats.html:67
+#: templates/C4CApplication/AccountAndStats.html:89
 #: templates/C4CApplication/AccountAndStats.html:114
 #: templates/C4CApplication/AccountAndStats.html:137
 msgid "Comment"
 msgstr "Commentaire"
 
-#: templates/C4CApplication/AccountAndStats.html:85
-#, fuzzy
-#| msgid "Job Cat"
-msgid " Job Cat"
-msgstr "Catégorie de la tâche"
-
-#: templates/C4CApplication/AccountAndStats.html:86
-#, fuzzy
-#| msgid "Time Spent"
-msgid " Time Spent"
-msgstr "Temps passé"
-
-#: templates/C4CApplication/AccountAndStats.html:87
-#, fuzzy
-#| msgid "For Whom"
-msgid " For Whom"
-msgstr "Pour qui"
-
-#: templates/C4CApplication/AccountAndStats.html:89
-#, fuzzy
-#| msgid "Comment"
-msgid " Comment"
-msgstr "Commentaire"
-
 #: templates/C4CApplication/AccountAndStats.html:105
 msgid "Waiting jobs"
 msgstr "tâches en attente"
+
+#: templates/C4CApplication/BranchList.html:13
+msgid "Choose branch(es)"
+msgstr "Choisissez une ou (plusieurs) branche(s)"
+
+#: templates/C4CApplication/BranchList.html:22
+msgid "Submit changes"
+msgstr "Envoyez les changements"
 
 #: templates/C4CApplication/Registration.html:28
 msgid "Account credential"
@@ -145,3 +133,23 @@ msgstr "divers"
 #: templates/C4CApplication/Registration.html:80
 msgid "Register"
 msgstr "Enregistrement"
+
+#, fuzzy
+#~| msgid "Job Cat"
+#~ msgid " Job Cat"
+#~ msgstr "Catégorie de la tâche"
+
+#, fuzzy
+#~| msgid "Time Spent"
+#~ msgid " Time Spent"
+#~ msgstr "Temps passé"
+
+#, fuzzy
+#~| msgid "For Whom"
+#~ msgid " For Whom"
+#~ msgstr "Pour qui"
+
+#, fuzzy
+#~| msgid "Comment"
+#~ msgid " Comment"
+#~ msgstr "Commentaire"
