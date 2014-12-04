@@ -211,14 +211,12 @@ def popule_db():
     j1.description = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
     j1.date = "2014-12-27"  #Samedi 27 decembre
     j1.start_time = 840 #14h *60
-    j1.frenquency = 0   #Once
+    j1.frequency = 0   #Once
     j1.km = 30
-    j1.time = 60    #1h *60
+    j1.duration = 60    #1h *60
     j1.category = 1 #Shopping
     j1.type = True  #True = Demand
-    j1.street = m4.street
-    j1.zip = m4.zip
-    j1.town = m4.town
+    j1.place = "%s, %s, %s" % (m4.street, m4.zip, m4.town)
     j1.branch = b1
     j1.save()
     j1.member_set.add(m4)
@@ -230,14 +228,12 @@ def popule_db():
                     car je n'ai pas de transport en commun ce jour la."
     j2.date = "2014-12-19"  #Lundi 19 decembre
     j2.start_time = 480 #8h *60
-    j2.frenquency = 0   #Once
+    j2.frequency = 0   #Once
     j2.km = 30
-    j2.time = 60    #1h *60
+    j2.duration = 60    #1h *60
     j2.category = 3 #Transport
     j2.type = True  #True = Demand
-    j2.street = m4.street
-    j2.zip = m4.zip
-    j2.town = m4.town
+    j2.place = "%s, %s, %s" % (m4.street, m4.zip, m4.town)
     j2.visibility = Job.JOB_VISIBILITY['favorites']
     j2.branch = b1
     j2.save()
@@ -252,14 +248,12 @@ def popule_db():
                     Quelqu'un pour m'accompagner ?"
     j3.date = "2015-01-27"  #Mardi 27 janvier
     j3.start_time = 600 #10h *60
-    j3.frenquency = 0   #Once
+    j3.frequency = 0   #Once
     j3.km = 50
-    j3.time = 120    #2h *60
+    j3.duration = 120    #2h *60
     j3.category = 2 #Visite
     j3.type = True  #True = Demand
-    j3.street = "Square de l'Atomium"
-    j3.zip = "1020"
-    j3.town = "Bruxelles"
+    j3.place = "Square de l'Atomium, 1020, Bruxelles"
     j3.accepted = True
     j3.visibility = Job.JOB_VISIBILITY['favorites']
     j3.branch = b1
@@ -273,14 +267,12 @@ def popule_db():
     j4.description = "Bonjour, j'aimerai quelqu'un pour me conduire a Bruxelles"
     j4.date = "2015-01-29"  #Jeudi 29 janvier
     j4.start_time = 540 #9h *60
-    j4.frenquency = 0   #Once
+    j4.frequency = 0   #Once
     j4.km = 50
-    j4.time = 120    #2h *60
+    j4.duration = 120    #2h *60
     j4.category = 3 #Transport
     j4.type = True  #True = Demand
-    j4.street = "Square de l'Atomium"
-    j4.zip = "1020"
-    j4.town = "Bruxelles"
+    j4.place = "Square de l'Atomium, 1020, Bruxelles"
     j4.accepted = True
     j4.done = True
     j4.branch = b1
@@ -295,14 +287,12 @@ def popule_db():
                     Plus precisement, a l'universite de Bruxelles."
     j5.date = "2014-12-09"  #Vendredi 9 janvier
     j5.start_time = 540 #9h *60
-    j5.frenquency = 0   #Once
+    j5.frequency = 0   #Once
     j5.km = 50
-    j5.time = 60    #1h *60
+    j5.duration = 60    #1h *60
     j5.category = 3 #Transport
     j5.type = True  #True = Demand
-    j5.street = "Avenue Franklin Roosevelt, 50"
-    j5.zip = "1050"
-    j5.town = "Bruxelles"
+    j5.place = "Avenue Franklin Roosevelt, 50, 1050, Bruxelles"
     j5.accepted = True
     j5.done = True
     j5.done = True
@@ -317,14 +307,12 @@ def popule_db():
     j6.description = "Bonjour, je met a disposition mon aide pour faire du shopping a l'Esplanade."
     j6.date = "2015-01-24"  #Samedi 24 janvier
     j6.start_time = 780 #13h *60
-    j6.frenquency = 0   #Once
+    j6.frequency = 0   #Once
     j6.km = 0
-    j6.time = 240    #4h *60
+    j6.duration = 240    #4h *60
     j6.category = 1 #Shopping
     j6.type = False  #False = Offer
-    j6.street = "Place de l'Accueil, 10 bte 1"
-    j6.zip = "1348"
-    j6.town = "Louvain-la-Neuve"
+    j6.place = "Place de l'Accueil, 10 bte 1, 1348, Louvain-la-Neuve"
     j6.branch = b1
     j6.save()
     j6.member_set.add(m4)
@@ -335,15 +323,13 @@ def popule_db():
     j7.description = "Bonjour, je met a disposition mon aide pour le projet Care4Care."
     j7.date = "2014-12-05"  #Vendredi 5 Decambre
     j7.start_time = 480 #8h *60
-    j7.frenquency = 0   #Once
+    j7.frequency = 0   #Once
     j7.km = 0
-    j7.time = 2520    #4h *60
+    j7.duration = 2520    #4h *60
     j7.category = 4 #Other
     j7.other_category = "Aide informatique"
     j7.type = False  #False = Offer
-    j7.street = "Place Sainte Barbe, 2 bte L6.11.01, Salle Intel"
-    j7.zip = "1348"
-    j7.town = "Louvain-la-Neuve"
+    j7.place = "Place Sainte Barbe, 2 bte L6.11.01, Salle Intel, 1348, Louvain-la-Neuve"
     j7.branch = b1
     j7.save()
     j7.member_set.add(m5)
@@ -356,13 +342,11 @@ def popule_db():
     j8.frequency = 1    #Weekly
     j8.recursive_day = "monday"
     j8.km = 0
-    j8.time = 120   #2h
+    j8.duration = 120   #2h
     j8.category = 4 #Other
     j8.other_category = "Aide projet"
     j8.type = False #False = Offer
-    j8.street = "Place Sainte Barbe, 2 bte L6.11.01, Barb93"
-    j8.zip = "1348"
-    j8.town = "Louvain-la-Neuve"
+    j8.place = "Place Sainte Barbe, 2 bte L6.11.01, Barb93, 1348, Louvain-la-Neuve"
     j8.branch = b1
     j8.save()
     j8.member_set.add(m1)
@@ -375,13 +359,11 @@ def popule_db():
     j9.start_time = j8.start_time #8h30
     j9.frequency = 0    #Once
     j9.km = j8.km
-    j9.time = j8.time   #2h
+    j9.duration = j8.duration   #2h
     j9.category = j8.category #Other
     j9.other_category = j8.other_category
     j9.type = False #False = Offer
-    j9.street = j8.street
-    j9.zip = j8.zip
-    j9.town = j8.town
+    j9.place = j8.place
     j9.branch = j8.branch
     j9.regular_job = j8
     j9.save()
@@ -396,16 +378,14 @@ def popule_db():
     j10.frequency = 2    #Monthly
     j10.recursive_day = "10, 20, 30"
     j10.km = 0
-    j10.time = 120   #2h
+    j10.duration = 120   #2h
     j10.category = 4 #Other
     j10.other_category = "Aide projet"
     j10.type = False #False = Offer
-    j10.street = "Place Sainte Barbe, 2 bte L6.11.01, Barb01"
-    j10.zip = "1348"
-    j10.town = "Louvain-la-Neuve"
+    j10.place = "Place Sainte Barbe, 2 bte L6.11.01, Barb01, 1348, Louvain-la-Neuve"
     j10.branch = b1
     j10.save()
-    j10.member_set.add(m1)
+    j10.member_set.add(m2)
     j10.save()
     
     j11 = Job(mail=m2.mail, number=3)    #Kim
@@ -415,17 +395,15 @@ def popule_db():
     j11.start_time = j10.start_time #8h30
     j11.frequency = 0    #Once
     j11.km = j10.km
-    j11.time = j10.time   #2h
+    j11.duration = j10.duration   #2h
     j11.category = j10.category #Other
     j11.other_category = j10.other_category
     j11.type = False #False = Offer
-    j11.street = j10.street
-    j11.zip = j10.zip
-    j11.town = j10.town
+    j11.place = j10.place
     j11.branch = j10.branch
     j11.regular_job = j10
     j11.save()
-    j11.member_set.add(m1)
+    j11.member_set.add(m2)
     j11.member_set.add(m4)
     j11.save()
     

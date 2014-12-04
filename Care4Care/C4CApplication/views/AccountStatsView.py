@@ -56,7 +56,7 @@ class AccountStatsView(TemplateView):
             dictlist += [{
                 'date' : item.date,
                 'category' : Job.CAT_DICT[item.category],
-                'time' : item.time,
+                'time' : item.duration,
                 'km' : item.km,
                 'comment' : item.comment
             }]
