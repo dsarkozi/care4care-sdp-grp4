@@ -4,7 +4,13 @@
 	<style type="text/css">
 
     </style>
+    
+    
+ 
 {% block content %}
+   <center>
+<section style="margin-top:2em;border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;width:20em;height:auto;padding:2em;>
   <button onclick="location.href='registration/eidrequest'">
       <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle">
       Prefill form with eID data
@@ -21,7 +27,10 @@
             <legend>Personal information</legend>
             {{ form.first_name.label }} : {{ form.first_name }} <br>
             {{ form.last_name.label }} : {{ form.last_name }} <br>
-            {{ form.gender.label }} : {{ form.gender }} <br>
+            {{ form.gender.label }} :
+            {% for gender in form.gender %}
+                {{ gender }}
+            {% endfor %} <br>
             {{ form.street.label }} : {{ form.street }} <br>
             {{ form.zip.label }} : {{ form.zip }} <br>
             {{ form.town.label }} : {{ form.town }} <br>
@@ -32,13 +41,19 @@
         <fieldset>
             <legend>Miscellaneous</legend>
             {{ form.picture.label }} : {{ form.picture }} <br>
-            {{ form.branch.label }} : {{ form.branch }}
-            <!--{% for branch in form.branch %}-->
-                <!--{{ branch }}-->
-            <!--{% endfor %} <br>-->
-            {{ form.tag.label }} : {{ form.tag }}
+            {{ form.branch.label }} :
+            {% for branch in form.branch %}
+                {{ branch }}
+            {% endfor %} <br>
+            {{ form.tag.label }} :
+            {% for tag in form.tag %}
+                {{ tag }}
+            {% endfor %}
         </fieldset>
         <input type="submit" value="Register">
 		</form>
+
+
+</section>
 
 {% endblock %}
