@@ -5,47 +5,56 @@ from django.forms.extras.widgets import SelectDateWidget
 from C4CApplication.models.job import Job
 
 
-class CreateJobForm(forms.Form):
+class CreateJobForm(forms.ModelForm):
     #TODO Put some magical js for disabled fields toggle
 
-    branchList = None
-    #TODO Bug nest
-    def __init__(self, user=None, *args, **kwargs):
+    class Meta:
+        model = Job
+        fields = (
+            'title',
+            'description',
+            'category',
+            'frequency',
+            'visibility'
+        )
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(CreateJobForm, self).__init__(*args, **kwargs)
-        branchList = [('all', 'All of them')]
-        if user is not None:
-            for branch in user.branch.all():
-                branchList.append((branch.name, branch.name))
-        self.branchList = tuple(branchList)
+
+        # Request details fieldset
+        branchList = []
+        for branch in user.branch.all():
+            branchList.append((branch.name, branch.name))
         self.fields['branches'] = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        choices=branchList
+            widget=forms.RadioSelect,
+            choices=tuple(branchList)
+        )
+        if len(branchList) == 1:
+            self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
+        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['description'].widget = forms.Textarea(attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'})
+
+        # Job category fieldset
+        self.fields['category'] = forms.MultipleChoiceField(
+            widget=forms.RadioSelect,
+            choices=Job.CAT
+        )
+        self.fields['other'] = forms.CharField(
+            required=False,
+            widget=TextInput(
+                attrs={'placeholder':'Other'}    #TODO disabled
+            )
         )
 
-    # Request details fieldset
-    title = forms.CharField(
-        widget=TextInput(
-            attrs={'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        # Job visibility fieldset
+        self.fields['visibility'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=Job.JOB_VISIBILITY_TUPLE
         )
-    )
-    desc = forms.CharField(
-        widget=Textarea(
-            attrs={'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
-        )
-    )
 
-    # Job category fieldset
-    categories = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=Job.CAT
-    )
-    other = forms.CharField(
-        required=False,
-        widget=TextInput(
-            attrs={'placeholder':'Other'}    #TODO disabled
-        )
-    )
-    categories.choices.extend([('other','other')])
+
+
 
     # Job timeline fieldset
     frequency = forms.ChoiceField(
@@ -89,19 +98,6 @@ class CreateJobForm(forms.Form):
         widget=SelectDateWidget(
             attrs={'id':'time_specific', }     #TODO disabled
         )
-    )
-
-    # Job visibility fieldset
-    VISIBILITY = (
-        ('any', 'Anyone'),
-        ('verified', 'Verified members only'),
-        ('favorites', 'My favorites only'),
-        ('personal', 'My personal network only'),
-        ('default', 'Apply my default preferences')     # TODO Gather from database
-    )
-    visibility = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=VISIBILITY
     )
 
     def clean(self):

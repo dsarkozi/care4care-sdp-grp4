@@ -13,18 +13,18 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
     {% csrf_token %}
     <fieldset>
         <legend><h3>{% trans "Request details" %}</h3></legend>
-        {{ createJob.title }} <br>
+        {{ form.title }} <br>
         <p id="job_desc_field">
-            {{ createJob.desc }}
+            {{ form.description }}
         </p>
-        <label> {% trans "Branch" %} : </label>{{ createJob.branches }}
+        {{ form.branches.label }} : {{ form.branches }}
     </fieldset>
     <fieldset>
         <legend> {% trans "Job category"%}</legend>
         <ul>
-        {% for choice in createJob.categories %}
+        {% for choice in form.category %}
             {% if forloop.last %}
-                <li>{{ choice }} : {{ createJob.other }}</li>
+                <li>{{ choice }} : {{ form.other }}</li>
             {% else %}
                 <li>{{ choice }}</li>
             {% endif %}
@@ -70,7 +70,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
     </fieldset>
     <fieldset>
         <legend>{% trans "Job visibility"%}</legend>
-        {{ createJob.visibility }}
+        {{ form.visibility }}
     </fieldset>
     <input type="submit" value= {% trans "Post request" %} /> 
 </form>
