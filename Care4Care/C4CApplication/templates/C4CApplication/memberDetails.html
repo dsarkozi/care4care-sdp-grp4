@@ -32,11 +32,7 @@
 	  
 	  <tr>
 		<td class="tab1-4">Type of member : </td>
-		<td class="tab1-3">{% for key, value in member_shown.TAG_CHOICE %}
-	    		{% if key == member_shown.tag %}
-					{{ value }}
-				{% endif %}
-	    	{% endfor %}</td>
+		<td class="tab1-3"> {{ tag_member }} </td>
 	  </tr>
 	   
 	   

@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import C4CApplication.models.member
 import django.db.models.deletion
+import C4CApplication.models.member
 
 
 class Migration(migrations.Migration):
@@ -15,12 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Branch',
             fields=[
-                ('name', models.CharField(primary_key=True, max_length=50, serialize=False)),
+                ('name', models.CharField(max_length=50, serialize=False, primary_key=True)),
                 ('branch_town', models.CharField(max_length=200)),
                 ('branch_officer', models.EmailField(max_length=75)),
-                ('street', models.CharField(blank=True, max_length=200)),
-                ('zip', models.CharField(blank=True, max_length=4)),
-                ('town', models.CharField(blank=True, max_length=100)),
+                ('street', models.CharField(max_length=200, blank=True)),
+                ('zip', models.CharField(max_length=4, blank=True)),
+                ('town', models.CharField(max_length=100, blank=True)),
                 ('donation', models.IntegerField(default=0)),
             ],
             options={
@@ -30,20 +30,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Job',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('title', models.CharField(max_length=100)),
                 ('mail', models.EmailField(max_length=75)),
                 ('number', models.IntegerField()),
                 ('description', models.TextField()),
-                ('comment', models.CharField(blank=True, max_length=200)),
+                ('comment', models.CharField(max_length=200, blank=True)),
                 ('date', models.DateField(null=True)),
                 ('start_time', models.IntegerField(null=True, blank=True)),
                 ('frequency', models.SmallIntegerField(choices=[(0, 'Once'), (1, 'Weekly'), (2, 'Monthly')])),
-                ('recursive_day', models.CharField(blank=True, max_length=150)),
-                ('km', models.SmallIntegerField(default=0, blank=True)),
+                ('recursive_day', models.CharField(max_length=150, blank=True)),
+                ('km', models.SmallIntegerField(blank=True, default=0)),
                 ('duration', models.SmallIntegerField()),
                 ('category', models.SmallIntegerField(choices=[(1, 'Shopping'), (2, 'Visit'), (3, 'Transport'), (4, 'Other')])),
-                ('other_category', models.CharField(blank=True, max_length=100)),
+                ('other_category', models.CharField(max_length=100, blank=True)),
                 ('type', models.BooleanField(default=None)),
                 ('place', models.TextField(blank=True)),
                 ('accepted', models.BooleanField(default=False)),
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('payed', models.BooleanField(default=False)),
                 ('visibility', models.SmallIntegerField(default=2)),
                 ('branch', models.ForeignKey(to='C4CApplication.Branch')),
-                ('regular_job', models.ForeignKey(blank=True, to='C4CApplication.Job', null=True, on_delete=django.db.models.deletion.SET_NULL)),
+                ('regular_job', models.ForeignKey(null=True, blank=True, to='C4CApplication.Job', on_delete=django.db.models.deletion.SET_NULL)),
             ],
             options={
             },
@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Mailbox',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('status', models.BooleanField(default=False)),
             ],
             options={
@@ -70,18 +70,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Member',
             fields=[
-                ('mail', models.EmailField(primary_key=True, max_length=75, serialize=False)),
+                ('mail', models.EmailField(max_length=75, serialize=False, primary_key=True)),
                 ('password', models.CharField(max_length=100)),
                 ('first_name', models.CharField(max_length=50)),
                 ('last_name', models.CharField(max_length=100)),
                 ('gender', models.CharField(max_length=1)),
-                ('picture', models.ImageField(null=True, upload_to='images/images_profile/', blank=True, storage=C4CApplication.models.member.OverwriteStorage())),
+                ('picture', models.ImageField(null=True, storage=C4CApplication.models.member.OverwriteStorage(), blank=True, upload_to='images/images_profile/')),
                 ('birthday', models.DateField(null=True, blank=True)),
                 ('tag', models.SmallIntegerField()),
                 ('status', models.BooleanField(default=True)),
                 ('deleted', models.BooleanField(default=False)),
-                ('mobile', models.CharField(blank=True, max_length=15)),
-                ('telephone', models.CharField(blank=True, max_length=15)),
+                ('mobile', models.CharField(max_length=15, blank=True)),
+                ('telephone', models.CharField(max_length=15, blank=True)),
                 ('register_date', models.DateField(default='2014-12-04')),
                 ('street', models.CharField(max_length=200)),
                 ('zip', models.CharField(max_length=4)),
@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
                 ('visibility', models.SmallIntegerField(default=2)),
                 ('time_credit', models.BigIntegerField(default=0)),
                 ('branch', models.ManyToManyField(to='C4CApplication.Branch')),
-                ('job', models.ManyToManyField(null=True, blank=True, to='C4CApplication.Job')),
+                ('job', models.ManyToManyField(null=True, to='C4CApplication.Job', blank=True)),
             ],
             options={
             },
@@ -98,11 +98,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('number', models.IntegerField()),
                 ('subject', models.CharField(max_length=100)),
                 ('content', models.TextField()),
-                ('type', models.SmallIntegerField(default=0, choices=[(0, 'nothing'), (1, 'important'), (2, 'question'), (3, 'information')])),
+                ('type', models.SmallIntegerField(choices=[(0, 'nothing'), (1, 'important'), (2, 'question'), (3, 'information')], default=0)),
                 ('date', models.DateField()),
                 ('member_sender', models.ForeignKey(to='C4CApplication.Member')),
             ],
@@ -113,7 +113,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Relationship',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('member_source', models.ForeignKey(to='C4CApplication.Member', related_name='source')),
                 ('member_target', models.ForeignKey(to='C4CApplication.Member', related_name='target')),
             ],
@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='member',
             name='relation',
-            field=models.ManyToManyField(null=True, blank=True, to='C4CApplication.Member', through='C4CApplication.Relationship'),
+            field=models.ManyToManyField(null=True, to='C4CApplication.Member', blank=True, through='C4CApplication.Relationship'),
             preserve_default=True,
         ),
         migrations.AddField(
