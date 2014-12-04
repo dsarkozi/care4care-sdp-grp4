@@ -1,7 +1,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block link %}
 <link rel="stylesheet" href="../../static/css/account_and_stats.css">
 
@@ -18,26 +18,26 @@
     <article class = "first">
     <table class=tab1 >
     
-		<th class=".tab1-3" colspan="6" >General informations</th>
+		<th class=".tab1-3" colspan="6" >{% trans "General informations" %}</th>
 	
         <tr>
-       <td class="tab1-4" colspan="2">   Number of job completed </td>
+       <td class="tab1-4" colspan="2">  {% trans "Number of job completed" %}</td>
        <td> {{ jobAmount }}</td>
        </tr>
        
         <tr>
        <td class="tab1-4" colspan="2">    
-       Average time per job </td>
+       {% trans "Average time per job"%} </td>
        <td> {{ jobAverageTime }}</td>
        </tr>
        
         <tr>
-       <td class="tab1-4" colspan="2">    I drove </td>
-       <td> {{ jobTotalDistance }} kilometers</td>
+       <td class="tab1-4" colspan="2">   {% trans " I drove"%} </td>
+       <td> {{ jobTotalDistance }} {% trans "kilometers "%}</td>
        </tr>
        
         <tr>
-       <td class="tab1-4" colspan="2">     Type of job done </td>
+       <td class="tab1-4" colspan="2">    {% trans " Type of job done"%} </td>
        <td>  {% for catKey, catValue in jobCategories.items %}
                         {{ catValue }} % {{ catKey }}
                     {% endfor %}</td>
@@ -51,20 +51,20 @@
 
 			<tr>
 				<th   > </th>
-				<th  >Help received</th>
-				<th  >Help done</th>
+				<th  >{% trans " Help received"%}</th>
+				<th  >{% trans "Help done "%}</th>
 			</tr>
 			<tr>
-				<th >List of completed jobs</th>
+				<th >{% trans "List of completed jobs"%}</th>
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
 						</tr>
                         {% for job in helpedDone %}
                             <tr>
@@ -81,12 +81,12 @@
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
 						</tr>
 						{% for job in helperDone %}
                             <tr>
@@ -102,16 +102,16 @@
 				</td>
 			</tr>
 			<tr>
-				<th>Waiting jobs</th>
+				<th>{% trans "Waiting jobs"%}</th>
 				<td>
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
 						</tr>
 						{% for job in helpedPending %}
                             <tr>
@@ -129,12 +129,12 @@
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Date</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Job Cat</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Time Spent</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">For Whom</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Comment</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
 						</tr>
 						{% for job in helperPending %}
                             <tr>

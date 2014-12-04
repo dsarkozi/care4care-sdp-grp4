@@ -1,10 +1,11 @@
+
 {% extends "C4CApplication/JobDetails.html" %}
-
+{% load i18n %}
 {% block accept_bill %}
-	The following job has been marked as done by ...  <br/>
-	Please confirm that the information below is correct : <br/>
+	{% trans "The following job has been marked as done by"%} {{ helper.first_name }} {{ helper.last_name }} <br/>
+	{% trans "Please confirm that the information below is correct "%} : <br/>
 
-	<p><a href="{% url 'confirmBill' job.id 1 %}" type="submit" value="Confirm" >Confirm</a>
-	<a href="{% url 'confirmBill' job.id 0 %}" type="submit" value="Contest" >Contest</a></p>
+	<p><a href="{% url 'confirmBill' job.id 1 %}" type="submit" value="Confirm" >{% trans  "Confirm"%}</a>
+	<a href="{% url 'confirmBill' job.id 0 %}" type="submit" value="Contest" >{% trans  "Contest"%}</a></p>
 {% endblock %}
 

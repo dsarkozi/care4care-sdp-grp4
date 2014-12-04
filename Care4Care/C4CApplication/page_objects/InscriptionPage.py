@@ -12,20 +12,22 @@ class InscriptionPage(FixedPage):
         super().__init__(driver)
         self.first_name_input = self.driver.find_element(By.NAME, 'first_name')
         self.last_name_input  = self.driver.find_element(By.NAME, 'last_name')
-        self.email            = self.driver.find_element(By.NAME, 'email')
+        self.email            = self.driver.find_element(By.NAME, 'mail')
         self.password         = self.driver.find_element(By.NAME, 'password')
         self.birthdate        = self.driver.find_element(By.NAME, 'birthdate')
-        self.number           = self.driver.find_element(By.NAME, 'number')
+        #self.number           = self.driver.find_element(By.NAME, 'number')
         self.street           = self.driver.find_element(By.NAME, 'street')
         self.zip              = self.driver.find_element(By.NAME, 'zip')
         self.town             = self.driver.find_element(By.NAME, 'town')
-        self.fixe_phone       = self.driver.find_element(By.NAME, 'fixe_phone')
-        self.mobile_phone     = self.driver.find_element(By.NAME, 'mobile_phone')
-        self.submit           = self.driver.find_element(By.NAME, 'envoyer')
-        self.member_type      = self.driver.find_elements(By.NAME, 'member_type')
+        self.fixe_phone       = self.driver.find_element(By.NAME, 'telephone')
+        self.mobile_phone     = self.driver.find_element(By.NAME, 'mobile')
+        self.submit           = self.donate_button = self.driver.find_element_by_xpath('//input[@value="Register"]')
+        #self.member_type      = self.driver.find_elements(By.NAME, 'member_type')
+        self.birth_month = Select(self.driver.find_element(By.NAME, 'birthday_month'))
+        self.birth_day = Select(self.driver.find_element(By.NAME, 'birthday_day'))
+        self.birth_year = Select(self.driver.find_element(By.NAME, 'birthday_year'))
         self.branch = Select(self.driver.find_element(By.NAME, 'branch'))
-        
-        
+        self.tags = self.driver.find_elements(By.NAME, 'tag')
         
     def set_global_field(self, first_name, last_name, email, password, birthdate, \
                          street, number, zip, town, fixe_phone, mobile_phone):

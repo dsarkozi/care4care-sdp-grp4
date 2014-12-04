@@ -264,6 +264,12 @@ class BPAdministrator(BranchOfficer):
         if len(branch) != 1:
             return False
         branch = branch[0]
+        
+        branch_officer = Member.objects.filter(mail=branch.branch_officer)
+        if len(branch_officer) != 1:
+            return False
+        branch_officer[0].tag ^= 16  # We degrade his rights
+        
         branch.member_set.clear()
         branch.delete()
         return True
