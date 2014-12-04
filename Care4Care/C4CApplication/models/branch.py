@@ -4,7 +4,7 @@ from localflavor.be.forms import BEPostalCodeField
 
 class Branch(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
-    town = models.CharField(max_length=200)
+    branch_town = models.CharField(max_length=200)
     branch_officer = models.EmailField()
     street = models.CharField(max_length=200)   #Street and number
     zip = models.CharField(max_length=4)
