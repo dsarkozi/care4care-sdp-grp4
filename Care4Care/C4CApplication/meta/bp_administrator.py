@@ -175,9 +175,8 @@ class BPAdministrator(BranchOfficer):
         return True
 
     def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
-                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
-                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
-                   recursive_day=''):
+                   comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
+                   other_category='', place='', visibility='volunteer', recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
@@ -188,7 +187,7 @@ class BPAdministrator(BranchOfficer):
         :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
         :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
         :param km: The number of km to do the job
-        :param time: The time to do the job
+        :param duration: The duration to do the job
         :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
         :param address: The address where the job will be done
         :param visibility: Which people can see the job.
@@ -211,13 +210,11 @@ class BPAdministrator(BranchOfficer):
         job.frequency = frequency
         job.recursive_day = recursive_day
         job.km = km
-        job.time = time
+        job.duration = duration
         job.category = category
         job.other_category = other_category
         job.type = is_demand
-        job.street = street
-        job.zip = zip
-        job.town = town
+        job.place = place
         job.visibility = Job.JOB_VISIBILITY[visibility]
         job.save()
         branch = Branch.objects.filter(name=branch_name)

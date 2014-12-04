@@ -102,9 +102,8 @@ class User(object):
 
     @abc.abstractmethod
     def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
-                   comment=None, description='', start_time=0, frequency=0, km=0, time=0, category=1,\
-                   other_category='', street='', zip = '', town = '', visibility='volunteer',\
-                   recursive_day=''):
+                   comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
+                   other_category='', place='', visibility='volunteer', recursive_day=''):
         """
         Creates a help offer (the parameters will be used to fill the database).
 
