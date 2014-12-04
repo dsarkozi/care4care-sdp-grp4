@@ -2,6 +2,8 @@
 from django import forms
 import datetime
 import time, calendar
+from calendar import monthrange
+
 
 class JobRegularForm(forms.Form):
     
@@ -36,7 +38,13 @@ class JobRegularForm(forms.Form):
         day_ahead = day - date.day
         if day_ahead <= 0:  # Target day already happened this month
             day_ahead += monthrange(date.year, date.month)[1]
-        return date + datetime.timedelta(day_ahead)
+            
+        if monthrange(date.year, date.month)[1] >= day :
+            date = datetime.date(date.year, date.month, day)
+        else :
+            date = datetime.date(date.year, date.month, monthrange(date.year, date.month)[1])
+        
+        return date
     
     def next_monthday(date):
         '''
@@ -97,7 +105,7 @@ class JobRegularForm(forms.Form):
             date = JobRegularForm.next_weekday(date, date.weekday())
         return list_proposition
     
-    def get_propositions_monthly(job, nbr_prop):    #TODO affiner
+    def get_propositions_monthly(job, nbr_prop):
         date = time.strftime("%Y-%m-%d")
         date = date.split('-')
         date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
