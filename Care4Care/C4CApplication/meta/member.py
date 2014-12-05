@@ -215,12 +215,9 @@ class Member(NonMember):
         :return:
         """
         branch = Branch.objects.filter(name=branch_name)
-        if len(branch) == 0:  # <=> if branch_name==None
-            branches_member = self.db_member.branch.all()  # We still try to find a branch
-            if len(branches_member) != 1:
-                return False
-            else:
-                branch = branches_member[0]
+        if len(branch) != 1:
+            return False
+        branch = branch[0]
         
         #We make the donation
         self.db_member.time_credit -= time
