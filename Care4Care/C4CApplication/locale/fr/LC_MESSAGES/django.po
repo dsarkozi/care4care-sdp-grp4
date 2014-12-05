@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 15:08+0000\n"
+"POT-Creation-Date: 2014-12-05 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -336,9 +336,25 @@ msgstr "Message de don"
 msgid "Donation amount"
 msgstr "Montant du don"
 
+#: templates/C4CApplication/DonateTime.html:27
+msgid "days,"
+msgstr "Jours"
+
+#: templates/C4CApplication/DonateTime.html:29
+msgid "hours,"
+msgstr "heures"
+
+#: templates/C4CApplication/DonateTime.html:31
+msgid "minutes."
+msgstr "minutes"
+
 #: templates/C4CApplication/DonateTime.html:36
 msgid "Donation recipient"
 msgstr "Bénéficiaire de don"
+
+#: templates/C4CApplication/DonateTime.html:49
+msgid "Donate time"
+msgstr "Donner du temps"
 
 #: templates/C4CApplication/Favorites.html:17
 msgid "Add to Favorites"
@@ -705,16 +721,19 @@ msgstr "Vous avez"
 
 #: templates/C4CApplication/MyCare4Care.html:53
 #: templates/C4CApplication/MyCare4Care.html:55
+#: views/forms/DonateTimeForm.py:48
 msgid "days"
 msgstr "Jours"
 
 #: templates/C4CApplication/MyCare4Care.html:53
 #: templates/C4CApplication/MyCare4Care.html:55
+#: views/forms/DonateTimeForm.py:50
 msgid "hours"
 msgstr "heures"
 
 #: templates/C4CApplication/MyCare4Care.html:53
 #: templates/C4CApplication/MyCare4Care.html:55
+#: views/forms/DonateTimeForm.py:52 views/forms/DonateTimeForm.py:57
 msgid "minutes"
 msgstr "minutes"
 
@@ -1032,7 +1051,7 @@ msgstr "Début"
 
 #: views/forms/CreateJobForm.py:73
 msgid "Format: 00:00"
-msgstr ""
+msgstr "Format: 00:00"
 
 #: views/forms/CreateJobForm.py:82
 msgid "Distance to be covered (approximation)"
@@ -1065,6 +1084,27 @@ msgstr "Dimanche"
 #: views/forms/CreateJobForm.py:165
 msgid "If other is checked, fill the text input in."
 msgstr "Si l'autre est cochée, remplir l'entrée de texte dans."
+
+#: views/forms/DonateTimeForm.py:26
+msgid "Send to one of your branches"
+msgstr "Envoyez à une de vos brances"
+
+#: views/forms/DonateTimeForm.py:26
+msgid "Send to user"
+msgstr "Envoyer à l'utilistateur"
+
+#: views/forms/DonateTimeForm.py:30
+msgid "first_name"
+msgstr "prénom"
+
+#: views/forms/DonateTimeForm.py:57
+msgid "You can't do a donation of 0 time !"
+msgstr "Vous ne pouvez pas faire une donation vide"
+
+#: views/forms/FavIgnForm.py:8
+
+msgid "Email Address"
+msgstr "Adresse E-mail"
 
 #: views/forms/RegistrationForm.py:30
 msgid "E-mail address"
