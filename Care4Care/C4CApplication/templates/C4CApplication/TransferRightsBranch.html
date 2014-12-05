@@ -8,7 +8,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block menu %}
 
 {% block transfer_rights %} 
@@ -18,14 +18,14 @@
 background-color:#ffffff;padding:2em;width:40%; height:auto;">
 <form method="post">
 	{% csrf_token %}
-	Enter the email address of the member to become the new Branch Officer of the branch '{{ branch_name }}' :  <br/>
+	{% trans "Enter the email address of the member to become the new Branch Officer of the branch" %} '{{ branch_name }}' :  <br/>
     <p>
     {{ form }}
     
     </p>
     <p>
-    <input type="submit" class ="btn" value="Submit"/>
-    <a href="{% url 'branchdetails' branch_name %}"class="btn">Cancel</a></p>
+    <input type="submit" class ="btn" value={% trans "Submit"%}/>
+    <a href="{% url 'branchdetails' branch_name %}"class="btn"> {% trans "Cancel" %}</a></p>
 </form>
 </section>
 </center>

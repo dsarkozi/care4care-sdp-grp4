@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import django.conf.global_settings as DEFAULT_SETTINGS
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 from django.utils.translation import gettext_lazy as _
@@ -129,7 +130,8 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'C4CApplication/templates'),
-    "django.core.context_processors.i18n",
 )
 
-
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+'django.core.context_processors.i18n',
+)

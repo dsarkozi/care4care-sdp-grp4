@@ -1,7 +1,7 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block content %}
     	
 	 <!-- Login/Sign up -->
@@ -13,23 +13,23 @@
 	    {{ loginForm.email }}
 	    {{ loginForm.password.errors }}
 	    {{ loginForm.password }}
-	    <input type="submit" value="Login" class="login-submit">
-	    <input type="button" value="Sign up"  class ="login-submit" onclick="self.location.href='registration'">
-	    <p class="login-help"><a href=# >Forgot password?</a></p>
+	    <input type="submit" value={% trans "Login" %} class="login-submit">
+	    <input type="button" value= {% trans "Sign up"%}  class ="login-submit" onclick="self.location.href='registration'">
+	    <p class="login-help"><a href=# >{% trans "Forgot password"%}?</a></p>
 	    </form>
 	{% else %}
 		<form class="login" method="post" >
 	    <h1>Care4Care</h1>
-	       <center><h3>Hello {{ member.first_name }} {{ member.last_name }} !</h3> <br/>
-	 <a href="{% url 'logOut' %}" class="btn" value="Logout">Logout</a> </center>
+	       <center><h3> {% trans "Hello"%} {{ member.first_name }} {{ member.last_name }} !</h3> <br/>
+	 <a href="{% url 'logOut' %}" class="btn" value= {% trans "Logout" %}> {% trans "Logout" %}</a> </center>
 	    </form>
 	{% endif %}
 
 	<!-- Buttons -->
-	<center> <h1 style="margin-bottom:1em;"> Welcome on Care4Care !</h1> 
-		<a href="{% url 'createJob' 'offer' %}" class="myButton">I want to help</a>
+	<center> <h1 style="margin-bottom:1em;"> {% trans "Welcome on Care4Care"%} !</h1> 
+		<a href="{% url 'createJob' 'offer' %}" class="myButton"> {% trans "I want to help" %}</a>
 	<span>
-	<a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a>
+	<a href="{% url 'createJob' 'demand' %}" class="myButton">{% trans "I need help"%}</a>
 	</span>
 	
 	
@@ -54,13 +54,13 @@
 <td valign="top">
 	<table class="tab1"  >
 	  <tr>
-		<th class=".tab1-3" colspan="6">Recent feeds of offer</th>
+		<th class=".tab1-3" colspan="6"> {% trans "Recent feeds of offer"%}</th>
 	  </tr>
 	  
 	  <tr>
-		<td class="tab1-4">Job category</td>
-		<td class="tab1-4">Title</td>
-		<td class="tab1-4">Location</td>
+		<td class="tab1-4">{% trans "Job category"%}</td>
+		<td class="tab1-4">{% trans "Title"%}</td>
+		<td class="tab1-4">{% trans "Location"%}</td>
 	  </tr>
 	  	    
     {% for job in offer_list %}
@@ -82,12 +82,12 @@
   <td valign="top">
 	<table class="tab1" style="margin-left:1em;" >
 	  <tr>
-		<th class=".tab1-3" colspan="6">Recent feeds of demand</th>
+		<th class=".tab1-3" colspan="6">{% trans "Recent feeds of demand"%}</th>
 	  </tr>
 	  <tr>
-		<td class="tab1-4">Job category</td>
-		<td class="tab1-4">Title</td>
-		<td class="tab1-4">Location</td>
+		<td class="tab1-4">{% trans "Job category"%}</td>
+		<td class="tab1-4">{% trans "Title"%}</td>
+		<td class="tab1-4">{% trans "Location"%}</td>
 	  </tr>
 	  
 	  {% for job in demand_list %}
