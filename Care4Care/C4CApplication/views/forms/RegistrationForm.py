@@ -6,7 +6,7 @@ from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
 from localflavor.be.forms import BEPostalCodeField
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 class RegistrationForm(ModelForm):
     class Meta:
@@ -28,9 +28,10 @@ class RegistrationForm(ModelForm):
         )
         labels = {
             'mail' : 'E-mail address',
-            'street' : 'Street',
+            'street' : _('Street'),
             'town' : 'City',
             'zip' : 'Postal code',
+            'password' : _('password'),
         }
         widgets = {
             'branch' : CheckboxSelectMultiple(),
