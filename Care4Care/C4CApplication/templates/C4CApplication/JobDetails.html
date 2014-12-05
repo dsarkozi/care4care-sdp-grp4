@@ -130,10 +130,10 @@
 	  </tr>
 	  <tr>
 		<td class="tab1-4">  Duration :       </td>
-		<td class="tab1-3">     {% if job.time|mod:60 < 10 %}
-			{{ job.time|intdiv:60 }}h0{{job.time|mod:60}}
+		<td class="tab1-3">     {% if job.duration|mod:60 < 10 %}
+			{{ job.duration|intdiv:60 }}h0{{job.duration|mod:60}}
 		{% else %}
-			{{ job.time|intdiv:60 }}h{{job.time|mod:60}}
+			{{ job.duration|intdiv:60 }}h{{job.duration|mod:60}}
 		{% endif %} <br/>    </td>
 		
 	  </tr>
@@ -164,7 +164,7 @@
 	  
 	  <tr>
 		<td class="tab1-4">     Address :   </td>
-		<td class="tab1-3"> {{ job.street }}, {{ job.zip }}, {{ job.town }} <br/>    </td>
+		<td class="tab1-3"> {{ job.place }} <br/>    </td>
 	  </tr>
 	
 	 {% if job.frequency == 0 %}

@@ -1,4 +1,4 @@
-from C4CApplication.simulator.super_class import MySeleniumTests
+from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.MemberDetailsPage import MemberDetailsPage
 from C4CApplication.page_objects.MemberListPage import MemberListPage
 

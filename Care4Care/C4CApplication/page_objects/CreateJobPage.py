@@ -19,7 +19,7 @@ class CreateJobPage(FixedPage):
         # TODO la date 
         self.subfrequency_radio_button = self.driver.find_element_by_name('subfrequency')
         self.visibility_radio_button   = self.driver.find_element_by_name('visibility')
-        self.post_req_button           = self.driver.find_element_by_xpath('//input[@value="Post request"]')
+        self.post_req_button           = self.driver.find_element_by_xpath('//input[@value="Post"]')
         
     def create_job(self, title, descr, branch, cat, freq, month, subfreq, visibility): 
         self.title_input.send_keys(title)

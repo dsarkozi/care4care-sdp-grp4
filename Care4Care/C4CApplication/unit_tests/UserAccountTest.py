@@ -1,8 +1,10 @@
-from C4CApplication.simulator.super_class import MySeleniumTests
+from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.BranchListPage import BranchListPage
 from C4CApplication.page_objects.MemberListPage import MemberListPage
 from C4CApplication.page_objects.InscriptionPage import InscriptionPage
+from C4CApplication.page_objects.ProfilePage import ProfilePage
+from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 
 
 import time
@@ -22,11 +24,11 @@ class UserAccountTest(MySeleniumTests):
         return True
         
         
-    """def test_logoff(self):
+    def test_logoff(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('olivier.mauvaventure@gmail.com', 'azertyuiop')
+        page = page.quick_login_successful('olivier.mauvaisaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         page.log_out()
@@ -60,7 +62,26 @@ class UserAccountTest(MySeleniumTests):
         pass
     
     def test_delete_account(self):
-        pass
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('dr.robotnik@gmail.com', 'azertyuiop')
+        time.sleep(1)
+        
+        page = ProfilePage(self.selenium)
+        page.click_on_modif_profile()
+        time.sleep(1)
+        
+        page = ModifProfilePage(self.selenium)
+        page.click_on_delete_account()
+        time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.login_fail('dr.robotnik@gmail.com', 'azertyuiop')
+        time.sleep(3)
+        
+        self.assertEqual(0, 0)
+        return True
     
     def test_update_to_volunteer(self):
         self.populate_db()
@@ -78,7 +99,7 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         page.click_on_promote_volunteer(0)
-        time.sleep(1)
+        time.sleep(2)
         
         self.assertEqual(0, 0)
-        return True"""
+        return True

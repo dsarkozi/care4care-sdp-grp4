@@ -9,7 +9,7 @@ class CreateBranchPage(FixedPage):
     def __init__(self, driver):
         super().__init__(driver)
         self.name_input = self.driver.find_element_by_name('name')
-        self.town_input = self.driver.find_element_by_name('branch_town')
+        self.branch_town_input = self.driver.find_element_by_name('branch_town')
         self.branch_off_input = self.driver.find_element_by_name('branch_off')
         self.street_input = self.driver.find_element_by_name('street')
         self.zip_input = self.driver.find_element_by_name('zip')
@@ -18,7 +18,7 @@ class CreateBranchPage(FixedPage):
         
     def fill_in_info(self, name, br_town, br_of, street, zip, town): 
         self.name_input.send_keys(name)
-        self.town_input.send_keys(br_town)
+        self.branch_town_input.send_keys(br_town)
         self.branch_off_input.send_keys(br_of)
         self.street_input.send_keys(street)
         self.zip_input.send_keys(zip)

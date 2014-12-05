@@ -1,4 +1,4 @@
-from C4CApplication.simulator.super_class import MySeleniumTests
+from C4CApplication.unit_tests.super_class import MySeleniumTests
 #from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
@@ -30,7 +30,7 @@ class BPadminTest(MySeleniumTests):
         page = CreateBranchPage(self.selenium)
         time.sleep(2)
         
-        page = page.fill_in_info('Bxl', 'Bruxelles-Molenbeek', 'mathieu.jadin@student.uclouvain.be', "Rue de la Réussite 42", "7652", "Bruxelles")
+        page = page.fill_in_info('Bxl', 'Bruxelles-Molenbeek', 'mathieu.jadin@student.uclouvain.be', "Rue de la Reussite 42", "7652", "Bruxelles")
         time.sleep(3)
         
         page = page.click_on_submit()
@@ -38,10 +38,14 @@ class BPadminTest(MySeleniumTests):
         
         branch = Branch.objects.filter(name='Bxl')
         self.assertEqual(len(branch), 1)
+        print(branch)
         branch=branch[0]
+        print(branch)
+        print(branch.branch_town)
+        print(branch.branch_officer)
         self.assertEqual(branch.branch_town, 'Bruxelles-Molenbeek')
         self.assertEqual(branch.branch_officer, 'mathieu.jadin@student.uclouvain.be')
-        self.assertEqual(branch.street, 'Rue de la Réussite 42')
+        self.assertEqual(branch.street, 'Rue de la Reussite 42')
         self.assertEqual(branch.zip, "7652")
         self.assertEqual(branch.town, "Bruxelles")
         return True
