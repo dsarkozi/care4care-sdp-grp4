@@ -13,9 +13,9 @@
 	    {{ loginForm.email }}
 	    {{ loginForm.password.errors }}
 	    {{ loginForm.password }}
-	    <input type="submit" id="Login" value={% trans "Login" %} class="login-submit">
-	    <input type="button" value= {% trans "Sign up"%}  class ="login-submit" id="sing_up" onclick="self.location.href='registration'">
-	    <p class="login-help"><a href=# >{% trans "Forgot password"%}?</a></p>
+	    
+	    <input type="submit" id="Login" value="{% trans "Login" %}" class="login-submit">
+	    <input type="button" value="{% trans "Sign up"%}"  class ="login-submit" id="sing_up" onclick="self.location.href='registration'">
 	    </form>
 	{% else %}
 		<form class="login" method="post" >

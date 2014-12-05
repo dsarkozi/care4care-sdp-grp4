@@ -32,13 +32,13 @@ class VerifiedMember(MetaMember):
         """
         return self.see_job_details_base(job_number, job_creator_mail, self.is_job_visible)
 
-    def get_job_list(self, show_offers):
+    def get_job_list(self, show_demands):
         """
-        :param show_offers: the type of the list of the jobs to return
+        :param show_demands: the type of the list of the jobs to return
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
-        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
+        return self.get_visible_job_list_base(show_demands, self.is_job_visible)
 
     def accept_job(self, job_number, job_creator_mail):
         """
