@@ -3,6 +3,7 @@ from django import forms
 import datetime
 import time, calendar
 from calendar import monthrange
+from django.utils.translation import ugettext_lazy as _
 
 
 class JobRegularForm(forms.Form):
