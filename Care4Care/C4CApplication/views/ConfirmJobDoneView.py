@@ -14,7 +14,7 @@ class ConfirmJobDoneView(JobDetailsView):
     
     template_name = "C4CApplication/ConfirmJobDoneView.html"
     form_class = ConfirmJobDoneForm
-    success_url = reverse_lazy("myc4c")
+    success_url = "/jobdetails/"
     user = None
 
     def get_object(self):

@@ -10,9 +10,9 @@ background-color:#ffffff;padding:1em;margin-top:2em;width:20em; height:auto;text
 	{% csrf_token %}
 	{% trans "Time spent on the job (minutes) " %} :  <br/>
     <p>{{ confirm_job_done_form }} </p>
-    <p><input type="submit" value={% trans "Confirm" %} class="btn"/></p>
-   
-   
+    <p><input type="submit" id="Confirm" value={% trans "Confirm" %} class="btn"/></p>
+
+
 </form>
  </center>
  </section>

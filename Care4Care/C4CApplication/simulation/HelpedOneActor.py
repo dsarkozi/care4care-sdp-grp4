@@ -162,10 +162,13 @@ class HelpedOneActor(Actor):
 
         # Go to home page
         page = MyCare4Care(selenium)
+        time.sleep(2)
         page.click_home()
+        time.sleep(2)
 
         # Logout
         page = HomePage(selenium)
         page.click_on_logout()
+        time.sleep(2)
 
         return True
