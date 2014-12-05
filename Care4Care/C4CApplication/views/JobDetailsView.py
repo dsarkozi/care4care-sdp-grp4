@@ -51,7 +51,7 @@ class JobDetailsView(DetailView, FormView):
         '''
         self.success_url += str(self.job.id)
 
-        if form.cleaned_data['proposition']:
+        if 'proposition' in form.cleaned_data:
             date = form.cleaned_data['proposition']
             creator_of_regular_job = create_user(self.job.mail)
         
