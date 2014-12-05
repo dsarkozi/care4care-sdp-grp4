@@ -12,7 +12,7 @@ class NewMessagePage(FixedPage):
         self.dest_input = self.driver.find_element_by_name('receveur')
         self.subject_input = self.driver.find_element_by_name('sujet')
         self.content_input = self.driver.find_element_by_name('message')
-        self.submit_button = self.driver.find_element_by_xpath('//input[@value="Submit"]')
+        self.submit_button = self.driver.find_element_by_xpath('//input[@id="send_message"]')
         
     def fill_in_info(self, dest, subject, content):
         self.dest_input.send_keys(dest)
