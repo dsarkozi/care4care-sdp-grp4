@@ -3,7 +3,7 @@ from C4CApplication.page_objects.HomePage import HomePage
 
 import time
 
-
+# En gros c'est la petite vieille qui se fait tout le temps 
 class HelpedSimulation(MySeleniumTests):
     
     def test_simulation_ask_help(self):
@@ -53,5 +53,19 @@ class HelpedSimulation(MySeleniumTests):
         # voir choose this member 
         # TODO
         
+        return True
+    
+    def test_simulation_complaint_theft(self):
+        # la vieille se log in
+        
+        # click on branchlist
+        
+        # click on my branch
+        
+        # click on branch officer
+        
+        # send mail to branch officer about the theft
+        
+        # log out
         return True
         
