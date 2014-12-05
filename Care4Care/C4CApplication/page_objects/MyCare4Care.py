@@ -1,6 +1,7 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
+
 from selenium.webdriver.common.by import By
 
 
@@ -51,4 +52,4 @@ class MyCare4Care(FixedPage):
     
     def log_out(self):
         self.logout_button.click()
-        #return HomePage(self.driver)
+        return self #HomePage(self.driver)

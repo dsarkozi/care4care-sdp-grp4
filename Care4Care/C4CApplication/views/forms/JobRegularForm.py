@@ -3,6 +3,7 @@ from django import forms
 import datetime
 import time, calendar
 from calendar import monthrange
+from django.utils.translation import ugettext_lazy as _
 
 
 class JobRegularForm(forms.Form):
@@ -64,10 +65,7 @@ class JobRegularForm(forms.Form):
         list_days.sort()
         return list_days
     
-    def get_propositions_weekly(job, nbr_prop):
-        date = time.strftime("%Y-%m-%d")
-        date = date.split('-')
-        date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
+    def get_propositions_weekly(job, nbr_prop, date):
         list_day = JobRegularForm.purify_days(job.recursive_day)
         list_proposition = ()
         for i in range(nbr_prop) :
@@ -78,10 +76,7 @@ class JobRegularForm(forms.Form):
             date = JobRegularForm.next_weekday(date, date.weekday())
         return list_proposition
     
-    def get_propositions_monthly(job, nbr_prop):
-        date = time.strftime("%Y-%m-%d")
-        date = date.split('-')
-        date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
+    def get_propositions_monthly(job, nbr_prop, date):
         list_day = JobRegularForm.purify_days(job.recursive_day)
         list_proposition = ()
         for i in range(nbr_prop) :
@@ -94,12 +89,15 @@ class JobRegularForm(forms.Form):
     
     def __init__(self, job=None, nbr_prop=5, *args, **kwargs):
         super(JobRegularForm, self).__init__(*args, **kwargs)
+        date = time.strftime("%Y-%m-%d")
+        date = date.split('-')
+        date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
         PROPOSITION = ()
         if job is not None :
             if job.frequency == 1:  #Weekly
-                PROPOSITION = JobRegularForm.get_propositions_weekly(job, nbr_prop)
+                PROPOSITION = JobRegularForm.get_propositions_weekly(job, nbr_prop, date)
             elif job.frequency == 2:    #monthly
-                PROPOSITION = JobRegularForm.get_propositions_monthly(job, nbr_prop)
+                PROPOSITION = JobRegularForm.get_propositions_monthly(job, nbr_prop, date)
             else :
                 pass
         self.fields['proposition'] = forms.CharField(widget=forms.Select(choices=PROPOSITION))

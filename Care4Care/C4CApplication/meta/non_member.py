@@ -276,7 +276,7 @@ class NonMember(User):
         job.save()
         job.member_set = [self.db_member]
         job.save()
-        return True
+        return job
     
     def delete_job(self, job_id):
         """

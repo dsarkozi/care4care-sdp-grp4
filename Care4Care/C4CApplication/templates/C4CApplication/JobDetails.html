@@ -206,11 +206,8 @@
 	   <tr>
 		<td class="tab1-4">    {% trans "Visibility of the job"%} :    </td>
 		<td class="tab1-3">     
-		{% for key, value in job.JOB_VISIBILITY_TUPLE %}
-			{% if key == job.visibility %}
-				{{ value }}
-			{% endif %}
-		{% endfor %}    </td>
+			{{ visibility }}
+		</td>
 		
 	  </tr>
 	  
@@ -254,7 +251,7 @@
 		</td>
 			
 		  </tr>
-	  {% else %}
+	  {% elif member.mail != job.mail %}
 	     <tr>
 			<td class="tab1-4">  {% trans "Occurence of the job"%} :      </td>
 			<td class="tab1-3">
