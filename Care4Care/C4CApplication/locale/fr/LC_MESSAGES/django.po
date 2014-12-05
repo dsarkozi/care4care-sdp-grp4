@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 08:26+0000\n"
+"POT-Creation-Date: 2014-12-05 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,7 @@ msgstr "Liste des tâche accomplies"
 #: templates/C4CApplication/AccountAndStats.html:84
 #: templates/C4CApplication/AccountAndStats.html:109
 #: templates/C4CApplication/AccountAndStats.html:132
+#: templates/C4CApplication/ListMessages.html:41
 msgid "Date"
 msgstr "Date"
 
@@ -180,7 +181,7 @@ msgstr "Ville"
 #: templates/C4CApplication/CreateBranch.html:24
 #: templates/C4CApplication/TransferRightsBranch.html:27
 msgid "Submit"
-msgstr "Envoyez les changements"
+msgstr "Confirmez"
 
 #: templates/C4CApplication/CreateJob.html:17
 msgid "Request details"
@@ -487,6 +488,43 @@ msgstr "Payé"
 #: templates/C4CApplication/JobDetails.html:270
 msgid "Action"
 msgstr "Action"
+
+#: templates/C4CApplication/ListMessages.html:18
+msgid "Received Messages"
+msgstr "Messages"
+
+#: templates/C4CApplication/ListMessages.html:19
+msgid "Switch to Sent Messages"
+msgstr "Voir les messages envoyés"
+
+#: templates/C4CApplication/ListMessages.html:21
+#: templates/C4CApplication/ListMessages.html:27
+msgid "Write a new message"
+msgstr "Ecrire un nouveau message"
+
+#: templates/C4CApplication/ListMessages.html:26
+msgid "Switch to Received Messages"
+msgstr "Voir les messages reçus"
+
+#: templates/C4CApplication/ListMessages.html:35
+msgid "Sender"
+msgstr "expéditeur"
+
+#: templates/C4CApplication/ListMessages.html:37
+msgid "Receiver"
+msgstr "destinataire"
+
+#: templates/C4CApplication/ListMessages.html:40
+msgid "Subject"
+msgstr "Sujet"
+
+#: templates/C4CApplication/ListMessages.html:42
+msgid "Content"
+msgstr "Concours"
+
+#: templates/C4CApplication/ListMessages.html:62
+msgid "Read more"
+msgstr "Lire plus"
 
 #: templates/C4CApplication/Profile.html:27
 msgid "Account"
