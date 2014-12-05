@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 09:03+0000\n"
+"POT-Creation-Date: 2014-12-05 09:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -647,7 +647,6 @@ msgid "Type of member"
 msgstr "Type de membre"
 
 #: templates/C4CApplication/memberDetails.html:40
-
 msgid "Branche(s)"
 msgstr "Branche(s)"
 
@@ -674,6 +673,58 @@ msgstr "Ajouter comme un amis"
 #: templates/C4CApplication/memberDetails.html:90
 msgid "Log as member"
 msgstr "Se connecter comme membre"
+
+#: templates/C4CApplication/memberList.html:9
+msgid "Branch Details"
+msgstr "Détails de la Branche"
+
+#: templates/C4CApplication/memberList.html:19
+msgid "Delete the branch"
+msgstr "Supprimer la branche"
+
+#: templates/C4CApplication/memberList.html:26
+msgid "Area"
+msgstr "Zone"
+
+#: templates/C4CApplication/memberList.html:31
+msgid "Current donation amount"
+msgstr "Montant du don"
+
+#: templates/C4CApplication/memberList.html:36
+msgid "Address of Branch office"
+msgstr "Adresse de l'aministrateur de branche"
+
+#: templates/C4CApplication/memberList.html:42
+msgid "Branch officer's mail"
+msgstr "Courriel de l'administrateur de branche"
+
+#: templates/C4CApplication/memberList.html:49
+msgid "Change branch officer"
+msgstr "Changer l'administrateur de branche"
+
+#: templates/C4CApplication/memberList.html:58
+msgid "List of members"
+msgstr "Liste des membres"
+
+#: templates/C4CApplication/memberList.html:86
+msgid "Remove from branch"
+msgstr "Enlever de la branche"
+
+#: templates/C4CApplication/memberList.html:91
+msgid "Promote to verified"
+msgstr "Promouvoir au status de vérifié"
+
+#: templates/C4CApplication/memberList.html:95
+msgid "No more verified"
+msgstr "Ne plus avoir le status de vérifié"
+
+#: templates/C4CApplication/memberList.html:101
+msgid "Promote to volunteer"
+msgstr "Promouvoir au status de volontaire"
+
+#: templates/C4CApplication/memberList.html:105
+msgid "No more volunteer"
+msgstr "Ne plus avoir le status de volontaire"
 
 #: views/forms/RegistrationForm.py:34
 msgid "password"
