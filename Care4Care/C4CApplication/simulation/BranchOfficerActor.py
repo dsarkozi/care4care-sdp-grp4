@@ -47,7 +47,7 @@ class BranchOfficerActor(Actor):
     @staticmethod
     def logout_action(selenium, live_server_url):
         """
-        Login the actor
+        Logout the actor
         :param selenium: The instance of selenium
         :param live_server_url:
         :return: True if the action was successfull,
