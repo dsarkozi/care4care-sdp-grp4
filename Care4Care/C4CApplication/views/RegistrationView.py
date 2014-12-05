@@ -1,13 +1,12 @@
 from base64 import urlsafe_b64decode
 from django.core.urlresolvers import reverse_lazy
 from django.http.request import QueryDict
-from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
 from C4CApplication.views.forms.RegistrationForm import RegistrationForm
 from Care4Care.settings import STATICFILES_DIRS
 
-@never_cache
+
 class RegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = "C4CApplication/Registration.html"
