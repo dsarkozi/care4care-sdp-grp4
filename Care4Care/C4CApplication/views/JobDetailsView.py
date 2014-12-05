@@ -50,17 +50,19 @@ class JobDetailsView(DetailView, FormView):
         Here, the self.job is so the regular job.
         '''
         self.success_url += str(self.job.id)
+
+        if 'proposition' in form.cleaned_data:
+            date = form.cleaned_data['proposition']
+            creator_of_regular_job = create_user(self.job.mail)
         
-        date = form.cleaned_data['proposition']
-        creator_of_regular_job = create_user(self.job.mail)
-        
-        new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, self.job.description,\
-                                        self.job.type, 0, self.job.category, self.job.visibility,\
-                                        date, self.job.start_time, self.job.km, self.job.duration, self.job.other_category,\
-                                        self.job.place, '')
-        if new_job :
-            self.job.job_set.add(new_job)
-            new_job.member_set.add(self.member.db_member)
+            new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, self.job.description,
+                                                        self.job.type, 0, self.job.category, self.job.visibility,
+                                                        date, self.job.start_time, self.job.km, self.job.duration,
+                                                        self.job.other_category,
+                                                        self.job.place, '')
+            if new_job:
+                self.job.job_set.add(new_job)
+                new_job.member_set.add(self.member.db_member)
         
         return super(JobDetailsView, self).form_valid(form)
 

@@ -1,4 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
+from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
@@ -46,6 +47,8 @@ class InscriptionPage(FixedPage):
         time.sleep(1)
         
         self.password.send_keys(password)
+        time.sleep(1)
+        self.confirm.send_keys(password)
         time.sleep(1)
         
         self.confirm.send_keys(password)
