@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 16:21+0000\n"
+"POT-Creation-Date: 2014-12-05 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -984,7 +984,7 @@ msgstr "Code postal"
 msgid "Zip of the branch "
 msgstr "Code postal de la branche"
 
-#: views/forms/CreateBranchForm.py:45
+#: views/forms/CreateBranchForm.py:45 views/forms/ModifProfileForm.py:15
 msgid "town"
 msgstr "Ville"
 
@@ -1012,14 +1012,55 @@ msgstr "prénom"
 msgid "You can't do a donation of 0 time !"
 msgstr "Vous ne pouvez pas faire une donation vide"
 
-#: views/forms/LoginForm.py:9
-#: views/forms/FavIgnForm.py:9
+#: views/forms/FavIgnForm.py:9 views/forms/LoginForm.py:9
 msgid "Email Address"
-msgstr "Adresse E-mail"
+msgstr "Adresse Email"
 
 #: views/forms/LoginForm.py:14 views/forms/RegistrationForm.py:57
 msgid "Password"
 msgstr "mot de passe"
+
+#: views/forms/ModifProfileForm.py:9
+#, fuzzy
+#| msgid "password"
+msgid "new password"
+msgstr "mot de passe"
+
+#: views/forms/ModifProfileForm.py:10
+msgid "password verification"
+msgstr ""
+
+#: views/forms/ModifProfileForm.py:13
+#, fuzzy
+#| msgid "street, number, more details"
+msgid "street, number, more information"
+msgstr "rue, nombre, plus de détails"
+
+#: views/forms/ModifProfileForm.py:14
+#, fuzzy
+#| msgid "Zip"
+msgid "zip"
+msgstr "Code postal"
+
+#: views/forms/ModifProfileForm.py:19
+#, fuzzy
+#| msgid "Fixed phone"
+msgid "fixed phone"
+msgstr "Téléphone fixe"
+
+#: views/forms/ModifProfileForm.py:20
+#, fuzzy
+#| msgid "Mobile phone"
+msgid "mobile phone"
+msgstr "Téléphone mobile"
+
+#: views/forms/ModifProfileForm.py:32
+msgid "Your password is too short, it should be at least 8 characters long."
+msgstr ""
+
+#: views/forms/ModifProfileForm.py:35
+msgid "You entered different passwords"
+msgstr ""
 
 #: views/forms/RegistrationForm.py:30
 msgid "E-mail address"

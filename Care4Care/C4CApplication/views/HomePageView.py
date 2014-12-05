@@ -13,6 +13,7 @@ from C4CApplication.views.utils import create_user
 class HomePageView(FeedsMixingView, FormView):
     template_name = "C4CApplication/HomePage.html"
     form_class = LoginForm
+    user = None
     
     def get_success_url(self):
         self.user = create_user(self.request.session['email'])
