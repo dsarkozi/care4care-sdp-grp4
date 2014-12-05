@@ -9,19 +9,50 @@ class DonateTimeForm(forms.Form):
         )
     )
     days = forms.DecimalField(
-        min_value=0
+        initial = 0,
+        min_value=0,
     )
     hours = forms.DecimalField(
-        min_value=0
+        initial = 0,
+        min_value=0,
     )
     minutes = forms.DecimalField(
-        min_value=0
+        initial = 0,
+        min_value=0,
     )
     receiver = forms.ChoiceField(
         widget=forms.RadioSelect,
-        choices=(('c4c', 'Send to the Care4Care company'), ('user', 'Send to user'))
+        choices=(('c4c', 'Send to one of your branches'), ('user', 'Send to user'))
     )
     userDropdown = forms.ChoiceField(
         widget=forms.Select,
         choices=Member.objects.values_list('mail','first_name')
     )
+    
+    
+    def __init__(self, db_member=None, *args, **kwargs):
+        super(DonateTimeForm, self).__init__(*args, **kwargs)
+        
+        BRANCH = ()
+        if db_member is not None:
+            for branch in db_member.branch.all():
+                BRANCH += ((branch.name,branch.name),)
+        
+        self.fields['branchDropdown'] = forms.CharField(widget=forms.Select(choices=BRANCH))
+        
+    def clean(self):
+        cleaned_data = super(DonateTimeForm, self).clean()
+        time = 0
+        days = 0
+        days = cleaned_data.get("days")
+        hours = 0
+        hours = cleaned_data.get("hours")
+        minutes = 0
+        minutes = cleaned_data.get("minutes")
+        time = days*1440+hours*60+minutes
+        
+        #check a good time donation
+        if time == 0 :
+            self.add_error("minutes", forms.ValidationError("You can't do a donation of 0 time !", code='invalid'))
+        
+        return cleaned_data

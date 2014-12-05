@@ -26,9 +26,13 @@ class GiveTimePage(Page):
     
     def fill_in_fields(self, message, days, hours, min, user):
         self.message_input.send_keys(message)
+        time.sleep(1)
         self.days_input.send_keys(days)
+        time.sleep(1)
         self.hours_input.send_keys(hours)
+        time.sleep(1)
         self.minutes_input.send_keys(min)
+        time.sleep(1)
         if user == "Care4Care compagny" : 
             self.radio_button_receipient[0].click()
         else: 
