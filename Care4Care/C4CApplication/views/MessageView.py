@@ -4,7 +4,7 @@ from django.core.exceptions import PermissionDenied
 from C4CApplication.views.utils import create_user
 
 class MessageView(DetailView):
-   template_name = "C4CApplication/Message.html"  # chemin vers le template ˆ afficher
+   template_name = "C4CApplication/Message.html"  # path to the template to display
    context_object_name = "message"
    model = Message
    

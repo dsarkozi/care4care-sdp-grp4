@@ -32,7 +32,6 @@ class NonMember(User):
         self.db_member.save()
         return True
            
-    #TODO Why don't you put this on the specific file system_email ?
     def send_mail(self, sender_mail, receiver_mail, subject, content, type):
         """
         Send a mail from from_mail to to_mail, with the subject, 
@@ -59,7 +58,7 @@ class NonMember(User):
         message.subject = subject
         message.content = content
         message.type = type
-        message.date = Time.str_to_ftime('%Y-%m-%d')  # TODO put this in a special module for simulation purposes
+        message.date = Time.str_to_ftime('%Y-%m-%d')  
         message.save()
         
         mailbox = Mailbox()
@@ -68,7 +67,7 @@ class NonMember(User):
             return False
         mailbox.member_receiver = member_receiver[0]
         mailbox.message = message
-        member_sender[0].save()  # TODO Member sender or mailbox.member ???
+        member_sender[0].save()  
         message.save()
         mailbox.save()
         
@@ -280,9 +279,9 @@ class NonMember(User):
     
     def delete_job(self, job_id):
         """
-        Delete the number eme job of the user
+        Delete the number job number 'job_id' of the user
 
-        :param job_number: The number of the job of the user to delete.
+        :param job_id: The number of the job of the user to delete.
         """
         job = Job.objects.filter(id=job_id)
         if len(job) != 1 :

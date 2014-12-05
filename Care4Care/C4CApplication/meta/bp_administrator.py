@@ -33,7 +33,7 @@ class BPAdministrator(BranchOfficer):
 
     def delete_member_from_site(self, deleted_one_email):
         """
-        Put the status of the member as deleted (TODO add a deleted field to member ?)
+        Put the status of the member as deleted 
         :param deleted_one_email: the email of the person to delete
         :return: False if there was a problem and True otherwise.
         """

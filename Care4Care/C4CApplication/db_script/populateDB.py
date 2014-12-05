@@ -3,42 +3,42 @@ from C4CApplication.models import *
 
 
 '''
-Commande a executer dans le terminal :
+Command to execute in terminal :
 exec(open('./C4CApplication/db_script/populateDB.py').read())
 '''
 
 def popule_db():
-    #Suppression de tous les membres
+    #Delete all members
     list_member = Member.objects.all()
     for member in list_member:
         member.delete()
         
-    #Suppression des branchs
+    #Delete all branches
     list_branch = Branch.objects.all()
     for branch in list_branch:
         branch.delete()
     
-    #Suppression des messages pour eviter les conflits
+    #Delete all messages to avoid conflicts
     list_message = Message.objects.all()
     for message in list_message :
             message.delete()
             
-    #Suppression des mailbox pour eviter les doublons
+    #Delete all mailbox to avoid duplication
     list_mailbox = Mailbox.objects.all()
     for mailbox in list_mailbox :
         mailbox.delete()
     
-    #Suppression des relations pour eviter les doublons
+    #Delete all relations to avoid duplication
     list_relation = Relationship.objects.all()
     for relation in list_relation :
         relation.delete()
     
-    #Suppression des jobs avant creation
+    #Delete jobs before creation
     list_job = Job.objects.all()
     for job in list_job :
         job.delete()
     
-    # Creation de membre
+    # Creation of members
     m1 = Member(mail="kim.mens@gmail.com")
     m1.password = "azertyuiop"
     m1.first_name = "Kim"
@@ -153,7 +153,7 @@ def popule_db():
     b2.donation = 10
     b2.save()
     
-    #Lien membre et branch
+    #Link member and branch
     m1.branch.add(b1)
     m2.branch.add(b2)
     m3.branch.add(b1)
@@ -167,7 +167,7 @@ def popule_db():
     m5.save()
     m6.save()
     
-    #Creation de messages
+    #Creation of messages
     e1 = Message()
     e1.member_sender = m3   #Olivier Bonaventure
     e1.number = 1
@@ -186,8 +186,8 @@ def popule_db():
     e2.date = "2014-11-03"
     e2.save()
     
-    #Creation des mailboxs
-    a1 = Mailbox()  # message e1 pour Kim Mens
+    #Creation of mailboxes
+    a1 = Mailbox()  # message e1 for Kim Mens
     a1.member_receiver = m1  #Kim Mens
     a1.message = e1
     a1.save()
@@ -197,32 +197,32 @@ def popule_db():
     a2.message = e2
     a2.save()
     
-    #Creation des relations entre les membres
+    #Creation of relations between members
     r1 = Relationship()
-    r1.member_source = m4   #Armand met Obo dans ses amis.
+    r1.member_source = m4   #Armand put Obo in his friends
     r1.member_target = m3
     r1.save()
     
     r2 = Relationship()
-    r2.member_source = m4   #Armant met Yves dans ses amis
+    r2.member_source = m4   #Armant put Yves in his friends
     r2.member_target = m2
     r2.save()
     
     r3 = Relationship()
-    r3.member_source = m1   #Kim met Obo dans ses amis
+    r3.member_source = m1   #Kim put Obo in his friends
     r3.member_target = m3
     r3.save()
     
     r4 = Relationship()
-    r4.member_source = m3   #Obo met Armand dans ses amis
+    r4.member_source = m3   #Obo put Armand in his friends
     r4.member_target = m4
     r4.save()
     
     r5 = Relationship()
-    r5.member_source = m3   #Obo met Yves dans ses amis
+    r5.member_source = m3   #Obo put Yves in his friends
     r5.member_target = m2
     
-    #Creation des jobs
+    #Creation of jobs
     j1 = Job(mail=m4.mail, number=1)   #Armand
     j1.title = "Aide pour mes courses"
     j1.description = "Bonjour, j'ai besoin d'aide pour aller faire mes courses."
