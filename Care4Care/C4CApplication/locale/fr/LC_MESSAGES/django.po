@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 22:51+0000\n"
+"POT-Creation-Date: 2014-12-05 22:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -517,159 +517,169 @@ msgstr "Supprimer un membre"
 msgid "Transfer rights"
 msgstr "Transfèrer les droits"
 
-#: templates/C4CApplication/JobDetails.html:63
+#: templates/C4CApplication/JobDetails.html:67
 msgid "Job details"
 msgstr "Détails de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:72
-#: templates/C4CApplication/JobDetails.html:333
+#: templates/C4CApplication/JobDetails.html:76
+#: templates/C4CApplication/JobDetails.html:353
 msgid "Stop participating"
 msgstr "Ne plus participer"
 
-#: templates/C4CApplication/JobDetails.html:76
-#: templates/C4CApplication/JobDetails.html:294
-#: templates/C4CApplication/JobDetails.html:335
+#: templates/C4CApplication/JobDetails.html:80
+#: templates/C4CApplication/JobDetails.html:314
+#: templates/C4CApplication/JobDetails.html:355
 msgid "Participate"
 msgstr "Participer"
 
-#: templates/C4CApplication/JobDetails.html:81
+#: templates/C4CApplication/JobDetails.html:85
 msgid "Delete job"
 msgstr "Supprimer une tâche"
 
 #: templates/C4CApplication/JobDetails.html:90
+#, fuzzy
+#| msgid " Type of job done"
+msgid "My job is done"
+msgstr "Type de job effectué"
+
+#: templates/C4CApplication/JobDetails.html:96
+msgid "Pay the helper"
+msgstr ""
+
+#: templates/C4CApplication/JobDetails.html:110
 msgid "Creator of the job"
 msgstr "Créateur de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:101
+#: templates/C4CApplication/JobDetails.html:121
 msgid "Regular job"
 msgstr "Job régulier"
 
-#: templates/C4CApplication/JobDetails.html:103
+#: templates/C4CApplication/JobDetails.html:123
 msgid "Go to the regular job"
 msgstr "Aller aux tâche régulières"
 
-#: templates/C4CApplication/JobDetails.html:111
-#: templates/C4CApplication/JobDetails.html:310
+#: templates/C4CApplication/JobDetails.html:131
+#: templates/C4CApplication/JobDetails.html:330
 msgid "Date of the job"
 msgstr "Date de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:119
+#: templates/C4CApplication/JobDetails.html:139
 #: templates/C4CApplication/Profile.html:45
 msgid "Mail"
 msgstr "Mail"
 
-#: templates/C4CApplication/JobDetails.html:127
+#: templates/C4CApplication/JobDetails.html:147
 msgid "Hour of the start"
 msgstr "Heure du commencement"
 
-#: templates/C4CApplication/JobDetails.html:141
+#: templates/C4CApplication/JobDetails.html:161
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: templates/C4CApplication/JobDetails.html:158
+#: templates/C4CApplication/JobDetails.html:178
 msgid "Duration"
 msgstr "Durée"
 
-#: templates/C4CApplication/JobDetails.html:167
+#: templates/C4CApplication/JobDetails.html:187
 msgid "Category"
 msgstr "Catégorie"
 
-#: templates/C4CApplication/JobDetails.html:181
+#: templates/C4CApplication/JobDetails.html:201
 msgid "Type of job"
 msgstr "Type de job effectué"
 
-#: templates/C4CApplication/JobDetails.html:184
+#: templates/C4CApplication/JobDetails.html:204
 msgid "Demand"
 msgstr "Demande"
 
-#: templates/C4CApplication/JobDetails.html:186
+#: templates/C4CApplication/JobDetails.html:206
 msgid "Offer"
 msgstr "Offre"
 
-#: templates/C4CApplication/JobDetails.html:192
+#: templates/C4CApplication/JobDetails.html:212
 #: templates/C4CApplication/Profile.html:56
 #: templates/C4CApplication/memberDetails.html:71
 msgid "Address"
 msgstr "Adresse"
 
-#: templates/C4CApplication/JobDetails.html:198
+#: templates/C4CApplication/JobDetails.html:218
 msgid "Job accepted"
 msgstr "Tâche acceptée"
 
-#: templates/C4CApplication/JobDetails.html:201
-#: templates/C4CApplication/JobDetails.html:214
-#: templates/C4CApplication/JobDetails.html:227
+#: templates/C4CApplication/JobDetails.html:221
+#: templates/C4CApplication/JobDetails.html:234
+#: templates/C4CApplication/JobDetails.html:247
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/C4CApplication/JobDetails.html:203
-#: templates/C4CApplication/JobDetails.html:216
-#: templates/C4CApplication/JobDetails.html:229
+#: templates/C4CApplication/JobDetails.html:223
+#: templates/C4CApplication/JobDetails.html:236
+#: templates/C4CApplication/JobDetails.html:249
 msgid "No"
 msgstr "Non"
 
-#: templates/C4CApplication/JobDetails.html:211
+#: templates/C4CApplication/JobDetails.html:231
 msgid "Job done"
 msgstr "Tâche effectuée"
 
-#: templates/C4CApplication/JobDetails.html:224
+#: templates/C4CApplication/JobDetails.html:244
 msgid "Job payed"
 msgstr "Tâche payée"
 
-#: templates/C4CApplication/JobDetails.html:239
+#: templates/C4CApplication/JobDetails.html:259
 msgid "Visibility of the job"
 msgstr "visibilitée de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:248
+#: templates/C4CApplication/JobDetails.html:268
 msgid "Branch"
 msgstr "Branche"
 
-#: templates/C4CApplication/JobDetails.html:249
+#: templates/C4CApplication/JobDetails.html:269
 #: templates/C4CApplication/memberList.html:90
 #: views/forms/RegistrationForm.py:40
 msgid "branch"
 msgstr "branche"
 
-#: templates/C4CApplication/JobDetails.html:255
+#: templates/C4CApplication/JobDetails.html:275
 msgid "Description"
 msgstr "Description"
 
-#: templates/C4CApplication/JobDetails.html:262
-#: templates/C4CApplication/JobDetails.html:311
+#: templates/C4CApplication/JobDetails.html:282
+#: templates/C4CApplication/JobDetails.html:331
 msgid "Participants"
 msgstr "Participants"
 
-#: templates/C4CApplication/JobDetails.html:274
+#: templates/C4CApplication/JobDetails.html:294
 msgid "Choose this member"
 msgstr "Choisier ce membre"
 
-#: templates/C4CApplication/JobDetails.html:288
+#: templates/C4CApplication/JobDetails.html:308
 msgid "Occurence of the job"
 msgstr "Occurence de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:292
+#: templates/C4CApplication/JobDetails.html:312
 msgid "Possibilities"
 msgstr "Possibilités"
 
-#: templates/C4CApplication/JobDetails.html:312
+#: templates/C4CApplication/JobDetails.html:332
 msgid "Accepted"
 msgstr "Accepté"
 
-#: templates/C4CApplication/JobDetails.html:313
+#: templates/C4CApplication/JobDetails.html:333
 msgid "Done"
 msgstr "Fait"
 
-#: templates/C4CApplication/JobDetails.html:314
+#: templates/C4CApplication/JobDetails.html:334
 msgid "Payed"
 msgstr "Payé"
 
-#: templates/C4CApplication/JobDetails.html:315
+#: templates/C4CApplication/JobDetails.html:335
 msgid "Action"
 msgstr "Action"
 
 #: templates/C4CApplication/ListMessages.html:18
 msgid "Received Messages"
-msgstr "Messages"
+msgstr "Messages reçus"
 
 #: templates/C4CApplication/ListMessages.html:19
 msgid "Switch to Sent Messages"
@@ -817,7 +827,7 @@ msgstr "Date d'enregistrement"
 #: templates/C4CApplication/Profile.html:49
 #: templates/C4CApplication/Registration.html:36
 msgid "Personal information"
-msgstr "renseignements personnels"
+msgstr "Renseignements personnels"
 
 #: templates/C4CApplication/Profile.html:52
 #: templates/C4CApplication/memberDetails.html:66
