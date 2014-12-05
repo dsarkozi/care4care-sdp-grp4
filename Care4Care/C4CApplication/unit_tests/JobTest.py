@@ -23,11 +23,12 @@ class JobTest(MySeleniumTests):
         
         # Create the page object
         self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
+        time.sleep(2)
         page = CreateJobPage(self.selenium)
         
         # Test create job
-        page = page.create_job("New offer title", "New offer description", "LLN", "Visit", "Only once", 
-                         "March", "Specific day", "Anyone")
+        page = page.create_job("New job test", "New job description", "At my place", 0, "12:30", \
+                               "00:30", "10", 1, 2, "", "", "", [], [2, 9, 7, 14], [1, 2])
         
         page = page.click_on_post_req()
         
@@ -51,8 +52,8 @@ class JobTest(MySeleniumTests):
         page = CreateJobPage(self.selenium)
         
         # Test create job
-        page = page.create_job("New demand title", "New demand description", "All of them", "Transpot", "Regularly", 
-                         None, None, "My favorites only")
+        page = page.create_job("New job test 2", "New job description 2", "Somewhere", 0, "00:10", \
+                               "05:15", "30", 2, 0, "4", "septembre", "2015", [], [], [3])
         
         page = page.click_on_post_req()
         

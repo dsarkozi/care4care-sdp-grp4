@@ -6,7 +6,7 @@ import time
 
 class HelpedSimulation(MySeleniumTests):
     
-    def test_simulation(self):
+    def test_simulation_ask_help(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         
