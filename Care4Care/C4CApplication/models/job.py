@@ -40,7 +40,7 @@ class Job(models.Model):
     }
     category = models.SmallIntegerField(choices=CAT)
     other_category = models.CharField(blank=True, max_length=100)
-    type = models.BooleanField() # True = demand, False = offer
+    type = models.BooleanField(default=True) # True = demand, False = offer
     place = models.TextField(blank=True)
     accepted = models.BooleanField(default=False)
     done = models.BooleanField(default=False)
