@@ -236,7 +236,7 @@ class BPAdministrator(BranchOfficer):
         """
         branch = Branch()
         branch.name = name
-        branch.town = branch_town
+        branch.branch_town = branch_town
         branch.street = street
         branch.zip = zip
         branch.town = town
