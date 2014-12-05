@@ -17,6 +17,13 @@ class JobDetailsView(DetailView, FormView):
     form_class = JobRegularForm
     job = None
     
+    def get_visibility(job):
+        visibility = ""
+        for v in Job.JOB_VISIBILITY_TUPLE:
+            if v[0] & job.visibility == v[0]:
+                visibility += "%s & " % (v[1])
+        return visibility[:-3]
+    
     def dispatch(self, request, *args, **kwargs):
         # Create the object representing the user
         if 'email' not in self.request.session:
@@ -34,6 +41,7 @@ class JobDetailsView(DetailView, FormView):
         else :
             context['form'] = JobRegularForm(job=self.job, auto_id=False)
         context['member'] = self.member.db_member
+        context['visibility'] = JobDetailsView.get_visibility(self.job)
         context['connected'] = 'email' in self.request.session
         return context
 
@@ -45,11 +53,12 @@ class JobDetailsView(DetailView, FormView):
         
         date = form.cleaned_data['proposition']
         creator_of_regular_job = create_user(self.job.mail)
-        new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, date, self.job.type, '', '',\
-                                          self.job.start_time, 0, self.job.km, self.job.duration, self.job.category,\
-                                          self.job.other_category, self.job.place, 'anyone', '')
+        
+        new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, self.job.description,\
+                                        self.job.type, 0, self.job.category, self.job.visibility,\
+                                        date, self.job.start_time, self.job.km, self.job.duration, self.job.other_category,\
+                                        self.job.place, '')
         if new_job :
-            new_job.visibility = self.job.visibility
             self.job.job_set.add(new_job)
             new_job.member_set.add(self.member.db_member)
         

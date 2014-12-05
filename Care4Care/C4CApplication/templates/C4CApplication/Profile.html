@@ -26,16 +26,8 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;text-align: left
     	<h3>{% trans "Account" %} :</h3>
         <ul style = "list-style-type: none;"> 
             <li class="info"> {% trans "Type" %} : 
-            
-            {% if member_shown.tag == 1 %} {% trans "Non member"%} 
-            {% elif member_shown.tag == 2 %} {% trans "Member"%}
-            {% elif member_shown.tag == 4 %} {% trans "Verified member"%}
-            {% elif member_shown.tag == 8 %} {% trans "Volunteer"%}
-            {% elif member_shown.tag == 16 %} {% trans "Branch officer"%}
-            {% elif member_shown.tag == 32 %} {% trans "BP Admin"%}
-            
-            
-            {% endif %}</li>
+            	{{ tag_member }}
+            </li>
             <li class="info">
             {% if member.mail == member_shown.mail %}
              {% trans "Status" %}:

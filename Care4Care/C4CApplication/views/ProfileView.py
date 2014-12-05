@@ -10,20 +10,11 @@ class ProfileView(DetailView):
     model = Member
     user = None
     
-    TAG_REVERSE = {
-        1         : 'Non member',               #000001
-        2         : 'Member',                   #000010
-        4         : 'Verified',                 #000100
-        8         : 'Volunteer',                #001000
-        16        : 'Branch officer',           #010000
-        32        : 'BP admin',                 #100000
-    }
-    
     def get_tag_member(db_member):
         tag = ""
-        for key, value in ProfileView.TAG_REVERSE.items():
-            if key & db_member.tag == key:
-                tag += "%s & " % (value)
+        for v in Member.TAG_CHOICE:
+            if v[0] & db_member.tag == v[0]:
+                tag += "%s & " % (v[1])
         return tag[:-3]
 
     def dispatch(self, request, *args, **kwargs):
