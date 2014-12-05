@@ -9,7 +9,13 @@ class HelperActor(Actor):
     action_list = None
 
     def get_action_list(self):
-        pass
+
+        if self.action_list is None:
+            self.action_list = [
+                #TODO [self.login_action, self.logout_action]
+            ]
+
+        return self.action_list
 
     def remove_action_from_action_list(self, action):
-        pass
+        self.action_list.remove(action)
