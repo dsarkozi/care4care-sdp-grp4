@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 11:05+0000\n"
+"POT-Creation-Date: 2014-12-05 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,6 +364,11 @@ msgstr "Nouvelle branche"
 msgid "Delete a member"
 msgstr "Supprimer un membre"
 
+#: templates/C4CApplication/JobDetails.html:26
+#: templates/C4CApplication/MyCare4Care.html:32
+msgid "Transfer rights"
+msgstr "Transfèrer les droits"
+
 #: templates/C4CApplication/JobDetails.html:45
 msgid "Job details"
 msgstr "Détails de la tâche"
@@ -586,10 +591,6 @@ msgstr "Changer en actif"
 #: templates/C4CApplication/ModifProfile.html:87
 msgid "Delete account"
 msgstr "Supprimer le compte"
-
-#: templates/C4CApplication/MyCare4Care.html:32
-msgid "Transfer rights"
-msgstr "Transfèrer les droits"
 
 #: templates/C4CApplication/MyCare4Care.html:53
 msgid "You have"
@@ -829,6 +830,62 @@ msgstr "Promouvoir au status de volontaire"
 #: templates/C4CApplication/memberList.html:105
 msgid "No more volunteer"
 msgstr "Ne plus avoir le status de volontaire"
+
+#: views/forms/ConfirmJobDoneForm.py:9
+msgid "Time allowance"
+msgstr "Allocation de temps"
+
+#: views/forms/CreateBranchForm.py:10
+msgid "branch name"
+msgstr "nom de la branche"
+
+#: views/forms/CreateBranchForm.py:11
+msgid "Name of the branch "
+msgstr "Nom de la branche"
+
+#: views/forms/CreateBranchForm.py:16
+msgid "town(s) of the branch"
+msgstr "Ville(s) de la branche"
+
+#: views/forms/CreateBranchForm.py:17
+msgid "Name of the town "
+msgstr "Nome de la ville "
+
+#: views/forms/CreateBranchForm.py:22
+msgid "branch_officer@mail.com"
+msgstr ""
+
+#: views/forms/CreateBranchForm.py:23
+msgid "Branch officer mail"
+msgstr "Courriel de l'administrateur de branche"
+
+#: views/forms/CreateBranchForm.py:29
+msgid "street, number, more details"
+msgstr "rue, nombre, plus de détails"
+
+#: views/forms/CreateBranchForm.py:31
+msgid "Street of the branch "
+msgstr "Rue de la branche"
+
+#: views/forms/CreateBranchForm.py:37
+msgid "postal code"
+msgstr "Code postal"
+
+#: views/forms/CreateBranchForm.py:39
+msgid "Zip of the branch "
+msgstr "Code postal de la branche"
+
+#: views/forms/CreateBranchForm.py:45
+msgid "town"
+msgstr "Ville"
+
+#: views/forms/CreateBranchForm.py:47
+msgid "Town of the branch "
+msgstr "Ville de la branche"
+
+#: views/forms/CreateBranchForm.py:60
+msgid "A branch already exist with this name."
+msgstr "Une brance ayant ce nom existe déjà"
 
 #: views/forms/RegistrationForm.py:30
 msgid "E-mail address"
