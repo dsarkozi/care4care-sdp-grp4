@@ -40,11 +40,12 @@ class CreateJobForm(forms.ModelForm):
         branchList = []
         for branch in user.branch.all():
             branchList.append((branch.name, branch.name))
-        self.fields['branches'] = forms.MultipleChoiceField(
+        branchAmount = len(branchList)
+        self.fields['branches'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=tuple(branchList)
         )
-        if len(branchList) == 1:
+        if branchAmount == 1:
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
         self.fields['start_time'] = forms.TimeField(
