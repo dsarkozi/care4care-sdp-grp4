@@ -71,15 +71,18 @@ class CreateJobForm(forms.ModelForm):
             )
         )
 
-        # Job visibility fieldset
-        self.fields['visibility'] = forms.ChoiceField(
-            widget=forms.RadioSelect,
-            choices=Job.JOB_VISIBILITY_TUPLE
-        )
+        # Job timeline fieldset
         self.fields['frequency'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=Job.FREQ
         )
+
+        # Job visibility fieldset
+        self.fields['visibility'] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=Job.JOB_VISIBILITY_TUPLE
+        )
+
 
 
 
