@@ -55,7 +55,8 @@ class ModifProfileView(FormView):
         self.user.db_member.town = town
         
         self.user.db_member.picture = picture
-        self.user.db_member.password = password
+        if password != '':  # If a new password was entered
+            self.user.db_member.password = password
 
         self.user.db_member.save()
                   
