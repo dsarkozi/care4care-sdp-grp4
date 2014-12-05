@@ -24,6 +24,10 @@ class HelpedSimulation(MySeleniumTests):
         page = page.click_on_submit()
         # registration done
         
+        # back home
+        #time.sleep(2)
+        #page = page.click_home() # sachant que click_home ne renvoi pas HomePage
+        
         time.sleep(2)
         page = HomePage(self.selenium)
         page = page.login_successful("janine_kou@gmail.com","azertyuiop") 
@@ -35,7 +39,7 @@ class HelpedSimulation(MySeleniumTests):
         # Test create job
         page = page.create_job("I need help", "I need help for bringing me to the shop", "From my place to the shop", 0, "10:30", \
                                "01:00", "10", 0, 1, "", "", "", [2, 5], [], [0], True)
-        # page.post
+        # Post
         page = page.click_on_post_req() # on arrive sur myc4c
         time.sleep(1)
         

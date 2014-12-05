@@ -19,8 +19,13 @@ class JobDetailsPage(FixedPage):
         try : self.participate_button = self.driver.find_element_by_xpath('//a[@id="participate_button"]')
         except : pass
 
+    def click_on_logout(self):
+        self.driver.find_element_by_xpath('//a[@value="Logout"]').click()
+        return self
+
     def click_on_participate(self):
-        self.participate_button.click()
+        if self.participate_button is not None: 
+            self.participate_button.click()
         return self
     
     def click_on_choose_member(self, num):
