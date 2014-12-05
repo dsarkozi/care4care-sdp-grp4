@@ -22,8 +22,6 @@ class Scheduler(MySeleniumTests):
         # We populate the database
         self.populate_db()
 
-        # TODO program the change of time
-
         i = -1
 
         while len(self.get_actors_list()) != 0:  # We continue the test as long as there are actors that have to act
