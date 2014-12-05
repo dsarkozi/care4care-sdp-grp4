@@ -1,6 +1,7 @@
 from C4CApplication.page_objects.Page import Page
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.alert import Alert
 
 import time
 
@@ -19,6 +20,8 @@ class GiveTimePage(Page):
         
     def click_on_donate(self):
         self.donate_button.click()
+        time.sleep(1)
+        Alert(self.driver).accept()
         return self
     
     def fill_in_fields(self, message, days, hours, min, user):

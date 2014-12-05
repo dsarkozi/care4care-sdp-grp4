@@ -17,18 +17,17 @@ class OverwriteStorage(FileSystemStorage):
 class Member(models.Model):
     mail = models.EmailField(primary_key=True)
     password = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1)
     picture = models.ImageField(null=True, blank=True, upload_to="images/images_profile/", storage=OverwriteStorage())
-    birthday = models.DateField(blank=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
+    birthday = models.DateField(blank=True, null=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
     
     TAG_REVERSE = {
         1         : 'non_member',               #000001
         2         : 'member',                   #000010
         4         : 'verified',                 #000100
         8         : 'volunteer',                #001000
-        12        : 'volunteer and verified',   #001100
         16        : 'branch_officer',           #010000
         32        : 'bp_admin',                 #100000
     }
@@ -38,7 +37,6 @@ class Member(models.Model):
         (2, 'Member'),
         (4, 'Verified'),
         (8, 'Volunteer'),
-        (12, 'Volunteer and verified'),
         (16, 'Branch officer'),
         (32, 'BP admin'),
     )
@@ -48,33 +46,30 @@ class Member(models.Model):
         'member'                 : 2,   #000010
         'verified'               : 4,   #000100
         'volunteer'              : 8,   #001000
-        'volunteer and verified' : 12,  #001100
         'branch_officer'         : 16,  #010000
         'bp_admin'               : 32,  #100000
     }
-    tag = models.SmallIntegerField(default=1)    #Limit max
+    tag = models.SmallIntegerField()    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive
     deleted = models.BooleanField(default=False)
-    mobile = models.CharField(max_length=15)
-    telephone = models.CharField(max_length=15)
+    mobile = models.CharField(blank=True, max_length=15)
+    telephone = models.CharField(blank=True, max_length=15)
     register_date = models.DateField(default=strftime('%Y-%m-%d', gmtime()))
-    dash_board_text = models.TextField()
     street = models.CharField(max_length=200)   #Street and number
     zip = models.CharField(max_length=4)
     town = models.CharField(max_length=100)
     
     MEMBER_VISIBILITY = { # every bit of the number corresponds to one option
-        'anyone'     : 1,   #0001
-        'verified'   : 2,   #0010
-        'favorites'  : 4,   #0100
-        'network'    : 8,   #1000
+        'anyone'     : 1,   #001
+        'verified'   : 2,   #010
+        'favorites'  : 4,   #100
     }
     visibility = models.SmallIntegerField(default=MEMBER_VISIBILITY['verified'])
     time_credit = models.BigIntegerField(default=0)
     
     branch = models.ManyToManyField('Branch')
-    relation = models.ManyToManyField('self', through='Relationship', symmetrical=False)
-    job = models.ManyToManyField('Job')
+    relation = models.ManyToManyField('self', through='Relationship', symmetrical=False, blank=True, null=True)
+    job = models.ManyToManyField('Job', blank=True, null=True)
     #personal_network = models.ManyToManyField('Member', through='Relationship')
     
     def __unicode__(self):

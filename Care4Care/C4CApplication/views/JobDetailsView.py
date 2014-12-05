@@ -2,11 +2,9 @@ from django.views.generic import DetailView
 from django.views.generic import FormView
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
-from django.contrib.comments import get_form
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
 from C4CApplication.views.forms.JobRegularForm import JobRegularForm
-from gc import get_objects
 
 
 class JobDetailsView(DetailView, FormView):
@@ -48,9 +46,8 @@ class JobDetailsView(DetailView, FormView):
         date = form.cleaned_data['proposition']
         creator_of_regular_job = create_user(self.job.mail)
         new_job = creator_of_regular_job.create_job(self.job.branch.name, self.job.title, date, self.job.type, '', '',\
-                                          self.job.start_time, 0, self.job.km, self.job.time, self.job.category,\
-                                          self.job.other_category, self.job.street, self.job.zip, self.job.town,\
-                                          'anyone', '')
+                                          self.job.start_time, 0, self.job.km, self.job.duration, self.job.category,\
+                                          self.job.other_category, self.job.place, 'anyone', '')
         if new_job :
             new_job.visibility = self.job.visibility
             self.job.job_set.add(new_job)

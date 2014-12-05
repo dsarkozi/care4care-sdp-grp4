@@ -42,6 +42,18 @@ class HomePage(FixedPage):
         
         return MyCare4Care(self.driver) 
     
+    def login_fail(self, mail, password):
+        time.sleep(1)
+        self.mail_input.send_keys(mail)
+        
+        time.sleep(1)
+        self.password_input.send_keys(password)
+        
+        time.sleep(1)
+        self.login_button.click()
+        
+        return self
+    
     def quick_login_successful(self, mail, password):
         self.mail_input.send_keys(mail)
         self.password_input.send_keys(password)

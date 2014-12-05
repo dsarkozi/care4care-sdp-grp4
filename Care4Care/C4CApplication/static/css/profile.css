@@ -1,10 +1,11 @@
 #photo
 {
-	max-width:350px;
-    max-height:250px;
+	max-width:280px;
+    max-height:240px;
     border-color:navy;
     border-width:2px;
     border-style:solid;
+    margin:1em;
 }
 
 .nom

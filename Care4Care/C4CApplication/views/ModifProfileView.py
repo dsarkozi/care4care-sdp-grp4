@@ -38,6 +38,7 @@ class ModifProfileView(FormView):
         town = form.cleaned_data['town']
         #infos faculatives
         fixed_phone = form.cleaned_data['fixed_phone']
+        password = form.cleaned_data['new_password']
         mobile_phone = form.cleaned_data['mobile_phone']
         picture = form.cleaned_data['picture']
         if picture is not None:
@@ -64,4 +65,4 @@ class ModifProfileView(FormView):
         self.initial = {'street':self.user.db_member.street, 'zip':self.user.db_member.zip ,\
                         'town':self.user.db_member.town,'fixed_phone':self.user.db_member.telephone,\
                         'mobile_phone':self.user.db_member.mobile}
-        return self.initial.copy()
+        return self.initial

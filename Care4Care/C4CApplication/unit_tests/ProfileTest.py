@@ -1,5 +1,5 @@
-from C4CApplication.simulator.super_class import MySeleniumTests
-from C4CApplication.page_objects.ProfilePage import ProfilePage
+from C4CApplication.unit_tests.super_class import MySeleniumTests
+from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 
 
 import time
@@ -29,8 +29,8 @@ class ProfileTest(MySeleniumTests):
         
         self.selenium.get('%s%s' % (self.live_server_url, '/modifprofile/'))
         
-        page = ProfilePage(self.selenium)
-        page = page.fill_in_info("15", "Rue bidon", "9999", "Bouseville", "010010010", "0456880045")
+        page = ModifProfilePage(self.selenium)
+        page = page.fill_in_info("Rue bidon, 15", "9999", "Bouseville", "010010010", "0456880045")
         time.sleep(1)
         
         page = page.click_on_submit()
@@ -53,7 +53,7 @@ class ProfileTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, '/modifprofile/'))
         time.sleep(1)
         
-        page = ProfilePage(self.selenium)
+        page = ModifProfilePage(self.selenium)
         page = page.click_on_delete_picture()
         time.sleep(1)
         
@@ -74,7 +74,7 @@ class ProfileTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, '/modifprofile/'))
         time.sleep(1)
         
-        page = ProfilePage(self.selenium)
+        page = ModifProfilePage(self.selenium)
         page = page.click_on_delete_account()
         time.sleep(1)
         

@@ -71,7 +71,7 @@
 													{% endif %}
 	 											   {% endfor %}   </a></td>
 			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
-			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.street }}, {{ job.zip }}, {{ job.town }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.place }} </a></td>
 		 </tr>
 	{% endfor %}
 	
@@ -99,7 +99,7 @@
 													{% endif %}
 	 											   {% endfor %}  </a></td>
 			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
-			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.street }}, {{ job.zip }}, {{ job.town }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.place }} </a></td>
 		  </tr>
 	  {% endfor %}
 	   
