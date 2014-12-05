@@ -31,7 +31,6 @@ class VolunteerVerified(VolunteerMember, VerifiedMember):
         """
         return self.see_job_details_base(job_number, job_creator_mail, self.is_job_visible)
 
-    # herited by Non-Member from Member ?
     def get_job_list(self, show_demands):
         """
         :param show_demands: the type of the list of the jobs to return

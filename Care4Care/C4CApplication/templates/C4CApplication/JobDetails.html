@@ -53,6 +53,10 @@
 	{% block form_job_done %}
 	{% endblock %}
 {% endif %}
+
+
+
+
 		
 <center style="margin:2em;">
 	<table class="tab1" style="" >
@@ -66,9 +70,9 @@
 			{% if member in job.member_set.all %}
 			 
 		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn"
 				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. 
 						Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a>
 			{% endif %}
@@ -77,6 +81,22 @@
 		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
 			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
+		
+		{% if not job.done and job.accepted %}
+		</br>
+		<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
+	
+        {% endif %}
+		
+		{% if not job.payed and job.accepted and job.done  %}
+		</br>
+		<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a> 
+	
+        {% endif %}
+		
+		
+		
+		
 		</p>
 		
 		</th>
@@ -327,9 +347,9 @@
 					<td>
 						{% if not j.accepted and member.mail != j.mail %}
 							{% if member in j.member_set.all %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
 							{% else %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn">{% trans "Participate"%}</a></br>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a></br>
 							{% endif %}
 						{% endif %}
 					</td>

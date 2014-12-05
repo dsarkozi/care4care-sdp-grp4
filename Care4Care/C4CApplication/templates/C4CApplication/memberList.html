@@ -15,7 +15,7 @@
 			{{ branch.name }} <br/>
 			{% if member.tag == 32 %}
 				<a href="{% url 'branchlistredirect' branch.name 'no_response@care4care.com' 3 %}" class ='btn'
-				   onclick="return window.confirm('Are you sure you want to delete this branch ?')">
+				   onclick="return window.confirm('{% trans "Are you sure you want to delete this branch"%} ?')">
 					{% trans "Delete the branch"%}
 				</a>
 			{% endif %}
@@ -85,26 +85,26 @@
                		<td class ="tab1-4" >
                         {% if mem.tag < 16 %}
 	                        <a href="{% url 'branchlistredirect' branch.name mem.mail 0 %}" id="remove_from_branch" value="remove_from_branch" class=btn
-	                        	onclick="return window.confirm('Are you sure you want to remove {{mem.first_name}} {{mem.last_name}} from {{ branch.name }} branch ?')"
+	                        	onclick="return window.confirm('{% trans "Are you sure you want to remove"%} {{mem.first_name}} {{mem.last_name}} {% trans "from"%} {{ branch.name }} {% trans "branch"%} ?')"
 	                        	>{% trans "Remove from branch"%}</a>
 	                        
 		                    {% if mem.tag != 4 and mem.tag != 12 %}
 		                        <a href="{% url 'branchlistredirect' branch.name mem.mail 1 %}" id="promote_verified" value="promote_verified" class=btn
-		                        	onclick="return window.confirm('Are you sure you want to promote {{mem.first_name}} {{mem.last_name}} to verified ?')"
+		                        	onclick="return window.confirm('{% trans "Are you sure you want to promote"%} {{mem.first_name}} {{mem.last_name}} {% trans "to verified"%} ?')"
 		                        	>{% trans "Promote to verified"%}</a>
 		                    {% else %}
 		                        <a href="{% url 'branchlistredirect' branch.name mem.mail 1 %}" id="no_more_verified" value="no_more_verified" class=btn
-		                        	onclick="return window.confirm('Are you sure you want to  revoke {{mem.first_name}} {{mem.last_name}} from verified ?')"
+		                        	onclick="return window.confirm('{% trans "Are you sure you want to revoke" %} {{mem.first_name}} {{mem.last_name}} {% trans "from verified"%} ?')"
 		                        	>{% trans "No more verified"%}</a>
 		                    {% endif %}
 		                        
 		                    {% if mem.tag != 8 and mem.tag != 12 %}
 		                        <a href="{% url 'branchlistredirect' branch.name mem.mail 2 %}" id="promote_volunteer" value="promote_volunteer" class=btn
-		                        	onclick="return window.confirm('Are you sure you want to promote {{mem.first_name}} {{mem.last_name}} to volunteer ?')"
+		                        	onclick="return window.confirm(' {% trans "Are you sure you want to promote" %} {{mem.first_name}} {{mem.last_name}} {% trans "to volunteer" %} ?')"
 		                        	>{% trans "Promote to volunteer"%}</a>
 		                    {% else %}
 		                        <a href="{% url 'branchlistredirect' branch.name mem.mail 2 %}" id="no_more_volunteer" value="no_more_volunteer" class=btn
-		                        	onclick="return window.confirm('Are you sure you want to revoke {{mem.first_name}} {{mem.last_name}} from volunteer ?')"
+		                        	onclick="return window.confirm(' {% trans "Are you sure you want to revoke"%} {{mem.first_name}} {{mem.last_name}} {% trans "from volunteer"%} ?')"
 		                        	>{% trans "No more volunteer"%}</a>
 	                        {% endif %}
                         {% endif %}

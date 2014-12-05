@@ -35,7 +35,6 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
 	       				{% csrf_token %}
 	       				{{ form.picture.errors }} {{ form.picture }}
 	       				{% if member.picture %}
-	       			
 	       					<a href="{% url 'modifprofileredirect' 0 %}" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">{% trans "Delete picture"%}</a></p>
 	       				{% endif %}
        				
