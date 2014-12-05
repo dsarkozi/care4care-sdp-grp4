@@ -13,14 +13,15 @@
 	    {{ loginForm.email }}
 	    {{ loginForm.password.errors }}
 	    {{ loginForm.password }}
-	    <input type="submit" value={% trans "Login" %} class="login-submit">
-	    <input type="button" value="{% trans "Sign up"%}"  class ="login-submit" onclick="self.location.href='registration'">
+	    
+	    <input type="submit" id="Login" value="{% trans "Login" %}" class="login-submit">
+	    <input type="button" value="{% trans "Sign up"%}"  class ="login-submit" id="sing_up" onclick="self.location.href='registration'">
 	    </form>
 	{% else %}
 		<form class="login" method="post" >
 	    <h1>Care4Care</h1>
 	       <center><h3> {% trans "Hello"%} {{ member.first_name }} {{ member.last_name }} !</h3> <br/>
-	 <a href="{% url 'logOut' %}" class="btn" value= {% trans "Logout" %}> {% trans "Logout" %}</a> </center>
+	 <a href="{% url 'logOut' %}" class="btn" id="Logout" value= {% trans "Logout" %}> {% trans "Logout" %}</a> </center>
 	    </form>
 	{% endif %}
 

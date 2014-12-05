@@ -12,11 +12,11 @@ class JobDetailsPage(FixedPage):
         self.choose_member_buttons = None
         self.delete_job_button     = None
         self.participate_button    = None
-        try : self.delete_job_button = self.driver.find_elements_by_xpath('//a[@value="Delete job"]')
+        try : self.delete_job_button = self.driver.find_elements_by_xpath('//a[@id="delete_job"]')
         except : pass
-        try : self.choose_member_buttons = self.driver.find_elements_by_xpath("//a[@value='choose_this_member']")
+        try : self.choose_member_buttons = self.driver.find_elements_by_xpath("//a[@id='choose_this_member']")
         except : pass
-        try : self.participate_button = self.driver.find_element_by_xpath('//a[@value="Participate"]')
+        try : self.participate_button = self.driver.find_element_by_xpath('//a[@id="participate_button"]')
         except : pass
 
     def click_on_participate(self):

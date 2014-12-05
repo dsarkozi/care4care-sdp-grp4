@@ -15,7 +15,7 @@ background-color:#ffffff;width:15em;height:auto;padding:2em;">
         <table>
            <tr><td> {% for checkbox in branch_list_form.branch_list %}
                 <li style="display:block" >
-                    {{ checkbox.tag }} <a href="{% url 'branchdetails' checkbox.choice_label %}" value="branch_details">{{ checkbox.choice_label }}</a>
+                    {{ checkbox.tag }} <a href="{% url 'branchdetails' checkbox.choice_label %}" class="branch_details">{{ checkbox.choice_label }}</a>
                 </li>
             {% endfor %}
             </td></tr></table>

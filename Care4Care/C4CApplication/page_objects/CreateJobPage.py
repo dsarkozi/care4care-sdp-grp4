@@ -35,7 +35,7 @@ class CreateJobPage(FixedPage):
 
         self.visibility_checkbox   = self.driver.find_elements_by_name('visibility')
         
-        self.post_req_button           = self.driver.find_element_by_xpath('//input[@value="Post"]')
+        self.post_req_button           = self.driver.find_element_by_xpath('//id[@value="post"]')
         
     def create_job(self, title, descr, location, branch_num, start, duration, dist, \
                    cat_num, freq_num, day, month, year, w_days, m_days, vis_list, slow=False): 

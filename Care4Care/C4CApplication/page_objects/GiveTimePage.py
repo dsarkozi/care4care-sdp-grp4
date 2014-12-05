@@ -6,6 +6,7 @@ from selenium.webdriver.common.alert import Alert
 import time
 
 
+#For DonateTime.html
 class GiveTimePage(Page):
     
     def __init__(self, driver):
@@ -16,7 +17,7 @@ class GiveTimePage(Page):
         self.minutes_input = self.driver.find_element_by_name('minutes')
         self.radio_button_receipient = self.driver.find_elements_by_name('receiver')
         self.user_select = Select(self.driver.find_element_by_tag_name('select'))
-        self.donate_button = self.driver.find_element_by_xpath('//input[@value="Donate time"]')
+        self.donate_button = self.driver.find_element_by_xpath('//input[@id="donate"]')
         
     def click_on_donate(self):
         self.donate_button.click()

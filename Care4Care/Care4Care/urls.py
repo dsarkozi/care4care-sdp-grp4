@@ -105,8 +105,8 @@ urlpatterns = patterns('',
     url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
         
     url(r'^registration$', RegistrationView.as_view() , name='registration'),
-    url(r'^registration/eidrequest$', EIDRedirectView.as_view()),
-
+    url(r'^registration/eidrequest$', EIDRedirectView.as_view(), name='eidrequest'),
+    
     url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
     url(r'^tests/openid$', OIDTest.oidtest),

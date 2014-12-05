@@ -21,18 +21,20 @@ class HomePage(FixedPage):
         try: 
             self.mail_input     = self.driver.find_element(By.NAME, 'email')
             self.password_input = self.driver.find_element(By.NAME, 'password')
-            self.login_button   = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
-            self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@value="Sign"]') # TODO up
+            self.login_button   = self.driver.find_element(By.XPATH, '//input[@id="Login"]')
+            self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@id="sing_up"]') # TODO up
         except NoSuchElementException:  # this is a normal behaviour : that's not the same buttons 
             pass # there depending on if you're log or not
         try: 
-            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@value="Logout"]') 
+            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@id="Logout"]') 
         except NoSuchElementException:  # normal 
             pass 
         
         self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
         # TODO recup les job offers et job demands
+        self.job_offers_links = self.driver.find_elements(By.CLASS_NAME, "job_offer")
+        self.job_demands_links = self.driver.find_elements(By.CLASS_NAME, "job_demand")
         
     def login_successful(self, mail, password):
         time.sleep(1)
@@ -83,3 +85,7 @@ class HomePage(FixedPage):
         self.need_help_button.click()
         time.sleep(1)
         return CreateJobPage(self.driver)
+    
+    def click_on_last_offer(self):
+        self.job_offers_links[len(self.job_offers_links)-1].click()
+        return self
