@@ -1,6 +1,7 @@
 
 from django import forms
 from C4CApplication.models import * 
+from django.utils.translation import ugettext_lazy as _
 
 
 class NewMessageForm(forms.Form):

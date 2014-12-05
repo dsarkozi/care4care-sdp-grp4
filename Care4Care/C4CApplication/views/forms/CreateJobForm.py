@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
+from django.http.request import QueryDict
 
 from C4CApplication.models.job import Job
 
@@ -45,9 +46,13 @@ class CreateJobForm(forms.ModelForm):
         branchAmount = len(branchList)
         self.fields['branches'] = forms.ChoiceField(
             widget=forms.RadioSelect,
-            choices=tuple(branchList)
+            choices=tuple(branchList),
         )
         if branchAmount == 1:
+            data = QueryDict('', mutable=True)
+            data.update(self.data)
+            data['branches'] = branchList[0][0]
+            self.data = data
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
         self.fields['date'].required = False

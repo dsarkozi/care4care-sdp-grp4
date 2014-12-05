@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Message(models.Model):
@@ -8,10 +9,10 @@ class Message(models.Model):
     content = models.TextField()
     
     TYPE = (
-        (0, 'nothing'),
-        (1, 'important'),
-        (2, 'question'),
-        (3, 'information'),
+        (0, _('nothing')),
+        (1, _('important')),
+        (2, _('question')),
+        (3, _('information')),
     )
     type = models.SmallIntegerField(choices=TYPE, default=0)
     date = models.DateField()   #'yyyy-mm-dd'

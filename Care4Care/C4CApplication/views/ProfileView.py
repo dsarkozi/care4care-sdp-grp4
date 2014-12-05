@@ -9,6 +9,13 @@ class ProfileView(DetailView):
     context_object_name = "member_shown"
     model = Member
     user = None
+    
+    def get_tag_member(db_member):
+        tag = ""
+        for v in Member.TAG_CHOICE:
+            if v[0] & db_member.tag == v[0]:
+                tag += "%s & " % (v[1])
+        return tag[:-3]
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
@@ -19,6 +26,7 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['member'] = self.user.db_member
+        context['tag_member'] = ProfileView.get_tag_member(context['member_shown'])
         context['connected'] = 'email' in self.request.session
         return context
 
