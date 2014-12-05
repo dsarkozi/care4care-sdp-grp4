@@ -59,7 +59,7 @@ class HelpedSimulation(MySeleniumTests):
         time.sleep(1)
         page = HomePage(self.selenium)
         
-        # TODO dans HomePage
+        # TODO dans HomePage : get jobs
         # click on last demand (of help) -> mine
         # on arrive dans jobDetails
         
