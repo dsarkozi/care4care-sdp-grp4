@@ -1,63 +1,115 @@
 from django import forms
-from django.forms.widgets import TextInput, Textarea
+from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 
 from C4CApplication.models.job import Job
 
 
-class CreateJobForm(forms.Form):
+class CreateJobForm(forms.ModelForm):
     #TODO Put some magical js for disabled fields toggle
 
-    branchList = None
-    #TODO Bug nest
-    def __init__(self, user=None, *args, **kwargs):
+    class Meta:
+        model = Job
+        fields = (
+            'title',
+            'description',
+            'category',
+            'other_category',
+            'frequency',
+            'visibility',
+            'date',
+            'km',
+            'place',
+        )
+        labels = {
+        }
+        widgets = {
+            'description' : forms.Textarea(
+                attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
+            ),
+            'place' : forms.Textarea(
+                attrs = {'rows':3, 'placeholder':'Location details'}
+            ),
+            'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
+            'other_category' : forms.TextInput(attrs={'placeholder' : 'Specify'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(CreateJobForm, self).__init__(*args, **kwargs)
-        branchList = [('all', 'All of them')]
-        if user is not None:
-            for branch in user.branch.all():
-                branchList.append((branch.name, branch.name))
-        self.branchList = tuple(branchList)
-        self.fields['branches'] = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        choices=branchList
+
+        # Request details fieldset
+        branchList = []
+        for branch in user.branch.all():
+            branchList.append((branch.name, branch.name))
+        branchAmount = len(branchList)
+        self.fields['branches'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=tuple(branchList)
+        )
+        if branchAmount == 1:
+            self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
+        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['start_time'] = forms.TimeField(
+            widget=forms.TimeInput(
+                attrs={'placeholder' : 'Format: 00:00'},
+            ),
+            label='Start time',
+            initial='00:00',
+        )
+        self.fields['duration'] = forms.TimeField(
+            widget=forms.TimeInput(
+                attrs={'placeholder' : 'Format: 00:00'},
+            ),
+            label='Duration',
+            initial='00:00'
+        )
+        self.fields['km'] = forms.DecimalField(
+            min_value=0,
+            initial=0,
+            label='Distance to be covered (approximation)',
+            max_digits=4,
         )
 
-    # Request details fieldset
-    title = forms.CharField(
-        widget=TextInput(
-            attrs={'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        # Job category fieldset
+        self.fields['category'] = forms.MultipleChoiceField(
+            widget=forms.RadioSelect,
+            choices=Job.CAT
         )
-    )
-    desc = forms.CharField(
-        widget=Textarea(
-            attrs={'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
-        )
-    )
+        # self.fields['other'] = forms.CharField(
+        #     required=False,
+        #     widget=TextInput(
+        #         attrs={'placeholder':'Other'}    #TODO disabled
+        #     )
+        # )
 
-    # Job category fieldset
-    categories = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=Job.CAT
-    )
-    other = forms.CharField(
-        required=False,
-        widget=TextInput(
-            attrs={'placeholder':'Other'}    #TODO disabled
+        # Job timeline fieldset
+        self.fields['frequency'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=Job.FREQ
         )
-    )
-    categories.choices.extend([('other','other')])
+        self.fields['dayrange'] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=((x,x) for x in range(1,32))
+        )
+
+        # Job visibility fieldset
+        self.fields['visibility'] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=Job.JOB_VISIBILITY_TUPLE
+        )
+
+
+
+
 
     # Job timeline fieldset
-    frequency = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=(('once', 'Only once'), ('regular', 'Regularly'))
-    )
-    subfrequency = forms.ChoiceField(
-        widget=forms.RadioSelect(
-            attrs={}   #TODO disabled
-        ),
-        choices=(('specific','Specific day'), ('weekday','Weekdays')),
-    )
+    # subfrequency = forms.ChoiceField(
+    #     widget=forms.RadioSelect(
+    #         attrs={}   #TODO disabled
+    #     ),
+    #     choices=(('specific','Specific day'), ('weekday','Weekdays')),
+    # )
     WEEKDAYS = (
         ('monday','Monday'),
         ('tuesday','Tuesday'),
@@ -73,36 +125,19 @@ class CreateJobForm(forms.Form):
         ),
         choices=WEEKDAYS
     )
-    DAYPARTS = (
-        ('morning','Morning'),
-        ('afternoon','Afternoon'),
-        ('evening','Evening'),
-        ('any','Anytime')
-    )
-    dayparts = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(
-            attrs={}   #TODO disabled
-        ),
-        choices=DAYPARTS
-    )
-    specific = forms.ChoiceField(
-        widget=SelectDateWidget(
-            attrs={'id':'time_specific', }     #TODO disabled
-        )
-    )
+    # DAYPARTS = (
+    #     ('morning','Morning'),
+    #     ('afternoon','Afternoon'),
+    #     ('evening','Evening'),
+    #     ('any','Anytime')
+    # )
+    # dayparts = forms.MultipleChoiceField(
+    #     widget=forms.CheckboxSelectMultiple(
+    #         attrs={}   #TODO disabled
+    #     ),
+    #     choices=DAYPARTS
+    # )
 
-    # Job visibility fieldset
-    VISIBILITY = (
-        ('any', 'Anyone'),
-        ('verified', 'Verified members only'),
-        ('favorites', 'My favorites only'),
-        ('personal', 'My personal network only'),
-        ('default', 'Apply my default preferences')     # TODO Gather from database
-    )
-    visibility = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=VISIBILITY
-    )
 
     def clean(self):
         """
@@ -112,8 +147,8 @@ class CreateJobForm(forms.Form):
         #TODO Verify if further validations are needed for the nested selectors
         
         cleaned_data = super(CreateJobForm, self).clean()
-        category = cleaned_data.get("categories")
-        other = cleaned_data.get("other")
+        category = cleaned_data.get("category")
+        other = cleaned_data.get("other_category")
         if category == 'other' and other == '':
             self.add_error("other", forms.ValidationError("If other is checked, fill the text input in.", code='missing'))
         return cleaned_data

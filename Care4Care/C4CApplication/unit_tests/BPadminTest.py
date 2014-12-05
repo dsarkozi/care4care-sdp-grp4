@@ -4,6 +4,8 @@ from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
 from C4CApplication.page_objects.TransferRightsPage import TransferRightsPage
 
+from C4CApplication.models import Branch
+from C4CApplication.models import Member
 
 import time
 
@@ -28,13 +30,20 @@ class BPadminTest(MySeleniumTests):
         page = CreateBranchPage(self.selenium)
         time.sleep(2)
         
-        page = page.fill_in_info('Bxl', 'Bruxelles', 'mathieu.jadin@student.uclouvain.be', "Rue de la deadline trop courte, 42, shit")
-        time.sleep(3)
+        page = page.fill_in_info('Bxl', 'Bruxelles-Molenbeek', 'mathieu.jadin@student.uclouvain.be', "Rue de la Reussite 42", "7652", "Bruxelles")
+        time.sleep(2)
         
         page = page.click_on_submit()
         time.sleep(2)
         
-        self.assertEqual(0, 0)
+        branch = Branch.objects.filter(name='Bxl')
+        self.assertEqual(len(branch), 1)
+        branch=branch[0]
+        self.assertEqual(branch.branch_town, 'Bruxelles-Molenbeek')
+        self.assertEqual(branch.branch_officer, 'mathieu.jadin@student.uclouvain.be')
+        self.assertEqual(branch.street, 'Rue de la Reussite 42')
+        self.assertEqual(branch.zip, "7652")
+        self.assertEqual(branch.town, "Bruxelles")
         return True
 
     
@@ -55,12 +64,15 @@ class BPadminTest(MySeleniumTests):
         
         page = TransferRightsBranchPage(self.selenium)
         page = page.set_email_new_branch_off("kim.mens@gmail.com")
-        time.sleep(3)
+        time.sleep(2)
         
         page = page.click_on_change()
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        branch = Branch.objects.filter(name='LLN')
+        self.assertEqual(len(branch), 1)
+        branch=branch[0]
+        self.assertEqual(branch.branch_officer, 'kim.mens@gmail.com')
         return True
     
     def test_resing_from_bp_admin(self):
@@ -80,10 +92,17 @@ class BPadminTest(MySeleniumTests):
         
         page = TransferRightsPage(self.selenium)
         page = page.set_email_new_bpa("kim.mens@gmail.com")
-        time.sleep(3)
+        time.sleep(2)
         
         page = page.click_on_change()
-        time.sleep(3)
+        time.sleep(2)
         
-        self.assertEqual(0, 0)
+        oldBP = Member.objects.filter(mail='mathieu.jadin@student.uclouvain.be')
+        self.assertEqual(len(oldBP), 1)
+        oldBP = oldBP[0]
+        newBP = Member.objects.filter(mail='kim.mens@gmail.com')
+        self.assertEqual(len(newBP), 1)
+        newBP = newBP[0]
+        self.assertEqual(oldBP.tag, 12)
+        self.assertEqual(newBP.tag, 32)
         return True

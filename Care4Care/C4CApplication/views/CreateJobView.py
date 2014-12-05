@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView
 
 from C4CApplication.views.forms.CreateJobForm import CreateJobForm
@@ -8,7 +9,7 @@ from C4CApplication.views.utils import create_user
 class CreateJobView(FormView):
     template_name = "C4CApplication/CreateJob.html"
     form_class = CreateJobForm
-    success_url = "processing/"
+    success_url = reverse_lazy('myc4c')
     user = None
 
     def dispatch(self, request, *args, **kwargs):
@@ -32,6 +33,11 @@ class CreateJobView(FormView):
     #     print(branches)
     #     print('all' in branches)
     #     return super(CreateJobView, self).form_invalid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateJobView, self).get_form_kwargs()
+        kwargs.update({'user' : self.user.db_member})
+        return kwargs
 
     def form_valid(self, form):
         #TODO Call to create_job

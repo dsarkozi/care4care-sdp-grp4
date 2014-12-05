@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 15:34+0000\n"
+"POT-Creation-Date: 2014-12-05 09:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,7 @@ msgstr "Liste des tâche accomplies"
 #: templates/C4CApplication/AccountAndStats.html:84
 #: templates/C4CApplication/AccountAndStats.html:109
 #: templates/C4CApplication/AccountAndStats.html:132
+#: templates/C4CApplication/ListMessages.html:41
 msgid "Date"
 msgstr "Date"
 
@@ -115,7 +116,7 @@ msgstr "tâches en attente"
 msgid "Choose branch(es)"
 msgstr "Choisissez une ou (plusieurs) branche(s)"
 
-#: templates/C4CApplication/BranchList.html:22
+#: templates/C4CApplication/BranchList.html:24
 msgid "Submit changes"
 msgstr "Envoyez les changements"
 
@@ -152,12 +153,11 @@ msgid "Create a branch"
 msgstr "Créer une branche"
 
 #: templates/C4CApplication/CreateBranch.html:18
+#: templates/C4CApplication/Profile.html:59
 msgid "Name"
 msgstr "Nom"
 
 #: templates/C4CApplication/CreateBranch.html:19
-#, fuzzy
-#| msgid "Town(s) of the branch"
 msgid "Town(s) of the Branch"
 msgstr "Ville(s) de la branche"
 
@@ -166,6 +166,7 @@ msgid "Branch Officer"
 msgstr "Administrateur de branche"
 
 #: templates/C4CApplication/CreateBranch.html:21
+#: views/forms/RegistrationForm.py:31
 msgid "Street"
 msgstr "Rue"
 
@@ -178,32 +179,29 @@ msgid "Town"
 msgstr "Ville"
 
 #: templates/C4CApplication/CreateBranch.html:24
-#, fuzzy
-#| msgid "Submit changes"
+#: templates/C4CApplication/TransferRightsBranch.html:27
 msgid "Submit"
-msgstr "Envoyez les changements"
+msgstr "Confirmez"
 
-#: templates/C4CApplication/CreateJob.html:15
+#: templates/C4CApplication/CreateJob.html:17
 msgid "Request details"
 msgstr "Demande de détails"
 
-#: templates/C4CApplication/CreateJob.html:20
-msgid "Branch"
-msgstr "Branche"
-
-#: templates/C4CApplication/CreateJob.html:23
+#: templates/C4CApplication/CreateJob.html:29
+#: templates/C4CApplication/HomePage.html:61
+#: templates/C4CApplication/HomePage.html:88
 msgid "Job category"
 msgstr "Catégorie de la tâche"
 
-#: templates/C4CApplication/CreateJob.html:35
+#: templates/C4CApplication/CreateJob.html:41
 msgid "Job timeline"
 msgstr "Ligne du temps de la tâche"
 
-#: templates/C4CApplication/CreateJob.html:72
+#: templates/C4CApplication/CreateJob.html:99
 msgid "Job visibility"
 msgstr "Visibilitée de la tâche"
 
-#: templates/C4CApplication/CreateJob.html:75
+#: templates/C4CApplication/CreateJob.html:102
 msgid "Post request"
 msgstr "Poster la demande"
 
@@ -215,15 +213,15 @@ msgstr "Entrez le mail du membre à supprimer"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/C4CApplication/DonateTime.html:9
+#: templates/C4CApplication/DonateTime.html:16
 msgid "Donation message"
 msgstr "Message de don"
 
-#: templates/C4CApplication/DonateTime.html:13
+#: templates/C4CApplication/DonateTime.html:24
 msgid "Donation amount"
 msgstr "Montant du don"
 
-#: templates/C4CApplication/DonateTime.html:19
+#: templates/C4CApplication/DonateTime.html:35
 msgid "Donation recipient"
 msgstr "Bénéficiaire de don"
 
@@ -247,15 +245,15 @@ msgstr "PRÉNOM"
 msgid "MAIL"
 msgstr "MAIL"
 
+#: templates/C4CApplication/FixedStructure.html:26
 #: templates/C4CApplication/FixedStructure_old.html:62
 msgid "HOME"
 msgstr "PAGE D'ACCUEIL"
 
+#: templates/C4CApplication/FixedStructure.html:30
 #: templates/C4CApplication/FixedStructure_old.html:63
-#, fuzzy
-#| msgid "Create a branch"
 msgid "Care4Care Branches"
-msgstr "Créer une branche"
+msgstr "Branches Care4Care"
 
 #: templates/C4CApplication/FixedStructure_old.html:70
 msgid "Statistics"
@@ -266,8 +264,6 @@ msgid "Map"
 msgstr "Carte"
 
 #: templates/C4CApplication/FixedStructure_old.html:72
-#, fuzzy
-#| msgid "Create a branch"
 msgid "Start a branch"
 msgstr "Créer une branche"
 
@@ -279,13 +275,331 @@ msgstr "Nouvelles"
 msgid "Jobs@Care4Care"
 msgstr ""
 
-#: templates/C4CApplication/Registration.html:28
-msgid "Account credential"
-msgstr "Identifiants de compte"
+#: templates/C4CApplication/HomePage.html:16
+msgid "Login"
+msgstr "Connexion"
 
+#: templates/C4CApplication/HomePage.html:17
+msgid "Sign up"
+msgstr "Créer un compte"
+
+#: templates/C4CApplication/HomePage.html:18
+msgid "Forgot password"
+msgstr "mot de passe oublié"
+
+#: templates/C4CApplication/HomePage.html:23
+msgid "Hello"
+msgstr "Bonjour"
+
+#: templates/C4CApplication/HomePage.html:24
+#: templates/C4CApplication/JobDetails.html:30
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: templates/C4CApplication/HomePage.html:29
+msgid "Welcome on Care4Care"
+msgstr "Bienvenue dans Care4Care"
+
+#: templates/C4CApplication/HomePage.html:30
+msgid "I want to help"
+msgstr "Je veux aider"
+
+#: templates/C4CApplication/HomePage.html:32
+msgid "I need help"
+msgstr "J'ai besoin d'aide"
+
+#: templates/C4CApplication/HomePage.html:57
+msgid "Recent feeds of offer"
+msgstr "Offres récentes"
+
+#: templates/C4CApplication/HomePage.html:62
+#: templates/C4CApplication/HomePage.html:89
+msgid "Title"
+msgstr "Titre"
+
+#: templates/C4CApplication/HomePage.html:63
+#: templates/C4CApplication/HomePage.html:90
+msgid "Location"
+msgstr "Localisation"
+
+#: templates/C4CApplication/HomePage.html:85
+msgid "Recent feeds of demand"
+msgstr "Demandes récentes"
+
+#: templates/C4CApplication/JobDetails.html:16
+msgid "Messages"
+msgstr "Messages"
+
+#: templates/C4CApplication/JobDetails.html:17
+msgid "Profile"
+msgstr "Profile"
+
+#: templates/C4CApplication/JobDetails.html:19
+msgid "Favorites"
+msgstr "Favoris"
+
+#: templates/C4CApplication/JobDetails.html:20
+msgid "Account & Stats"
+msgstr "Compte & Statistiques"
+
+#: templates/C4CApplication/JobDetails.html:24
+msgid "New branch"
+msgstr "Nouvelle branche"
+
+#: templates/C4CApplication/JobDetails.html:25
+msgid "Delete a member"
+msgstr "Supprimer un membre"
+
+#: templates/C4CApplication/JobDetails.html:45
+msgid "Job details"
+msgstr "Détails de la tâche"
+
+#: templates/C4CApplication/JobDetails.html:51
+#: templates/C4CApplication/JobDetails.html:288
+msgid "Stop participating"
+msgstr "Participation à un job"
+
+#: templates/C4CApplication/JobDetails.html:54
+#: templates/C4CApplication/JobDetails.html:249
+#: templates/C4CApplication/JobDetails.html:290
+msgid "Participate"
+msgstr "Participer"
+
+#: templates/C4CApplication/JobDetails.html:59
+msgid "Delete job"
+msgstr "Supprimer une tâche"
+
+#: templates/C4CApplication/JobDetails.html:68
+msgid "Creator of the job"
+msgstr "Créateur de la tâche"
+
+#: templates/C4CApplication/JobDetails.html:71
+msgid "ChoiceMember"
+msgstr "Choix du membre"
+
+#: templates/C4CApplication/JobDetails.html:79
+msgid "Regular job"
+msgstr "Job régulier"
+
+#: templates/C4CApplication/JobDetails.html:81
+msgid "Go to the regular job"
+msgstr "Aller aux tâche régulières"
+
+#: templates/C4CApplication/JobDetails.html:89
+#: templates/C4CApplication/JobDetails.html:265
+msgid "Date of the job"
+msgstr "Date de la tâche"
+
+#: templates/C4CApplication/JobDetails.html:97
+#: templates/C4CApplication/Profile.html:53
+msgid "Mail"
+msgstr "Mail"
+
+#: templates/C4CApplication/JobDetails.html:105
+msgid "Hour of the start"
+msgstr "Heure du commencement"
+
+#: templates/C4CApplication/JobDetails.html:119
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: templates/C4CApplication/JobDetails.html:136
+msgid "Duration"
+msgstr "Durée"
+
+#: templates/C4CApplication/JobDetails.html:145
+msgid "Category"
+msgstr "Catégorie"
+
+#: templates/C4CApplication/JobDetails.html:159
+msgid "Type of job"
+msgstr "Type de job effectué"
+
+#: templates/C4CApplication/JobDetails.html:162
+msgid "Demand"
+msgstr "Demande"
+
+#: templates/C4CApplication/JobDetails.html:164
+msgid "Offer"
+msgstr "Offre"
+
+#: templates/C4CApplication/JobDetails.html:170
+#: templates/C4CApplication/Profile.html:64
+#: templates/C4CApplication/memberDetails.html:64
+msgid "Address"
+msgstr "Adresse"
+
+#: templates/C4CApplication/JobDetails.html:176
+msgid "Job accepted"
+msgstr "Tâche acceptée"
+
+#: templates/C4CApplication/JobDetails.html:183
+msgid "Job done"
+msgstr "Tâche effectuée"
+
+#: templates/C4CApplication/JobDetails.html:190
+msgid "Job payed"
+msgstr "Tâche payée"
+
+#: templates/C4CApplication/JobDetails.html:199
+msgid "Visibility of the job"
+msgstr "visibilitée de la tâche"
+
+#: templates/C4CApplication/JobDetails.html:211
+msgid "Branch"
+msgstr "Branche"
+
+#: templates/C4CApplication/JobDetails.html:212
+msgid "branch"
+msgstr "branche"
+
+#: templates/C4CApplication/JobDetails.html:218
+msgid "Description"
+msgstr "Description"
+
+#: templates/C4CApplication/JobDetails.html:225
+#: templates/C4CApplication/JobDetails.html:266
+msgid "Participants"
+msgstr "Participants"
+
+#: templates/C4CApplication/JobDetails.html:232
+msgid "Choose this member"
+msgstr "Choisier ce membre"
+
+#: templates/C4CApplication/JobDetails.html:243
+msgid "Occurence of the job"
+msgstr "Occurence de la tâche"
+
+#: templates/C4CApplication/JobDetails.html:247
+msgid "Possibilities"
+msgstr "Possibilités"
+
+#: templates/C4CApplication/JobDetails.html:267
+msgid "Accepted"
+msgstr "Accepté"
+
+#: templates/C4CApplication/JobDetails.html:268
+msgid "Done"
+msgstr "Fait"
+
+#: templates/C4CApplication/JobDetails.html:269
+msgid "Payed"
+msgstr "Payé"
+
+#: templates/C4CApplication/JobDetails.html:270
+msgid "Action"
+msgstr "Action"
+
+#: templates/C4CApplication/ListMessages.html:18
+msgid "Received Messages"
+msgstr "Messages"
+
+#: templates/C4CApplication/ListMessages.html:19
+msgid "Switch to Sent Messages"
+msgstr "Voir les messages envoyés"
+
+#: templates/C4CApplication/ListMessages.html:21
+#: templates/C4CApplication/ListMessages.html:27
+msgid "Write a new message"
+msgstr "Ecrire un nouveau message"
+
+#: templates/C4CApplication/ListMessages.html:26
+msgid "Switch to Received Messages"
+msgstr "Voir les messages reçus"
+
+#: templates/C4CApplication/ListMessages.html:35
+msgid "Sender"
+msgstr "expéditeur"
+
+#: templates/C4CApplication/ListMessages.html:37
+msgid "Receiver"
+msgstr "destinataire"
+
+#: templates/C4CApplication/ListMessages.html:40
+msgid "Subject"
+msgstr "Sujet"
+
+#: templates/C4CApplication/ListMessages.html:42
+msgid "Content"
+msgstr "Concours"
+
+#: templates/C4CApplication/ListMessages.html:62
+msgid "Read more"
+msgstr "Lire plus"
+
+#: templates/C4CApplication/Profile.html:27
+msgid "Account"
+msgstr "Compte"
+
+#: templates/C4CApplication/Profile.html:29
+msgid "Type"
+msgstr "Type"
+
+#: templates/C4CApplication/Profile.html:31
+msgid "Non member"
+msgstr "Non membre"
+
+#: templates/C4CApplication/Profile.html:32
+msgid "Member"
+msgstr "Membre"
+
+#: templates/C4CApplication/Profile.html:33
+msgid "Verified member"
+msgstr "Membre vérifié"
+
+#: templates/C4CApplication/Profile.html:34
+msgid "Volunteer"
+msgstr "Volontaire"
+
+#: templates/C4CApplication/Profile.html:35
+msgid "Branch officer"
+msgstr "Administrateur de branche"
+
+#: templates/C4CApplication/Profile.html:36
+msgid "BP Admin"
+msgstr "BP Administrateur"
+
+#: templates/C4CApplication/Profile.html:42
+msgid "Status"
+msgstr "Status"
+
+#: templates/C4CApplication/Profile.html:46
+msgid "Active"
+msgstr "Actif"
+
+#: templates/C4CApplication/Profile.html:48
+msgid "Inactive"
+msgstr "Inactif"
+
+#: templates/C4CApplication/Profile.html:54
+msgid "Registration date"
+msgstr "Date d'enregistrement"
+
+#: templates/C4CApplication/Profile.html:57
 #: templates/C4CApplication/Registration.html:36
 msgid "Personal information"
 msgstr "renseignements personnels"
+
+#: templates/C4CApplication/Profile.html:60
+#: templates/C4CApplication/memberDetails.html:59
+msgid "Gender"
+msgstr "Sexe"
+
+#: templates/C4CApplication/Profile.html:61
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#: templates/C4CApplication/Profile.html:62
+msgid "Fixed phone"
+msgstr "Téléphone fixe"
+
+#: templates/C4CApplication/Profile.html:63
+msgid "Mobile phone"
+msgstr "Téléphone mobile"
+
+#: templates/C4CApplication/Registration.html:28
+msgid "Account credential"
+msgstr "Identifiants de compte"
 
 #: templates/C4CApplication/Registration.html:54
 msgid "Miscellaneous"
@@ -294,6 +608,76 @@ msgstr "divers"
 #: templates/C4CApplication/Registration.html:80
 msgid "Register"
 msgstr "Enregistrement"
+
+#: templates/C4CApplication/TransferRights.html:16
+msgid ""
+"Enter the email address of the member to become the new BP Administrator"
+msgstr "Entrez l'adresse mail du membre qui deviendra le BP Administrateur"
+
+#: templates/C4CApplication/TransferRights.html:19
+msgid "Change BP Admin"
+msgstr "Changez le BP Administrateur"
+
+#: templates/C4CApplication/TransferRightsBranch.html:21
+msgid ""
+"Enter the email address of the member to become the new Branch Officer of "
+"the branch"
+msgstr ""
+"Entrez l'adresse mail du membre qui deviendra l'administrateur de branche de "
+"la branche"
+
+#: templates/C4CApplication/TransferRightsBranch.html:28
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/C4CApplication/memberDetails.html:14
+msgid "Actif"
+msgstr "Actif"
+
+#: templates/C4CApplication/memberDetails.html:20
+msgid "Inactif"
+msgstr "Inactif"
+
+#: templates/C4CApplication/memberDetails.html:30
+msgid "Member details"
+msgstr "Détails du membre"
+
+#: templates/C4CApplication/memberDetails.html:34
+msgid "Type of member"
+msgstr "Type de membre"
+
+#: templates/C4CApplication/memberDetails.html:40
+
+msgid "Branche(s)"
+msgstr "Branche(s)"
+
+#: templates/C4CApplication/memberDetails.html:49
+msgid "Email"
+msgstr "Email"
+
+#: templates/C4CApplication/memberDetails.html:54
+msgid "Register date"
+msgstr "Date d'enregistrement"
+
+#: templates/C4CApplication/memberDetails.html:70
+msgid "Fixed phone number"
+msgstr "Téléphone fixe"
+
+#: templates/C4CApplication/memberDetails.html:77
+msgid "Mobile phone number"
+msgstr "Téléphone mobile"
+
+#: templates/C4CApplication/memberDetails.html:86
+msgid "Add as a friend"
+msgstr "Ajouter comme un amis"
+
+#: templates/C4CApplication/memberDetails.html:90
+msgid "Log as member"
+msgstr "Se connecter comme membre"
+
+#: views/forms/RegistrationForm.py:34
+msgid "password"
+msgstr "mot de passe"
 
 #~ msgid "Town(s)"
 #~ msgstr "Ville(s)"
