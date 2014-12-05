@@ -18,7 +18,7 @@ class HelpedOneActor(Actor):
         if self.action_list is None:
             self.action_list = [
                 [self.sign_up_action, self.login_action, self.create_job_action, self.logout_action],
-                [self.accept_participation_action]
+                [self.login_action, self.accept_participation_action, self.logout_action]
             ]
 
         return self.action_list

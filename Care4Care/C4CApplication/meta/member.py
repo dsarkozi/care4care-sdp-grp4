@@ -62,7 +62,7 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise.
         """
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
-        if len(job) != 1:
+        if len(job) != 1 or job[0].payed:
             return False
         job = job[0]
         job.payed = True

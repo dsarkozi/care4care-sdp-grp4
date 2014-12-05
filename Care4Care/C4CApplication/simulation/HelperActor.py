@@ -12,7 +12,7 @@ class HelperActor(Actor):
 
         if self.action_list is None:
             self.action_list = [
-                #TODO [self.login_action, self.logout_action]
+                [self.login_action, self.logout_action]
             ]
 
         return self.action_list
