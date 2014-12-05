@@ -3,7 +3,6 @@ from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 
 from C4CApplication.models.job import Job
-from django.utils.translation import ugettext_lazy as _
 
 
 class CreateJobForm(forms.ModelForm):
@@ -23,25 +22,16 @@ class CreateJobForm(forms.ModelForm):
             'place',
         )
         labels = {
-            'title':_('title'),
-            'description': _('description'),
-            'category':_('category'),
-            'other_category':_('other_category'),
-            'frequency':_('frequency'),
-            'visibility':_('visibility'),
-            'date':_('date'),
-            'km':'km',
-            'place':_('place'),
         }
         widgets = {
             'description' : forms.Textarea(
-                attrs = {'id':'job_desc', 'rows':3, 'placeholder':_('Request description')}
+                attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
             ),
             'place' : forms.Textarea(
-                attrs = {'rows':3, 'placeholder':_('Location details')}
+                attrs = {'rows':3, 'placeholder':'Location details'}
             ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
-            'other_category' : forms.TextInput(attrs={'placeholder' : _('Specify')})
+            'other_category' : forms.TextInput(attrs={'placeholder' : 'Specify'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -59,32 +49,29 @@ class CreateJobForm(forms.ModelForm):
         )
         if branchAmount == 1:
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
-        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':_('Request title')}
+        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['date'].required = False
         self.fields['start_time'] = forms.TimeField(
             widget=forms.TimeInput(
-                attrs={'size':'5','placeholder' : 'Format: 00:00'},
+                attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label=_('Start time'),
-            initial='00:00',
+            label='Start time',
         )
         self.fields['duration'] = forms.TimeField(
-            
-            widget=forms.NumberInput(
-                attrs={'size':'5','placeholder' : _('Format: 00:00')},
+            widget=forms.TimeInput(
+                attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label=_('Duration'),
-            initial='00:00'
+            label='Duration',
         )
-        self.fields['km'] = forms.DecimalField(      
-            #widget=forms.TextInput(attrs={'size':'5'}),                                        
+        self.fields['km'] = forms.DecimalField(
             min_value=0,
             initial=0,
-            label=_('Distance to be covered (approximation)'),
+            label='Distance to be covered (approximation)',
             max_digits=4,
         )
 
         # Job category fieldset
-        self.fields['category'] = forms.MultipleChoiceField(
+        self.fields['category'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=Job.CAT
         )
@@ -101,6 +88,7 @@ class CreateJobForm(forms.ModelForm):
             choices=Job.FREQ
         )
         self.fields['dayrange'] = forms.MultipleChoiceField(
+            required=False,
             widget=forms.CheckboxSelectMultiple,
             choices=((x,x) for x in range(1,32))
         )
@@ -123,15 +111,16 @@ class CreateJobForm(forms.ModelForm):
     #     choices=(('specific','Specific day'), ('weekday','Weekdays')),
     # )
     WEEKDAYS = (
-        ('monday',_('Monday')),
-        ('tuesday',_('Tuesday')),
-        ('wednesday',_('Wednesday')),
-        ('thursday','Thursday'),
-        ('friday',_('Friday')),
-        ('saturday',_('Saturday')),
-        ('sunday',_('Sunday'))
+        (0,'Monday'),
+        (1,'Tuesday'),
+        (2,'Wednesday'),
+        (3,'Thursday'),
+        (4,'Friday'),
+        (5,'Saturday'),
+        (6,'Sunday')
     )
     weekdays = forms.MultipleChoiceField(
+        required=False,
         widget=forms.CheckboxSelectMultiple(
             attrs={}    #TODO disabled
         ),
@@ -151,16 +140,37 @@ class CreateJobForm(forms.ModelForm):
     # )
 
 
+    def clean_visibility(self):
+        """
+        Cleans the visibility field by converting the choices from a list of strings to a sum of integers.
+        """
+        visibility = self.cleaned_data['visibility']
+        res = 0
+        for vis in visibility:
+            res += int(vis)
+        return res
+
     def clean(self):
         """
         Overrides clean from super to add an error if 'other' has been checked,
         but nothing was provided in the text field.
         """
         #TODO Verify if further validations are needed for the nested selectors
-        
+
         cleaned_data = super(CreateJobForm, self).clean()
+        # Other category
         category = cleaned_data.get("category")
         other = cleaned_data.get("other_category")
-        if category == 'other' and other == '':
-            self.add_error("other", forms.ValidationError(_("If other is checked, fill the text input in."), code='missing'))
+        if category == '4' and other == '':
+            self.add_error("category", forms.ValidationError("If other is checked, fill the text input in.", code='missing'))
+
+        # Frequency
+        frequency = cleaned_data.get("frequency")
+        if frequency is not None:
+            if int(frequency) != 0:
+                cleaned_data.update({'date' : None})
+            if int(frequency) == 1 and not cleaned_data.get("weekdays"):
+                self.add_error("frequency", forms.ValidationError("Please provide at least one weekday.", code='missing'))
+            elif int(frequency) == 2 and not cleaned_data.get("dayrange"):
+                self.add_error("frequency", forms.ValidationError("Please provide at least one day.", code='missing'))
         return cleaned_data
