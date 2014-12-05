@@ -1,5 +1,6 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.ListMessagesPage import ListMessagesPage
+from C4CApplication.page_objects.HomePage import HomePage
 
 from C4CApplication.models import Member, Message
 
@@ -9,15 +10,12 @@ import time
 class MessageTest(MySeleniumTests):
 
     def test_see_message_received(self):
+        #log in
         self.populate_db()
-        
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('kim.mens@gmail.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
         page = ListMessagesPage(self.selenium)
@@ -29,15 +27,12 @@ class MessageTest(MySeleniumTests):
         return True
     
     def test_see_message_sent(self):
+        #log in
         self.populate_db()
-        
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('kim.mens@gmail.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
         page = ListMessagesPage(self.selenium)
@@ -52,15 +47,12 @@ class MessageTest(MySeleniumTests):
         return True
     
     def test_send_message(self):
+        #log in
         self.populate_db()
-        
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('kim.mens@gmail.com')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
         page = ListMessagesPage(self.selenium)

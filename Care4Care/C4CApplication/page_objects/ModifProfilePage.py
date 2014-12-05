@@ -30,10 +30,15 @@ class ModifProfilePage(FixedPage):
             self.mobile_phone_input.clear()
             
         self.street_input.send_keys(street)
+        time.sleep(1)
         self.postal_code_input.send_keys(zip)
+        time.sleep(1)
         self.town_input.send_keys(town)
+        time.sleep(1)
         self.phone_num_input.send_keys(phone)
+        time.sleep(1)
         self.mobile_phone_input.send_keys(mobile)
+        time.sleep(1)
         return self
     
     def click_on_submit(self):

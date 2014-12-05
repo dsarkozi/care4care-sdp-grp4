@@ -1,5 +1,6 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.BranchListPage import BranchListPage
+from C4CApplication.page_objects.HomePage import HomePage
 
 import time
 
@@ -13,7 +14,7 @@ class BranchTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
-        
+        time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/branchlist'))
         
