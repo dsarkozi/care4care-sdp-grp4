@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 class LoginAsMemberRedirectView(RedirectView):
 
-    url = reverse_lazy("myc4c")
+    url = reverse_lazy("profile")
     user = None
     
     def dispatch(self, request, *args, **kwargs):

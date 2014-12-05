@@ -23,9 +23,12 @@ class HomePage(FixedPage):
             self.password_input = self.driver.find_element(By.NAME, 'password')
             self.login_button   = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
             self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@value="Sign up"]')
-            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@value="Logout"]') 
         except NoSuchElementException:  # this is a normal behaviour : that's not the same buttons 
             pass # there depending on if you're log or not
+        try: 
+            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@value="Logout"]') 
+        except NoSuchElementException:  # normal 
+            pass 
         
         self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]

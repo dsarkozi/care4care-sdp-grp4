@@ -1,4 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
+from C4CApplication.page_objects.MemberDetailsPage import MemberDetailsPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 
@@ -10,19 +11,18 @@ class MemberListPage(FixedPage):
     
     def __init__(self, driver):
         super().__init__(driver)
-        self.buttons_promote_verified   = None
-        self.buttons_no_more_verified   = None
-        self.buttons_promote_volunteer  = None
-        self.buttons_no_more_volunteer  = None
-        self.buttons_remove_from_branch = None
-        try:
-            self.buttons_promote_verified   = self.driver.find_elements_by_xpath('//a[@value="promote_verified"]')
-            self.buttons_no_more_verified   = self.driver.find_elements_by_xpath('//a[@value="no_more_verified"]')
-            self.buttons_promote_volunteer  = self.driver.find_elements_by_xpath('//a[@value="promote_volunteer"]')
-            self.buttons_no_more_volunteer  = self.driver.find_elements_by_xpath('//a[@value="no_more_volunteer"]')
-            self.buttons_remove_from_branch = self.driver.find_elements_by_xpath('//a[@value="remove_from_branch"]')
-        except: pass # normal
-        # TODO recuperer les emails pour clicker dessus
+        self.buttons_promote_verified   = self.driver.find_elements_by_xpath('//a[@value="promote_verified"]')
+        self.buttons_no_more_verified   = self.driver.find_elements_by_xpath('//a[@value="no_more_verified"]')
+        self.buttons_promote_volunteer  = self.driver.find_elements_by_xpath('//a[@value="promote_volunteer"]')
+        self.buttons_no_more_volunteer  = self.driver.find_elements_by_xpath('//a[@value="no_more_volunteer"]')
+        self.buttons_remove_from_branch = self.driver.find_elements_by_xpath('//a[@value="remove_from_branch"]')
+        self.members_links = self.driver.find_elements_by_class_name("member_details")
+        
+    def click_on_member(self, num):
+        if len(self.members_links) >= num: 
+            self.members_links[num].click()
+        time.sleep(1)
+        return MemberDetailsPage(self.driver)
             
     def click_on_remove_from_branch(self, num):
         self.buttons_remove_from_branch[num].click()
@@ -37,7 +37,6 @@ class MemberListPage(FixedPage):
         return self
     
     def click_on_promote_volunteer(self, num):
-        print("self.buttons_promote_volunteer = "+str(self.buttons_promote_volunteer))
         self.buttons_promote_volunteer[num].click()
         time.sleep(1)
         Alert(self.driver).accept()
