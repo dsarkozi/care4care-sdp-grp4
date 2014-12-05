@@ -1,7 +1,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-
+{% load i18n %}
 {% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
 
 {% block menu %}
@@ -11,14 +11,14 @@ background-color:#ffffff;margin-top:3em; width:50em;">
 
 <div style="margin-left:30px; margin-right:30px;">
     <h1 style="text-align : center;">{{ message.subject }} </h1>
-	<p> <div style="font-weight: bold;"> From : </div> {{ message.member_sender.mail }},</p>
-    <p><div style="font-weight: bold;"> To : </div>
+	<p> <div style="font-weight: bold;"> {% trans "From" %} : </div> {{ message.member_sender.mail }},</p>
+    <p><div style="font-weight: bold;"> {% trans "To" %} : </div>
         {% for mailbox in message.mailbox_set.all %}
             {{ mailbox.member_receiver.mail }},
         {% endfor %}
     </p>
-    <p><div style="font-weight: bold;"> Date : </div> The {{ message.date|date:"DATE_FORMAT" }}</p>
-	<div ><div style="font-weight: bold;"> Message : </div>{{ message.content|linebreaks }}</div>
+    <p><div style="font-weight: bold;"> {% trans "Date" %} : </div> {% trans "The" %} {{ message.date|date:"DATE_FORMAT" }}</p>
+	<div ><div style="font-weight: bold;"> {% trans "Message" %} : </div>{{ message.content|linebreaks }}</div>
 </div>
 </section>
 
