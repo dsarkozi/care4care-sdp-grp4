@@ -9,59 +9,6 @@ class Member(NonMember):
     This class represents a kind of Users called Members
     """
 
-    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
-                   comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
-                   other_category='', place='', visibility='volunteer', recursive_day=''):
-        """
-        Creates a help offer (the parameters will be used to fill the database).
-
-        :param branch_name: The branch to which belongs the job
-        :param date: The date of the job
-        :param is_demand: True if it's a demand, false otherwise
-        :param comment: Comment of the job
-        :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
-        :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
-        :param km: The number of km to do the job
-        :param duration: The duration to do the job
-        :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
-        :param address: The address where the job will be done
-        :param visibility: Which people can see the job.
-        :return: False if there was a problem and True otherwise.
-        """
-
-        job = Job()
-        job.title = title
-        job.mail = self.db_member.mail
-        n = 0
-        jobs_created_by_me = Job.objects.filter(mail=self.db_member.mail)
-        for j in jobs_created_by_me:
-            if j.number > n:
-                n = j.number
-        job.number = n+1
-        job.comment = comment
-        job.description = description
-        job.date = date
-        job.start_time = start_time
-        job.frequency = frequency
-        job.recursive_day = recursive_day
-        job.km = km
-        job.duration = duration
-        job.category = category
-        job.other_category = other_category
-        job.type = is_demand
-        job.place = place
-        job.visibility = Job.JOB_VISIBILITY[visibility]
-        job.save()
-        if branch_name is None:
-            branch_name = self.db_member.branch[0]
-        branch = Branch.objects.filter(name=branch_name)
-        if len(branch) != 1:
-            return False
-        job.branch = branch[0]
-        job.member_set.add(self.db_member)
-        job.save()
-        return job
-
     def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
         """
         Registers a job as done (with the new time to put).
