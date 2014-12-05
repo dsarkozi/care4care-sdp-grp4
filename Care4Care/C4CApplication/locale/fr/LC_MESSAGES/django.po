@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 20:47+0000\n"
+"POT-Creation-Date: 2014-12-05 21:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,7 +137,7 @@ msgstr ""
 "S'il vous plait confirmez que les informations suivantes sont correctes"
 
 #: templates/C4CApplication/AcceptBill.html:8
-#: templates/C4CApplication/ConfirmJobDoneView.html:9
+#: templates/C4CApplication/ConfirmJobDoneView.html:10
 msgid "Confirm"
 msgstr "Confirmez"
 
@@ -256,8 +256,10 @@ msgstr "ou"
 msgid "INACTIVE"
 msgstr "INACTIF"
 
-#: templates/C4CApplication/ConfirmJobDoneView.html:7
-msgid "Time for doing the job (in minutes)"
+#: templates/C4CApplication/ConfirmJobDoneView.html:8
+#, fuzzy
+#| msgid "Time for doing the job (in minutes)"
+msgid "Time spent on the job (minutes) "
 msgstr "Temps requis à fin d'effectuer la tâche (en minutes) "
 
 #: templates/C4CApplication/CreateBranch.html:17
@@ -505,152 +507,152 @@ msgstr "Supprimer un membre"
 msgid "Transfer rights"
 msgstr "Transfèrer les droits"
 
-#: templates/C4CApplication/JobDetails.html:56
+#: templates/C4CApplication/JobDetails.html:69
 msgid "Job details"
 msgstr "Détails de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:62
-#: templates/C4CApplication/JobDetails.html:323
+#: templates/C4CApplication/JobDetails.html:78
+#: templates/C4CApplication/JobDetails.html:339
 msgid "Stop participating"
 msgstr "Ne plus participer"
 
-#: templates/C4CApplication/JobDetails.html:66
-#: templates/C4CApplication/JobDetails.html:284
-#: templates/C4CApplication/JobDetails.html:325
+#: templates/C4CApplication/JobDetails.html:82
+#: templates/C4CApplication/JobDetails.html:300
+#: templates/C4CApplication/JobDetails.html:341
 msgid "Participate"
 msgstr "Participer"
 
-#: templates/C4CApplication/JobDetails.html:71
+#: templates/C4CApplication/JobDetails.html:87
 msgid "Delete job"
 msgstr "Supprimer une tâche"
 
-#: templates/C4CApplication/JobDetails.html:80
+#: templates/C4CApplication/JobDetails.html:96
 msgid "Creator of the job"
 msgstr "Créateur de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:91
+#: templates/C4CApplication/JobDetails.html:107
 msgid "Regular job"
 msgstr "Job régulier"
 
-#: templates/C4CApplication/JobDetails.html:93
+#: templates/C4CApplication/JobDetails.html:109
 msgid "Go to the regular job"
 msgstr "Aller aux tâche régulières"
 
-#: templates/C4CApplication/JobDetails.html:101
-#: templates/C4CApplication/JobDetails.html:300
+#: templates/C4CApplication/JobDetails.html:117
+#: templates/C4CApplication/JobDetails.html:316
 msgid "Date of the job"
 msgstr "Date de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:109
+#: templates/C4CApplication/JobDetails.html:125
 #: templates/C4CApplication/Profile.html:45
 msgid "Mail"
 msgstr "Mail"
 
-#: templates/C4CApplication/JobDetails.html:117
+#: templates/C4CApplication/JobDetails.html:133
 msgid "Hour of the start"
 msgstr "Heure du commencement"
 
-#: templates/C4CApplication/JobDetails.html:131
+#: templates/C4CApplication/JobDetails.html:147
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: templates/C4CApplication/JobDetails.html:148
+#: templates/C4CApplication/JobDetails.html:164
 msgid "Duration"
 msgstr "Durée"
 
-#: templates/C4CApplication/JobDetails.html:157
+#: templates/C4CApplication/JobDetails.html:173
 msgid "Category"
 msgstr "Catégorie"
 
-#: templates/C4CApplication/JobDetails.html:171
+#: templates/C4CApplication/JobDetails.html:187
 msgid "Type of job"
 msgstr "Type de job effectué"
 
-#: templates/C4CApplication/JobDetails.html:174
+#: templates/C4CApplication/JobDetails.html:190
 msgid "Demand"
 msgstr "Demande"
 
-#: templates/C4CApplication/JobDetails.html:176
+#: templates/C4CApplication/JobDetails.html:192
 msgid "Offer"
 msgstr "Offre"
 
-#: templates/C4CApplication/JobDetails.html:182
+#: templates/C4CApplication/JobDetails.html:198
 #: templates/C4CApplication/Profile.html:56
 #: templates/C4CApplication/memberDetails.html:71
 msgid "Address"
 msgstr "Adresse"
 
-#: templates/C4CApplication/JobDetails.html:188
+#: templates/C4CApplication/JobDetails.html:204
 msgid "Job accepted"
 msgstr "Tâche acceptée"
 
-#: templates/C4CApplication/JobDetails.html:191
-#: templates/C4CApplication/JobDetails.html:204
-#: templates/C4CApplication/JobDetails.html:217
+#: templates/C4CApplication/JobDetails.html:207
+#: templates/C4CApplication/JobDetails.html:220
+#: templates/C4CApplication/JobDetails.html:233
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/C4CApplication/JobDetails.html:193
-#: templates/C4CApplication/JobDetails.html:206
-#: templates/C4CApplication/JobDetails.html:219
+#: templates/C4CApplication/JobDetails.html:209
+#: templates/C4CApplication/JobDetails.html:222
+#: templates/C4CApplication/JobDetails.html:235
 msgid "No"
 msgstr "Non"
 
-#: templates/C4CApplication/JobDetails.html:201
+#: templates/C4CApplication/JobDetails.html:217
 msgid "Job done"
 msgstr "Tâche effectuée"
 
-#: templates/C4CApplication/JobDetails.html:214
+#: templates/C4CApplication/JobDetails.html:230
 msgid "Job payed"
 msgstr "Tâche payée"
 
-#: templates/C4CApplication/JobDetails.html:229
+#: templates/C4CApplication/JobDetails.html:245
 msgid "Visibility of the job"
 msgstr "visibilitée de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:238
+#: templates/C4CApplication/JobDetails.html:254
 msgid "Branch"
 msgstr "Branche"
 
-#: templates/C4CApplication/JobDetails.html:239
+#: templates/C4CApplication/JobDetails.html:255
 #: views/forms/RegistrationForm.py:41
 msgid "branch"
 msgstr "branche"
 
-#: templates/C4CApplication/JobDetails.html:245
+#: templates/C4CApplication/JobDetails.html:261
 msgid "Description"
 msgstr "Description"
 
-#: templates/C4CApplication/JobDetails.html:252
-#: templates/C4CApplication/JobDetails.html:301
+#: templates/C4CApplication/JobDetails.html:268
+#: templates/C4CApplication/JobDetails.html:317
 msgid "Participants"
 msgstr "Participants"
 
-#: templates/C4CApplication/JobDetails.html:264
+#: templates/C4CApplication/JobDetails.html:280
 msgid "Choose this member"
 msgstr "Choisier ce membre"
 
-#: templates/C4CApplication/JobDetails.html:278
+#: templates/C4CApplication/JobDetails.html:294
 msgid "Occurence of the job"
 msgstr "Occurence de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:282
+#: templates/C4CApplication/JobDetails.html:298
 msgid "Possibilities"
 msgstr "Possibilités"
 
-#: templates/C4CApplication/JobDetails.html:302
+#: templates/C4CApplication/JobDetails.html:318
 msgid "Accepted"
 msgstr "Accepté"
 
-#: templates/C4CApplication/JobDetails.html:303
+#: templates/C4CApplication/JobDetails.html:319
 msgid "Done"
 msgstr "Fait"
 
-#: templates/C4CApplication/JobDetails.html:304
+#: templates/C4CApplication/JobDetails.html:320
 msgid "Payed"
 msgstr "Payé"
 
-#: templates/C4CApplication/JobDetails.html:305
+#: templates/C4CApplication/JobDetails.html:321
 msgid "Action"
 msgstr "Action"
 
@@ -1010,6 +1012,50 @@ msgstr "Ville de la branche"
 msgid "A branch already exist with this name."
 msgstr "Une brance ayant ce nom existe déjà"
 
+#: views/forms/CreateJobForm.py:30
+msgid "Request description"
+msgstr "Description de la demande"
+
+#: views/forms/CreateJobForm.py:33
+msgid "Location details"
+msgstr "Localisation"
+
+#: views/forms/CreateJobForm.py:36
+msgid "Specify"
+msgstr "Spécifier"
+
+#: views/forms/CreateJobForm.py:58
+msgid "Request title"
+msgstr "Titre de la demande"
+
+#: views/forms/CreateJobForm.py:120
+msgid "Monday"
+msgstr "Lundi"
+
+#: views/forms/CreateJobForm.py:121
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: views/forms/CreateJobForm.py:122
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: views/forms/CreateJobForm.py:123
+msgid "Thursday"
+msgstr "Mardi"
+
+#: views/forms/CreateJobForm.py:124
+msgid "Friday"
+msgstr "Jeudi"
+
+#: views/forms/CreateJobForm.py:125
+msgid "Saturday"
+msgstr "Samdi"
+
+#: views/forms/CreateJobForm.py:126
+msgid "Sunday"
+msgstr "Dimanche"
+
 #: views/forms/DeleteMemberBPAForm.py:10
 msgid "member_to_delete@mail.com"
 msgstr "membre_à_supprimer@mail.com"
@@ -1108,7 +1154,7 @@ msgstr "prénom"
 msgid "last name"
 msgstr "nom de famille"
 
-#: views/forms/RegistrationForm.py:36 views/forms/RegistrationForm.py:79
+#: views/forms/RegistrationForm.py:36 views/forms/RegistrationForm.py:70
 msgid "gender"
 msgstr "sexe"
 
@@ -1132,15 +1178,15 @@ msgstr "Téléphone fixe"
 msgid "Postal code"
 msgstr "Code postal"
 
-#: views/forms/RegistrationForm.py:74
+#: views/forms/RegistrationForm.py:65
 msgid "Without time crediting"
 msgstr "Sans comptabilisation de temps"
 
-#: views/forms/RegistrationForm.py:74
+#: views/forms/RegistrationForm.py:65
 msgid "With time crediting"
 msgstr "Avec comptabilisation de temps"
 
-#: views/forms/RegistrationForm.py:75
+#: views/forms/RegistrationForm.py:66
 msgid "Account type"
 msgstr "Type de compte"
 
@@ -1222,18 +1268,6 @@ msgstr "nouveau_BP_Administrateur@gmail.com"
 #~ msgid "place"
 #~ msgstr "lieu"
 
-#~ msgid "Request description"
-#~ msgstr "Description de la demande"
-
-#~ msgid "Location details"
-#~ msgstr "Localisation"
-
-#~ msgid "Specify"
-#~ msgstr "Spécifier"
-
-#~ msgid "Request title"
-#~ msgstr "Titre de la demande"
-
 #~ msgid "Start time"
 #~ msgstr "Début"
 
@@ -1242,24 +1276,6 @@ msgstr "nouveau_BP_Administrateur@gmail.com"
 
 #~ msgid "Distance to be covered (approximation)"
 #~ msgstr "Distance à couvrir (approximation)"
-
-#~ msgid "Monday"
-#~ msgstr "Lundi"
-
-#~ msgid "Tuesday"
-#~ msgstr "Mardi"
-
-#~ msgid "Wednesday"
-#~ msgstr "Mercredi"
-
-#~ msgid "Friday"
-#~ msgstr "Jeudi"
-
-#~ msgid "Saturday"
-#~ msgstr "Samdi"
-
-#~ msgid "Sunday"
-#~ msgstr "Dimanche"
 
 #~ msgid "If other is checked, fill the text input in."
 #~ msgstr "Si l'autre est cochée, remplir l'entrée de texte dans."
