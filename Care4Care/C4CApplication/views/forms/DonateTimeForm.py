@@ -45,11 +45,11 @@ class DonateTimeForm(forms.Form):
         cleaned_data = super(DonateTimeForm, self).clean()
         time = 0
         days = 0
-        days = cleaned_data.get(_("days"))
+        days = cleaned_data.get("days")
         hours = 0
-        hours = cleaned_data.get(_("hours"))
+        hours = cleaned_data.get("hours")
         minutes = 0
-        minutes = cleaned_data.get(_("minutes"))
+        minutes = cleaned_data.get("minutes")
         time = days*1440+hours*60+minutes
         
         #check a good time donation
