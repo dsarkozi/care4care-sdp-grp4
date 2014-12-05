@@ -14,7 +14,7 @@ class ConfirmJobDoneView(JobDetailsView):
     
     template_name = "C4CApplication/ConfirmJobDoneView.html"
     form_class = ConfirmJobDoneForm
-    success_url = reverse_lazy("myc4c")
+    success_url = reverse_lazy("profile")
     user = None
 
     def get_object(self):
@@ -42,7 +42,6 @@ class ConfirmJobDoneView(JobDetailsView):
         context['confirm_job_done_form'] = confirm_job_done_form
         return context
 
-    
     def form_valid(self, form):
         # TODO test if the member has session variables !! -> redirection
         if ConfirmJobDoneView.user is None:

@@ -17,8 +17,7 @@ class HelpedOneActor(Actor):
 
         if self.action_list is None:
             self.action_list = [
-                [self.sign_up_action, self.login_action, self.create_job_action, self.logout_action],
-                [self.login_action, self.accept_participation_action, self.logout_action]
+                [self.sign_up_action, self.login_action, self.create_job_action, self.logout_action]
             ]
 
         return self.action_list
@@ -69,7 +68,7 @@ class HelpedOneActor(Actor):
 
         time.sleep(2)
         page = HomePage(selenium)
-        page.login_successful("janine_kou@gmail.com", "azertyuiop")  # TODO -> change to Janine
+        page.login_successful("janine_kou@gmail.com", "azertyuiop")
 
         return True
 
@@ -87,7 +86,7 @@ class HelpedOneActor(Actor):
         selenium.get('%s%s' % (live_server_url, ''))  # Go to the home page
 
         page = HomePage(selenium)
-        # si le click bug -> aller dans homepage et changer le nom
+
         page = page.click_on_sign_up()  # Inscription page
         time.sleep(2)
         page = page.set_global_field('Janine', 'cougnou', 'janine_kou@gmail.com', 'azertyuiop', 'F', '16',
@@ -124,6 +123,8 @@ class HelpedOneActor(Actor):
         # page.post
         page = page.click_on_post_req()  # We come back to MyCare4Care
         time.sleep(2)
+
+        return True
 
     @staticmethod
     def accept_participation_action(selenium, live_server_url):
