@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 17:54+0000\n"
+"POT-Creation-Date: 2014-12-05 17:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -753,7 +753,7 @@ msgid "Register job done"
 msgstr "Date d'enregistrement"
 
 #: templates/C4CApplication/NewMessage.html:13
-#, fuzzy
+
 msgid "Votre message a bien été envoyé"
 msgstr "Votre message a bien été envoyé"
 
@@ -958,7 +958,7 @@ msgstr "Nome de la ville "
 
 #: views/forms/CreateBranchForm.py:22
 msgid "branch_officer@mail.com"
-msgstr ""
+msgstr "administrateur_de_branche@gmail.com"
 
 #: views/forms/CreateBranchForm.py:23
 msgid "Branch officer mail"
@@ -1047,8 +1047,7 @@ msgstr ""
 "caractères."
 
 #: views/forms/ModifProfileForm.py:38
-#, fuzzy
-#| msgid "You entered different passwords"
+
 msgid "You entered different passwords"
 msgstr "Vous avez entré un mot de passe différent."
 
@@ -1057,12 +1056,10 @@ msgid "to:"
 msgstr "à:"
 
 #: views/forms/NewMessageForm.py:10
-
 msgid "subject:"
 msgstr "sujet:"
 
 #: views/forms/NewMessageForm.py:11
-
 msgid "your message"
 msgstr "votre message"
 
@@ -1125,6 +1122,15 @@ msgstr "Avec comptabilisation de temps"
 #: views/forms/RegistrationForm.py:75
 msgid "Account type"
 msgstr "Type de compte"
+
+#: views/forms/TransferRightsBranchForm.py:10
+
+msgid "new_branch_officer@mail.com"
+msgstr "nouveau_branch_officer@gmail.com"
+
+#: views/forms/TransferRightsForm.py:10
+msgid "new_BP_Admin@mail.com"
+msgstr "nouveau_BP_Administrateur@gmail.com"
 
 #, fuzzy
 #~| msgid "Fixed phone number"
