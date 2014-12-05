@@ -81,4 +81,3 @@ class HelpedSimulation(MySeleniumTests):
         
         # log out
         return True
-        
