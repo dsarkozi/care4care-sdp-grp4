@@ -16,7 +16,9 @@ class GiveTimePage(Page):
         self.hours_input = self.driver.find_element_by_name('hours')
         self.minutes_input = self.driver.find_element_by_name('minutes')
         self.radio_button_receipient = self.driver.find_elements_by_name('receiver')
-        self.user_select = Select(self.driver.find_element_by_tag_name('select'))
+        self.dropbdowns = self.driver.find_elements_by_tag_name('select')
+        self.user_select   = Select(self.dropbdowns[0])
+        self.branch_select = Select(self.dropbdowns[1])
         self.donate_button = self.driver.find_element_by_xpath('//input[@id="donate"]')
         
     def click_on_donate(self):
@@ -25,7 +27,7 @@ class GiveTimePage(Page):
         Alert(self.driver).accept()
         return self
     
-    def fill_in_fields(self, message, days, hours, min, user):
+    def fill_in_fields(self, message, days, hours, min, select, type):
         self.message_input.send_keys(message)
         time.sleep(1)
         self.days_input.send_keys(days)
@@ -34,10 +36,14 @@ class GiveTimePage(Page):
         time.sleep(1)
         self.minutes_input.send_keys(min)
         time.sleep(1)
-        if user == "Care4Care compagny" : 
+        
+        print("self.user_select = "+str(self.user_select.options))
+        
+        if type == 0 : 
             self.radio_button_receipient[0].click()
+            self.branch_select.select_by_visible_text(select)
         else: 
             self.radio_button_receipient[1].click()
-            self.user_select.select_by_visible_text(user)
+            self.user_select.select_by_visible_text(select)
         return self
     
