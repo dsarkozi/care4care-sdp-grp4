@@ -1,0 +1,32 @@
+{% extends "C4CApplication/FixedStructure.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+
+    <table class="tab1"  >
+	  <tr>
+		<th class=".tab1-3" colspan="6"> {% trans "Recent feeds of offer"%}</th>
+	  </tr>
+
+	  <tr>
+		<td class="tab1-4">{% trans "Job category"%}</td>
+		<td class="tab1-4">{% trans "Title"%}</td>
+		<td class="tab1-4">{% trans "Location"%}</td>
+	  </tr>
+
+    {% for job in offer_list %}
+	    <tr>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
+												{% if key == job.category %}
+													{{ value }}
+													{% endif %}
+	 											   {% endfor %}   </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.title|truncatewords:10  }} </a></td>
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {{ job.place }} </a></td>
+		 </tr>
+	{% endfor %}
+
+    </table>
+
+{% endblock %}

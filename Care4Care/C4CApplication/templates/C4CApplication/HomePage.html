@@ -64,7 +64,7 @@
 	  	    
     {% for job in offer_list %}
 	    <tr>
-			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}"> {% for key, value in job.CAT %}
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}" class="job_offer" > {% for key, value in job.CAT %}
 												{% if key == job.category %}
 													{{ value }}
 													{% endif %}
@@ -91,7 +91,7 @@
 	  
 	  {% for job in demand_list %}
 		  <tr>
-			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}">
+			<td class="tab1-3"> <a href="{% url 'jobdetails' job.id %}" class="job_demand">
 												{% for key, value in job.CAT %}
 												{% if key == job.category %}
 													{{ value }}

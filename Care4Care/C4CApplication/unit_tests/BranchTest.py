@@ -1,5 +1,6 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.BranchListPage import BranchListPage
+from C4CApplication.page_objects.HomePage import HomePage
 
 import time
 
@@ -13,10 +14,9 @@ class BranchTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
-        
+        time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/branchlist'))
-        
         page = BranchListPage(self.selenium)
         time.sleep(1)
         
@@ -24,14 +24,7 @@ class BranchTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_submit()
+        time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
-    
-    """def see_branch_members_list_test(self): # Faire des tests de db
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True"""

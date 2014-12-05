@@ -18,7 +18,7 @@ background-color:#ffffff;width:40%; height:auto;padding:1em;">
     <p>  {{form.sujet.errors}} {{form.sujet}}</p>
     <p>  {{form.message.errors}} {{form.message}}</p>
     <p>  {{form.renvoi.errors}} {{form.renvoi}}</p>
-    <input type="submit" value={% trans "Send" %} class= "btn" onclick="return window.confirm('Send this message ?')" />
+    <input type="submit" id="send_message" value={% trans "Send" %} class= "btn" onclick="return window.confirm('Send this message ?')" />
 </form>
 
 </div>

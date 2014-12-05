@@ -32,6 +32,7 @@ class HomePage(FixedPage):
         
         self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+        # TODO recup les job offers et job demands
         
     def login_successful(self, mail, password):
         time.sleep(1)

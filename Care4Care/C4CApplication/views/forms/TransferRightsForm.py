@@ -7,6 +7,6 @@ class TransferRightsForm(forms.Form):
     # text input for mail of new BP Admin
     email_new_BPAdmin = forms.EmailField(
         widget=EmailInput(
-            attrs={'autofocus':'true', 'placeholder':'new_BP_Admin@mail.com'}
+            attrs={'autofocus':'true', 'placeholder':_('new_BP_Admin@mail.com')}
         ), label=""
     )
