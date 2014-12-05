@@ -6,11 +6,11 @@ from django.utils.translation import ugettext_lazy as _
 class LoginForm(forms.Form):
     email = forms.EmailField(
         widget=EmailInput(
-            attrs={'class': 'login-input', 'placeholder': 'Email Address', 'autofocus': 'true'}
+            attrs={'class': 'login-input', 'placeholder': _('Email Address'), 'autofocus': 'true'}
         )
     )
     password = forms.CharField(
         widget=PasswordInput(
-            attrs={'class': 'login-input', 'placeholder': 'Password'}
+            attrs={'class': 'login-input', 'placeholder': _('Password')}
         )
     )

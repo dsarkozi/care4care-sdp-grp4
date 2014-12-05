@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 15:56+0000\n"
+"POT-Creation-Date: 2014-12-05 16:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1012,9 +1012,14 @@ msgstr "prénom"
 msgid "You can't do a donation of 0 time !"
 msgstr "Vous ne pouvez pas faire une donation vide"
 
+#: views/forms/LoginForm.py:9
 #: views/forms/FavIgnForm.py:9
 msgid "Email Address"
-msgstr "Adresse E-mail "
+msgstr "Adresse E-mail"
+
+#: views/forms/LoginForm.py:14 views/forms/RegistrationForm.py:57
+msgid "Password"
+msgstr "mot de passe"
 
 #: views/forms/RegistrationForm.py:30
 msgid "E-mail address"
@@ -1055,12 +1060,6 @@ msgstr "téléphone mobile"
 #: views/forms/RegistrationForm.py:40
 msgid "telephone"
 msgstr "Téléphone fixe"
-
-#: views/forms/RegistrationForm.py:57
-#, fuzzy
-#| msgid "password"
-msgid "Password"
-msgstr "mot de passe"
 
 #: views/forms/RegistrationForm.py:61
 msgid "Postal code"
