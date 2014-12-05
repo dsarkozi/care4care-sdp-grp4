@@ -266,11 +266,11 @@ class NonMember(User):
         job.duration = duration
         job.type = is_demand
         job.visibility = visibility
-        job.save()
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) < 1:
             return False
         job.branch = branch[0]
+        job.save()
         job.member_set = [self.db_member]
         job.save()
         return True
