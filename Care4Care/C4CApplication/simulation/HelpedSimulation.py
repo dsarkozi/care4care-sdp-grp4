@@ -44,7 +44,7 @@ class HelpedSimulation(MySeleniumTests):
         
         return True
     
-    def test_simulation_accpet_participation(self):
+    def test_simulation_accept_participation(self):
         # show how to accept a participation
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -59,13 +59,18 @@ class HelpedSimulation(MySeleniumTests):
         time.sleep(1)
         page = HomePage(self.selenium)
         
-        # TODO dans HomePage : get jobs
-        # click on last demand (of help) -> mine
-        # on arrive dans jobDetails
+        page = page.click_on_last_offer() # JobDetailsPage
+        time.sleep(1)
         
-        # click on choose this member(0)
+        page = page.click_on_choose_member(0)
+        time.sleep(1)
         
         # logout
+        page = page.click_home()
+        time.sleep(1)
+        page = HomePage(self.selenium)
+        page = page.click_on_logout
+        
         return True
     
     def test_simulation_complaint_theft(self):
