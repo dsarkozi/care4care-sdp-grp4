@@ -24,5 +24,8 @@ class JobDetailsPage(FixedPage):
         return self
     
     def click_on_choose_member(self, num):
-        self.choose_member_buttons[num].click()
+        if num < len(self.choose_member_buttons): 
+            self.choose_member_buttons[num].click()
+        else: 
+            print("No enough member to choose (num < size of choose_member_buttons)")
         return self

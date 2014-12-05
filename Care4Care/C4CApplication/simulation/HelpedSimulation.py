@@ -52,6 +52,7 @@ class HelpedSimulation(MySeleniumTests):
         
         # login
         page = HomePage(self.selenium)
+        # the test fails if janine is not in the DB
         page = page.login_successful("janine_kou@gmail.com","azertyuiop") 
         time.sleep(1)
         
