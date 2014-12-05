@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 08:47+0000\n"
+"POT-Creation-Date: 2014-12-05 09:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -425,6 +425,7 @@ msgstr "Offre"
 
 #: templates/C4CApplication/JobDetails.html:170
 #: templates/C4CApplication/Profile.html:64
+#: templates/C4CApplication/memberDetails.html:64
 msgid "Address"
 msgstr "Adresse"
 
@@ -580,6 +581,7 @@ msgid "Personal information"
 msgstr "renseignements personnels"
 
 #: templates/C4CApplication/Profile.html:60
+#: templates/C4CApplication/memberDetails.html:59
 msgid "Gender"
 msgstr "Sexe"
 
@@ -627,6 +629,51 @@ msgstr ""
 #: templates/C4CApplication/TransferRightsBranch.html:28
 msgid "Cancel"
 msgstr "Annuler"
+
+#: templates/C4CApplication/memberDetails.html:14
+msgid "Actif"
+msgstr "Actif"
+
+#: templates/C4CApplication/memberDetails.html:20
+msgid "Inactif"
+msgstr "Inactif"
+
+#: templates/C4CApplication/memberDetails.html:30
+msgid "Member details"
+msgstr "Détails du membre"
+
+#: templates/C4CApplication/memberDetails.html:34
+msgid "Type of member"
+msgstr "Type de membre"
+
+#: templates/C4CApplication/memberDetails.html:40
+
+msgid "Branche(s)"
+msgstr "Branche(s)"
+
+#: templates/C4CApplication/memberDetails.html:49
+msgid "Email"
+msgstr "Email"
+
+#: templates/C4CApplication/memberDetails.html:54
+msgid "Register date"
+msgstr "Date d'enregistrement"
+
+#: templates/C4CApplication/memberDetails.html:70
+msgid "Fixed phone number"
+msgstr "Téléphone fixe"
+
+#: templates/C4CApplication/memberDetails.html:77
+msgid "Mobile phone number"
+msgstr "Téléphone mobile"
+
+#: templates/C4CApplication/memberDetails.html:86
+msgid "Add as a friend"
+msgstr "Ajouter comme un amis"
+
+#: templates/C4CApplication/memberDetails.html:90
+msgid "Log as member"
+msgstr "Se connecter comme membre"
 
 #: views/forms/RegistrationForm.py:34
 msgid "password"
