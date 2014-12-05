@@ -64,17 +64,21 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
                     </li>
                 {% else %}
                     <li>{{ freq }} :
-                        <table>
-                        <tr>
-                        {% for day in form.dayrange %}
-                            {% if forloop.counter|mod:7 == 0 %}
-                                <td>{{ day }}</td></tr><tr>
-                            {% else %}
-                                <td>{{ day }}</td>
-                            {% endif %}
-                        {% endfor %}
-                        </tr>
-                        </table>
+                        <ul>
+                            <li>
+                                <table>
+                                    <tr>
+                                    {% for day in form.dayrange %}
+                                        {% if forloop.counter|mod:7 == 0 %}
+                                            <td>{{ day }}</td></tr><tr>
+                                        {% else %}
+                                            <td>{{ day }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
                     </li>
 {#                {% else %}#}
 {#                    <li>{{ freq }}#}
