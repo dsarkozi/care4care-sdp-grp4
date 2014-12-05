@@ -13,8 +13,8 @@ class HelpedSimulation(MySeleniumTests):
         """page = HomePage(self.selenium)
         page = page.click_on_sign_up() # Inscription page
         time.sleep(2)
-        page = page.set_global_field('Marcel', 'Dupont', 'marcel_dupont@gmail.com', 'azertyuiop', 'M', '02',\
-                         'septembre', '1990', 'Thatstreet', '7842', 'Thatcity', '010367309', '0477663691', [0], 0)
+        page = page.set_global_field('Janine', 'Kouniou', 'janine_kou@gmail.com', 'azertyuiop', 'F', '16',\
+                         'juillet', '1940', 'Anotherstreet', '7842', 'Thatcity', '010377355', '0470698621', [0], 1)
         time.sleep(2)
         page = page.click_on_submit()
         # registration done
@@ -29,10 +29,29 @@ class HelpedSimulation(MySeleniumTests):
         
         time.sleep(3)
         page = page.click_on_i_need_help() # CreateJobPage
+        time.sleep(2)
         
-        # page = page.put_job_offer_info
+        # Test create job
+        page = page.create_job("I need help", "I need help for bringing me to the shop", "From my place to the shop", 0, "10:30", \
+                               "01:00", "10", 0, 1, "", "", "", [2, 5], [], [0], True)
         # page.post
         
-        # show how to accept a participation
+        # TODO
+        
+        #page = page.click_home()
+        #page = HomePage(self.selenium)
+        #page.click_on_logout()
+        print("FIN de la simulation !")
         
         return True
+    
+    def test_simulation_accpet_participation(self):
+        # show how to accept a participation
+        self.populate_db()
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
+        
+        # voir choose this member 
+        # TODO
+        
+        return True
+        

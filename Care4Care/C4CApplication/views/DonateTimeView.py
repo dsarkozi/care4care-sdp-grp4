@@ -23,7 +23,7 @@ class DonateTimeView(FormView):
         if 'email' not in self.request.session:
             raise PermissionDenied  # HTTP 403
         context = super(DonateTimeView, self).get_context_data(**kwargs)
-        context['donateTime'] = DonateTimeForm(auto_id=False)
+        context['donateTime'] = DonateTimeForm(db_member=self.user.db_member, auto_id=False)
         context['member'] = self.user.db_member
         context['connected'] = 'email' in self.request.session
         return context
@@ -35,12 +35,11 @@ class DonateTimeView(FormView):
         hours = form.cleaned_data['hours']
         minutes = form.cleaned_data['minutes']
         time = days*1440+hours*60+minutes
-        print(time)
         
         receiver = form.cleaned_data['receiver']
         if receiver == 'c4c' :
-            pass #TODO form.cleaned_data
-            self.user.make_donation(time, LABRANCHE)
+            branchDropdown = form.cleaned_data['branchDropdown']
+            self.user.make_donation(time, branchDropdown)
         else :
             userDropdown = form.cleaned_data['userDropdown']
             self.user.transfer_time(userDropdown, time)

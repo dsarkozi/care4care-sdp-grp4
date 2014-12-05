@@ -1,5 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
-#from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
 from selenium.webdriver.common.by import By
 
@@ -11,13 +11,13 @@ class MyCare4Care(FixedPage):
         self.logout_button = self.driver.find_element(By.XPATH, '//a[@value="Logout"]')
         self.new_branch_button = None
         
-        self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
-        self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+        self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+        self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
     
     def BP_click_on_new_branch(self):
         self.new_branch_button = self.driver.find_element(By.XPATH, '//a[@value="new_branch"]')
         self.new_branch_button.click()
-        return CreateBranchView(self.driver)
+        return CreateBranchPage(self.driver)
     
     def give_time(self):
         #give_time_button = self.driver.find_element(By.XPATH, )
