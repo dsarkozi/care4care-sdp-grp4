@@ -1,5 +1,5 @@
 from urllib.parse import unquote
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import RedirectView
 import openid2rp
 
@@ -33,7 +33,7 @@ class EIDRedirectView(RedirectView):
                 services,
                 op_endpoint,
                 session['assoc_handle'],
-                reverse_lazy('home'),
+                self.request.build_absolute_uri(reverse('registration')),
                 claimedId, op_local,
                 sreg=((), ()),
                 ax=ax
