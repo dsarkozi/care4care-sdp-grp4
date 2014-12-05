@@ -34,7 +34,6 @@ class RegistrationForm(ModelForm):
             'first_name' : _('first name'),
             'last_name' : _('last name'),
             'gender' : _('gender'),
-            'picture' : _('picture'),
             'birthday' : _('birthday'),
             'mobile' : _('mobile'),
             'telephone' : _('telephone'),
@@ -56,6 +55,13 @@ class RegistrationForm(ModelForm):
             widget=PasswordInput(),
             label=_('Password')
         )
+        self.fields['confirm'] = forms.CharField(
+            max_length=100,
+            min_length=8,
+            widget=PasswordInput(),
+            label=_('Confirm password')
+        )
+        self.fields['picture'] = forms.ImageField(required=False, label=_('Picture'))
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
@@ -79,4 +85,12 @@ class RegistrationForm(ModelForm):
             if kwargs['data']['birthday_day'] and kwargs['data']['birthday_month'] and kwargs['data']['birthday_year']:
                 self.fields['birthday'].widget.attrs.update({'disabled' : 'true'})
             if kwargs['data']['gender']: self.fields['gender'].widget.attrs.update({'disabled' : 'true'})
+
+    def clean(self):
+        cleaned_data = super(RegistrationForm, self).clean()
+        password = cleaned_data.get("password")
+        confirm = cleaned_data.get("confirm")
+        if password != confirm:
+            self.add_error('password', forms.ValidationError(_("The password and confirmation do not match"), code='invalid'))
+        return cleaned_data
         
