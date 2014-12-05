@@ -22,12 +22,11 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<li><a href="http://www.decompte.net/compte-a-rebours/remise-du-code/" target="_blank">Remise du code</a> </li>
-			<center><li><a href="{% url 'home' %}" value="home"> {% trans "HOME" %} </a></li></center>
+			<center><li><a href="{% url 'home' %}" id="home" value="home"> {% trans "HOME" %} </a></li></center>
 			{% if connected %}
 				<li><a href="{% url 'profile' %}"> MyCare4Care</a></li>
 			{% endif %}
-			<li><a href="{% url 'branchlist' %}" value="branch_list">  {% trans "Care4Care Branches" %}  </a></li>
+			<li><a href="{% url 'branchlist' %}" id="branch_list" value="branch_list">  {% trans "Care4Care Branches" %}  </a></li>
 				<ul>
 					{% if connected %}
 						{% for br in member.branch.all %}

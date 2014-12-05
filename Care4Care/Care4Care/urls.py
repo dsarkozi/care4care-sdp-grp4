@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from django.views.generic import ListView
+from C4CApplication.views.SearchJobView import SearchJobView
 from C4CApplication.views.AccountStatsView import AccountStatsView
 
 from C4CApplication.views.CreateJobView import CreateJobView
@@ -57,9 +58,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'Care4Care.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', HomePageView.as_view(), name='home'),
-    url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'),
+    url(r'^admin/', include(admin.site.urls)), 
+    url(r'^$', HomePageView.as_view(), name='home'), #not
+    url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'), 
     
     url(r'^myc4c/changeActivity$', ChangeActivityView.as_view(), name='changeActivity'),
     url(r'^myc4c/changeActivityRedirect/(?P<active>\w+)$', ChangeActivityRedirectView.as_view(), name='changeActivityRedirect'),
@@ -81,7 +82,7 @@ urlpatterns = patterns('',
     url(r'^removeFavorite/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)/$', RemoveFavoriteRedirectView.as_view(), name='removeFavorite'),
     url(r'^newmessage$', NewMessageView.as_view(), name='newmessage'),
 
-    url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'),
+    url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'), #not
     url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
 
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
@@ -105,6 +106,8 @@ urlpatterns = patterns('',
         
     url(r'^registration$', RegistrationView.as_view() , name='registration'),
     url(r'^registration/eidrequest$', EIDRedirectView.as_view(), name='eidrequest'),
+    
+    url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
     url(r'^tests/openid$', OIDTest.oidtest),
     url(r'^tests/openid2$', OIDTest.oidtest2)
