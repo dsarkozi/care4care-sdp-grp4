@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 11:41+0000\n"
+"POT-Creation-Date: 2014-12-05 14:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models/job.py:20
+msgid "Once"
+msgstr "Une fois"
+
+#: models/job.py:21
+msgid "Weekly"
+msgstr "Chaque semaine"
+
+#: models/job.py:22
+msgid "Monthly"
+msgstr "Chaque mois"
+
+#: models/job.py:30 models/job.py:36
+msgid "Shopping"
+msgstr "Shopping"
+
+#: models/job.py:31 models/job.py:37
+msgid "Visit"
+msgstr "Visite"
+
+#: models/job.py:32 models/job.py:38
+msgid "Transport"
+msgstr "Transport"
+
+#: models/job.py:33 models/job.py:39
+msgid "Other"
+msgstr "Autre"
+
+#: models/job.py:50
+msgid "Anyone"
+msgstr "Qui que ce soit"
+
+#: models/job.py:51
+msgid "Verified"
+msgstr "Membre vérifié"
+
+#: models/job.py:52 templates/C4CApplication/JobDetails.html:19
+#: templates/C4CApplication/MyCare4Care.html:21
+msgid "Favorites"
+msgstr "Favoris"
+
+#: models/job.py:53 templates/C4CApplication/Profile.html:34
+msgid "Volunteer"
+msgstr "Volontaire"
+
+#: models/job.py:57
+msgid "anyone"
+msgstr "qui que ce soit"
+
+#: models/job.py:58
+msgid "verified"
+msgstr "membre vérifié"
+
+#: models/job.py:59
+msgid "favorites"
+msgstr "favoris"
+
+#: models/job.py:60
+msgid "volunteer"
+msgstr "volontaire"
 
 #: templates/C4CApplication/AcceptBill.html:5
 msgid "The following job has been marked as done by"
@@ -191,6 +252,10 @@ msgstr "Confirmez"
 msgid "Request details"
 msgstr "Demande de détails"
 
+#: templates/C4CApplication/CreateJob.html:26
+msgid "kilometers"
+msgstr "kilomètres"
+
 #: templates/C4CApplication/CreateJob.html:29
 #: templates/C4CApplication/HomePage.html:61
 #: templates/C4CApplication/HomePage.html:88
@@ -344,11 +409,6 @@ msgstr "Messages"
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/C4CApplication/JobDetails.html:19
-#: templates/C4CApplication/MyCare4Care.html:21
-msgid "Favorites"
-msgstr "Favoris"
-
 #: templates/C4CApplication/JobDetails.html:20
 #: templates/C4CApplication/MyCare4Care.html:23
 msgid "Account & Stats"
@@ -423,6 +483,7 @@ msgid "Frequency"
 msgstr "Fréquence"
 
 #: templates/C4CApplication/JobDetails.html:136
+#: views/forms/CreateJobForm.py:74
 msgid "Duration"
 msgstr "Durée"
 
@@ -656,10 +717,6 @@ msgstr "Membre"
 msgid "Verified member"
 msgstr "Membre vérifié"
 
-#: templates/C4CApplication/Profile.html:34
-msgid "Volunteer"
-msgstr "Volontaire"
-
 #: templates/C4CApplication/Profile.html:35
 msgid "Branch officer"
 msgstr "Administrateur de branche"
@@ -887,6 +944,94 @@ msgstr "Ville de la branche"
 msgid "A branch already exist with this name."
 msgstr "Une brance ayant ce nom existe déjà"
 
+#: views/forms/CreateJobForm.py:26
+msgid "title"
+msgstr "titre"
+
+#: views/forms/CreateJobForm.py:27
+msgid "description"
+msgstr "description"
+
+#: views/forms/CreateJobForm.py:28
+msgid "category"
+msgstr "catégorie"
+
+#: views/forms/CreateJobForm.py:29
+msgid "other_category"
+msgstr "autre catégories"
+
+#: views/forms/CreateJobForm.py:30
+msgid "frequency"
+msgstr "fréquence"
+
+#: views/forms/CreateJobForm.py:31
+msgid "visibility"
+msgstr "Visibilitée"
+
+#: views/forms/CreateJobForm.py:32
+msgid "date"
+msgstr "date"
+
+#: views/forms/CreateJobForm.py:34
+msgid "place"
+msgstr "lieu"
+
+#: views/forms/CreateJobForm.py:38
+msgid "Request description"
+msgstr "Description de la demande"
+
+#: views/forms/CreateJobForm.py:41
+msgid "Location details"
+msgstr "Localisation"
+
+#: views/forms/CreateJobForm.py:44
+msgid "Specify"
+msgstr "Spécifier"
+
+#: views/forms/CreateJobForm.py:62
+msgid "Request title"
+msgstr "Titre de la demande"
+
+#: views/forms/CreateJobForm.py:67
+msgid "Start time"
+msgstr "Début"
+
+#: views/forms/CreateJobForm.py:72
+msgid "Format: 00:00"
+msgstr ""
+
+#: views/forms/CreateJobForm.py:80
+msgid "Distance to be covered (approximation)"
+msgstr "Distance à couvrir (approximation)"
+
+#: views/forms/CreateJobForm.py:124
+msgid "Monday"
+msgstr "Lundi"
+
+#: views/forms/CreateJobForm.py:125
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: views/forms/CreateJobForm.py:126
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: views/forms/CreateJobForm.py:128
+msgid "Friday"
+msgstr "Jeudi"
+
+#: views/forms/CreateJobForm.py:129
+msgid "Saturday"
+msgstr "Samdi"
+
+#: views/forms/CreateJobForm.py:130
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: views/forms/CreateJobForm.py:163
+msgid "If other is checked, fill the text input in."
+msgstr "Si l'autre est cochée, remplir l'entrée de texte dans."
+
 #: views/forms/RegistrationForm.py:30
 msgid "E-mail address"
 msgstr "Adresse E-mail"
@@ -942,6 +1087,12 @@ msgstr "Avec comptabilisation de temps"
 #: views/forms/RegistrationForm.py:71
 msgid "Account type"
 msgstr "Type de compte"
+
+#~ msgid "mail"
+#~ msgstr "mail"
+
+#~ msgid "number"
+#~ msgstr "nombre"
 
 #~ msgid "Town(s)"
 #~ msgstr "Ville(s)"

@@ -1,6 +1,7 @@
 from time import strftime, gmtime
 import os
 from django.core.files import File
+from django.utils.translation import ugettext_lazy as _
 
 
 from django.db import models
@@ -24,8 +25,8 @@ class Member(models.Model):
     birthday = models.DateField(blank=True, null=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
     
     TAG_REVERSE = {
-        1         : 'non_member',               #000001
-        2         : 'member',                   #000010
+        1         : _('non_member'),               #000001
+        2         : _('member'),                   #000010
         4         : 'verified',                 #000100
         8         : 'volunteer',                #001000
         16        : 'branch_officer',           #010000
