@@ -118,23 +118,23 @@ class NonMember(User):
         else:
             return None
 
-    def get_visible_job_list(self, show_offers):
+    def get_visible_job_list(self, show_demands):
         """
-        :param show_offers: the type of the list of the jobs to return
+        :param show_demands: the type of the list of the jobs to return
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
-        return self.get_visible_job_list_base(show_offers, self.is_job_visible)
+        return self.get_visible_job_list_base(show_demands, self.is_job_visible)
 
-    def get_visible_job_list_base(self, show_offers, function):
+    def get_visible_job_list_base(self, show_demands, function):
         """
-        :param show_offers: the type of the list of the jobs to return
+        :param show_demands: the type of the list of the jobs to return
         :param function: the function to check visibility of the job
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """
 
-        jobs_list = Job.objects.filter(type=show_offers)
+        jobs_list = Job.objects.filter(type=show_demands)
         if len(jobs_list) == 0:
             return []
         
