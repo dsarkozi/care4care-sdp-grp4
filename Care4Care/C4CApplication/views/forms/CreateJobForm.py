@@ -15,8 +15,18 @@ class CreateJobForm(forms.ModelForm):
             'description',
             'category',
             'frequency',
-            'visibility'
+            'visibility',
+            'date',
+            'km'
         )
+        labels = {
+        }
+        widgets = {
+            'description' : forms.Textarea(
+                attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
+            ),
+            'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
+        }
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
@@ -33,7 +43,12 @@ class CreateJobForm(forms.ModelForm):
         if len(branchList) == 1:
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
-        self.fields['description'].widget = forms.Textarea(attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'})
+        self.fields['km'] = forms.DecimalField(
+            min_value=0,
+            initial=0,
+            label='Distance to be covered (approximation)',
+            max_digits=4,
+        )
 
         # Job category fieldset
         self.fields['category'] = forms.MultipleChoiceField(
@@ -52,15 +67,15 @@ class CreateJobForm(forms.ModelForm):
             widget=forms.RadioSelect,
             choices=Job.JOB_VISIBILITY_TUPLE
         )
+        self.fields['frequency'] = forms.ChoiceField(
+            widget=forms.RadioSelect,
+            choices=Job.FREQ
+        )
 
 
 
 
     # Job timeline fieldset
-    frequency = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=(('once', 'Only once'), ('regular', 'Regularly'))
-    )
     subfrequency = forms.ChoiceField(
         widget=forms.RadioSelect(
             attrs={}   #TODO disabled
@@ -94,11 +109,7 @@ class CreateJobForm(forms.ModelForm):
         ),
         choices=DAYPARTS
     )
-    specific = forms.ChoiceField(
-        widget=SelectDateWidget(
-            attrs={'id':'time_specific', }     #TODO disabled
-        )
-    )
+
 
     def clean(self):
         """

@@ -17,7 +17,8 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         <p id="job_desc_field">
             {{ form.description }}
         </p>
-        {{ form.branches.label }} : {{ form.branches }}
+        {{ form.branches.label }} : {{ form.branches }} <br>
+        {{ form.km.label }} : <br> {{ form.km }} kilometers
     </fieldset>
     <fieldset>
         <legend> {% trans "Job category"%}</legend>
@@ -34,36 +35,40 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
     <fieldset>
         <legend>{% trans "Job timeline"%}</legend>
         <ul>
-            {% for freq in createJob.frequency %}
+            {% for freq in form.frequency %}
                 {% if forloop.first %}
-                    <li> {{ freq }}
-                        <ul>
-                            {% for subfreq in createJob.subfrequency %}
-                                {% if forloop.first %}
-                                    <li>{{ subfreq }} : {{ createJob.specific }}</li>
-                                {% else %}
-                                    <div class="job_weekdays">
-                                        <li>{{ subfreq }} : {{ createJob.weekdays }}</li>
-                                    </div>
-                                    <div class="job_dayparts">
-                                        {{ createJob.dayparts }}
-                                    </div>
-                                    <br><br><br><br><br><br><br><br><br> <!-- TODO Fix this ! -->
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
+                    <li> {{ freq }} : {{ form.date }}
+{#                        <ul>#}
+{#                            {% for subfreq in createJob.subfrequency %}#}
+{#                                {% if forloop.first %}#}
+{#                                    <li>{{ subfreq }} : {{ createJob.specific }}</li>#}
+{#                                {% else %}#}
+{#                                    <div class="job_weekdays">#}
+{#                                        <li>{{ subfreq }} : {{ createJob.weekdays }}</li>#}
+{#                                    </div>#}
+{#                                    <div class="job_dayparts">#}
+{#                                        {{ createJob.dayparts }}#}
+{#                                    </div>#}
+{#                                    <br><br><br><br><br><br><br><br><br> <!-- TODO Fix this ! -->#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
                     </li>
+                {% elif forloop.counter == 2 %}
+                    <li>{{ freq }}</li>
                 {% else %}
-                    <li>{{ freq }}
-                        <ul>
-                            <div class="job_weekdays">
-                                {{ createJob.weekdays }}
-                            </div>
-                            <div class="job_dayparts">
-                                {{ createJob.dayparts }}
-                            </div>
-                        </ul>
-                    </li>
+                    <li>{{ freq }}</li>
+{#                {% else %}#}
+{#                    <li>{{ freq }}#}
+{#                        <ul>#}
+{#                            <div class="job_weekdays">#}
+{#                                {{ createJob.weekdays }}#}
+{#                            </div>#}
+{#                            <div class="job_dayparts">#}
+{#                                {{ createJob.dayparts }}#}
+{#                            </div>#}
+{#                        </ul>#}
+{#                    </li>#}
                 {% endif %}
             {% endfor %}
         </ul>
