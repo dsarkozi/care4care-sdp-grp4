@@ -1,5 +1,7 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
+{% load mathfilters %}
+
 {% load staticfiles %}
 	
 {% block link %} <link rel="stylesheet" href="{% static "css/create_job.css" %}"> {% endblock %}
@@ -61,7 +63,19 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
                     <li>{{ freq }} : {{ form.weekdays }}
                     </li>
                 {% else %}
-                    <li>{{ freq }}</li>
+                    <li>{{ freq }} :
+                        <table>
+                        <tr>
+                        {% for day in form.dayrange %}
+                            {% if forloop.counter|mod:7 == 0 %}
+                                <td>{{ day }}</td></tr><tr>
+                            {% else %}
+                                <td>{{ day }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                        </table>
+                    </li>
 {#                {% else %}#}
 {#                    <li>{{ freq }}#}
 {#                        <ul>#}

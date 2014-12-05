@@ -88,6 +88,10 @@ class CreateJobForm(forms.ModelForm):
             widget=forms.RadioSelect,
             choices=Job.FREQ
         )
+        self.fields['dayrange'] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=((x,x) for x in range(1,32))
+        )
 
         # Job visibility fieldset
         self.fields['visibility'] = forms.MultipleChoiceField(
