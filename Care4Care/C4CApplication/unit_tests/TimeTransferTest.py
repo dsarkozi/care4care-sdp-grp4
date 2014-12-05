@@ -22,7 +22,6 @@ class TimeTransferTest(MySeleniumTests):
         if len(giver) == 1: giver = giver[0]
         else: self.assertEqual(0, 1) # end the test
         time_account_before = giver.time_credit
-        print("Time credits before : "+str(time_account_before))
         
         self.selenium.get('%s%s' % (self.live_server_url, '/donate/'))
         time.sleep(1)
@@ -41,7 +40,6 @@ class TimeTransferTest(MySeleniumTests):
         if len(giver) == 1: giver = giver[0]
         else: self.assertEqual(0, 1) # end the test
         time_account_after = giver.time_credit
-        print("Time credits after : "+str(time_account_after))
         
         self.assertEqual(time_account_before, time_account_after+1620)
         return True
@@ -55,15 +53,14 @@ class TimeTransferTest(MySeleniumTests):
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/donate/'))
-        time.sleep(1)
-        
         page = GiveTimePage(self.selenium)
-        time.sleep(3)
+        time.sleep(2)
         
         page = page.fill_in_fields("Tiens Olivier, voici du temps ;)", "0", "1", "40", "Olivier", 1)
         time.sleep(2)
         
         page = page.click_on_donate()
+        time.sleep(2)
         
         self.assertEqual(0, 0)
         return True

@@ -197,7 +197,7 @@ class NonMember(User):
         if function(job, self.db_member):
             job.member_set.add(self.db_member)
 
-            subject = "A member want to participate to your job"
+            subject = "A member wants to participate to your job"
             content = "The member "+str(self.db_member.first_name)+" "+str(self.db_member.last_name) +\
                       " has been added to the list of the potential participant of the " + \
                       '<a href="/jobdetails/' + str(job.id) + '">job</a>.'
@@ -325,11 +325,11 @@ class NonMember(User):
         if job.type:   #Demand
             subject = 'Your help is accepted'
             content = 'Congratulation ! Your help has been accepted by '+str(creator.mail)+' for '\
-                      + '<a href="/jobdetails/' + str(job.id) + '">this job</a>'
+                      + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '" >this job</a>'
         else:  #Offer
             subject = 'Your demand of help is accepted'
-            content = 'Congratulation ! Your demand of help has been accepted by '+str(creator.mail)+' for '\
-                      + '<a href="/jobdetails/' + str(job.id) + '">this job</a>'
+            content = 'Congratulations ! Your demand of help has been accepted by '+str(creator.mail)+' for '\
+                      + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">this job</a>'
         type = 3
         return self.send_mail(creator.mail, helper.mail, subject, content, type)
     
@@ -364,8 +364,8 @@ class NonMember(User):
                 break
         if helper_mail == '':
             return False
-        subject = 'The job ' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
-        content = 'The ' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + '">job</a>'\
+        subject = 'The job ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
+        content = 'The ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + '">job</a>'\
                   + ' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)

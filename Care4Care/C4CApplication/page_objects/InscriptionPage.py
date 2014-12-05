@@ -51,6 +51,9 @@ class InscriptionPage(FixedPage):
         self.confirm.send_keys(password)
         time.sleep(1)
         
+        self.confirm.send_keys(password)
+        time.sleep(1)
+        
         if gender == 'M' : 
             self.genders[0].click()
         else: 

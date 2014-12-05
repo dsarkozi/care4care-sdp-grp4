@@ -2,10 +2,18 @@
 {% extends "C4CApplication/JobDetails.html" %}
 {% load i18n %}
 {% block accept_bill %}
-	{% trans "The following job has been marked as done by"%} {{ helper.first_name }} {{ helper.last_name }} <br/>
-	{% trans "Please confirm that the information below is correct "%} : <br/>
 
-	<p><a href="{% url 'confirmBill' job.id 1 %}" type="submit" value="Confirm" >{% trans  "Confirm"%}</a>
-	<a href="{% url 'confirmBill' job.id 0 %}" type="submit" value="Contest" >{% trans  "Contest"%}</a></p>
+<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;padding:1em;margin-top:2em;width:32em; height:auto;text-align: left;">
+<center>
+	{% trans "The following job has been marked as 'done' by"%} <b>{{ helper.first_name }} {{ helper.last_name }}</b> <br/>
+	{% trans "Please confirm this information "%} : <br/>
+
+	<p><a href="{% url 'confirmBill' job.id 1 %}" type="submit" value="Confirm" class="btn" >{% trans  "Confirm"%}</a>
+	<a href="{% url 'confirmBill' job.id 0 %}" type="submit" value="Contest" class="btn">{% trans  "Contest"%}</a></p>
+	</center>
+	</section>
+	
+	
 {% endblock %}
 

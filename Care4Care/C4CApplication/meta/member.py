@@ -45,9 +45,9 @@ class Member(NonMember):
         if helper_mail == '':
             return False
         subject = 'The ' + \
-                  '<a href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
+                  '<a style="color:red;" href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
         content = 'The ' + \
-                  '<a href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'\
+                  '<a  style="color:red;" href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'\
                   + ' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
@@ -62,7 +62,7 @@ class Member(NonMember):
         :return: False if there was a problem and True otherwise.
         """
         job = Job.objects.filter(mail=job_creator_mail, number=job_number)
-        if len(job) != 1:
+        if len(job) != 1 or job[0].payed:
             return False
         job = job[0]
         job.payed = True
@@ -169,10 +169,17 @@ class Member(NonMember):
         if len(branch) != 1:
             return False
         branch = branch[0]
-        
+        branch_off = models.Member.objects.filter(mail=branch.branch_officer)
+        if len(branch_off) != 1:
+            return False
+        branch_off=branch_off[0]
+        if branch_off.mail == self.db_member.mail :
+            return False
         #We make the donation
         self.db_member.time_credit -= time
+        branch_off.time_credit += time
         branch.donation += time
         self.db_member.save()
         branch.save()
+        branch_off.save()
         return True

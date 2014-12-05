@@ -11,7 +11,7 @@ import time
 
 class BPAdminActor(Actor):
     """
-    This class represents a branch officer that will do some actions
+    This class represents a bp administrator that will do some actions
     """
 
     action_list = None
@@ -89,6 +89,5 @@ class BPAdminActor(Actor):
         # Logout
         page = HomePage(selenium)
         page.click_on_logout()
-        print("End of the Branch Officer")
 
         return True

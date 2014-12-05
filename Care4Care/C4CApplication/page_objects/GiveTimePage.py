@@ -17,8 +17,8 @@ class GiveTimePage(Page):
         self.minutes_input = self.driver.find_element_by_name('minutes')
         self.radio_button_receipient = self.driver.find_elements_by_name('receiver')
         self.dropbdowns = self.driver.find_elements_by_tag_name('select')
-        self.user_select   = Select(self.dropbdowns[0])
-        self.branch_select = Select(self.dropbdowns[1])
+        self.user_select   = Select(self.dropbdowns[1])
+        self.branch_select = Select(self.dropbdowns[0])
         self.donate_button = self.driver.find_element_by_xpath('//input[@id="donate"]')
         
     def click_on_donate(self):
@@ -36,8 +36,6 @@ class GiveTimePage(Page):
         time.sleep(1)
         self.minutes_input.send_keys(min)
         time.sleep(1)
-        
-        print("self.user_select = "+str(self.user_select.options))
         
         if type == 0 : 
             self.radio_button_receipient[0].click()
