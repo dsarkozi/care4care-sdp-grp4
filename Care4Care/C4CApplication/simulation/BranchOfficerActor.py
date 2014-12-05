@@ -120,6 +120,5 @@ class BranchOfficerActor(Actor):
         page = HomePage(selenium)
         page.click_on_logout()
         time.sleep(2)
-        print("End of the Branch Officer")
 
         return True
