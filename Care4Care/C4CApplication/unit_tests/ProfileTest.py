@@ -1,6 +1,7 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.models.member import Member
 
 
 import time
@@ -34,7 +35,14 @@ class ProfileTest(MySeleniumTests):
         page = page.click_on_submit()
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        olivier = Member.objects.filter(mail='olivier.mauvaisaventure@gmail.com')
+        self.assertEqual(len(olivier),1)
+        olivier = olivier[0]
+        self.assertEqual(olivier.street, "Rue bidon, 15")
+        self.assertEqual(olivier.zip, "9999")
+        self.assertEqual(olivier.town, "Bouseville")
+        self.assertEqual(olivier.telephone, "010010010")
+        self.assertEqual(olivier.mobile, "0456880045")
         return True
     
     def test_delete_picture(self):
@@ -52,5 +60,9 @@ class ProfileTest(MySeleniumTests):
         page = page.click_on_delete_picture()
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        
+        mathieu = Member.objects.filter(mail='mathieu.jadin@student.uclouvain.be')
+        self.assertEqual(len(mathieu), 1)
+        mathieu = mathieu[0]
+        self.assertEqual(mathieu.picture, "")
         return True

@@ -169,10 +169,17 @@ class Member(NonMember):
         if len(branch) != 1:
             return False
         branch = branch[0]
-        
+        branch_off = models.Member.objects.filter(mail=branch.branch_officer)
+        if len(branch_off) != 1:
+            return False
+        branch_off=branch_off[0]
+        if branch_off.mail == self.db_member.mail :
+            return False
         #We make the donation
         self.db_member.time_credit -= time
+        branch_off.time_credit += time
         branch.donation += time
         self.db_member.save()
         branch.save()
+        branch_off.save()
         return True
