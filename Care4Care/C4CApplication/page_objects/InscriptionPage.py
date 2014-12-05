@@ -1,4 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
+from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
@@ -12,6 +13,7 @@ class InscriptionPage(FixedPage):
         super().__init__(driver)
         self.email            = self.driver.find_element(By.NAME, 'mail')
         self.password         = self.driver.find_element(By.NAME, 'password')
+        self.confirm          = self.driver.find_element(By.NAME, 'confirm')
         self.first_name_input = self.driver.find_element(By.NAME, 'first_name')
         self.last_name_input  = self.driver.find_element(By.NAME, 'last_name')
         self.genders          = self.driver.find_elements(By.NAME, 'gender')
@@ -45,6 +47,11 @@ class InscriptionPage(FixedPage):
         time.sleep(1)
         
         self.password.send_keys(password)
+        time.sleep(1)
+        self.confirm.send_keys(password)
+        time.sleep(1)
+        
+        self.confirm.send_keys(password)
         time.sleep(1)
         
         if gender == 'M' : 

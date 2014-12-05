@@ -4,6 +4,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.http.request import QueryDict
 
 from C4CApplication.models.job import Job
+from django.utils.translation import ugettext_lazy as _
 
 
 class CreateJobForm(forms.ModelForm):
@@ -26,13 +27,13 @@ class CreateJobForm(forms.ModelForm):
         }
         widgets = {
             'description' : forms.Textarea(
-                attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
+                attrs = {'id':'job_desc', 'rows':3, 'placeholder':_('Request description')}
             ),
             'place' : forms.Textarea(
-                attrs = {'rows':3, 'placeholder':'Location details'}
+                attrs = {'rows':3, 'placeholder':_('Location details')}
             ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
-            'other_category' : forms.TextInput(attrs={'placeholder' : 'Specify'})
+            'other_category' : forms.TextInput(attrs={'placeholder' : _('Specify')})
         }
 
     def __init__(self, *args, **kwargs):
@@ -54,7 +55,7 @@ class CreateJobForm(forms.ModelForm):
             data['branches'] = branchList[0][0]
             self.data = data
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
-        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':_('Request title')}
         self.fields['date'].required = False
         self.fields['start_time'] = forms.TimeField(
             widget=forms.TimeInput(
@@ -116,13 +117,13 @@ class CreateJobForm(forms.ModelForm):
     #     choices=(('specific','Specific day'), ('weekday','Weekdays')),
     # )
     WEEKDAYS = (
-        (0,'Monday'),
-        (1,'Tuesday'),
-        (2,'Wednesday'),
-        (3,'Thursday'),
-        (4,'Friday'),
-        (5,'Saturday'),
-        (6,'Sunday')
+        (0,_('Monday')),
+        (1,_('Tuesday')),
+        (2,_('Wednesday')),
+        (3,_('Thursday')),
+        (4,_('Friday')),
+        (5,_('Saturday')),
+        (6,_('Sunday'))
     )
     weekdays = forms.MultipleChoiceField(
         required=False,

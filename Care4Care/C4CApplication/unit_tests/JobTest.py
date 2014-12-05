@@ -21,7 +21,7 @@ class JobTest(MySeleniumTests):
         time.sleep(1)
         
         # Create the page object
-        self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
+        self.selenium.get('%s%s' % (self.live_server_url, '/newjob/offer'))
         time.sleep(2)
         page = CreateJobPage(self.selenium)
         
@@ -31,7 +31,14 @@ class JobTest(MySeleniumTests):
         
         page = page.click_on_post_req()
         
-        self.assertEqual(0, 0)
+        job = Job.objects.filter(title="New job test", description="New job description")
+        self.assertEqual(len(job), 1)
+        job = job[0]
+        self.assertEqual(job.title, "New job test")
+        self.assertEqual(job.description, "New job description")
+        self.assertEqual(job.place, "At my place")
+        self.assertEqual(job.branch.name, "LLN")
+        self.assertEqual(job.type, False)
         return True
     
     # test pour creer une offre de job (I want to help -> offrir ses services)
@@ -44,7 +51,7 @@ class JobTest(MySeleniumTests):
         time.sleep(1)
         
         # Create the page object
-        self.selenium.get('%s%s' % (self.live_server_url, '/newjob/offer'))
+        self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
         page = CreateJobPage(self.selenium)
         
         # Test create job
@@ -53,7 +60,14 @@ class JobTest(MySeleniumTests):
         
         page = page.click_on_post_req()
         
-        self.assertEqual(0, 0)
+        job = Job.objects.filter(title="New job test 2", description="New job description 2")
+        self.assertEqual(len(job), 1)
+        job = job[0]
+        self.assertEqual(job.title, "New job test 2")
+        self.assertEqual(job.description, "New job description 2")
+        self.assertEqual(job.place, "Somewhere")
+        self.assertEqual(job.branch.name, "LLN")
+        self.assertEqual(job.type, True)
         return True
     
     def test_accept_offer(self):
@@ -68,12 +82,18 @@ class JobTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
         
         page = JobDetailsPage(self.selenium)
-        time.sleep(1)
         
         page = page.click_on_participate()
         time.sleep(1)        
         
-        self.assertEqual(0, 0)
+        job = Job.objects.filter(description="Bonjour, j'ai besoin d'aide pour aller faire mes courses.", place="Rue de l'Eglise, 40, 1330, Rixensart")
+        self.assertEqual(len(job), 1)
+        job = job[0]
+        bool = False
+        for mem in job.member_set.all():
+            if mem.mail == "mathieu.jadin@student.uclouvain.be":
+                bool = True
+        self.assertEqual(bool, True)
         return True
     
     def test_accept_help(self):
@@ -90,10 +110,18 @@ class JobTest(MySeleniumTests):
         page = JobDetailsPage(self.selenium)
         time.sleep(1)
         
-        page = page.click_on_choose_member()
+        page = page.click_on_choose_member(1)
         time.sleep(3)        
         
-        self.assertEqual(0, 0)
+        job = Job.objects.filter(title="Me conduire a LLN", date="2014-12-19")
+        self.assertEqual(len(job), 1)
+        job = job[0]
+        bool = False
+        for mem in job.member_set.all():
+            if mem.mail == "olivier.mauvaisaventure@gmail.com":
+                bool = True
+        self.assertEqual(bool, True)
+        self.assertEqual(job.accepted, True)
         return True
     
     def test_confirm_job_is_done(self):
@@ -101,11 +129,12 @@ class JobTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        page = page.quick_login_successful('yves.delaville@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         # Test confirm job
-        self.selenium.get('%s%s' % (self.live_server_url, '/confirmjobdone/1'))
+        job = Job.objects.filter(title="Visiter l'Atomium")[0]
+        self.selenium.get('%s%s' % (self.live_server_url, '/confirmjobdone/%d' % (job.id)))
         
         page = ConfirmJobDonePage(self.selenium)
         page = page.enter_time_to_pay('40')

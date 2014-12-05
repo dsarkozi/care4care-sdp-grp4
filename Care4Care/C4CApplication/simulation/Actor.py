@@ -36,7 +36,7 @@ class Actor(object):
         if len(action_list) == 0:
             return None
 
-        actions_to_perform = random.choice(action_list)  # We take an action randomly
+        actions_to_perform = action_list[0]  # We take an action randomly
 
         # We executes all the actions
         result_list = []
