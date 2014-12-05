@@ -50,7 +50,7 @@ class HelperSimulation(MySeleniumTests):
         # login
         page = HomePage(self.selenium)
         # the test fails if marcel is not in the DB
-        page = page.login_successful("kim.mens@gmail.com","azertyuiop") # TODO
+        page = page.login_successful("marcel_dupont@gmail.com","azertyuiop") 
         time.sleep(1)
         
         page = page.click_home()
