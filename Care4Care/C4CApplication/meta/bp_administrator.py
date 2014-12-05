@@ -295,7 +295,15 @@ class BPAdministrator(BranchOfficer):
             return False
         member = member[0]
         member.tag = Member.TAG['bp_admin']
-        self.db_member.tag = Member.TAG['volunteer and verified']
+
+        new_tag = 4 + 8  # The bp admin can be downgraded to volunteer and verified member
+        # But if the old bp admin is also a branch officer, he has to stay branch officer
+        branch_list = Branch.objects.all()
+        for branch in branch_list:
+            if branch.branch_officer == self.db_member.mail:
+                new_tag = 16  # The old bp admin will be branch officer
+
+        self.db_member.tag = new_tag
         member.save()
         self.db_member.save()
         return True
