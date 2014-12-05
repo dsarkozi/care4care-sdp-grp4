@@ -1,6 +1,7 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
+from C4CApplication.page_objects.JobDetailsPage import JobDetailsPage
 
 import time
 
@@ -8,11 +9,13 @@ import time
 class HelpedSimulation(MySeleniumTests):
     
     def test_simulation_ask_help(self):
+        # show how we can ask for help
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         time.sleep(2)
         
         page = HomePage(self.selenium)
+        # si le click bug -> aller dans homepage et changer le nom
         page = page.click_on_sign_up() # Inscription page
         time.sleep(2)
         page = page.set_global_field('Janine', 'cougnou', 'janine_kou@gmail.com', 'azertyuiop', 'F', '16',\
@@ -45,10 +48,24 @@ class HelpedSimulation(MySeleniumTests):
         # show how to accept a participation
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(2)
         
-        # voir choose this member 
-        # TODO
+        # login
+        page = HomePage(self.selenium)
+        page = page.login_successful("janine_kou@gmail.com","azertyuiop") 
+        time.sleep(1)
         
+        page = page.click_home()
+        time.sleep(1)
+        page = HomePage(self.selenium)
+        
+        # TODO dans HomePage
+        # click on last demand (of help) -> mine
+        # on arrive dans jobDetails
+        
+        # click on choose this member(0)
+        
+        # logout
         return True
     
     def test_simulation_complaint_theft(self):

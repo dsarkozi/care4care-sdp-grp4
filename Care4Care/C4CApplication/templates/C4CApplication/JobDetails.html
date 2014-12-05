@@ -59,7 +59,8 @@
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
-				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a></br>
+				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. 
+						Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a>
 			{% endif %}
 		{% endif %}
 		
