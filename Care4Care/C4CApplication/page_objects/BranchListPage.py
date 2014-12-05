@@ -17,7 +17,7 @@ class BranchListPage(FixedPage):
         self.check_box[num].click()
         return self
     
-    def click_on_branch_details(self, num): # TODO
+    def click_on_branch_details(self, num): 
         self.links_branch_details[num].click()
         return self
         
