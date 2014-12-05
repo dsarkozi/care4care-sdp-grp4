@@ -15,18 +15,18 @@ class BranchOffSimulation(MySeleniumTests):
 
         time.sleep(2)
         page = HomePage(self.selenium)
-        page = page.login_successful("kim.mens@gmail.com","azertyuiop") # kim is branch off of lln
+        page = page.login_successful("kim.mens@gmail.com", "azertyuiop")  # Kim is branch officer of LLN
         
         time.sleep(3)
-        page = page.click_on_care4care_branches() # click on branches
+        page = page.click_on_care4care_branches()  # click on branches
         time.sleep(1)
         page = BranchListPage(self.selenium)
-        page = page.click_on_branch_details(0) # click on lln -> MemberListPage
+        page = page.click_on_branch_details(0)  # click on lln -> MemberListPage
         time.sleep(1)
         
-        page = page.click_on_member(1) # click on a member -> MemberDetailsPage
+        page = page.click_on_member(1)  # click on a member -> MemberDetailsPage
         time.sleep(1)
-        page = page.click_on_log_as_member() # log as the member 
+        page = page.click_on_log_as_member()  # log as the member
         time.sleep(1)
         
         page = MyCare4Care(self.selenium)

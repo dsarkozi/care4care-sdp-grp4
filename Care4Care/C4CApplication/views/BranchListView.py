@@ -10,7 +10,7 @@ class BranchListView(FormView):
     template_name = "C4CApplication/BranchList.html"
     form_class = BranchListForm
     success_url = "branchlist"
-    member = None
+    user = None
 
     def dispatch(self, request, *args, **kwargs):
         if 'email' not in self.request.session:
@@ -44,7 +44,7 @@ class BranchListView(FormView):
         branch_list = form.cleaned_data['branch_list']
 
         # Updates the list of the branches of the user
-        BranchListView.member.branch = branch_list
-        BranchListView.member.save()
+        BranchListView.user.db_member.branch = branch_list
+        BranchListView.user.db_member.save()
 
         return super(BranchListView, self).form_valid(form)
