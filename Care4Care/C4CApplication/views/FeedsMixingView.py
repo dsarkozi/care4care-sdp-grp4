@@ -14,7 +14,6 @@ class FeedsMixingView(MultipleObjectMixin):
     context = super(FeedsMixingView, self).get_context_data(**kwargs)
     self.object_list = context['feed_list']
     
-    # Pour trier par date, on doit implémenter une classe Meta...
     offer_list = Job.objects.filter(type=False)
     demand_list = Job.objects.filter(type=True)
     

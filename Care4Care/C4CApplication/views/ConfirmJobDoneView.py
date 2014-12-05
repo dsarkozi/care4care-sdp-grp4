@@ -44,7 +44,6 @@ class ConfirmJobDoneView(JobDetailsView):
 
     
     def form_valid(self, form):
-        # TODO test if the member has session variables !! -> redirection
         if ConfirmJobDoneView.user is None:
             ConfirmJobDoneView.user = models.Member.objects.get(mail=self.request.session['email'])
 
