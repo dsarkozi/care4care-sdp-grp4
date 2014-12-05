@@ -22,7 +22,7 @@ class BranchListView(FormView):
         context = super(BranchListView, self).get_context_data(**kwargs)
 
         # Get the personal list of the member
-        if BranchListView.member is None:
+        if BranchListView.user.db_member is None:
             BranchListView.member = Member.objects.get(mail=self.request.session['email'])
 
         branch_checked_name_list = []
