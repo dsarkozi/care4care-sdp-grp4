@@ -14,5 +14,5 @@ class SearchForm(forms.Form):
 
     type_of_job = forms.ChoiceField(
         widget=forms.RadioSelect,
-        choices=(('offer', 'See help offers'), ('demand', 'Send help demands'))
+        choices=(('offer', 'See help offers'), ('demand', 'See help demands'))
     )

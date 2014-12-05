@@ -54,6 +54,12 @@ class RegistrationView(CreateView):
         member = form.save(commit=False)
         member.tag = form.cleaned_data['tag']
         member.gender = form.cleaned_data['gender']
+        picture = form.cleaned_data['picture']
+        if picture is not None:
+            image_name = "%s" % member.mail
+            image_name = image_name.replace('@', '.').replace('.', '')+".jpg"
+            picture.name = image_name
+            member.picture = picture
         member.save()
         return super(RegistrationView, self).form_valid(form)
 
