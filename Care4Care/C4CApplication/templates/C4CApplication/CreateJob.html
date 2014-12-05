@@ -28,7 +28,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         <ul>
         {% for choice in form.category %}
             {% if forloop.last %}
-                <li>{{ choice }} : {{ form.other }}</li>
+                <li>{{ choice }} : {{ form.other_category }}</li>
             {% else %}
                 <li>{{ choice }}</li>
             {% endif %}

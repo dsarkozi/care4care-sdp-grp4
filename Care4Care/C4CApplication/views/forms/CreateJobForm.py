@@ -14,6 +14,7 @@ class CreateJobForm(forms.ModelForm):
             'title',
             'description',
             'category',
+            'other_category',
             'frequency',
             'visibility',
             'date',
@@ -30,6 +31,7 @@ class CreateJobForm(forms.ModelForm):
                 attrs = {'rows':3, 'placeholder':'Location details'}
             ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
+            'other_category' : forms.TextInput(attrs={'placeholder' : 'Specify'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -74,12 +76,12 @@ class CreateJobForm(forms.ModelForm):
             widget=forms.RadioSelect,
             choices=Job.CAT
         )
-        self.fields['other'] = forms.CharField(
-            required=False,
-            widget=TextInput(
-                attrs={'placeholder':'Other'}    #TODO disabled
-            )
-        )
+        # self.fields['other'] = forms.CharField(
+        #     required=False,
+        #     widget=TextInput(
+        #         attrs={'placeholder':'Other'}    #TODO disabled
+        #     )
+        # )
 
         # Job timeline fieldset
         self.fields['frequency'] = forms.ChoiceField(
@@ -141,8 +143,8 @@ class CreateJobForm(forms.ModelForm):
         #TODO Verify if further validations are needed for the nested selectors
         
         cleaned_data = super(CreateJobForm, self).clean()
-        category = cleaned_data.get("categories")
-        other = cleaned_data.get("other")
+        category = cleaned_data.get("category")
+        other = cleaned_data.get("other_category")
         if category == 'other' and other == '':
             self.add_error("other", forms.ValidationError("If other is checked, fill the text input in.", code='missing'))
         return cleaned_data
