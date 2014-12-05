@@ -73,7 +73,7 @@ urlpatterns = patterns('',
     url(r'^logout$', LogoutView.as_view(), name='logOut'),
     url(r'^jobdetails/(?P<pk>\d+)$', JobDetailsView.as_view(), name='jobdetails'),
     url(r'^participatejob/(?P<pk>\d+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', ParticipateJobRedirectView.as_view(), name='participatejob'),
-    url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),
+    url(r'^confirmjobdone/(?P<pk>\d+)$', ConfirmJobDoneView.as_view(), name='confirmjobdone'),#not
     
     #url(r'^profile$', 'C4CApplication.views.test.profile'),
     url(r'^memberdetails/(?P<pk>(\w+.)+\w+@(\w+.)+\w+)$', MemberDetailsView.as_view(), name='memberdetails'),
@@ -83,11 +83,11 @@ urlpatterns = patterns('',
     url(r'^newmessage$', NewMessageView.as_view(), name='newmessage'),
 
     url(r'^acceptbill/(?P<pk>\d+)$', AcceptBillView.as_view(), name='acceptBill'), #not
-    url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),
+    url(r'^confirmBill/(?P<pk>\d+)/(?P<confirm>\d+)$', ConfirmBillRedirectView.as_view(), name='confirmBill'),#not
 
     url(r'^transferrights/$', TransferRightsView.as_view(), name='transferrights'),
     url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
-    url(r'^transferrightsbranch/(?P<branch_name>\w+)/$', TransferRightsBranchView.as_view(), name='transferrightsbranch'),
+    url(r'^transferrightsbranch/(?P<branch_name>\w+)/$', TransferRightsBranchView.as_view(), name='transferrightsbranch'),#not ### erreurs ###
 
     url(r'^deletememberbpa/$', DeleteMemberBPAView.as_view(), name='deletememberbpa'),
     #url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
@@ -105,8 +105,8 @@ urlpatterns = patterns('',
     url(r'^modifprofileredirect/(?P<action>\d+)$', ModifProfileRedirectView.as_view(), name='modifprofileredirect'),
         
     url(r'^registration$', RegistrationView.as_view() , name='registration'),
-    url(r'^registration/eidrequest$', EIDRedirectView.as_view()),
-
+    url(r'^registration/eidrequest$', EIDRedirectView.as_view(), name='eidrequest'),
+    
     url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
     url(r'^tests/openid$', OIDTest.oidtest),

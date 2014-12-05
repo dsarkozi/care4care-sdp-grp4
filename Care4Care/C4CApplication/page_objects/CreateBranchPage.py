@@ -14,7 +14,7 @@ class CreateBranchPage(FixedPage):
         self.street_input = self.driver.find_element_by_name('street')
         self.zip_input = self.driver.find_element_by_name('zip')
         self.town_input = self.driver.find_element_by_name('town')
-        self.submit_button = self.submit_button = self.driver.find_element_by_xpath('//input[@value="Submit"]')
+        self.submit_button = self.submit_button = self.driver.find_element_by_xpath('//input[@id="Submit"]')
         
     def fill_in_info(self, name, br_town, br_of, street, zip, town): 
         self.name_input.send_keys(name)

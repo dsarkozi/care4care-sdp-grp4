@@ -60,15 +60,6 @@ class RegistrationForm(ModelForm):
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
 
-        self.auto_id = False
-        if eid:
-            self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['street'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['zip'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['town'].widget.attrs.update({'disabled' : 'true'})
-            self.fields['birthday'].widget.attrs.update({'disabled' : 'true'})
-
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=((1, _("Without time crediting")), (2, _("With time crediting"))),
@@ -77,4 +68,15 @@ class RegistrationForm(ModelForm):
         self.fields['gender'] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=(('M', 'M'), ('F', 'F') ), label = _('gender'))
+
+        self.auto_id = False
+        if eid:
+            if kwargs['data']['first_name']: self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['last_name']: self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['street']: self.fields['street'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['zip']: self.fields['zip'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['town']: self.fields['town'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['birthday_day'] and kwargs['data']['birthday_month'] and kwargs['data']['birthday_year']:
+                self.fields['birthday'].widget.attrs.update({'disabled' : 'true'})
+            if kwargs['data']['gender']: self.fields['gender'].widget.attrs.update({'disabled' : 'true'})
         

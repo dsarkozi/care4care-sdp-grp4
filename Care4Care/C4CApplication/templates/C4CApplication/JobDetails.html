@@ -45,13 +45,30 @@
 
 
     {% block accept_bill %}
+    
 		{% endblock %}
 
+
+	<center>
+	<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;padding:1em;margin-top:2em;width:20em; height:auto;text-align: left;">
+    <h2> </h2>
+	{% block form_job_done %}
+
+
+	
+	</center>
+	{% endblock %}
+	</section>
+		
 <center style="margin:2em;">
 	<table class="tab1" style="" >
 	  <tr>
 		<th class=".tab1-3" colspan="6"> <p>{% trans "Job details" %}</p>
 		<p>
+		
+
+		
 		{% if not job.accepted and member.mail != job.mail %}
 			{% if member in job.member_set.all %}
 			 
@@ -65,7 +82,7 @@
 		{% endif %}
 		
 		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
 		</p>
 		
@@ -77,7 +94,7 @@
 		{% trans "Creator of the job"%} :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
-				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value={% trans "ChoiceMember"%} class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
+				<a href="{% url 'memberdetails' mem.mail %}" type="submit">{{mem.first_name}} {{mem.last_name}}</a>
 			{% endif %}
 		{% endfor %} <br/>      </td>
 		
@@ -106,7 +123,7 @@
 		<td class="tab1-4">     {% trans "Mail"%} : </td>
 		
 		<td class="tab1-3">     
-		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ job.mail }}  </a> </td>
+		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember"> {{ job.mail }}  </a> </td>
 		
 	  </tr>
 		 
@@ -183,21 +200,39 @@
 	 {% if job.frequency == 0 %}
 	 <tr>
 		<td class="tab1-4">   {% trans "Job accepted"%} :     </td>
-		<td class="tab1-3">     {{ job.accepted }}    </td>
+		<td class="tab1-3">
+			{% if job.accepted %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}
+		</td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
 		<td class="tab1-4">  {% trans "Job done"%} :      </td>
-		<td class="tab1-3">  {{ job.done }}      </td>
+		<td class="tab1-3">  
+			{% if job.done %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}     
+		</td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
 		<td class="tab1-4">  {% trans "Job payed"%} :      </td>
-		<td class="tab1-3">     {{ job.payed }}    </td>
+		<td class="tab1-3">    
+			{% if job.payed %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}
+		</td>
 		
 	  </tr>
 	  
@@ -239,7 +274,7 @@
 			 <td style="border:none;"> <a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a> </td> 
 					{% if not job.accepted and mem.mail != member.mail %}
 						{% if member.mail == job.mail %}
-			<td style="border:none;">	<a href="{% url 'participatejob' job.id mem.mail %}"  class="btn" style="font-size:80%;"> 
+			<td style="border:none;">	<a href="{% url 'participatejob' job.id mem.mail %}"  id="choose_this_member" class="btn" style="font-size:80%;"> 
 					 {% trans "Choose this member"%} </a></td>
 					
 						{% endif %}
@@ -299,9 +334,9 @@
 					<td>
 						{% if not j.accepted and member.mail != j.mail %}
 							{% if member in j.member_set.all %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
 							{% else %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a></br>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn">{% trans "Participate"%}</a></br>
 							{% endif %}
 						{% endif %}
 					</td>
@@ -310,9 +345,6 @@
 		</table> </br> </br> </br>
 	{% endif %}
 
-
-		{% block form_job_done %}
-		{% endblock %}
 
 		</center>
 		

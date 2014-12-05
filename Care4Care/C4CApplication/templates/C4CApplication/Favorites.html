@@ -40,8 +40,8 @@
 		<td class="tab1-3"> <a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ relation.mail }}  </a> </td>
 		<td class="tab1-3"> <a href="{% url 'removeFavorite' relation.mail %}"
 							type="submit" value="Remove" class="btn"
-							onclick="return window.confirm('Are you sure you want to remove {{relation.first_name}} {{relation.last_name}} from your favorites ?')"
-							>Remove</a>  </td>
+							onclick="return window.confirm( '{% trans "Are you sure you want to remove" %} {{relation.first_name}} {{relation.last_name}} {% trans "from your favorites"%} ?')"
+							>{% trans "Remove"%}</a>  </td>
 	</tr>
 	{% endfor %}
 	

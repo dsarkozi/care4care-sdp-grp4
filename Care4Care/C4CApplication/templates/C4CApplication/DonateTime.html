@@ -38,7 +38,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;padding-right:2e
             <ul>
             {% for recipient in donateTime.receiver %}
                 {% if forloop.last %}
-                    <li>{{ recipient }} : {{ donateTime.userDropdown }}</li>
+                    <li>{{ recipient }} : <div id="">{{ donateTime.userDropdown }}</div></li>
                 {% else %}
                     <li>{{ recipient }} : {{ donateTime.branchDropdown }}</li>
                 {% endif %}
@@ -46,7 +46,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;padding-right:2e
             </ul>
         </fieldset>
         </br>
-        <input type="submit" value={% trans "Donate time"%} class = "btn" onclick="return window.confirm('Are you sure you want to give your time ?')">
+        <input type="submit" id="donate" value={% trans "Donate time"%} class = "btn" onclick="return window.confirm('Are you sure you want to give your time ?')">
     </form>
 
 {% endblock %}

@@ -1,24 +1,38 @@
-{% extends "C4CApplication/FixedStructure.html" %}
+{% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-{% load i18n %}
-{% block content %}
+{% load i18n %}		
+{% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
 
+{% block menu %} 
+
+ 
+
+	<section style="border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;padding-top:1em;padding-bottom:2em;margin-top:1em;width:35em; height:auto;">
+   
+   <center>
+   
 	 <!-- Job form -->
 	 <h1>Job Search</h1>
 	 <form method="post" >
 	    {% csrf_token %}
+ 	
 	    {{ searchform.email_member.errors }}
 	    {{ searchform.email_member }}
 	    {{ searchform.type_of_job.errors }}
-	    {{ searchform.type_of_job }}
-	    <input type="submit" value="Filter" />
-	 </form>
+	    <table><tr><td>{{ searchform.type_of_job }}</td></tr></table>
+	  
 
-    <!-- Job table -->
+	    <input type="submit" value="Filter" class ="btn"/>
+	 </form>
+     <br/>
+
+
+
 	<table class="tab1" style="margin-left:1em;" >
 	  <tr>
-		<th class=".tab1-3" colspan="6">{% trans "Recent feeds of demand"%}</th>
+		<th class=".tab1-3" colspan="6">{% trans "Search results"%}</th>
 	  </tr>
 	  <tr>
 		<td class="tab1-4">{% trans "Job category"%}</td>
@@ -40,6 +54,9 @@
 	  {% endfor %}
 
 	</table>
-</center>
+
 
 {% endblock %}
+
+</section>
+	</center>

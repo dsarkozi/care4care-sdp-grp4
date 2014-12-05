@@ -11,11 +11,11 @@ class MemberListPage(FixedPage):
     
     def __init__(self, driver):
         super().__init__(driver)
-        self.buttons_promote_verified   = self.driver.find_elements_by_xpath('//a[@value="promote_verified"]')
-        self.buttons_no_more_verified   = self.driver.find_elements_by_xpath('//a[@value="no_more_verified"]')
-        self.buttons_promote_volunteer  = self.driver.find_elements_by_xpath('//a[@value="promote_volunteer"]')
-        self.buttons_no_more_volunteer  = self.driver.find_elements_by_xpath('//a[@value="no_more_volunteer"]')
-        self.buttons_remove_from_branch = self.driver.find_elements_by_xpath('//a[@value="remove_from_branch"]')
+        self.buttons_promote_verified   = self.driver.find_elements_by_xpath('//a[@id="promote_verified"]')
+        self.buttons_no_more_verified   = self.driver.find_elements_by_xpath('//a[@id="no_more_verified"]')
+        self.buttons_promote_volunteer  = self.driver.find_elements_by_xpath('//a[@id="promote_volunteer"]')
+        self.buttons_no_more_volunteer  = self.driver.find_elements_by_xpath('//a[@id="no_more_volunteer"]')
+        self.buttons_remove_from_branch = self.driver.find_elements_by_xpath('//a[@id="remove_from_branch"]')
         self.members_links = self.driver.find_elements_by_class_name("member_details")
         
     def click_on_member(self, num):
