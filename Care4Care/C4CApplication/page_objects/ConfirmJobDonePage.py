@@ -9,7 +9,7 @@ class ConfirmJobDonePage(FixedPage):
     def __init__(self, driver):
         super().__init__(driver)
         self.job_time_input = self.driver.find_element_by_name("time_to_pay")
-        self.confirm_button = self.selenium.find_element_by_xpath('//input[@value="Confirm"]')
+        self.confirm_button = self.selenium.find_element_by_xpath('//input[@id="Confirm"]')
         
     def enter_time_to_pay(self, time):
         self.job_time_input.send_keys(str(time))
