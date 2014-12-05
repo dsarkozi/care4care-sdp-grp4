@@ -100,12 +100,12 @@ class CreateJobForm(forms.ModelForm):
 
 
     # Job timeline fieldset
-    subfrequency = forms.ChoiceField(
-        widget=forms.RadioSelect(
-            attrs={}   #TODO disabled
-        ),
-        choices=(('specific','Specific day'), ('weekday','Weekdays')),
-    )
+    # subfrequency = forms.ChoiceField(
+    #     widget=forms.RadioSelect(
+    #         attrs={}   #TODO disabled
+    #     ),
+    #     choices=(('specific','Specific day'), ('weekday','Weekdays')),
+    # )
     WEEKDAYS = (
         ('monday','Monday'),
         ('tuesday','Tuesday'),
@@ -121,18 +121,18 @@ class CreateJobForm(forms.ModelForm):
         ),
         choices=WEEKDAYS
     )
-    DAYPARTS = (
-        ('morning','Morning'),
-        ('afternoon','Afternoon'),
-        ('evening','Evening'),
-        ('any','Anytime')
-    )
-    dayparts = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(
-            attrs={}   #TODO disabled
-        ),
-        choices=DAYPARTS
-    )
+    # DAYPARTS = (
+    #     ('morning','Morning'),
+    #     ('afternoon','Afternoon'),
+    #     ('evening','Evening'),
+    #     ('any','Anytime')
+    # )
+    # dayparts = forms.MultipleChoiceField(
+    #     widget=forms.CheckboxSelectMultiple(
+    #         attrs={}   #TODO disabled
+    #     ),
+    #     choices=DAYPARTS
+    # )
 
 
     def clean(self):

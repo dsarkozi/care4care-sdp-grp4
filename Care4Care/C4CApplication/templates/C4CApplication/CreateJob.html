@@ -58,7 +58,8 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
 {#                        </ul>#}
                     </li>
                 {% elif forloop.counter == 2 %}
-                    <li>{{ freq }}</li>
+                    <li>{{ freq }} : {{ form.weekdays }}
+                    </li>
                 {% else %}
                     <li>{{ freq }}</li>
 {#                {% else %}#}
