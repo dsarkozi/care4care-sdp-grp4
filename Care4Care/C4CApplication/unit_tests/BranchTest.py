@@ -28,11 +28,3 @@ class BranchTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
-    
-    """def see_branch_members_list_test(self): # Faire des tests de db
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True"""

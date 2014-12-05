@@ -22,21 +22,26 @@
 		</th>
 	  </tr>
 	  
+	  {% if branch.town %}
 	  <tr>
 		<td class="tab1-4">{% trans "Area"%}  </td>
 		<td class="tab1-3">{{ branch.town }}</td>
 	  </tr>
-	  	    
+	  	 {% endif %}  
+	  	  
+	  	  {% if branch.donation %}  
 	  	     <tr>
 		<td class="tab1-4">{% trans "Current donation amount"%} </td>
 		<td class="tab1-3">{{ branch.donation }}</td>
 	  </tr>
 	   <tr>
-	   
+	    {% endif %} 
+	    
+	   {% if branch.street %}
 		<td class="tab1-4">{% trans "Address of Branch office"%} : </td>
 		<td class="tab1-3">{{ branch.street }}, {{ branch.zip }}, {{ branch.town }}</td>
 	  </tr>
-	  
+	   {% endif %} 
 	
 	   <tr>
 		<td class="tab1-4">{% trans "Branch officer's mail"%}  </td>

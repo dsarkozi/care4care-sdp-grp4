@@ -115,15 +115,6 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    #TODO
-    def test_feeds_update(self):
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True
-    
     # TODO wait for this to be implemented
     def test_search_job(self):
         self.populate_db()

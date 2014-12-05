@@ -1,16 +1,19 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils.translation import pgettext_lazy
 from C4CApplication.models.member import Member
+from django.utils.translation import string_concat
+from django.utils.translation import ugettext_lazy
 
 
 class ModifProfileForm(forms.Form):
 
     new_password   = forms.CharField( min_length=8, max_length=100 , required=False , widget=forms.PasswordInput(attrs={'placeholder': _('new password'), 'size' : 44}))
     password   = forms.CharField( min_length=8, max_length=100 , required=False  , widget=forms.PasswordInput(attrs={'placeholder': _('password verification'), 'size' : 44}))
+    affiche = _('street, number, more informations')#_('street, number, more informations')
 
     #adresse
-    street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': _('street, number, more information'), 'size' : 32}))
+    street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': affiche, 'size' : 32}))
     zip     = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': _('zip'),    'size' : 10}))
     town    = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': _('town'),   'size' : 32}))
     

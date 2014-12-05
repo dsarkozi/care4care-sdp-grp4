@@ -54,12 +54,3 @@ class ProfileTest(MySeleniumTests):
         
         self.assertEqual(0, 0)
         return True
-    
-    # TODO c'est du details, on dera ca dans les simulations (dixit mathieu)
-    """def confidentiality_test(self):
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True"""

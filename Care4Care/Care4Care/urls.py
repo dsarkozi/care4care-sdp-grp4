@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from django.views.generic import ListView
+from C4CApplication.views.SearchJobView import SearchJobView
 from C4CApplication.views.AccountStatsView import AccountStatsView
 
 from C4CApplication.views.CreateJobView import CreateJobView
@@ -105,6 +106,8 @@ urlpatterns = patterns('',
         
     url(r'^registration$', RegistrationView.as_view() , name='registration'),
     url(r'^registration/eidrequest$', EIDRedirectView.as_view()),
+
+    url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
     url(r'^tests/openid$', OIDTest.oidtest),
     url(r'^tests/openid2$', OIDTest.oidtest2)

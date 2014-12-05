@@ -22,7 +22,7 @@ class BranchOfficerTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
         page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
-        
+        time.sleep(1)
         self.selenium.get('%s%s' % (self.live_server_url, '/branchdetails/LLN/'))
         time.sleep(1)
         
@@ -43,15 +43,15 @@ class BranchOfficerTest(MySeleniumTests):
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
         page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
-        
-        self.selenium.get('%s%s' % (self.live_server_url, '/memberdetails/olivier.mauvaventure%40gmail.com'))
+        time.sleep(1)
+        self.selenium.get('%s%s' % (self.live_server_url, '/memberdetails/olivier.mauvaisaventure%40gmail.com'))
         time.sleep(1)
 
         page = MemberDetailsPage(self.selenium)
         time.sleep(1)
         
         page = page.click_on_log_as_member()
-        time.sleep(1)
+        time.sleep(2)
         
         self.assertEqual(0, 0)
         return True
