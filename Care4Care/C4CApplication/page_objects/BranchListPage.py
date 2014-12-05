@@ -1,4 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
+from C4CApplication.page_objects.MemberListPage import MemberListPage
 from selenium.webdriver.common.by import By
 
 
@@ -19,7 +20,8 @@ class BranchListPage(FixedPage):
     
     def click_on_branch_details(self, num): 
         self.links_branch_details[num].click()
-        return self
+        time.sleep(1)
+        return MemberListPage(self.driver)
         
     def click_on_submit(self):
         self.submit_button.click()

@@ -1,5 +1,4 @@
-from time import strftime, gmtime
-
+from C4CApplication.meta.time import Time
 
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.models import Member, Branch, Job
@@ -174,7 +173,7 @@ class BPAdministrator(BranchOfficer):
         member.save()
         return True
 
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
                    comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
                    other_category='', place='', visibility='volunteer', recursive_day=''):
         """
@@ -236,7 +235,7 @@ class BPAdministrator(BranchOfficer):
         """
         branch = Branch()
         branch.name = name
-        branch.town = branch_town
+        branch.branch_town = branch_town
         branch.street = street
         branch.zip = zip
         branch.town = town
@@ -296,8 +295,15 @@ class BPAdministrator(BranchOfficer):
             return False
         member = member[0]
         member.tag = Member.TAG['bp_admin']
-        self.db_member.tag = Member.TAG['verified']
-        # TODO !!! -> tag change
+
+        new_tag = 4 + 8  # The bp admin can be downgraded to volunteer and verified member
+        # But if the old bp admin is also a branch officer, he has to stay branch officer
+        branch_list = Branch.objects.all()
+        for branch in branch_list:
+            if branch.branch_officer == self.db_member.mail:
+                new_tag = 16  # The old bp admin will be branch officer
+
+        self.db_member.tag = new_tag
         member.save()
         self.db_member.save()
         return True

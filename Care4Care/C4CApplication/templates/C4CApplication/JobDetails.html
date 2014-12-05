@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 	{% load mathfilters %}
+	{% load i18n %}
 {% block content %}
 
 
@@ -11,20 +12,20 @@
 <center>
 <table style="top:1em; margin-left:0px;margin-bottom:2em; ">
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn" style="border-bottom: 5px solid navy;">Messages</a></td>
-	<td><a href="{% url 'profile' %}" class="btn" style="border-bottom: 5px solid navy;">Profile</a></td>
+	<td><a href="{% url 'messageList' 1 %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Messages" %}</a></td>
+	<td><a href="{% url 'profile' %}" class="btn" style="border-bottom: 5px solid navy;"> {% trans "Profile" %}</a></td>
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="{% url 'favorites' %}" class="btn" style="border-bottom: 5px solid navy;">Favorites</a></td>
-    <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">Account & Stats</a></td>
-      {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
+    <td><a href="{% url 'favorites' %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Favorites" %}</a></td>
+    <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Account & Stats" %}</a></td>
+      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator" %} {% endcomment %}
         
-      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">New branch</a></td>
-  <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Delete a member</a> </td> 
-     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">Transfer rights</a></td>
+      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "New branch" %}</a></td>
+  <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Delete a member" %}</a> </td> 
+     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Transfer rights" %}</a></td>
  
     {% endif %}
     
-        <td><a href="{% url 'logOut' %}" class="btn" value="Logout" style="border-bottom: 5px solid navy;">Logout</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
+        <td><a href="{% url 'logOut' %}" class="btn" value="Logout" style="border-bottom: 5px solid navy;"> {% trans "Logout" %}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
   
 </tr>
@@ -38,21 +39,21 @@
 <center>
 	<table class="tab1" style="top:27em" >
 	  <tr>
-		<th class=".tab1-3" colspan="6"> <p>Job details</p>
+		<th class=".tab1-3" colspan="6"> <p>{% trans "Job details" %}</p>
 		<p>
 		{% if not job.accepted and member.mail != job.mail %}
 			{% if member in job.member_set.all %}
 			 
 		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">Stop participating</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
-				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. Check the occurences of the job at the end of this description.'); return false;}">Participate</a></br>
+				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a></br>
 			{% endif %}
 		{% endif %}
 		
 		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">Delete job</a> </br>
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
 		</p>
 		
@@ -61,10 +62,10 @@
 	  
     <tr>
 		<td class="tab1-4">    
-		Creator of the job :    </td>
+		{% trans "Creator of the job"%} :    </td>
 		<td class="tab1-3">   {% for mem in job.member_set.all %}
 			{% if mem.mail == job.mail %}
-				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value="ChoiceMember" class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
+				<a href="{% url 'memberdetails' mem.mail %}" type="submit" value={% trans "ChoiceMember"%} class="participate-job">{{mem.first_name}} {{mem.last_name}}</a>
 			{% endif %}
 		{% endfor %} <br/>      </td>
 		
@@ -72,9 +73,9 @@
 	  
 	  {% if job.regular_job != None %}
 		  <tr>
-			<td class="tab1-4"> Regular job :    </td>
+			<td class="tab1-4"> {% trans "Regular job"%} :    </td>
 			<td class="tab1-3">
-				<a href="{% url 'jobdetails' job.regular_job.id %}" type="submit" value="get_regular" class="get_regular">Go to the regular job</a>
+				<a href="{% url 'jobdetails' job.regular_job.id %}" type="submit" value="get_regular" class="get_regular">{% trans "Go to the regular job"%}</a>
 			</td>
 			
 		  </tr>
@@ -82,7 +83,7 @@
 	  
 	  {% if job.frequency == 0 %}
 		  <tr>
-			<td class="tab1-4">     Date of the job : </td>
+			<td class="tab1-4">     {% trans "Date of the job"%} : </td>
 			
 			<td class="tab1-3">     {{ job.date }}    </td>
 			
@@ -90,7 +91,7 @@
 	  {% endif %}
 	  
 	  	 <tr>
-		<td class="tab1-4">     Mail : </td>
+		<td class="tab1-4">     {% trans "Mail"%} : </td>
 		
 		<td class="tab1-3">     
 		<a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ job.mail }}  </a> </td>
@@ -98,7 +99,7 @@
 	  </tr>
 		 
 	 <tr>
-		<td class="tab1-4">  Hour of the start :    </td> 
+		<td class="tab1-4">{% trans "Hour of the start"%} :    </td> 
 		
 		
 	
@@ -112,7 +113,7 @@
 	  
 	  
 	  <tr>
-		<td class="tab1-4">    Frequency :    </td>
+		<td class="tab1-4">    {% trans "Frequency"%} :    </td>
 		<td class="tab1-3">      
 		{% for key, value in job.FREQ %}
 			{% if key == job.frequency %}
@@ -129,7 +130,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-4">  Duration :       </td>
+		<td class="tab1-4">  {% trans "Duration"%} :       </td>
 		<td class="tab1-3">     {% if job.duration|mod:60 < 10 %}
 			{{ job.duration|intdiv:60 }}h0{{job.duration|mod:60}}
 		{% else %}
@@ -138,7 +139,7 @@
 		
 	  </tr>
 	  <tr>
-		<td class="tab1-4">    Category :    </td>
+		<td class="tab1-4">    {% trans "Category"%} :    </td>
 		<td class="tab1-3">   
 		{% for key, value in job.CAT %}
 			{% if key == job.category %}
@@ -152,38 +153,38 @@
 	  </tr>
 	  <tr>
 		<td class="tab1-4">  
-		Type of job :      </td>
+		{% trans "Type of job"%} :      </td>
 		<td class="tab1-3">    
 		{% if job.type %}
-			Demand
+			{% trans "Demand"%}
 		{% else %}
-			Offer
+			{% trans "Offer"%}
 		{% endif %} <br/>     </td>
 		
 	  </tr>
 	  
 	  <tr>
-		<td class="tab1-4">     Address :   </td>
+		<td class="tab1-4">     {% trans "Address"%} :   </td>
 		<td class="tab1-3"> {{ job.place }} <br/>    </td>
 	  </tr>
 	
 	 {% if job.frequency == 0 %}
 	 <tr>
-		<td class="tab1-4">   Job accepted :     </td>
+		<td class="tab1-4">   {% trans "Job accepted"%} :     </td>
 		<td class="tab1-3">     {{ job.accepted }}    </td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
-		<td class="tab1-4">  Job done :      </td>
+		<td class="tab1-4">  {% trans "Job done"%} :      </td>
 		<td class="tab1-3">  {{ job.done }}      </td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
-		<td class="tab1-4">  Job payed :      </td>
+		<td class="tab1-4">  {% trans "Job payed"%} :      </td>
 		<td class="tab1-3">     {{ job.payed }}    </td>
 		
 	  </tr>
@@ -192,7 +193,7 @@
 	
 	 
 	   <tr>
-		<td class="tab1-4">    Visibility of the job :    </td>
+		<td class="tab1-4">    {% trans "Visibility of the job"%} :    </td>
 		<td class="tab1-3">     
 		{% for key, value in job.JOB_VISIBILITY_TUPLE %}
 			{% if key == job.visibility %}
@@ -204,28 +205,28 @@
 	  
 	   
 	   <tr>
-		<td class="tab1-4">  Branch :       </td>
-		<td class="tab1-3">      <a href="{% url 'branchdetails' job.branch.name %}" type="submit" value="branch" class="branch">{{ job.branch.name }}</a>   </td>
+		<td class="tab1-4">  {% trans "Branch"%} :       </td>
+		<td class="tab1-3">      <a href="{% url 'branchdetails' job.branch.name %}" type="submit" value={% trans "branch"%} class="branch">{{ job.branch.name }}</a>   </td>
 		
 	  </tr>
 	  
 	   
 	   <tr>
-		<td class="tab1-4">   Description :     </td>
+		<td class="tab1-4">   {% trans "Description"%} :     </td>
 		<td class="tab1-3">     {{ job.description }}      </td>
 		
 	  </tr>
 	   
 	   {% if job.frequency == 0 %}
 		   <tr>
-			<td class="tab1-4">  Participants :      </td>
+			<td class="tab1-4">  {% trans "Participants"%} :      </td>
 			<td class="tab1-3">   <ul>
 			{% for mem in job.member_set.all %}
 				<li>
 					<a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a>
 					{% if not job.accepted and mem.mail != member.mail %}
 						{% if member.mail == job.mail %}
-							<a href="{% url 'participatejob' job.id mem.mail %}" value="choose_this_member" class="myButton2" style ="color:#ffffff;"> Choose this member</a>
+							<a href="{% url 'participatejob' job.id mem.mail %}" value="choose_this_member" class="myButton2" style ="color:#ffffff;"> {% trans "Choose this member"%} </a>
 						{% endif %}
 					{% endif %}
 				</li>
@@ -236,13 +237,13 @@
 		  </tr>
 	  {% else %}
 	     <tr>
-			<td class="tab1-4">  Occurence of the job :      </td>
+			<td class="tab1-4">  {% trans "Occurence of the job"%} :      </td>
 			<td class="tab1-3">
 				<form method="post">
    			 	{% csrf_token %}
-   			 			Possibilities : <br/>
+   			 			{% trans "Possibilities"%} : <br/>
    			 			{{form.proposition}}
-   			 			<input type="submit" value="Participate" />
+   			 			<input type="submit" value={% trans "Participate"%} />
    			 	</form>
 			 </td>
 			
@@ -258,12 +259,12 @@
 	{% if job.frequency != 0 %}
 		<table class="tab1" style="top:27em" >
 			<tr>
-				<th>Date of the job</th>
-				<th>Participants</th>
-				<th>Accepted</th>
-				<th>Done</th>
-				<th>Payed</th>
-				<th>Action</th>
+				<th>{% trans "Date of the job"%}</th>
+				<th>{% trans "Participants"%}</th>
+				<th>{% trans "Accepted"%}</th>
+				<th>{% trans "Done"%}</th>
+				<th>{% trans "Payed"%}</th>
+				<th>{% trans "Action"%}</th>
 			</tr>
 			{% for j in job.job_set.all %}
 				<tr>
@@ -281,9 +282,9 @@
 					<td>
 						{% if not j.accepted and member.mail != j.mail %}
 							{% if member in j.member_set.all %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">Stop participating</a>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
 							{% else %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">Participate</a></br>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a></br>
 							{% endif %}
 						{% endif %}
 					</td>

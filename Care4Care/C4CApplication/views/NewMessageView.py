@@ -1,7 +1,3 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from datetime import datetime
-from django.http import HttpResponseRedirect
 from C4CApplication.views.forms.NewMessageForm import NewMessageForm
 from C4CApplication.models import *
 from C4CApplication.views.utils import create_user

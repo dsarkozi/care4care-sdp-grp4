@@ -1,49 +1,50 @@
 from django import forms
 from django.forms.widgets import TextInput, EmailInput
 from C4CApplication.models.branch import Branch
+from django.utils.translation import ugettext_lazy as _
 
 
 class CreateBranchForm(forms.Form):
     name = forms.CharField(
         widget=TextInput(
-            attrs={'autofocus':'true', 'placeholder':'branch name'}
-        ), label="Name of the branch "
+            attrs={'autofocus':'true', 'placeholder':_("branch name")}
+        ), label= _("Name of the branch ")
     )
     
     branch_town = forms.CharField(
         widget=TextInput(
-            attrs={'placeholder':'town(s) of the branch'}
-        ), label="Name of the town "
+            attrs={'placeholder':_('town(s) of the branch')}
+        ), label=_("Name of the town ")
     )
     
     branch_off = forms.EmailField(
         widget=EmailInput(
-            attrs={'placeholder':'branch_officer@mail.com'}
-        ), label="Branch officer mail"
+            attrs={'placeholder':_('branch_officer@mail.com')}
+        ), label=_("Branch officer mail")
     )
     
     street = forms.CharField(
         required=False,
         widget=TextInput(
-            attrs={'placeholder':'street, number, more details'}
+            attrs={'placeholder':_('street, number, more details')}
         ),
-        label="Street of the branch ",
+        label=_("Street of the branch "),
     )
     
     zip = forms.CharField(
         required=False,
         widget=TextInput(
-            attrs={'placeholder':'postal code'}
+            attrs={'placeholder':_('postal code')}
         ),
-        label="Zip of the branch ",
+        label=_("Zip of the branch "),
     )
     
     town = forms.CharField(
         required=False,
         widget=TextInput(
-            attrs={'placeholder':'town'}
+            attrs={'placeholder':_('town')}
         ),
-        label="Town of the branch ",
+        label=_("Town of the branch "),
     )
     
     def clean(self):
@@ -56,7 +57,7 @@ class CreateBranchForm(forms.Form):
         list_branch = Branch.objects.filter(name=b_name)
         
         if len(list_branch) !=0 :
-            self.add_error("name", forms.ValidationError("A branch already exist with this name.", code='invalid'))
+            self.add_error("name", forms.ValidationError(_("A branch already exist with this name."), code='invalid'))
             
         return cleaned_data
     

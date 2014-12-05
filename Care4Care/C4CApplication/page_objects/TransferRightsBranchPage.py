@@ -8,7 +8,7 @@ class TransferRightsBranchPage(FixedPage):
     def __init__(self, driver):
         super().__init__(driver)
         self.mail_br_of_input = self.driver.find_element_by_name('email_new_branch_officer')
-        self.change_br_of_button = self.driver.find_element_by_xpath('//input[@value="Change Branch officer"]')
+        self.change_br_of_button = self.driver.find_element_by_xpath('//input[@class="btn"]')
         #self.cancel_button = self.driver.find_element_by_partial_link_text('Change')
         
     def set_email_new_branch_off(self, email):

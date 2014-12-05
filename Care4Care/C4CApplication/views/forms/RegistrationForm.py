@@ -6,7 +6,7 @@ from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
 from localflavor.be.forms import BEPostalCodeField
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 class RegistrationForm(ModelForm):
     class Meta:
@@ -23,14 +23,24 @@ class RegistrationForm(ModelForm):
             'telephone',
             'street',
             'town',
-            'zip',
             'branch',
+            'zip',
         )
         labels = {
-            'mail' : 'E-mail address',
-            'street' : 'Street',
-            'town' : 'City',
-            'zip' : 'Postal code',
+            'mail' : _('E-mail address'),
+            'street' : _('Street'),
+            'town' : _('City'),
+            'password' : _('password'),
+            'first_name' : _('first name'),
+            'last_name' : _('last name'),
+            'gender' : _('gender'),
+            'picture' : _('picture'),
+            'birthday' : _('birthday'),
+            'mobile' : _('mobile'),
+            'telephone' : _('telephone'),
+            'branch' : _('branch')
+            
+            
         }
         widgets = {
             'branch' : CheckboxSelectMultiple(),
@@ -44,7 +54,7 @@ class RegistrationForm(ModelForm):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
-        self.fields['zip'] = BEPostalCodeField()
+        self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
 
         self.auto_id = False
         if eid:
@@ -57,10 +67,10 @@ class RegistrationForm(ModelForm):
 
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect,
-            choices=((1, "Without time crediting"), (2, "With time crediting")),
-            label="Account type"
+            choices=((1, _("Without time crediting")), (2, _("With time crediting"))),
+            label=_("Account type")
         )
         self.fields['gender'] = forms.ChoiceField(
             widget=forms.RadioSelect,
-            choices=(('M', 'M'), ('F', 'F'))
-        )
+            choices=(('M', 'M'), ('F', 'F') ), label = _('gender'))
+        

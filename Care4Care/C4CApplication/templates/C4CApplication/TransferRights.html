@@ -2,7 +2,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block menu %}
 
 {% block transfer_rights %} 
@@ -13,10 +13,10 @@ background-color:#ffffff;padding:1em;width:60%; height:auto;">
 <form method="post">
 	{% csrf_token %}
 	<br/>
-	Enter the email address of the member to become the new BP Administrator :  <br/>
+	{% trans "Enter the email address of the member to become the new BP Administrator" %} :  <br/>
     <p>
     {{ transfer_rights_form }}</p>
-    <input type="submit" class = "btn" value="Change BP Admin"/>
+    <input type="submit" class = "btn" value={% trans "Change BP Admin" %}/>
     
 </form>
 </section>
