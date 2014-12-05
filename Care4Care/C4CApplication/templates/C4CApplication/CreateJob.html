@@ -8,9 +8,9 @@
 {% load i18n %}
 {% block content %}
 
-<section style="padding:1em;border-width:2px;border-color:navy;border-style:solid;margin-left:20%;
-background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4em;">
-
+<section style="padding:1em;border-width:2px;border-color:navy;border-style:solid;margin-left:25%;
+margin-bottom:2%;margin-top:2%;background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4em;">
+    </br>
 <form method="post">
     {% csrf_token %}
     <fieldset>
@@ -21,12 +21,14 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         </p>
         {{ form.place }} <br>
         {{ form.branches.label }} : {{ form.branches }}
-        {{ form.start_time.label }} : {{ form.start_time }} <br>
+        {{ form.start_time.label }} : {{ form.start_time}} <br>
         {{ form.duration.label }} : {{ form.duration }} <br>
-        {{ form.km.label }} : <br> {{ form.km }} {% trans "kilometers" %} <br>
+
+        {{ form.km.label }} : {{ form.km }} km <br>
     </fieldset>
+    </br>
     <fieldset>
-        <legend> {% trans "Job category"%}</legend>
+        <legend> <h3> {% trans "Job category"%}</h3></legend>
         <ul>
         {% for choice in form.category %}
             {% if forloop.last %}
@@ -37,8 +39,9 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
         {% endfor %}
         </ul>
     </fieldset>
+    </br>
     <fieldset>
-        <legend>{% trans "Job timeline"%}</legend>
+        <legend><h3>{% trans "Job timeline"%}</h3></legend>
         <ul>
             {% for freq in form.frequency %}
                 {% if forloop.first %}
@@ -95,11 +98,13 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
             {% endfor %}
         </ul>
     </fieldset>
+    </br>
     <fieldset>
-        <legend>{% trans "Job visibility"%}</legend>
+        <legend><h3>{% trans "Job visibility"%}</h3></legend>
         {{ form.visibility }}
     </fieldset>
-    <input type="submit" value= {% trans "Post request" %} /> 
+    </br>
+    <center><input type="submit" value= {% trans "Post request" %} class ="btn" /> </center>
 </form>
 
 {% endblock %}

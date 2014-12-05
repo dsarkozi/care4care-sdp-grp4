@@ -21,12 +21,10 @@ class BranchListView(FormView):
     def get_context_data(self, **kwargs):
         context = super(BranchListView, self).get_context_data(**kwargs)
 
-        # Get the personal list of the member
-        if BranchListView.user.db_member is None:
-            BranchListView.member = Member.objects.get(mail=self.request.session['email'])
+        self.user.db_member = Member.objects.get(mail=self.request.session['email'])
 
         branch_checked_name_list = []
-        for branch in BranchListView.member.branch.all():
+        for branch in self.user.db_member.branch.all():
             branch_checked_name_list.append(branch.name)
 
         # Creates the form and change the context
@@ -38,13 +36,12 @@ class BranchListView(FormView):
         return context
 
     def form_valid(self, form):
-        if BranchListView.member is None:
-            BranchListView.member = Member.objects.get(mail=self.request.session['email'])
+        self.user.db_member = Member.objects.get(mail=self.request.session['email'])
 
         branch_list = form.cleaned_data['branch_list']
 
         # Updates the list of the branches of the user
-        BranchListView.user.db_member.branch = branch_list
-        BranchListView.user.db_member.save()
+        self.user.db_member.branch = branch_list
+        self.user.db_member.save()
 
         return super(BranchListView, self).form_valid(form)

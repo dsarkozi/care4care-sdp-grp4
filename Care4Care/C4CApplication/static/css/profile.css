@@ -8,6 +8,11 @@
     margin:1em;
 }
 
+table
+{
+    border-collapse: collapse;
+}
+
 .nom
 {
     color : black;

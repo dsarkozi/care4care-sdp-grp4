@@ -74,6 +74,10 @@ class BranchOfficer(MetaMember):
             return False
         member = member[0]
 
+        # If the member is another branch officer or a bp administrator, it cannot log as them
+        if member.tag >= 16:
+            return False
+
         member_branch = None
         for branch in member.branch.all():
             if branch.branch_officer == self.db_member.mail:  # The branch officer handles this branch
