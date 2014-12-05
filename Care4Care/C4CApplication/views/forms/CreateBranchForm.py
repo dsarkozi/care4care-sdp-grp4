@@ -26,7 +26,7 @@ class CreateBranchForm(forms.Form):
     street = forms.CharField(
         required=False,
         widget=TextInput(
-            attrs={'placeholder':_('street, number, more details')}
+            attrs={'placeholder':_('street')}
         ),
         label=_("Street of the branch "),
     )
