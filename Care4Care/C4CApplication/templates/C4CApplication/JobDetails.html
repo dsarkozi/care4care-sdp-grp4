@@ -21,7 +21,7 @@
         
       <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "New branch" %}</a></td>
   <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Delete a member" %}</a> </td> 
-     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{ trans "Transfer rights" %}</a></td>
+     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Transfer rights" %}</a></td>
  
     {% endif %}
     
@@ -226,7 +226,7 @@
 					<a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a>
 					{% if not job.accepted and mem.mail != member.mail %}
 						{% if member.mail == job.mail %}
-							<a href="{% url 'participatejob' job.id mem.mail %}" class="myButton2" style ="color:#ffffff;"> {% trans "Choose this member"%}</a>
+							<a href="{% url 'participatejob' job.id mem.mail %}" value="choose_this_member" class="myButton2" style ="color:#ffffff;"> {% trans "Choose this member"%} </a>
 						{% endif %}
 					{% endif %}
 				</li>

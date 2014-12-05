@@ -52,19 +52,20 @@ class CreateJobForm(forms.ModelForm):
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
         self.fields['start_time'] = forms.TimeField(
             widget=forms.TimeInput(
-                attrs={'placeholder' : 'Format: 00:00'},
+                attrs={'size':'5','placeholder' : 'Format: 00:00'},
             ),
             label='Start time',
             initial='00:00',
         )
         self.fields['duration'] = forms.TimeField(
             widget=forms.TimeInput(
-                attrs={'placeholder' : 'Format: 00:00'},
+                attrs={'size':'5','placeholder' : 'Format: 00:00'},
             ),
             label='Duration',
             initial='00:00'
         )
         self.fields['km'] = forms.DecimalField(
+                                                                 
             min_value=0,
             initial=0,
             label='Distance to be covered (approximation)',

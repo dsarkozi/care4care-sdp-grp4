@@ -11,7 +11,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
     <form method="post">
         {% csrf_token %}
         <fieldset>
-
+			{{ form.errors }}
 
             <legend> <h3>{% trans "Donation message" %}</h3></legend>
             {{ donateTime.message }}
@@ -39,7 +39,7 @@ background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4e
                 {% if forloop.last %}
                     <li>{{ recipient }} : {{ donateTime.userDropdown }}</li>
                 {% else %}
-                    <li>{{ recipient }}</li>
+                    <li>{{ recipient }} : {{ donateTime.branchDropdown }}</li>
                 {% endif %}
             {% endfor %}
             </ul>
