@@ -9,14 +9,14 @@ class MyCare4Care(FixedPage):
     
     def __init__(self, driver):
         super().__init__(driver)
-        self.logout_button = self.driver.find_element(By.XPATH, '//a[@value="Logout"]')
+        self.logout_button = self.driver.find_element(By.XPATH, '//a[@id="Logout"]')
         self.new_branch_button = None
         
         self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
     
     def BP_click_on_new_branch(self):
-        self.new_branch_button = self.driver.find_element(By.XPATH, '//a[@value="new_branch"]')
+        self.new_branch_button = self.driver.find_element(By.XPATH, '//a[@id="new_branch"]')
         self.new_branch_button.click()
         return CreateBranchPage(self.driver)
     

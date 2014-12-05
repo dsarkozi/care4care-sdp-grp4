@@ -23,7 +23,7 @@
     
       {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
         
-      <td> <a href="{% url 'createbranch' %}" class="btn2"  >{% trans "New branch"%}</a></td>
+      <td> <a href="{% url 'createbranch' %}" id="new_branch" class="btn2"  >{% trans "New branch"%}</a></td>
       
   <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >{% trans "Delete a member"%}</a> </td> 
   
@@ -31,7 +31,7 @@
  
     {% endif %}
     
-        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
+        <td><a href="{% url 'logOut' %}" class="btn2" id="Logout" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
   
 </tr>

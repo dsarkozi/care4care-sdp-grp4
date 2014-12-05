@@ -43,12 +43,12 @@ class Member(models.Model):
     )
     
     TAG = {
-        _('non_member')            : 1,   #000001
-        _('member')                 : 2,   #000010
-        _('verified')               : 4,   #000100
-        _('volunteer')              : 8,   #001000
-        _('branch_officer')         : 16,  #010000
-        _('bp_admin')               : 32,  #100000
+        'non_member'            : 1,   #000001
+        'member'                 : 2,   #000010
+        'verified'               : 4,   #000100
+        'volunteer'              : 8,   #001000
+        'branch_officer'         : 16,  #010000
+        'bp_admin'               : 32,  #100000
     }
     tag = models.SmallIntegerField()    #Limit max
     status = models.BooleanField(default=True) # True = active, False = inactive
@@ -61,9 +61,9 @@ class Member(models.Model):
     town = models.CharField(max_length=100)
     
     MEMBER_VISIBILITY = { # every bit of the number corresponds to one option
-        _('anyone')     : 1,   #001
-        _('verified')   : 2,   #010
-        _('favorites')  : 4,   #100
+        'anyone'     : 1,   #001
+        'verified'  : 2,   #010
+        'favorites'  : 4,   #100
     }
     visibility = models.SmallIntegerField(default=MEMBER_VISIBILITY['verified'])
     time_credit = models.BigIntegerField(default=0)

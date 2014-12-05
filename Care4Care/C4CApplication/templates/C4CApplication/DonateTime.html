@@ -38,7 +38,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;padding-right:2e
             <ul>
             {% for recipient in donateTime.receiver %}
                 {% if forloop.last %}
-                    <li>{{ recipient }} : {{ donateTime.userDropdown }}</li>
+                    <li>{{ recipient }} : <div id="">{{ donateTime.userDropdown }}</div></li>
                 {% else %}
                     <li>{{ recipient }} : {{ donateTime.branchDropdown }}</li>
                 {% endif %}
