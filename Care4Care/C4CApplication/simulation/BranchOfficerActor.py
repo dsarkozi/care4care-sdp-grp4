@@ -111,12 +111,15 @@ class BranchOfficerActor(Actor):
         """
 
         # Go to home page
+        time.sleep(2)
         page = MyCare4Care(selenium)
         page.click_home()
+        time.sleep(2)
 
         # Logout
         page = HomePage(selenium)
         page.click_on_logout()
+        time.sleep(2)
         print("End of the Branch Officer")
 
         return True
