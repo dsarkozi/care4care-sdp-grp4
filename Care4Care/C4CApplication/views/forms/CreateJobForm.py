@@ -3,6 +3,7 @@ from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 
 from C4CApplication.models.job import Job
+from django.utils.translation import ugettext_lazy as _
 
 
 class CreateJobForm(forms.ModelForm):
@@ -22,16 +23,25 @@ class CreateJobForm(forms.ModelForm):
             'place',
         )
         labels = {
+            'title':_('title'),
+            'description': _('description'),
+            'category':_('category'),
+            'other_category':_('other_category'),
+            'frequency':_('frequency'),
+            'visibility':_('visibility'),
+            'date':_('date'),
+            'km':'km',
+            'place':_('place'),
         }
         widgets = {
             'description' : forms.Textarea(
-                attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
+                attrs = {'id':'job_desc', 'rows':3, 'placeholder':_('Request description')}
             ),
             'place' : forms.Textarea(
-                attrs = {'rows':3, 'placeholder':'Location details'}
+                attrs = {'rows':3, 'placeholder':_('Location details')}
             ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
-            'other_category' : forms.TextInput(attrs={'placeholder' : 'Specify'})
+            'other_category' : forms.TextInput(attrs={'placeholder' : _('Specify')})
         }
 
     def __init__(self, *args, **kwargs):
@@ -49,26 +59,27 @@ class CreateJobForm(forms.ModelForm):
         )
         if branchAmount == 1:
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
-        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':_('Request title')}
         self.fields['start_time'] = forms.TimeField(
             widget=forms.TimeInput(
                 attrs={'size':'5','placeholder' : 'Format: 00:00'},
             ),
-            label='Start time',
+            label=_('Start time'),
             initial='00:00',
         )
         self.fields['duration'] = forms.TimeField(
+            
             widget=forms.NumberInput(
-                attrs={'size':'5','placeholder' : 'Format: 00:00'},
+                attrs={'size':'5','placeholder' : _('Format: 00:00')},
             ),
-            label='Duration',
+            label=_('Duration'),
             initial='00:00'
         )
         self.fields['km'] = forms.DecimalField(      
             #widget=forms.TextInput(attrs={'size':'5'}),                                        
             min_value=0,
             initial=0,
-            label='Distance to be covered (approximation)',
+            label=_('Distance to be covered (approximation)'),
             max_digits=4,
         )
 
@@ -112,13 +123,13 @@ class CreateJobForm(forms.ModelForm):
     #     choices=(('specific','Specific day'), ('weekday','Weekdays')),
     # )
     WEEKDAYS = (
-        ('monday','Monday'),
-        ('tuesday','Tuesday'),
-        ('wednesday','Wednesday'),
+        ('monday',_('Monday')),
+        ('tuesday',_('Tuesday')),
+        ('wednesday',_('Wednesday')),
         ('thursday','Thursday'),
-        ('friday','Friday'),
-        ('saturday','Saturday'),
-        ('sunday','Sunday')
+        ('friday',_('Friday')),
+        ('saturday',_('Saturday')),
+        ('sunday',_('Sunday'))
     )
     weekdays = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(
@@ -151,5 +162,5 @@ class CreateJobForm(forms.ModelForm):
         category = cleaned_data.get("category")
         other = cleaned_data.get("other_category")
         if category == 'other' and other == '':
-            self.add_error("other", forms.ValidationError("If other is checked, fill the text input in.", code='missing'))
+            self.add_error("other", forms.ValidationError(_("If other is checked, fill the text input in."), code='missing'))
         return cleaned_data

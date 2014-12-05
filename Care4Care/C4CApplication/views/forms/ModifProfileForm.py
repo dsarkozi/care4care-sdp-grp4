@@ -5,8 +5,8 @@ from C4CApplication.models.member import Member
 
 class ModifProfileForm(forms.Form):
 
-    new_password   = forms.CharField( max_length=100 , required=False , widget=forms.PasswordInput(attrs={'placeholder': 'new password', 'size' : 44}))
-    password   = forms.CharField( max_length=100 , required=False  , widget=forms.PasswordInput(attrs={'placeholder': 'password verification', 'size' : 44}))
+    new_password   = forms.CharField( min_length=8, max_length=100 , required=False , widget=forms.PasswordInput(attrs={'placeholder': 'new password', 'size' : 44}))
+    password   = forms.CharField( min_length=8, max_length=100 , required=False  , widget=forms.PasswordInput(attrs={'placeholder': 'password verification', 'size' : 44}))
 
     #adresse
     street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': 'street, number, more information', 'size' : 32}))
