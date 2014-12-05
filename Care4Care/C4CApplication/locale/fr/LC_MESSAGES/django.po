@@ -81,7 +81,7 @@ msgstr "volontaire"
 
 #: models/member.py:28
 msgid "non_member"
-msgstr "Non membre"
+msgstr "non membre"
 
 #: models/member.py:29
 msgid "member"
@@ -151,19 +151,19 @@ msgstr "Concours"
 
 #: templates/C4CApplication/AccountAndStats.html:18
 msgid "General informations"
-msgstr "renseignements personnels"
+msgstr "Informations générales"
 
 #: templates/C4CApplication/AccountAndStats.html:21
 msgid "Number of job completed"
-msgstr "nombre de tâches complètées"
+msgstr "Nombre de tâches complètées"
 
 #: templates/C4CApplication/AccountAndStats.html:27
 msgid "Average time per job"
-msgstr "temps moyen par tâche"
+msgstr "Temps moyen par tâche"
 
 #: templates/C4CApplication/AccountAndStats.html:32
 msgid " I drove"
-msgstr "j'ai conduit"
+msgstr "J'ai conduit"
 
 #: templates/C4CApplication/AccountAndStats.html:33
 msgid "kilometers "
@@ -224,7 +224,7 @@ msgstr "Commentaire"
 
 #: templates/C4CApplication/AccountAndStats.html:97
 msgid "Waiting jobs"
-msgstr "tâches en attente"
+msgstr "Tâches en attente"
 
 #: templates/C4CApplication/BranchList.html:13
 msgid "Choose branch(es)"
@@ -261,10 +261,9 @@ msgid "INACTIVE"
 msgstr "INACTIF"
 
 #: templates/C4CApplication/ConfirmJobDoneView.html:11
-#, fuzzy
-#| msgid "Time for doing the job (in minutes)"
+
 msgid "Time spent on the job (minutes) "
-msgstr "Temps requis à fin d'effectuer la tâche (en minutes) "
+msgstr "Temps passé à effectuer la tâche (en minutes) "
 
 #: templates/C4CApplication/CreateBranch.html:17
 msgid "Create a branch"
