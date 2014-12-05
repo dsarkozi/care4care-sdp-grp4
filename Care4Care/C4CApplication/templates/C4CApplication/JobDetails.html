@@ -53,6 +53,10 @@
 	{% block form_job_done %}
 	{% endblock %}
 {% endif %}
+
+
+
+
 		
 <center style="margin:2em;">
 	<table class="tab1" style="" >
@@ -77,6 +81,22 @@
 		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
 			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
+		
+		{% if not job.done and job.accepted %}
+		</br>
+		<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
+	
+        {% endif %}
+		
+		{% if not job.payed and job.accepted and job.done  %}
+		</br>
+		<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a> 
+	
+        {% endif %}
+		
+		
+		
+		
 		</p>
 		
 		</th>
