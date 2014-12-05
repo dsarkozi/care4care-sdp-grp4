@@ -240,25 +240,8 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
-                   comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
-                   other_category='', place='', visibility='volunteer', recursive_day=''):
-        """
-        Creates a help offer (the parameters will be used to fill the database).
-
-        :param branch_name: The branch to which belongs the job
-        :param date: The date of the job
-        :param is_demand: True if it's a demand, false otherwise
-        :param comment: Comment of the job
-        :param start_time: The hour of the beginning of the job in minute. Example : 14h30 -> 14*60+30 = 870
-        :param frequency: The frequency of the job. (0=Once, 1=daily, 2=weekly, ...)
-        :param km: The number of km to do the job
-        :param duration: The duration to do the job
-        :param category: The category of the job. (1=shopping, 2=visit, 3=transport)
-        :param address: The address where the job will be done
-        :param visibility: Which people can see the job.
-        :return: False if there was a problem and True otherwise.
-        """
+    def create_job(self, branch_name, title, description, is_demand, frequency, category, visibility,
+                   date='', start_time='', km=0, duration='', other_category='', place='', recursive_day=''):
 
         job_list = Job.objects.filter(mail=self.db_member.mail)
         if len(job_list) == 0:
@@ -267,39 +250,30 @@ class NonMember(User):
             job_dic = job_list.aggregate(Max('number'))
             number = job_dic['number__max']
 
-        if branch_name is None:
-            return False
-        else:
-            branch_list = Branch.objects.filter(branch_name=branch_name)
-            if len(branch_list) == 0:
-                return False
-
         job = Job()
         job.title = title
         job.number = number+1
-        job.accepted = False
         job.place = place
         job.category = category
         job.other_category = other_category
-        job.comment = comment
         job.description = description
-        job.done = False
         job.frequency = frequency
         job.recursive_day = recursive_day
         job.km = km
         job.mail = self.db_member.mail
-        job.payed = False
         job.date = date
         job.start_time = start_time
         job.duration = duration
-        job.type = False
-        job.visibility = Job.JOB_VISIBILITY[visibility]
+        job.type = is_demand
+        job.visibility = visibility
         job.save()
-        job.branch = branch_list[0]
+        branch = Branch.objects.filter(name=branch_name)
+        if len(branch) < 1:
+            return False
+        job.branch = branch[0]
         job.member_set = [self.db_member]
-
         job.save()
-        return job
+        return True
     
     def delete_job(self, job_id):
         """

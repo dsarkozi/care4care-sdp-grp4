@@ -11,7 +11,7 @@ class Job(models.Model):
     mail = models.EmailField()
     number = models.IntegerField()
     description = models.TextField()
-    comment = models.CharField(blank=True, max_length=200)
+    comment = models.CharField(blank=True, max_length=200, default='')
     date = models.DateField(null=True)
     start_time = models.IntegerField(null=True, blank=True)
 
@@ -40,7 +40,7 @@ class Job(models.Model):
     }
     category = models.SmallIntegerField(choices=CAT)
     other_category = models.CharField(blank=True, max_length=100)
-    type = models.BooleanField(default=None) # True = demand, False = offer
+    type = models.BooleanField() # True = demand, False = offer
     place = models.TextField(blank=True)
     accepted = models.BooleanField(default=False)
     done = models.BooleanField(default=False)
