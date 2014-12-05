@@ -13,8 +13,11 @@ class MemberDetailsPage(FixedPage):
         self.log_as_button = None
         try: 
             self.favorite_button = self.driver.find_element_by_xpath('//input[@value="AddRelation"]')
-            self.log_as_button = self.driver.find_element_by_link_text("Log as member")
         except NoSuchElementException: 
+            pass
+        try:
+             self.log_as_button = self.driver.find_element_by_link_text("Log as member")
+        except NoSuchElementException:  
             pass
         
     def click_on_add_friend(self):

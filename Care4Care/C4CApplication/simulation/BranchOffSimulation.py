@@ -1,5 +1,6 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.BranchListPage import BranchListPage
 
 import time
 
@@ -15,16 +16,15 @@ class BranchOffSimulation(MySeleniumTests):
         page = page.login_successful("kim.mens@gmail.com","azertyuiop") # kim is branch off of lln
         
         time.sleep(3)
-        #page = page.
+        page = page.click_on_care4care_branches() # click on branches
+        time.sleep(1)
+        page = BranchListPage(self.selenium)
+        page = page.click_on_branch_details(0) # click on lln -> MemberListPage
+        time.sleep(1)
         
-        # click on branches 
-        # click on lln
-        #page = page.click_on_branch_details(0) # ne renvoie pas la page suivante
-        
-        # click on a member 
-        # TODO MemberListPage il manque les liens des gens
-        
-        # click on log as member 
-        #page = page.click_on_log_as_member() # ne renvoie pas la page suivante
-        
+        page = page.click_on_member(1) # click on a member -> MemberDetailsPage
+        time.sleep(1)
+        page = page.click_on_log_as_member() # log as the member 
+        time.sleep(1)
+                
         return True
