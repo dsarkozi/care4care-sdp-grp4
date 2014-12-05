@@ -2,6 +2,7 @@ from C4CApplication.meta import NonMember
 from C4CApplication.meta.time import Time
 from C4CApplication.models import Message, Job, Branch, Mailbox
 from C4CApplication import models
+from django.core.urlresolvers import reverse_lazy
 
 
 class Member(NonMember):
@@ -96,8 +97,11 @@ class Member(NonMember):
                     break
         if helper_mail == '':
             return False
-        subject = 'The job number '+str(job.id)+' is done'  # TODO Better to put the number I think...
-        content = 'The job number '+str(job.id)+' is done. Please, consult your account to accept or not the bill'
+        subject = 'The ' + \
+                  '<a href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
+        content = 'The ' + \
+                  '<a href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'\
+                  + ' is done. Please, consult your account to accept or not the bill'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
