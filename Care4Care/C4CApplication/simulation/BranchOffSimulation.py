@@ -41,3 +41,16 @@ class BranchOffSimulation(MySeleniumTests):
         print("FIN de la simulation !")
                 
         return True
+    
+    
+    def test_simulation_theft(self):
+        # branch off log in
+        
+        # click on messages
+        
+        # see message about the theft
+        
+        # send mail to bp admin about the theft
+        
+        # log out 
+        return True
