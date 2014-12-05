@@ -10,14 +10,12 @@
 	
 {% block menu%}
 	
-<center>
 
-<section style="margin-left:380px; margin-right:auto;">
-
+<section style="display: table;margin: 0 auto;">
     <article class = "first">
     <table class=tab1 >
     
-		<th class=".tab1-3" colspan="6" >{% trans "General informations" %}</th>
+		<td class=".tab1-3" colspan="6" >{% trans "General informations" %}</td>
 	
         <tr>
        <td class="tab1-4" colspan="2">  {% trans "Number of job completed" %}</td>
@@ -40,12 +38,7 @@
        <td>  {% for catKey, catValue in jobCategories.items %}
                         {{ catValue }} % {{ catKey }},
                     {% endfor %}</td>
-       </tr>
-       
-
-               
-    </article>
-    
+       </tr>    
   
 
 			<tr>
@@ -58,12 +51,12 @@
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
                         {% for job in helpedDone %}
                             <tr>
@@ -80,12 +73,12 @@
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helperDone %}
                             <tr>
@@ -105,12 +98,12 @@
 				<td>
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helpedPending %}
                             <tr>
@@ -128,12 +121,12 @@
 				<td  valign="top">
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</th>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</th>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Job Cat"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
+							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helperPending %}
                             <tr>
@@ -151,8 +144,6 @@
 		</table>
 	
 	</article>
-    
 </section>   
-</center>
 
 {% endblock %}
