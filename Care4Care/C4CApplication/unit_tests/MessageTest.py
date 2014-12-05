@@ -25,7 +25,7 @@ class MessageTest(MySeleniumTests):
         
         
         subject = self.selenium.find_elements_by_xpath("//h1[@style='text-align : center;']")[0]
-        self.assertEqual(subject.text, "Comment faire une donation ? ")
+        self.assertEqual(subject.text, "Comment faire une donation ?")
         return True
     
     def test_see_message_sent(self):
@@ -33,7 +33,7 @@ class MessageTest(MySeleniumTests):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
         page = HomePage(self.selenium)
-        page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
+        page = page.quick_login_successful('olivier.mauvaisaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
@@ -45,7 +45,8 @@ class MessageTest(MySeleniumTests):
         page = page.click_on_read_more(0)
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        subject = self.selenium.find_elements_by_xpath("//h1[@style='text-align : center;']")[0]
+        self.assertEqual(subject.text, "Comment faire une donation ?")
         return True
     
     def test_send_message(self):
