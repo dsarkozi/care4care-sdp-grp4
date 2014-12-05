@@ -1,7 +1,7 @@
 {% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
-		
+{% load i18n %}		
 {% block link %}<link rel="stylesheet" href="../../static/css/profile.css">{% endblock %}
 
 {% block menu%}
@@ -18,12 +18,12 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
    			<div id = "container">
         		<div id ="centreur">
         			<div id = "header">
-        				<h1 id = "titre"> Edit profile </h1>
+        				<h1 id = "titre"> {% trans "Edit profile"%} </h1>
         			</div>
      
  
         			
-        			<h5>Profile picture :</h5>
+        			<h5>{% trans "Profile picture"%} :</h5>
         			<p>
 	        			{% if member.picture %}
 	       					<img src="{{ member.picture.url }}" alt="Photo de profil" id="photo"/>
@@ -36,24 +36,24 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
 	       				{{ form.picture.errors }} {{ form.picture }}
 	       				{% if member.picture %}
 	       			
-	       					<a href="{% url 'modifprofileredirect' 0 %}" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">Delete picture</a></p>
+	       					<a href="{% url 'modifprofileredirect' 0 %}" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">{% trans "Delete picture"%}</a></p>
 	       				{% endif %}
        				
        			
-       						<h5> Status : 
+       						<h5> {% trans "Status"%} : 
         	{% if member.status %}
 	    		
-	    		<font color="green"><tt> ACTIVE </tt></font> </h5>
+	    		<font color="green"><tt> {% trans "ACTIVE"%} </tt></font> </h5>
 	    	
-	    			<a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">Switch to inactive</a>
+	    			<a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px;">{% trans "Switch to inactive"%}</a>
 	    		
 	    			
 	    		
 	    	{% else %}
 
-	    			<font color="red"><tt> INACTIVE </tt></font> </h5>
+	    			<font color="red"><tt> {% trans "INACTIVE"%} </tt></font> </h5>
 	    		
-	    			 <a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px; margin-left:1em;">Switch to active</a>
+	    			 <a href="{% url 'changeActivity' %}" value="activity" class="btn" style="padding: 4px 8px 4px 8px;font-size:11px; margin-left:1em;">{% trans "Switch to active"%}</a>
 	    			 
 	
 	    	{% endif %}
@@ -77,13 +77,13 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
     			
     			<p id = "envoyer" > 
     
-    				<input type = "submit" name = "envoyer" value= "Submit" class = btn>
+    				<input type = "submit" name = "envoyer" value= {% trans "Submit" %} class = btn>
     				
     				<p>
 	    				<a href="{% url 'modifprofileredirect' 1 %}" id="delete_account" class="myButton2" 
 	    				   onclick="return window.confirm('Are you sure you want to delete your account ?')" 
 	    				   style="padding: 4px 8px 4px 8px;font-size:12px;">
-	    				   		Delete account ?
+	    				   		{% trans "Delete account"%} ?
 	    				</a>
     				
     				</p>

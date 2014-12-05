@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 {% load mathfilters %}
-
+{% load i18n %}
 {% block content %}
 
 
@@ -12,26 +12,26 @@
 <center>
 <table>
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn2" ">Messages</a></td>
+	<td><a href="{% url 'messageList' 1 %}" class="btn2" ">{% trans "Messages"%}</a></td>
 	
-	<td><a href="{% url 'profile' %}" class="btn2" >Profile</a></td>
+	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
 	
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="{% url 'favorites' %}" class="btn2">Favorites</a></td>
+    <td><a href="{% url 'favorites' %}" class="btn2">{% trans "Favorites"%}</a></td>
     
-    <td><a href="{% url 'accountstats' %}" class="btn2 ">Account & Stats</a></td>
+    <td><a href="{% url 'accountstats' %}" class="btn2 ">{% trans "Account & Stats"%}</a></td>
     
-      {% if member.tag == 32 %} {% comment %} If we have a bp administrator {% endcomment %}
+      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
         
-      <td> <a href="{% url 'createbranch' %}" class="btn2"  >New branch</a></td>
+      <td> <a href="{% url 'createbranch' %}" class="btn2"  >{% trans "New branch"%}</a></td>
       
-  <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >Delete a member</a> </td> 
+  <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >{% trans "Delete a member"%}</a> </td> 
   
-     <td> <a href="{% url 'transferrights' %}" class="btn2 ">Transfer rights</a></td>
+     <td> <a href="{% url 'transferrights' %}" class="btn2 "> {% trans "Transfer rights"%}</a></td>
  
     {% endif %}
     
-        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >Logout</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
+        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
   
 </tr>
@@ -44,12 +44,12 @@
 
 <!-- Fixed member data -->
 <center>
-<h1> Hello, {{ member.first_name }} ! </h1>
+<h1> {% trans "Hello"%}, {{ member.first_name }} ! </h1>
 
 {% if member.time_credit >= 0 %}
-	<h3> You have {{member.time_credit|intdiv:1440}} days {{member.time_credit|mod:1440|intdiv:60}} hours {{member.time_credit|mod:60}} minutes</h3>
+	<h3> {% trans "You have"%} {{member.time_credit|intdiv:1440}} {% trans "days"%} {{member.time_credit|mod:1440|intdiv:60}} {% trans "hours"%} {{member.time_credit|mod:60}} {% trans "minutes"%}</h3>
 {% else %}
-	<h3> You are in debt of {{0|sub:member.time_credit|intdiv:1440}} days {{0|sub:member.time_credit|mod:1440|intdiv:60}} hours {{0|sub:member.time_credit|mod:60}} minutes</h3>
+	<h3> {% trans "You are in debt of"%} {{0|sub:member.time_credit|intdiv:1440}} {% trans "days"%} {{0|sub:member.time_credit|mod:1440|intdiv:60}} {% trans "hours"%} {{0|sub:member.time_credit|mod:60}} {% trans "minutes"%}</h3>
 {% endif %}
 
 
@@ -59,12 +59,12 @@
 <center>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
 <table style="margin-top:40px; margin-left:0px; margin-bottom:50px; align:center;">
 <tr>
-    <td ><a href="{% url 'createJob' 'demand' %}" class="myButton">I need help</a></td>
-    <td><a href={% url 'createJob' 'offer' %} class="myButton">I want to help</a></td>
+    <td ><a href="{% url 'createJob' 'demand' %}" class="myButton">{% trans "I need help"%}</a></td>
+    <td><a href={% url 'createJob' 'offer' %} class="myButton">{% trans "I want to help"%}</a></td>
 </tr>
 <tr>
-  <td><center> <a href="{% url 'donate' %}" class="myButton2" >Give time</a></center></td>
- <td><center><a href="#" class="myButton2">Register job done</a></center></td>
+  <td><center> <a href="{% url 'donate' %}" class="myButton2" >{% trans "Give time"%}</a></center></td>
+ <td><center><a href="#" class="myButton2">{% trans "Register job done"%}</a></center></td>
   
 </tr>
 </table>
