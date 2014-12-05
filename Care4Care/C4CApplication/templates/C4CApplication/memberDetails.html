@@ -25,7 +25,7 @@
 	    
 	
         {% if member.mail != member_shown.mail and member_shown not in member.relation.all %}
-	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" type="submit" value="AddRelation"
+	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" id="AddRelation" type="submit" value="AddRelation"
 	    	class="myButton2">{% trans "Add as a friend"%}</a> <br/>
 	    {% endif %}
 

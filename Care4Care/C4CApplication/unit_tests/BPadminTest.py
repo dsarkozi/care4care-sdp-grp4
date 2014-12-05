@@ -45,7 +45,6 @@ class BPadminTest(MySeleniumTests):
         self.assertEqual(branch.zip, "7652")
         self.assertEqual(branch.town, "Bruxelles")
         return True
-
     
     def test_change_branch_officer(self):
         #login
