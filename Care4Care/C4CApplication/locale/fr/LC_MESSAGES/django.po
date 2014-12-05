@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 22:37+0000\n"
+"POT-Creation-Date: 2014-12-05 22:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -247,7 +247,7 @@ msgid "Do you want to be"
 msgstr "Voulez-vous être"
 
 #: templates/C4CApplication/ChangeActivity.html:22
-#: templates/C4CApplication/ModifProfile.html:46
+#: templates/C4CApplication/ModifProfile.html:45
 msgid "ACTIVE"
 msgstr "ACTIF"
 
@@ -256,12 +256,11 @@ msgid "or"
 msgstr "ou"
 
 #: templates/C4CApplication/ChangeActivity.html:23
-#: templates/C4CApplication/ModifProfile.html:54
+#: templates/C4CApplication/ModifProfile.html:53
 msgid "INACTIVE"
 msgstr "INACTIF"
 
 #: templates/C4CApplication/ConfirmJobDoneView.html:11
-
 msgid "Time spent on the job (minutes) "
 msgstr "Temps passé à effectuer la tâche (en minutes) "
 
@@ -296,7 +295,7 @@ msgid "Town"
 msgstr "Ville"
 
 #: templates/C4CApplication/CreateBranch.html:24
-#: templates/C4CApplication/ModifProfile.html:81
+#: templates/C4CApplication/ModifProfile.html:80
 #: templates/C4CApplication/TransferRightsBranch.html:27
 msgid "Submit"
 msgstr "Confirmez"
@@ -306,8 +305,8 @@ msgid "Request details"
 msgstr "Demande de détails"
 
 #: templates/C4CApplication/CreateJob.html:31
-#: templates/C4CApplication/HomePage.html:61
-#: templates/C4CApplication/HomePage.html:88
+#: templates/C4CApplication/HomePage.html:63
+#: templates/C4CApplication/HomePage.html:90
 #: templates/C4CApplication/JobSearch.html:13
 #: templates/C4CApplication/SearchJob.html:38
 msgid "Job category"
@@ -455,36 +454,36 @@ msgstr "Déconnexion"
 msgid "Welcome on Care4Care"
 msgstr "Bienvenue dans Care4Care"
 
-#: templates/C4CApplication/HomePage.html:30
+#: templates/C4CApplication/HomePage.html:31
 #: templates/C4CApplication/MyCare4Care.html:66
 msgid "I need help"
 msgstr "J'ai besoin d'aide"
 
-#: templates/C4CApplication/HomePage.html:32
+#: templates/C4CApplication/HomePage.html:33
 #: templates/C4CApplication/MyCare4Care.html:67
 msgid "I want to help"
 msgstr "Je veux aider"
 
-#: templates/C4CApplication/HomePage.html:57
+#: templates/C4CApplication/HomePage.html:59
 #: templates/C4CApplication/JobSearch.html:9
 msgid "Recent feeds of offer"
 msgstr "Offres récentes"
 
-#: templates/C4CApplication/HomePage.html:62
-#: templates/C4CApplication/HomePage.html:89
+#: templates/C4CApplication/HomePage.html:64
+#: templates/C4CApplication/HomePage.html:91
 #: templates/C4CApplication/JobSearch.html:14
 #: templates/C4CApplication/SearchJob.html:39
 msgid "Title"
 msgstr "Titre"
 
-#: templates/C4CApplication/HomePage.html:63
-#: templates/C4CApplication/HomePage.html:90
+#: templates/C4CApplication/HomePage.html:65
+#: templates/C4CApplication/HomePage.html:92
 #: templates/C4CApplication/JobSearch.html:15
 #: templates/C4CApplication/SearchJob.html:40
 msgid "Location"
 msgstr "Localisation"
 
-#: templates/C4CApplication/HomePage.html:85
+#: templates/C4CApplication/HomePage.html:87
 msgid "Recent feeds of demand"
 msgstr "Demandes récentes"
 
@@ -730,24 +729,24 @@ msgstr "Editez le Profile"
 msgid "Profile picture"
 msgstr "Photo de profile"
 
-#: templates/C4CApplication/ModifProfile.html:39
+#: templates/C4CApplication/ModifProfile.html:38
 msgid "Delete picture"
 msgstr "Supprimer la photo"
 
-#: templates/C4CApplication/ModifProfile.html:43
+#: templates/C4CApplication/ModifProfile.html:42
 #: templates/C4CApplication/Profile.html:34
 msgid "Status"
 msgstr "Status"
 
-#: templates/C4CApplication/ModifProfile.html:48
+#: templates/C4CApplication/ModifProfile.html:47
 msgid "Switch to inactive"
 msgstr "Changer en inactif"
 
-#: templates/C4CApplication/ModifProfile.html:56
+#: templates/C4CApplication/ModifProfile.html:55
 msgid "Switch to active"
 msgstr "Changer en actif"
 
-#: templates/C4CApplication/ModifProfile.html:87
+#: templates/C4CApplication/ModifProfile.html:86
 msgid "Delete account"
 msgstr "Supprimer le compte"
 
