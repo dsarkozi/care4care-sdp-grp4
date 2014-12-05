@@ -89,7 +89,7 @@ urlpatterns = patterns('',
     url(r'^createbranch/$', CreateBranchView.as_view(), name='createbranch'),
     url(r'^transferrightsbranch/(?P<branch_name>\w+)/$', TransferRightsBranchView.as_view(), name='transferrightsbranch'),#not ### erreurs ###
 
-    url(r'^deletememberbpa/$', DeleteMemberBPAView.as_view(), name='deletememberbpa'),
+    url(r'^deletememberbpa/$', DeleteMemberBPAView.as_view(), name='deletememberbpa'), #marche pas
     #url(r'^deletememberfrombranch/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)$', DeleteMemberFromBranchRedirectView.as_view(), name='deletememberfrombranch'),
 
     url(r'^branchlistredirect/(?P<branch>\w+)/(?P<mail>(\w+.)+\w+@(\w+.)+\w+)/(?P<action>\d+)$', BranchListRedirectView.as_view(), name='branchlistredirect'),
