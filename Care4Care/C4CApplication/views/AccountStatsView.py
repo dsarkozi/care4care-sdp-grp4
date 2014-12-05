@@ -3,6 +3,7 @@ from django.db.models.aggregates import Avg, Sum
 from django.views.generic.base import TemplateView
 import time
 from C4CApplication.models.job import Job
+from C4CApplication.models.member import Member
 from C4CApplication.views.utils import create_user
 
 
@@ -57,8 +58,8 @@ class AccountStatsView(TemplateView):
                 'date' : item.date,
                 'category' : Job.CAT_DICT[item.category],
                 'time' : item.duration,
+                'whom' : str(Member.objects.filter(mail=item.mail)[0]),
                 'km' : item.km,
-                'comment' : item.comment
             }]
         return dictlist
 

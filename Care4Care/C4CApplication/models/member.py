@@ -73,8 +73,8 @@ class Member(models.Model):
     job = models.ManyToManyField('Job', blank=True, null=True)
     #personal_network = models.ManyToManyField('Member', through='Relationship')
     
-    def __unicode__(self):
-            return unicode(self.first_name)
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
 
     def is_favorite(self, other_member): 
         """
