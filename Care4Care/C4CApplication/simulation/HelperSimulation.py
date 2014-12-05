@@ -25,10 +25,10 @@ class HelperSimulation(MySeleniumTests):
         """
         time.sleep(2)
         page = HomePage(self.selenium)
-        page = page.login_successful("kim.mens@gmail.com","azertyuiop") # TODO set new email
+        page = page.login_successful("kim.mens@gmail.com","azertyuiop")  # TODO set new email
         
         time.sleep(3)
-        page = page.click_on_i_want_to_help() # CreateJobPage
+        page = page.click_on_i_want_to_help()  # CreateJobPage
         
         # Test create job
         page = page.create_job("I want to help for ...", "I provide my help for bringing someone to the shop", "From your place to the shop", 0, "10:30", \
