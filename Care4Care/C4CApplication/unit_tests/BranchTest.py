@@ -17,7 +17,6 @@ class BranchTest(MySeleniumTests):
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/branchlist'))
-        
         page = BranchListPage(self.selenium)
         time.sleep(1)
         
@@ -25,6 +24,7 @@ class BranchTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_submit()
+        time.sleep(1)
         
         self.assertEqual(0, 0)
         return True
