@@ -106,7 +106,7 @@ urlpatterns = patterns('',
         
     url(r'^registration$', RegistrationView.as_view() , name='registration'),
     url(r'^registration/eidrequest$', EIDRedirectView.as_view(), name='eidrequest'),
-
+    
     url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
     url(r'^tests/openid$', OIDTest.oidtest),

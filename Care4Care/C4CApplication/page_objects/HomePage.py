@@ -2,6 +2,7 @@ from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
 from C4CApplication.page_objects.InscriptionPage import InscriptionPage
+from C4CApplication.page_objects.JobDetailsPage import JobDetailsPage
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
@@ -33,6 +34,8 @@ class HomePage(FixedPage):
         self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
         # TODO recup les job offers et job demands
+        self.job_offers_links = self.driver.find_elements(By.CLASS_NAME, "job_offer")
+        self.job_demands_links = self.driver.find_elements(By.CLASS_NAME, "job_demand")
         
     def login_successful(self, mail, password):
         time.sleep(1)
@@ -83,3 +86,7 @@ class HomePage(FixedPage):
         self.need_help_button.click()
         time.sleep(1)
         return CreateJobPage(self.driver)
+    
+    def click_on_last_offer(self):
+        self.job_offers_links[len(self.job_offers_links)-1].click()
+        return JobDetailsPage(self.driver)
