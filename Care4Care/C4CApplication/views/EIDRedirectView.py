@@ -1,4 +1,5 @@
 from urllib.parse import unquote
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic.base import RedirectView
 import openid2rp
 
@@ -9,6 +10,7 @@ class EIDRedirectView(RedirectView):
     def get(self, request, *args, **kwargs):
         ax = (("http://axschema.org/contact/postalAddress/home",
            "http://axschema.org/namePerson/first",
+           "http://axschema.org/person/gender",
            "http://axschema.org/contact/city/home",
            "http://axschema.org/contact/postalCode/home",
            "http://axschema.org/birthDate",
@@ -31,7 +33,7 @@ class EIDRedirectView(RedirectView):
                 services,
                 op_endpoint,
                 session['assoc_handle'],
-                "http://127.0.0.1:8000/registration",   #TODO Change this to relative path
+                reverse_lazy('home'),
                 claimedId, op_local,
                 sreg=((), ()),
                 ax=ax

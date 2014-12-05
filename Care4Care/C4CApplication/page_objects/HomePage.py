@@ -21,12 +21,12 @@ class HomePage(FixedPage):
         try: 
             self.mail_input     = self.driver.find_element(By.NAME, 'email')
             self.password_input = self.driver.find_element(By.NAME, 'password')
-            self.login_button   = self.driver.find_element(By.XPATH, '//input[@value="Login"]')
-            self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@value="Sign"]') # TODO up
+            self.login_button   = self.driver.find_element(By.XPATH, '//input[@id="Login"]')
+            self.sign_up_button = self.driver.find_element(By.XPATH, '//input[@id="sing_up"]') # TODO up
         except NoSuchElementException:  # this is a normal behaviour : that's not the same buttons 
             pass # there depending on if you're log or not
         try: 
-            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@value="Logout"]') 
+            self.logout_button  = self.driver.find_element(By.XPATH, '//a[@id="Logout"]') 
         except NoSuchElementException:  # normal 
             pass 
         
