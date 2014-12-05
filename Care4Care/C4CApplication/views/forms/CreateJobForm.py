@@ -18,7 +18,7 @@ class CreateJobForm(forms.ModelForm):
             'visibility',
             'date',
             'km',
-            'start_time'
+            'place',
         )
         labels = {
         }
@@ -26,11 +26,11 @@ class CreateJobForm(forms.ModelForm):
             'description' : forms.Textarea(
                 attrs = {'id':'job_desc', 'rows':3, 'placeholder':'Request description'}
             ),
+            'place' : forms.Textarea(
+                attrs = {'rows':3, 'placeholder':'Location details'}
+            ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
         }
-
-    class HTML5TimeInput(forms.TimeInput):
-        input_type = 'time'
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
@@ -49,8 +49,18 @@ class CreateJobForm(forms.ModelForm):
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
         self.fields['start_time'] = forms.TimeField(
-            widget=self.HTML5TimeInput,
-            label='Start time'
+            widget=forms.TimeInput(
+                attrs={'placeholder' : 'Format: 00:00'},
+            ),
+            label='Start time',
+            initial='00:00',
+        )
+        self.fields['duration'] = forms.TimeField(
+            widget=forms.TimeInput(
+                attrs={'placeholder' : 'Format: 00:00'},
+            ),
+            label='Duration',
+            initial='00:00'
         )
         self.fields['km'] = forms.DecimalField(
             min_value=0,
