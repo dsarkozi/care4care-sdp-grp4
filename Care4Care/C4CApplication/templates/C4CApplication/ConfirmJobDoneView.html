@@ -7,7 +7,7 @@
 	{% csrf_token %}
 	{% trans "Time spent on the job (minutes) " %} :  <br/>
     <p>{{ confirm_job_done_form }} </p>
-    <p><input type="submit" value={% trans "Confirm" %} class="btn"/></p>
+    <p><input type="submit" id="Confirm" value={% trans "Confirm" %} class="btn"/></p>
     </center>
 </form>
 {% endblock %}

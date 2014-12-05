@@ -73,9 +73,9 @@ background-color:#ffffff;padding:1em;margin-top:2em;width:20em; height:auto;text
 			{% if member in job.member_set.all %}
 			 
 		       
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" value="Participate" class="btn"
+				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn"
 				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. 
 						Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a>
 			{% endif %}
@@ -334,9 +334,9 @@ background-color:#ffffff;padding:1em;margin-top:2em;width:20em; height:auto;text
 					<td>
 						{% if not j.accepted and member.mail != j.mail %}
 							{% if member in j.member_set.all %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
 							{% else %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn">{% trans "Participate"%}</a></br>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a></br>
 							{% endif %}
 						{% endif %}
 					</td>
