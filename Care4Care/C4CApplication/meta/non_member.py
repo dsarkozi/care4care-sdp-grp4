@@ -1,8 +1,8 @@
-from time import strftime, gmtime
 from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch, Message, Mailbox
 from django.db.models import Max
 from C4CApplication.models.relationship import Relationship
+from C4CApplication.meta.time import Time
 
 
 class NonMember(User):
@@ -57,7 +57,7 @@ class NonMember(User):
         message.subject = subject
         message.content = content
         message.type = type
-        message.date = strftime('%Y-%m-%d', gmtime())  # TODO put this in a special module for simulation purposes
+        message.date = Time.str_to_ftime('%Y-%m-%d')  # TODO put this in a special module for simulation purposes
         message.save()
         
         mailbox = Mailbox()
@@ -240,7 +240,7 @@ class NonMember(User):
 
         return False
 
-    def create_job(self, branch_name, title, date=strftime('%Y-%m-%d', gmtime()), is_demand=False,\
+    def create_job(self, branch_name, title, date=Time.str_to_ftime('%Y-%m-%d'), is_demand=False,\
                    comment=None, description='', start_time=0, frequency=0, km=0, duration=0, category=1,\
                    other_category='', place='', visibility='volunteer', recursive_day=''):
         """

@@ -27,6 +27,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# This id is used to store information in case of simulation by using session variables
+SESSION_ID_SIMU = '2b1189a188b44ad18c35e113ac6ceead'
+
 # Session backend
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 

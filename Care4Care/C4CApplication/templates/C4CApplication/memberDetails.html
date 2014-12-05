@@ -1,7 +1,7 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 
 {% load staticfiles %}
-	
+{% load i18n %}
 {% block content %}
 
 
@@ -11,13 +11,13 @@
 	    		{% if member.mail == member_shown.mail %}
 	    			<a href="{% url 'changeActivity' %}" value="activity">Actif</a>
 	    		{% else %}
-	    			Actif
+	    			{% trans "Actif" %}
 	    		{% endif %}
 	    	{% else %}
 	    		{% if member.mail == member_shown.mail %}
 	    			<a href="{% url 'changeActivity' %}" value="activity">Inactif</a>
 	    		{% else %}
-	    			Inactif
+	    			{% trans "Inactif"%}
 	    		{% endif %}
 	    	{% endif %}
 	    </h1>
@@ -27,17 +27,17 @@
     
          <table class="tab1"  style ="top:9em; left:28em;" >
 	  <tr>
-		<th class=".tab1-3" colspan="6">Member details</th>
+		<th class=".tab1-3" colspan="6">{% trans "Member details"%}</th>
 	  </tr>
 	  
 	  <tr>
-		<td class="tab1-4">Type of member : </td>
+		<td class="tab1-4">{% trans "Type of member"%} : </td>
 		<td class="tab1-3"> {{ tag_member }} </td>
 	  </tr>
 	   
 	   
 	   <tr>
-		<td class="tab1-4">Branch(es) : </td>
+		<td class="tab1-4">{% trans "Branche(s)"%} : </td>
 		<td class="tab1-3">
 		    	{% for branch in member_shown.branch.all %}
 		    		<li> {{ branch.name }} </li>
@@ -46,35 +46,35 @@
 	  </tr>
 	   
 	   <tr>
-		<td class="tab1-4">Email : </td>
+		<td class="tab1-4">{% trans "Email"%} : </td>
 		<td class="tab1-3"><a href="{% url 'newmessage' %}" type="submit" value="new_message" class="new_message">{{ member_shown.mail }}</a></td>
 	  </tr>
 	   
       <tr>
-		<td class="tab1-4">Register date : </td>
+		<td class="tab1-4">{% trans "Register date"%} : </td>
 		<td class="tab1-3">{{ member_shown.register_date }}</td>
 	  </tr>
 	  
 	  <tr>
-		<td class="tab1-4">Gender : </td>
+		<td class="tab1-4">{% trans "Gender"%} : </td>
 		<td class="tab1-3">{{ member_shown.gender }}</td>
 	  </tr>
 	  
 	   <tr>
-		<td class="tab1-4">Address : </td>
+		<td class="tab1-4">{% trans "Address"%} : </td>
 		<td class="tab1-3">{{ member_shown.street }}, {{ member_shown.zip }}, {{ member_shown.town }}</td>
 	  </tr>
 	  
 	  {% if member_shown.telephone %}
 	  <tr>
-		<td class="tab1-4">Fixed phone number : </td>
+		<td class="tab1-4">{% trans "Fixed phone number"%} : </td>
 		<td class="tab1-3">{{ member_shown.telephone }}</td>
 	  </tr>
 	     {% endif %}
 	
 	    {% if member_shown.mobile %}
 	    <tr>
-		<td class="tab1-4">Mobile phone number :</td>
+		<td class="tab1-4">{% trans "Mobile phone number"%} :</td>
 		<td class="tab1-3"> {{ member_shown.mobile }}</td>
 	  </tr>
 	    {% endif %}
@@ -83,11 +83,11 @@
 	    
 	    {% if member.mail != member_shown.mail and member_shown not in member.relation.all %}
 	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" type="submit" value="AddRelation" 
-	    	class="myButton2">Add as a friend</a> <br/>
+	    	class="myButton2">{% trans "Add as a friend"%}</a> <br/>
 	    {% endif %}
 
         {% if is_branch_officer or member.tag == 32 %}
-            <p><a href="{% url 'loginasmember' member_shown.mail %}" class="myButton2"  style ="color: #ffffff;">Log as member</a></p>
+            <p><a href="{% url 'loginasmember' member_shown.mail %}" class="myButton2"  style ="color: #ffffff;">{% trans "Log as member"%}</a></p>
         {% endif %}
         </table>
 	    </center>

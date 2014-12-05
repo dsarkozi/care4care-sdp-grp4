@@ -32,10 +32,8 @@ class TransferRightsView(FormView):
         context['connected'] = 'email' in self.request.session
         context['transfer_rights_form'] = transfer_rights_form
         return context
-
     
     def form_valid(self, form):
-        # TODO test if the member has session variables !! -> redirection
         if TransferRightsView.user is None:
             TransferRightsView.user = models.Member.objects.get(mail=self.request.session['email'])
 

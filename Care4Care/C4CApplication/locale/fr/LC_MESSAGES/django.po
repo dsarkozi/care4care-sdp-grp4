@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 08:26+0000\n"
+"POT-Creation-Date: 2014-12-05 09:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,7 @@ msgstr "Liste des tâche accomplies"
 #: templates/C4CApplication/AccountAndStats.html:84
 #: templates/C4CApplication/AccountAndStats.html:109
 #: templates/C4CApplication/AccountAndStats.html:132
+#: templates/C4CApplication/ListMessages.html:41
 msgid "Date"
 msgstr "Date"
 
@@ -180,7 +181,7 @@ msgstr "Ville"
 #: templates/C4CApplication/CreateBranch.html:24
 #: templates/C4CApplication/TransferRightsBranch.html:27
 msgid "Submit"
-msgstr "Envoyez les changements"
+msgstr "Confirmez"
 
 #: templates/C4CApplication/CreateJob.html:17
 msgid "Request details"
@@ -424,6 +425,7 @@ msgstr "Offre"
 
 #: templates/C4CApplication/JobDetails.html:170
 #: templates/C4CApplication/Profile.html:64
+#: templates/C4CApplication/memberDetails.html:64
 msgid "Address"
 msgstr "Adresse"
 
@@ -488,6 +490,43 @@ msgstr "Payé"
 msgid "Action"
 msgstr "Action"
 
+#: templates/C4CApplication/ListMessages.html:18
+msgid "Received Messages"
+msgstr "Messages"
+
+#: templates/C4CApplication/ListMessages.html:19
+msgid "Switch to Sent Messages"
+msgstr "Voir les messages envoyés"
+
+#: templates/C4CApplication/ListMessages.html:21
+#: templates/C4CApplication/ListMessages.html:27
+msgid "Write a new message"
+msgstr "Ecrire un nouveau message"
+
+#: templates/C4CApplication/ListMessages.html:26
+msgid "Switch to Received Messages"
+msgstr "Voir les messages reçus"
+
+#: templates/C4CApplication/ListMessages.html:35
+msgid "Sender"
+msgstr "expéditeur"
+
+#: templates/C4CApplication/ListMessages.html:37
+msgid "Receiver"
+msgstr "destinataire"
+
+#: templates/C4CApplication/ListMessages.html:40
+msgid "Subject"
+msgstr "Sujet"
+
+#: templates/C4CApplication/ListMessages.html:42
+msgid "Content"
+msgstr "Concours"
+
+#: templates/C4CApplication/ListMessages.html:62
+msgid "Read more"
+msgstr "Lire plus"
+
 #: templates/C4CApplication/Profile.html:27
 msgid "Account"
 msgstr "Compte"
@@ -542,6 +581,7 @@ msgid "Personal information"
 msgstr "renseignements personnels"
 
 #: templates/C4CApplication/Profile.html:60
+#: templates/C4CApplication/memberDetails.html:59
 msgid "Gender"
 msgstr "Sexe"
 
@@ -589,6 +629,102 @@ msgstr ""
 #: templates/C4CApplication/TransferRightsBranch.html:28
 msgid "Cancel"
 msgstr "Annuler"
+
+#: templates/C4CApplication/memberDetails.html:14
+msgid "Actif"
+msgstr "Actif"
+
+#: templates/C4CApplication/memberDetails.html:20
+msgid "Inactif"
+msgstr "Inactif"
+
+#: templates/C4CApplication/memberDetails.html:30
+msgid "Member details"
+msgstr "Détails du membre"
+
+#: templates/C4CApplication/memberDetails.html:34
+msgid "Type of member"
+msgstr "Type de membre"
+
+#: templates/C4CApplication/memberDetails.html:40
+msgid "Branche(s)"
+msgstr "Branche(s)"
+
+#: templates/C4CApplication/memberDetails.html:49
+msgid "Email"
+msgstr "Email"
+
+#: templates/C4CApplication/memberDetails.html:54
+msgid "Register date"
+msgstr "Date d'enregistrement"
+
+#: templates/C4CApplication/memberDetails.html:70
+msgid "Fixed phone number"
+msgstr "Téléphone fixe"
+
+#: templates/C4CApplication/memberDetails.html:77
+msgid "Mobile phone number"
+msgstr "Téléphone mobile"
+
+#: templates/C4CApplication/memberDetails.html:86
+msgid "Add as a friend"
+msgstr "Ajouter comme un amis"
+
+#: templates/C4CApplication/memberDetails.html:90
+msgid "Log as member"
+msgstr "Se connecter comme membre"
+
+#: templates/C4CApplication/memberList.html:9
+msgid "Branch Details"
+msgstr "Détails de la Branche"
+
+#: templates/C4CApplication/memberList.html:19
+msgid "Delete the branch"
+msgstr "Supprimer la branche"
+
+#: templates/C4CApplication/memberList.html:26
+msgid "Area"
+msgstr "Zone"
+
+#: templates/C4CApplication/memberList.html:31
+msgid "Current donation amount"
+msgstr "Montant du don"
+
+#: templates/C4CApplication/memberList.html:36
+msgid "Address of Branch office"
+msgstr "Adresse de l'aministrateur de branche"
+
+#: templates/C4CApplication/memberList.html:42
+msgid "Branch officer's mail"
+msgstr "Courriel de l'administrateur de branche"
+
+#: templates/C4CApplication/memberList.html:49
+msgid "Change branch officer"
+msgstr "Changer l'administrateur de branche"
+
+#: templates/C4CApplication/memberList.html:58
+msgid "List of members"
+msgstr "Liste des membres"
+
+#: templates/C4CApplication/memberList.html:86
+msgid "Remove from branch"
+msgstr "Enlever de la branche"
+
+#: templates/C4CApplication/memberList.html:91
+msgid "Promote to verified"
+msgstr "Promouvoir au status de vérifié"
+
+#: templates/C4CApplication/memberList.html:95
+msgid "No more verified"
+msgstr "Ne plus avoir le status de vérifié"
+
+#: templates/C4CApplication/memberList.html:101
+msgid "Promote to volunteer"
+msgstr "Promouvoir au status de volontaire"
+
+#: templates/C4CApplication/memberList.html:105
+msgid "No more volunteer"
+msgstr "Ne plus avoir le status de volontaire"
 
 #: views/forms/RegistrationForm.py:34
 msgid "password"
