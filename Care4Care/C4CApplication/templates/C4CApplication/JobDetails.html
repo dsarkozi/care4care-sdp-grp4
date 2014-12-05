@@ -8,24 +8,31 @@
 
 
 
+
 <!-- Navbar -->
 <center>
-<table style="top:1em; margin-left:0px;margin-bottom:2em; ">
+<table>
 <tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Messages" %}</a></td>
-	<td><a href="{% url 'profile' %}" class="btn" style="border-bottom: 5px solid navy;"> {% trans "Profile" %}</a></td>
+	<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
+	
+	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
+	
     <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="{% url 'favorites' %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Favorites" %}</a></td>
-    <td><a href="{% url 'accountstats' %}" class="btn" style="border-bottom: 5px solid navy;">{% trans "Account & Stats" %}</a></td>
-      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator" %} {% endcomment %}
+    <td><a href="{% url 'favorites' %}" class="btn2">{% trans "Favorites"%}</a></td>
+    
+    <td><a href="{% url 'accountstats' %}" class="btn2 ">{% trans "Account & Stats"%}</a></td>
+    
+      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
         
-      <td> <a href="{% url 'createbranch' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "New branch" %}</a></td>
-  <td>  <a href="{% url 'deletememberbpa' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Delete a member" %}</a> </td> 
-     <td> <a href="{% url 'transferrights' %}" class="btn" style="padding: 5px 15px 5px 15px;border-bottom: 5px solid navy;">{% trans "Transfer rights" %}</a></td>
+      <td> <a href="{% url 'createbranch' %}" class="btn2"  >{% trans "New branch"%}</a></td>
+      
+  <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >{% trans "Delete a member"%}</a> </td> 
+  
+     <td> <a href="{% url 'transferrights' %}" class="btn2 "> {% trans "Transfer rights"%}</a></td>
  
     {% endif %}
     
-        <td><a href="{% url 'logOut' %}" class="btn" value="Logout" style="border-bottom: 5px solid navy;"> {% trans "Logout" %}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
+        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
     <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
   
 </tr>
@@ -33,11 +40,15 @@
 
 
 
+
+</center>
+
+
     {% block accept_bill %}
 		{% endblock %}
 
-<center>
-	<table class="tab1" style="top:27em" >
+<center style="margin:2em;">
+	<table class="tab1" style="" >
 	  <tr>
 		<th class=".tab1-3" colspan="6"> <p>{% trans "Job details" %}</p>
 		<p>
@@ -69,7 +80,7 @@
 			{% endif %}
 		{% endfor %} <br/>      </td>
 		
-	  </tr>
+   </tr>
 	  
 	  {% if job.regular_job != None %}
 		  <tr>
@@ -220,19 +231,27 @@
 	   {% if job.frequency == 0 %}
 		   <tr>
 			<td class="tab1-4">  {% trans "Participants"%} :      </td>
-			<td class="tab1-3">   <ul>
-			{% for mem in job.member_set.all %}
-				<li>
-					<a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a>
+			<td class="tab1-3">  
+			
+			
+			<table>
+			 {% for mem in job.member_set.all %}
+			 <tr>
+			
+			 <td style="border:none;"> <a href="{% url 'memberdetails' mem.mail %}">{{mem.first_name}} {{mem.last_name}}</a> </td> 
 					{% if not job.accepted and mem.mail != member.mail %}
 						{% if member.mail == job.mail %}
-							<a href="{% url 'participatejob' job.id mem.mail %}" value="choose_this_member" class="myButton2" style ="color:#ffffff;"> {% trans "Choose this member"%} </a>
+			<td style="border:none;">	<a href="{% url 'participatejob' job.id mem.mail %}"  class="btn" style="font-size:80%;"> 
+					 {% trans "Choose this member"%} </a></td>
+					
 						{% endif %}
 					{% endif %}
-				</li>
+			</tr>
 			{% endfor %}
-			</ul>
-			      </td>
+			</table>
+	
+		
+		</td>
 			
 		  </tr>
 	  {% else %}

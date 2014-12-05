@@ -1,5 +1,6 @@
 from django import forms
 from C4CApplication.models.member import Member
+from django.utils.translation import ugettext_lazy as _
 
 
 class DonateTimeForm(forms.Form):
@@ -22,11 +23,11 @@ class DonateTimeForm(forms.Form):
     )
     receiver = forms.ChoiceField(
         widget=forms.RadioSelect,
-        choices=(('c4c', 'Send to one of your branches'), ('user', 'Send to user'))
+        choices=(('c4c', _('Send to one of your branches')), ('user', _('Send to user')))
     )
     userDropdown = forms.ChoiceField(
         widget=forms.Select,
-        choices=Member.objects.values_list('mail','first_name')
+        choices=Member.objects.values_list('mail',_('first_name'))
     )
     
     
@@ -44,15 +45,15 @@ class DonateTimeForm(forms.Form):
         cleaned_data = super(DonateTimeForm, self).clean()
         time = 0
         days = 0
-        days = cleaned_data.get("days")
+        days = cleaned_data.get(_("days"))
         hours = 0
-        hours = cleaned_data.get("hours")
+        hours = cleaned_data.get(_("hours"))
         minutes = 0
-        minutes = cleaned_data.get("minutes")
+        minutes = cleaned_data.get(_("minutes"))
         time = days*1440+hours*60+minutes
         
         #check a good time donation
         if time == 0 :
-            self.add_error("minutes", forms.ValidationError("You can't do a donation of 0 time !", code='invalid'))
+            self.add_error(_("minutes"), forms.ValidationError(_("You can't do a donation of 0 time !"), code='invalid'))
         
         return cleaned_data

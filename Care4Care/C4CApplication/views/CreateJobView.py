@@ -28,12 +28,6 @@ class CreateJobView(FormView):
         context['connected'] = 'email' in self.request.session
         return context
 
-    # def form_invalid(self, form):
-    #     branches = form.cleaned_data['branches']
-    #     print(branches)
-    #     print('all' in branches)
-    #     return super(CreateJobView, self).form_invalid(form)
-
     def get_form_kwargs(self):
         kwargs = super(CreateJobView, self).get_form_kwargs()
         kwargs.update({'user' : self.user.db_member})
@@ -41,6 +35,35 @@ class CreateJobView(FormView):
 
     def form_valid(self, form):
         #TODO Call to create_job
+        start_time = form.cleaned_data['start_time']
+        duration = form.cleaned_data['duration']
+        freq_dict = {
+            '0' : '',
+            '1' : form.cleaned_data['weekdays'],
+            '2' : form.cleaned_data['dayrange']
+        }
+        recursive_day_list = freq_dict[form.cleaned_data['frequency']]
+        status = self.user.create_job(
+            branch_name=form.cleaned_data['branches'],
+            title=form.cleaned_data['title'],
+            description=form.cleaned_data['description'],
+            is_demand=self.kwargs['type'] == 'demand',
+            frequency=form.cleaned_data['frequency'],
+            category=form.cleaned_data['category'],
+            visibility=form.cleaned_data['visibility'],
+            date=form.cleaned_data['date'],
+            start_time=start_time.hour*60 + start_time.minute,
+            km=form.cleaned_data['km'],
+            duration=duration.hour*60 + duration.minute,
+            other_category=form.cleaned_data['other_category'],
+            place=form.cleaned_data['place'],
+            recursive_day=','.join(recursive_day_list)
+        )
+        if status:
+            return super(CreateJobView, self).form_valid(form)
+        else:
+            return super(CreateJobView, self).form_invalid(form)
+
         # self.user.create_job(
         #     is_demand=(self.kwargs['type'] == 'demand'),
         #     comment=form.cleaned_data['desc'],
@@ -54,4 +77,4 @@ class CreateJobView(FormView):
         #         branch_name=branch,
         #         date=form.cleaned_data['']
         #     )
-        return super(CreateJobView, self).form_valid(form)
+        # return super(CreateJobView, self).form_valid(form)

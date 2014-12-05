@@ -39,8 +39,6 @@ class RegistrationForm(ModelForm):
             'mobile' : _('mobile'),
             'telephone' : _('telephone'),
             'branch' : _('branch')
-            
-            
         }
         widgets = {
             'branch' : CheckboxSelectMultiple(),
@@ -52,6 +50,12 @@ class RegistrationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         eid = kwargs.pop('eid')
         super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['password'] = forms.CharField(
+            max_length=100,
+            min_length=8,
+            widget=PasswordInput(),
+            label=_('Password')
+        )
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))

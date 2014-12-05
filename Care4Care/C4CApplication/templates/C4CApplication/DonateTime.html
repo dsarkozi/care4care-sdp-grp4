@@ -24,11 +24,11 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;padding-right:2e
 
             <legend> <h3>{% trans "Donation amount" %}</h3></legend>
 
-            {{ donateTime.days }} <label> days, </label>
+            {{ donateTime.days }} <label> {% trans "days," %}</label>
             </br>
-            {{ donateTime.hours }} <label> hours, </label>
+            {{ donateTime.hours }} <label> {% trans "hours," %}</label>
             </br>
-            {{ donateTime.minutes }} <label> minutes. </label>
+            {{ donateTime.minutes }} <label> {% trans "minutes." %} </label>
         </fieldset>
         </br>
         <fieldset>
@@ -46,7 +46,7 @@ background-color:#ffffff;margin-top:3em;width:50em; height:29em;padding-right:2e
             </ul>
         </fieldset>
         </br>
-        <input type="submit" value="Donate time" class = "btn" onclick="return window.confirm('Are you sure you want to give your time ?')">
+        <input type="submit" value={% trans "Donate time"%} class = "btn" onclick="return window.confirm('Are you sure you want to give your time ?')">
     </form>
 
 {% endblock %}
