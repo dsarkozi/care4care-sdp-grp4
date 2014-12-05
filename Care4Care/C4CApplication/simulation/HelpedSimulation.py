@@ -53,10 +53,13 @@ class HelpedSimulation(MySeleniumTests):
         # login
         page = HomePage(self.selenium)
         page = page.login_successful("janine_kou@gmail.com","azertyuiop") 
+        time.sleep(1)
         
+        page = page.click_home()
+        time.sleep(1)
+        page = HomePage(self.selenium)
         
-        # click on home
-        
+        # TODO dans HomePage
         # click on last demand (of help) -> mine
         # on arrive dans jobDetails
         
