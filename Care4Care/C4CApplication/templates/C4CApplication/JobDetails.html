@@ -183,21 +183,39 @@
 	 {% if job.frequency == 0 %}
 	 <tr>
 		<td class="tab1-4">   {% trans "Job accepted"%} :     </td>
-		<td class="tab1-3">     {{ job.accepted }}    </td>
+		<td class="tab1-3">
+			{% if job.accepted %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}
+		</td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
 		<td class="tab1-4">  {% trans "Job done"%} :      </td>
-		<td class="tab1-3">  {{ job.done }}      </td>
+		<td class="tab1-3">  
+			{% if job.done %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}     
+		</td>
 		
 	  </tr>
 	  
 	  
 	   <tr>
 		<td class="tab1-4">  {% trans "Job payed"%} :      </td>
-		<td class="tab1-3">     {{ job.payed }}    </td>
+		<td class="tab1-3">    
+			{% if job.payed %}
+				{% trans "Yes" %}
+			{% else %}
+				{%trans "No" %}
+			{% endif %}
+		</td>
 		
 	  </tr>
 	  
