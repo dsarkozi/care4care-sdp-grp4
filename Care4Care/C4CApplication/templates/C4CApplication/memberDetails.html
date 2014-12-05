@@ -24,7 +24,14 @@
 	    
 	    
 	
-    
+        {% if member.mail != member_shown.mail and member_shown not in member.relation.all %}
+	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" type="submit" value="AddRelation"
+	    	class="myButton2">{% trans "Add as a friend"%}</a> <br/>
+	    {% endif %}
+
+        {% if is_branch_officer and member_shown.tag < 16 or member.tag > 16 and member_shown.tag <= 16 %}
+            <p><a href="{% url 'loginasmember' member_shown.mail %}" class="myButton2"  style ="color: #ffffff;">{% trans "Log as member"%}</a></p>
+        {% endif %}
          <table class="tab1"  style ="top:9em; left:28em;" >
 	  <tr>
 		<th class=".tab1-3" colspan="6">{% trans "Member details"%}</th>
@@ -78,17 +85,6 @@
 		<td class="tab1-3"> {{ member_shown.mobile }}</td>
 	  </tr>
 	    {% endif %}
-	    
-	    
-	    
-	    {% if member.mail != member_shown.mail and member_shown not in member.relation.all %}
-	    	<a href="{% url 'memberdetailsredirect' member_shown.mail %}" type="submit" value="AddRelation" 
-	    	class="myButton2">{% trans "Add as a friend"%}</a> <br/>
-	    {% endif %}
-
-        {% if is_branch_officer or member.tag == 32 %}
-            <p><a href="{% url 'loginasmember' member_shown.mail %}" class="myButton2"  style ="color: #ffffff;">{% trans "Log as member"%}</a></p>
-        {% endif %}
         </table>
 	    </center>
 	    

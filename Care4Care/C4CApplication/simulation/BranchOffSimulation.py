@@ -37,7 +37,8 @@ class BranchOffSimulation(MySeleniumTests):
         
         page = page.click_home()
         page = HomePage(self.selenium)
-        page.click_on_logout()
+        page.click_on_logout()  # Logout the member
+        page.click_on_logout()  # Logout himself
         print("FIN de la simulation !")
                 
         return True
