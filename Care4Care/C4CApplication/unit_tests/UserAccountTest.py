@@ -5,6 +5,7 @@ from C4CApplication.page_objects.MemberListPage import MemberListPage
 from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 from C4CApplication.page_objects.ProfilePage import ProfilePage
 from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
+from C4CApplication.models.member import Member
 
 
 import time
@@ -20,7 +21,8 @@ class UserAccountTest(MySeleniumTests):
         home_page.login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        name = self.selenium.find_elements_by_xpath("//span[@class='nom']")[0]
+        self.assertEqual(name.text, "Mathieu Jadin")
         return True
         
         
@@ -34,7 +36,8 @@ class UserAccountTest(MySeleniumTests):
         page.log_out()
         time.sleep(1)
         
-        self.assertEqual(0, 0)
+        login = self.selenium.find_elements_by_xpath("//input[@type='submit']")[0]
+        self.assertEqual(login.is_displayed(), True)
         return True
     
     def test_create_member_account(self):
@@ -54,12 +57,9 @@ class UserAccountTest(MySeleniumTests):
         page = page.click_on_submit()
         time.sleep(5)
         
+        
         self.assertEqual(0, 0)
         return True
-    
-    
-    def test_create_verified_member(self): #TODO keep this test?
-        pass
     
     def test_delete_account(self):
         self.populate_db()
@@ -80,7 +80,9 @@ class UserAccountTest(MySeleniumTests):
         page = page.login_fail('dr.robotnik@gmail.com', 'azertyuiop')
         time.sleep(3)
         
-        self.assertEqual(0, 0)
+        members = Member.objects.filter(mail="dr.robotnik@gmail.com")
+        self.assertEqual(len(members), 1)
+        self.assertEqual(members[0].deleted, True)
         return True
     
     def test_update_to_volunteer(self):
@@ -101,5 +103,7 @@ class UserAccountTest(MySeleniumTests):
         page.click_on_promote_volunteer(0)
         time.sleep(2)
         
-        self.assertEqual(0, 0)
+        member = Member.objects.filter(mail="olivier.mauvaisaventure@gmail.com")
+        self.assertEqual(len(member), 1)
+        self.assertEqual(member[0].tag, 8)
         return True
