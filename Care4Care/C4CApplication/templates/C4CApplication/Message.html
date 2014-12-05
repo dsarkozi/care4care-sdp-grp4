@@ -18,7 +18,10 @@ background-color:#ffffff;margin-top:3em; width:50em;">
         {% endfor %}
     </p>
     <p><div style="font-weight: bold;"> {% trans "Date" %} : </div> {% trans "The" %} {{ message.date|date:"DATE_FORMAT" }}</p>
-	<div ><div style="font-weight: bold;"> {% trans "Message" %} : </div>{{ message.content|linebreaks }}</div>
+	<div ><div style="font-weight: bold;"> {% trans "Message" %} : </div>
+        {% with description=message.content|safe %}
+            {{description|linebreaks}}
+        {% endwith %}</div>
 </div>
 </section>
 
