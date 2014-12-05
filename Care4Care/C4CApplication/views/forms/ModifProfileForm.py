@@ -11,7 +11,7 @@ class ModifProfileForm(forms.Form):
     new_password   = forms.CharField( min_length=8, max_length=100 , required=False , widget=forms.PasswordInput(attrs={'placeholder': _('new password'), 'size' : 44}))
     password   = forms.CharField( min_length=8, max_length=100 , required=False  , widget=forms.PasswordInput(attrs={'placeholder': _('password verification'), 'size' : 44}))
     affiche = _('street, number, more informations')#_('street, number, more informations')
-    #affiche = _('lol, vieux, con')
+
     #adresse
     street  = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': affiche, 'size' : 32}))
     zip     = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': _('zip'),    'size' : 10}))
