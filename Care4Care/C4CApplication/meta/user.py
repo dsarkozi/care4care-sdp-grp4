@@ -33,9 +33,9 @@ class User(object):
         return
 
     @abc.abstractmethod
-    def get_visible_job_list(self, show_offers):
+    def get_visible_job_list(self, show_demands):
         """
-        :param show_offers: the type of the list of the jobs to return
+        :param show_demands: the type of the list of the jobs to return
         :return: the list of Job objects visible by the user
             (offers if 'show_offers' is true and otherwise the demands)
         """

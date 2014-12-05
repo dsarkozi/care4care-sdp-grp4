@@ -9,7 +9,7 @@ from C4CApplication.views.utils import create_user
 class CreateJobView(FormView):
     template_name = "C4CApplication/CreateJob.html"
     form_class = CreateJobForm
-    success_url = reverse_lazy('myc4c')
+    success_url = reverse_lazy('profile')
     user = None
 
     def dispatch(self, request, *args, **kwargs):
