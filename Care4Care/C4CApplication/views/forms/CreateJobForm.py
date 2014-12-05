@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.widgets import TextInput, Textarea
+from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 
 from C4CApplication.models.job import Job
@@ -17,7 +17,8 @@ class CreateJobForm(forms.ModelForm):
             'frequency',
             'visibility',
             'date',
-            'km'
+            'km',
+            'start_time'
         )
         labels = {
         }
@@ -27,6 +28,9 @@ class CreateJobForm(forms.ModelForm):
             ),
             'date' : SelectDateWidget(attrs={'id':'time_specific', }),   #TODO disabled
         }
+
+    class HTML5TimeInput(forms.TimeInput):
+        input_type = 'time'
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
@@ -43,6 +47,10 @@ class CreateJobForm(forms.ModelForm):
         if len(branchList) == 1:
             self.fields['branches'].widget.attrs = {'disabled' : 'true', 'checked' : 'true'}
         self.fields['title'].widget.attrs = {'autofocus':'true', 'id':'job_title', 'placeholder':'Request title'}
+        self.fields['start_time'] = forms.TimeField(
+            widget=self.HTML5TimeInput,
+            label='Start time'
+        )
         self.fields['km'] = forms.DecimalField(
             min_value=0,
             initial=0,
