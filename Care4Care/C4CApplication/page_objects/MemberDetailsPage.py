@@ -12,7 +12,7 @@ class MemberDetailsPage(FixedPage):
         self.favorite_button = None
         self.log_as_button = None
         try: 
-            self.favorite_button = self.driver.find_element_by_xpath('//input[@value="AddRelation"]')
+            self.favorite_button = self.driver.find_element_by_xpath('//input[@id="AddRelation"]')
         except NoSuchElementException: 
             pass
         try:

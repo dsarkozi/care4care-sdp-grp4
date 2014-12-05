@@ -36,6 +36,7 @@ class SearchJobView(FormView):
                 filtered_job_list.append(job)
 
         context['job_list'] = filtered_job_list
+        context['member'] = self.user.db_member
 
         context['searchform'] = SearchForm(auto_id=False,
                                            data={'type_of_job': 'demand' if SearchJobView.show_demands else 'offer',

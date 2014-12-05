@@ -44,7 +44,7 @@ class TimeTransferTest(MySeleniumTests):
         self.assertEqual(time_account_before, time_account_after+1620)
         return True
     
-    def test_gift_test(self):
+    def test_gift(self):
         #login
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -53,15 +53,14 @@ class TimeTransferTest(MySeleniumTests):
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/donate/'))
-        time.sleep(1)
-        
         page = GiveTimePage(self.selenium)
-        time.sleep(3)
+        time.sleep(2)
         
-        page = page.fill_in_fields("Tiens Olivier, voici du temps ;)", "0", "1", "40", "Olivier")
+        page = page.fill_in_fields("Tiens Olivier, voici du temps ;)", "0", "1", "40", "Olivier", 1)
         time.sleep(2)
         
         page = page.click_on_donate()
+        time.sleep(2)
         
         self.assertEqual(0, 0)
         return True

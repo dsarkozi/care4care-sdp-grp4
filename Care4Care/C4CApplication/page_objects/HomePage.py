@@ -47,6 +47,7 @@ class HomePage(FixedPage):
         time.sleep(1)
         self.login_button.click()
         
+        time.sleep(2)
         return MyCare4Care(self.driver) 
     
     def login_fail(self, mail, password):
@@ -65,6 +66,7 @@ class HomePage(FixedPage):
         self.mail_input.send_keys(mail)
         self.password_input.send_keys(password)
         self.login_button.click()
+        time.sleep(1)
         return MyCare4Care(self.driver)
     
     def click_on_sign_up(self):
