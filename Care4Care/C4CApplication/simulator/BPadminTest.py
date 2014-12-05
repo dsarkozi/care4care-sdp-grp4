@@ -4,6 +4,8 @@ from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
 from C4CApplication.page_objects.TransferRightsPage import TransferRightsPage
 
+from C4CApplication.models import Branch
+
 
 import time
 
@@ -28,13 +30,20 @@ class BPadminTest(MySeleniumTests):
         page = CreateBranchPage(self.selenium)
         time.sleep(2)
         
-        page = page.fill_in_info('Bxl', 'Bruxelles', 'mathieu.jadin@student.uclouvain.be', "Rue de la deadline trop courte, 42, shit")
+        page = page.fill_in_info('Bxl', 'Bruxelles-Molenbeek', 'mathieu.jadin@student.uclouvain.be', "Rue de la Réussite 42", "7652", "Bruxelles")
         time.sleep(3)
         
         page = page.click_on_submit()
         time.sleep(2)
         
-        self.assertEqual(0, 0)
+        branch = Branch.objects.filter(name='Bxl')
+        self.assertEqual(len(branch), 1)
+        branch=branch[0]
+        self.assertEqual(branch.branch_town, 'Bruxelles-Molenbeek')
+        self.assertEqual(branch.branch_officer, 'mathieu.jadin@student.uclouvain.be')
+        self.assertEqual(branch.street, 'Rue de la Réussite 42')
+        self.assertEqual(branch.zip, "7652")
+        self.assertEqual(branch.town, "Bruxelles")
         return True
 
     
