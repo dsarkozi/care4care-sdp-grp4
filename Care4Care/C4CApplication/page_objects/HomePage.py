@@ -92,3 +92,7 @@ class HomePage(FixedPage):
     def click_on_last_offer(self):
         self.job_offers_links[len(self.job_offers_links)-1].click()
         return JobDetailsPage(self.driver)
+    
+    def click_on_last_demand(self):
+        self.job_demands_links[len(self.job_demands_links)-1].click()
+        return JobDetailsPage(self.driver)

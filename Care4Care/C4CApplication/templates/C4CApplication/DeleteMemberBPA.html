@@ -19,7 +19,7 @@ background-color:#ffffff;padding:1em;width:40%; height:auto;">
 	{% trans "Enter the mail of the member to be deleted" %} :  <br/>
     <p>
     {{ delete_member_bpa_form }}</p>
-    <input type="submit" value={% trans "Delete" %} class = "btn" onclick="return window.confirm('Are you sure you want to delete this member ?')"/>
+    <input type="submit" value={% trans "Delete" %} class = "btn" onclick="return window.confirm('{% trans "Are you sure you want to delete this member" %} ?')"/>
     
 </form>
 </section>
