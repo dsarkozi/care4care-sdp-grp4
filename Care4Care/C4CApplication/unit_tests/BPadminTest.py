@@ -1,5 +1,5 @@
 from C4CApplication.unit_tests.super_class import MySeleniumTests
-#from C4CApplication.page_objects.HomePage import HomePage
+from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
 from C4CApplication.page_objects.TransferRightsPage import TransferRightsPage
@@ -13,15 +13,11 @@ import time
 class BPadminTest(MySeleniumTests):
 
     def test_create_branch(self):
+        #login
         self.populate_db()
-        
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/createbranch/'))
@@ -36,6 +32,10 @@ class BPadminTest(MySeleniumTests):
         page = page.click_on_submit()
         time.sleep(2)
         
+        page = HomePage(self.selenium)
+        page.click_on_care4care_branches()
+        time.sleep(2)
+        
         branch = Branch.objects.filter(name='Bxl')
         self.assertEqual(len(branch), 1)
         branch=branch[0]
@@ -48,15 +48,11 @@ class BPadminTest(MySeleniumTests):
 
     
     def test_change_branch_officer(self):
+        #login
         self.populate_db()
-
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/LLN/'))
@@ -67,7 +63,7 @@ class BPadminTest(MySeleniumTests):
         time.sleep(2)
         
         page = page.click_on_change()
-        time.sleep(1)
+        time.sleep(2)
         
         branch = Branch.objects.filter(name='LLN')
         self.assertEqual(len(branch), 1)
@@ -76,15 +72,11 @@ class BPadminTest(MySeleniumTests):
         return True
     
     def test_resing_from_bp_admin(self):
+        #Log in
         self.populate_db()
-
-        # log in
         self.selenium.get('%s%s' % (self.live_server_url, ''))
-        username_input = self.selenium.find_element_by_name("email")
-        username_input.send_keys('mathieu.jadin@student.uclouvain.be')
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('azertyuiop')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        page = HomePage(self.selenium)
+        page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/transferrights/'))
@@ -95,7 +87,10 @@ class BPadminTest(MySeleniumTests):
         time.sleep(2)
         
         page = page.click_on_change()
-        time.sleep(2)
+        time.sleep(3)
+        
+        self.selenium.get('%s%s' % (self.live_server_url, '/memberdetails/kim.mens%40gmail.com'))
+        time.sleep(3)
         
         oldBP = Member.objects.filter(mail='mathieu.jadin@student.uclouvain.be')
         self.assertEqual(len(oldBP), 1)
