@@ -19,6 +19,8 @@ class HomePage(FixedPage):
         self.login_button   = None
         self.sign_up_button = None
         self.logout_button  = None
+        self.want_to_help_button = None
+        self.need_help_button = None
         try: 
             self.mail_input     = self.driver.find_element(By.NAME, 'email')
             self.password_input = self.driver.find_element(By.NAME, 'password')
@@ -31,8 +33,10 @@ class HomePage(FixedPage):
         except NoSuchElementException:  # normal 
             pass 
         
-        self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
-        self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+        try: self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
+        except: pass
+        try: self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+        except: pass
         # TODO recup les job offers et job demands
         self.job_offers_links = self.driver.find_elements(By.CLASS_NAME, "job_offer")
         self.job_demands_links = self.driver.find_elements(By.CLASS_NAME, "job_demand")
