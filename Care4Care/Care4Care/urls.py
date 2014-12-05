@@ -59,7 +59,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)), 
-    url(r'^$', HomePageView.as_view(), name='home'), #not
+    url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^myc4c/$', MyCare4CareView.as_view(), name='myc4c'), 
     
     url(r'^myc4c/changeActivity$', ChangeActivityView.as_view(), name='changeActivity'),
@@ -109,7 +109,7 @@ urlpatterns = patterns('',
     
     url(r'^searchjob$', SearchJobView.as_view(), name='searchjob'),
 
-    url(r'^tests/openid$', OIDTest.oidtest),
+    url(r'^tests/openid$', OIDTest.oidtest), 
     url(r'^tests/openid2$', OIDTest.oidtest2)
 
 
