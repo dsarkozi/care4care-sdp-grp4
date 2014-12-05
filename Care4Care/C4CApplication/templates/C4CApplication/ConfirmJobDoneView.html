@@ -1,11 +1,13 @@
 {% extends "C4CApplication/JobDetails.html" %}
 {% load i18n %}
+
 {% block form_job_done %}
 <form method="post">
-
+<center>
 	{% csrf_token %}
-	{% trans "Time for doing the job (in minutes)" %}:  <br/>
-    <p>{{ confirm_job_done_form }}</p>
-    <p><input type="submit" id="Confirm"  value={% trans "Confirm" %}/></p>
+	{% trans "Time spent on the job (minutes) " %} :  <br/>
+    <p>{{ confirm_job_done_form }} </p>
+    <p><input type="submit" value={% trans "Confirm" %} class="btn"/></p>
+    </center>
 </form>
 {% endblock %}

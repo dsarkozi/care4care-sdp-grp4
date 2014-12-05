@@ -28,15 +28,15 @@ class RegistrationView(CreateView):
             self.ax = RegistrationView.get_ax(self.request.POST)
         if self.ax:
             ax_data = {
-                    'first_name' : self.ax['firstname'].split(maxsplit=1)[0],
-                    'last_name' : self.ax['lastname'],
-                    'gender' : self.ax['gender'],
-                    'street' : self.ax['address'],
-                    'town' : self.ax['city'],
-                    'zip' : self.ax['postal_code'],
-                    'birthday_day' : self.ax['birth_day'],
-                    'birthday_month' : self.ax['birth_month'],
-                    'birthday_year' : self.ax['birth_year']
+                    'first_name' : self.ax['firstname'].split(maxsplit=1)[0] if 'firstname' in self.ax.keys() else None,
+                    'last_name' : self.ax['lastname'] if 'lastname' in self.ax.keys() else None,
+                    'gender' : self.ax['gender'] if 'gender' in self.ax.keys() else None,
+                    'street' : self.ax['address'] if 'address' in self.ax.keys() else None,
+                    'town' : self.ax['city'] if 'city' in self.ax.keys() else None,
+                    'zip' : self.ax['postal_code'] if 'postal_code' in self.ax.keys() else None,
+                    'birthday_day' : self.ax['birth_day'] if 'birth_day' in self.ax.keys() else None,
+                    'birthday_month' : self.ax['birth_month'] if 'birth_month' in self.ax.keys() else None,
+                    'birthday_year' : self.ax['birth_year'] if 'birth_year' in self.ax.keys() else None
             }
             data = QueryDict('', mutable=True)
             data.update(ax_data)
@@ -76,6 +76,7 @@ class RegistrationView(CreateView):
         res = {}
         AX = { "http://axschema.org/contact/postalAddress/home" : 'address',
                "http://axschema.org/namePerson/first" : 'firstname',
+               "http://axschema.org/person/gender" : 'gender',
                "http://axschema.org/contact/city/home" : 'city',
                "http://axschema.org/contact/postalCode/home" : 'postal_code',
                "http://axschema.org/birthDate" : 'birth_date',
@@ -87,7 +88,6 @@ class RegistrationView(CreateView):
                "http://axschema.org/namePerson/last" : 'lastname',
                "http://axschema.org/namePerson" : 'fullname',
                "http://axschema.org/eid/age" : 'age',
-               "http://axschema.org/person/gender" : 'gender',
         }
         for key, value in ax.items():
             if key.endswith('photo'):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 19:20+0000\n"
+"POT-Creation-Date: 2014-12-05 19:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,8 +302,8 @@ msgid "Request details"
 msgstr "Demande de détails"
 
 #: templates/C4CApplication/CreateJob.html:31
-#: templates/C4CApplication/HomePage.html:61
-#: templates/C4CApplication/HomePage.html:88
+#: templates/C4CApplication/HomePage.html:60
+#: templates/C4CApplication/HomePage.html:87
 #: templates/C4CApplication/JobSearch.html:13
 msgid "Job category"
 msgstr "Catégorie de la tâche"
@@ -414,53 +414,49 @@ msgstr "Connexion"
 msgid "Sign up"
 msgstr "Créer un compte"
 
-#: templates/C4CApplication/HomePage.html:18
-msgid "Forgot password"
-msgstr "mot de passe oublié"
-
-#: templates/C4CApplication/HomePage.html:23
+#: templates/C4CApplication/HomePage.html:22
 #: templates/C4CApplication/MyCare4Care.html:50
 msgid "Hello"
 msgstr "Bonjour"
 
-#: templates/C4CApplication/HomePage.html:24
+#: templates/C4CApplication/HomePage.html:23
 #: templates/C4CApplication/JobDetails.html:37
 #: templates/C4CApplication/MyCare4Care.html:36
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/C4CApplication/HomePage.html:29
+#: templates/C4CApplication/HomePage.html:28
 msgid "Welcome on Care4Care"
 msgstr "Bienvenue dans Care4Care"
 
-#: templates/C4CApplication/HomePage.html:30
+#: templates/C4CApplication/HomePage.html:29
 #: templates/C4CApplication/MyCare4Care.html:66
 msgid "I need help"
 msgstr "J'ai besoin d'aide"
 
-#: templates/C4CApplication/HomePage.html:32
+#: templates/C4CApplication/HomePage.html:31
 #: templates/C4CApplication/MyCare4Care.html:67
 msgid "I want to help"
 msgstr "Je veux aider"
 
-#: templates/C4CApplication/HomePage.html:57
+#: templates/C4CApplication/HomePage.html:56
 #: templates/C4CApplication/JobSearch.html:9
 msgid "Recent feeds of offer"
 msgstr "Offres récentes"
 
-#: templates/C4CApplication/HomePage.html:62
-#: templates/C4CApplication/HomePage.html:89
+#: templates/C4CApplication/HomePage.html:61
+#: templates/C4CApplication/HomePage.html:88
 #: templates/C4CApplication/JobSearch.html:14
 msgid "Title"
 msgstr "Titre"
 
-#: templates/C4CApplication/HomePage.html:63
-#: templates/C4CApplication/HomePage.html:90
+#: templates/C4CApplication/HomePage.html:62
+#: templates/C4CApplication/HomePage.html:89
 #: templates/C4CApplication/JobSearch.html:15
 msgid "Location"
 msgstr "Localisation"
 
-#: templates/C4CApplication/HomePage.html:85
+#: templates/C4CApplication/HomePage.html:84
 msgid "Recent feeds of demand"
 msgstr "Demandes récentes"
 
@@ -499,13 +495,13 @@ msgid "Job details"
 msgstr "Détails de la tâche"
 
 #: templates/C4CApplication/JobDetails.html:62
-#: templates/C4CApplication/JobDetails.html:305
+#: templates/C4CApplication/JobDetails.html:311
 msgid "Stop participating"
 msgstr "Participation à un job"
 
 #: templates/C4CApplication/JobDetails.html:66
-#: templates/C4CApplication/JobDetails.html:266
-#: templates/C4CApplication/JobDetails.html:307
+#: templates/C4CApplication/JobDetails.html:272
+#: templates/C4CApplication/JobDetails.html:313
 msgid "Participate"
 msgstr "Participer"
 
@@ -530,7 +526,7 @@ msgid "Go to the regular job"
 msgstr "Aller aux tâche régulières"
 
 #: templates/C4CApplication/JobDetails.html:101
-#: templates/C4CApplication/JobDetails.html:282
+#: templates/C4CApplication/JobDetails.html:288
 msgid "Date of the job"
 msgstr "Date de la tâche"
 
@@ -577,61 +573,69 @@ msgstr "Adresse"
 msgid "Job accepted"
 msgstr "Tâche acceptée"
 
-#: templates/C4CApplication/JobDetails.html:195
+#: templates/C4CApplication/JobDetails.html:191
+msgid "Yes"
+msgstr "Oui"
+
+#: templates/C4CApplication/JobDetails.html:193
+msgid "No"
+msgstr "Non"
+
+#: templates/C4CApplication/JobDetails.html:201
 msgid "Job done"
 msgstr "Tâche effectuée"
 
-#: templates/C4CApplication/JobDetails.html:202
+#: templates/C4CApplication/JobDetails.html:208
 msgid "Job payed"
 msgstr "Tâche payée"
 
-#: templates/C4CApplication/JobDetails.html:211
+#: templates/C4CApplication/JobDetails.html:217
 msgid "Visibility of the job"
 msgstr "visibilitée de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:220
+#: templates/C4CApplication/JobDetails.html:226
 msgid "Branch"
 msgstr "Branche"
 
-#: templates/C4CApplication/JobDetails.html:221
+#: templates/C4CApplication/JobDetails.html:227
 #: views/forms/RegistrationForm.py:41
 msgid "branch"
 msgstr "branche"
 
-#: templates/C4CApplication/JobDetails.html:227
+#: templates/C4CApplication/JobDetails.html:233
 msgid "Description"
 msgstr "Description"
 
-#: templates/C4CApplication/JobDetails.html:234
-#: templates/C4CApplication/JobDetails.html:283
+#: templates/C4CApplication/JobDetails.html:240
+#: templates/C4CApplication/JobDetails.html:289
 msgid "Participants"
 msgstr "Participants"
 
-#: templates/C4CApplication/JobDetails.html:246
+#: templates/C4CApplication/JobDetails.html:252
 msgid "Choose this member"
 msgstr "Choisier ce membre"
 
-#: templates/C4CApplication/JobDetails.html:260
+#: templates/C4CApplication/JobDetails.html:266
 msgid "Occurence of the job"
 msgstr "Occurence de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:264
+#: templates/C4CApplication/JobDetails.html:270
 msgid "Possibilities"
 msgstr "Possibilités"
 
-#: templates/C4CApplication/JobDetails.html:284
+#: templates/C4CApplication/JobDetails.html:290
 msgid "Accepted"
 msgstr "Accepté"
 
-#: templates/C4CApplication/JobDetails.html:285
+#: templates/C4CApplication/JobDetails.html:291
 msgid "Done"
 msgstr "Fait"
 
-#: templates/C4CApplication/JobDetails.html:286
+#: templates/C4CApplication/JobDetails.html:292
 msgid "Payed"
 msgstr "Payé"
 
-#: templates/C4CApplication/JobDetails.html:287
+#: templates/C4CApplication/JobDetails.html:293
 msgid "Action"
 msgstr "Action"
 
@@ -1128,6 +1132,9 @@ msgstr "nouveau_branch_officer@gmail.com"
 #: views/forms/TransferRightsForm.py:10
 msgid "new_BP_Admin@mail.com"
 msgstr "nouveau_BP_Administrateur@gmail.com"
+
+#~ msgid "Forgot password"
+#~ msgstr "mot de passe oublié"
 
 #~ msgid "street, number, more details"
 #~ msgstr "rue, nombre, plus de détails"

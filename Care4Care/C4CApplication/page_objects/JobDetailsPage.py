@@ -23,6 +23,6 @@ class JobDetailsPage(FixedPage):
         self.participate_button.click()
         return self
     
-    def click_on_choose_member(self):
-        self.choose_member_buttons[0].click()
+    def click_on_choose_member(self, num):
+        self.choose_member_buttons[num].click()
         return self
