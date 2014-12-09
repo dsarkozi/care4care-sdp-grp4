@@ -10,10 +10,8 @@ class Mailbox(models.Model):
     
     def has_mail_not_readed(self):
         list_mailbox = Mailbox.objects.filter(member_receiver=self.member_receiver)
-        has_mail_not_readed = False
+        has_mail_not_readed = 0
         for mailbox in list_mailbox :
             if not mailbox.status :
-                has_mail_not_readed = True
-                break
-        print("Mail has been read")
+                has_mail_not_readed += 1
         return has_mail_not_readed
