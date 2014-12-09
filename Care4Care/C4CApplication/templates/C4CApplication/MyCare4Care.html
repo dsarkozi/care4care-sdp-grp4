@@ -13,17 +13,30 @@
 <table>
 <tr>    
 
+
+{% with mailbox=member.mailbox_set.all|first %}
+	{% if mailbox.has_mail_not_readed %}
+		prout
+	{% endif %}
+{% endwith %}
+
+
 {% with boolean=0 %}
 
+	
+
     {% for mailbox in member.mailbox_set.all %} 	
-        {% if not mailbox.status %} 
-	    	{% boolean=1 %}
+        {% if not mailbox.status %}
+         
+	    	{% with boolean=1 %}
+	    	{% endwith %}
+	    	
 	    {% endif %}
     {% endfor %}	    		
     
-    {% if boolean==1 %}
-  	  <td><a href="{% url 'messageList' 1 %}" class="btn2" style = "border: 2px solid red";">    {% trans "Messages"%}    </a></td>
-    {% elif boolean==0 %} 
+    {% if boolean == 1 %}
+  	  <td><a href="{% url 'messageList' 1 %}" class="myButton2" style = "border: 2px solid red";">    {% trans "Messages"%}    </a></td>
+    {% else %} 
 		<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
 	{% endif %}
 	
