@@ -14,4 +14,5 @@ class Mailbox(models.Model):
         for mailbox in list_mailbox :
             if not mailbox.status :
                 has_mail_not_readed += 1
+        print("TRUC = ",has_mail_not_readed)
         return has_mail_not_readed

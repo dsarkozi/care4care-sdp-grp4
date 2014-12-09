@@ -49,6 +49,7 @@
 			<tr>
 				<th >{% trans "List of completed jobs"%}</th>
 				<td  valign="top">
+					{% if helpedDone %}
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
@@ -58,6 +59,7 @@
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">Details</td>
 						</tr>
+				
                         {% for job in helpedDone %}
                             <tr>
                                  <td style = "border-width:1px;">{{ job.date }}</td>
@@ -65,12 +67,15 @@
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
                              <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-								<td><a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
+								<td style = "border-width:1px;"> <a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
                             </tr>
                         {% endfor %}
+                      
 					</table>
+					 {% endif %} 
 				</td>
 				<td  valign="top">
+				    {% if helperDone %}
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
@@ -87,15 +92,17 @@
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
                              <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-								<td><a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
+							<td style = "border-width:1px;"> <a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
                             </tr>
                         {% endfor %}
 					</table>
+					{% endif %}
 				</td>
 			</tr>
 			<tr>
 				<th>{% trans "Waiting jobs"%}</th>
 				<td>
+				    {% if helpedPending %}
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
@@ -112,13 +119,15 @@
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
                              <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-								<td><a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
+								<td style = "border-width:1px;"> <a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
                             </tr>
                         {% endfor %}
 					</table>
+					{% endif %}
 			
 				</td>
 				<td  valign="top">
+				    {% if helperPending %}
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
@@ -135,10 +144,11 @@
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
                              <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-								<td><p><a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></p></td>
+								<td style = "border-width:1px;"> <a href="{% url 'jobdetails' job.id %}" class = btn>{% trans "Details"%}</a></td>
                             </tr>
                         {% endfor %}
 					</table>
+					{% endif %}
 				</td>
 			</tr>
 		</table>
