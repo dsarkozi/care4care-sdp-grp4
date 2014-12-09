@@ -45,9 +45,9 @@ class Member(NonMember):
         if helper_mail == '':
             return False
         subject = 'The ' + \
-                  '<a style="color:red;" href="<a href="/jobdetails/' + str(job.id) + '"> job </a>' + ' is done'
+                  '<a style="color:red;" href="/jobdetails/' + str(job.id) + '"> job </a>' + ' is done'
         content = 'The ' + \
-                  '<a  style="color:red;" href="<a href="/jobdetails/' + str(job.id) + '"> job </a>' + ' is done'\
+                  '<a  style="color:red;" href="/jobdetails/' + str(job.id) + '"> job </a>' + ' is done'\
                   + ' is done. Please, consult your account to accept or contest the bill.'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
