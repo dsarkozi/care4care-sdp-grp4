@@ -1,45 +1,11 @@
-{% extends "C4CApplication/FixedStructure.html" %}
+{% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
 	{% load mathfilters %}
 	{% load i18n %}
-{% block content %}
-
-
-
-
-
-<!-- Navbar -->
-<center>
-<table>
-<tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
 	
-	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
-	
-    <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="{% url 'favorites' %}" class="btn2">{% trans "Favorites"%}</a></td>
-    
-    <td><a href="{% url 'accountstats' %}" class="btn2 ">{% trans "Account & Stats"%}</a></td>
-    
-      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
-        
-      <td> <a href="{% url 'createbranch' %}" class="btn2"  >{% trans "New branch"%}</a></td>
-      
-  <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >{% trans "Delete a member"%}</a> </td> 
-  
-     <td> <a href="{% url 'transferrights' %}" class="btn2 "> {% trans "Transfer rights"%}</a></td>
- 
-    {% endif %}
-    
-        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
-    <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
-  
-</tr>
-</table>
+{% block menu2 %}	
 
-
-</center>
 
   
  
@@ -362,3 +328,4 @@
 		</center>
 		
 	 {% endblock %}
+	 

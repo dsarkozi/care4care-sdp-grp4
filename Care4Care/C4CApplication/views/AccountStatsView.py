@@ -55,9 +55,10 @@ class AccountStatsView(TemplateView):
         dictlist = list()
         for item in queryset:
             dictlist += [{
+                'id' : item.id,
                 'date' : item.date,
                 'category' : Job.CAT_DICT[item.category],
-                'time' : item.duration,
+                'duration' : item.duration,
                 'whom' : str(Member.objects.filter(mail=item.mail)[0]),
                 'km' : item.km,
             }]

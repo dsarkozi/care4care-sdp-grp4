@@ -11,8 +11,19 @@
 <!-- Navbar -->
 <center>
 <table>
-<tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
+<tr>    
+
+
+{% with mailbox=member.mailbox_set.all|first %}
+	{% with nbr_mail_not_readed=mailbox.has_mail_not_readed %}
+		{% if nbr_mail_not_readed != 0 %}
+			<td><a href="{% url 'messageList' 1 %}" class="btn2" style = "border: 2px solid red;border-bottom :5px solid red;">    {% trans "Messages"%} ({{ nbr_mail_not_readed }})   </a></td>
+		{% else %}
+			<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
+		{% endif %}
+	{% endwith %}
+{% endwith %}
+	
 	
 	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
 	
@@ -37,10 +48,10 @@
 </tr>
 </table>
 
-
-
-
 </center>
+
+{% block menu2 %}
+
 
 <!-- Fixed member data -->
 <center>
@@ -75,3 +86,6 @@
 {% endblock %}
 
 {% endblock %}
+
+{% endblock %}
+
