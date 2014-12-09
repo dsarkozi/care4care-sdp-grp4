@@ -199,8 +199,8 @@ class NonMember(User):
 
             subject = "A member wants to participate to your job"
             content = "The member "+str(self.db_member.first_name)+" "+str(self.db_member.last_name) +\
-                      " has been added to the list of the potential participant of the " + \
-                      '<a href="/jobdetails/' + str(job.id) + '">job</a>.'
+                      " has been added to the list of the potential participants of the " + \
+                      '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>.'
             type = 3
             return self.send_mail(self.db_member.mail, job_creator_mail, subject, content, type)
             
@@ -324,7 +324,7 @@ class NonMember(User):
         content = ''
         if job.type:   #Demand
             subject = 'Your help is accepted'
-            content = 'Congratulation ! Your help has been accepted by '+str(creator.mail)+' for '\
+            content = 'Congratulations ! Your help has been accepted by '+str(creator.mail)+' for '\
                       + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '" >this job</a>'
         else:  #Offer
             subject = 'Your demand of help is accepted'
