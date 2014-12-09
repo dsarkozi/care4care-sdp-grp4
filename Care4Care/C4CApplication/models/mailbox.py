@@ -7,3 +7,13 @@ class Mailbox(models.Model):
     member_receiver = models.ForeignKey('Member')    #Person who receives the mail
     message = models.ForeignKey('Message')
     status = models.BooleanField(default=False) #False = notRead, True = read
+    
+    def has_mail_not_readed(self):
+        list_mailbox = Mailbox.objects.filter(member_receiver=self.member_receiver)
+        has_mail_not_readed = False
+        for mailbox in list_mailbox :
+            if not mailbox.status :
+                has_mail_not_readed = True
+                break
+        print("Mail has been read")
+        return has_mail_not_readed
