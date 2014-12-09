@@ -11,8 +11,24 @@
 <!-- Navbar -->
 <center>
 <table>
-<tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
+<tr>    
+
+{% with boolean=0 %}
+
+    {% for mailbox in member.mailbox_set.all %} 	
+        {% if not mailbox.status %} 
+	    	{% boolean=1 %}
+	    {% endif %}
+    {% endfor %}	    		
+    
+    {% if boolean==1 %}
+  	  <td><a href="{% url 'messageList' 1 %}" class="btn2" style = "border: 2px solid red";">    {% trans "Messages"%}    </a></td>
+    {% elif boolean==0 %} 
+		<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
+	{% endif %}
+	
+{% endwith %}
+	
 	
 	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
 	
