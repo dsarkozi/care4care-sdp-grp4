@@ -54,7 +54,7 @@ class BPadminTest(MySeleniumTests):
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
-        self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/LLN/'))
+        self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/Nivelles/'))
         time.sleep(1)
         
         page = TransferRightsBranchPage(self.selenium)
@@ -64,7 +64,7 @@ class BPadminTest(MySeleniumTests):
         page = page.click_on_change()
         time.sleep(2)
         
-        branch = Branch.objects.filter(name='LLN')
+        branch = Branch.objects.filter(name='Nivelles')
         self.assertEqual(len(branch), 1)
         branch=branch[0]
         self.assertEqual(branch.branch_officer, 'kim.mens@gmail.com')

@@ -80,6 +80,7 @@ class JobTest(MySeleniumTests):
         
         # accept page
         self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
+        time.sleep(1)
         
         page = JobDetailsPage(self.selenium)
         
@@ -100,6 +101,8 @@ class JobTest(MySeleniumTests):
         #login
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('armand.bosquillon@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
@@ -128,6 +131,8 @@ class JobTest(MySeleniumTests):
         #login
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('yves.delaville@gmail.com', 'azertyuiop')
         time.sleep(1)
@@ -135,10 +140,12 @@ class JobTest(MySeleniumTests):
         # Test confirm job
         job = Job.objects.filter(title="Visiter l'Atomium")[0]
         self.selenium.get('%s%s' % (self.live_server_url, '/confirmjobdone/%d' % (job.id)))
+        time.sleep(1)
         
         page = ConfirmJobDonePage(self.selenium)
         page = page.enter_time_to_pay('40')
         time.sleep(1)
+        
         page = page.click_on_confirm()
         time.sleep(1)
         self.assertEqual(0, 0)
