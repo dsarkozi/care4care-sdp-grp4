@@ -13,6 +13,8 @@ class MessageTest(MySeleniumTests):
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         time.sleep(1)
@@ -21,8 +23,7 @@ class MessageTest(MySeleniumTests):
         page = ListMessagesPage(self.selenium)
         
         page = page.click_on_read_more(0)
-        time.sleep(5)
-        
+        time.sleep(2)
         
         subject = self.selenium.find_elements_by_xpath("//h1[@style='text-align : center;']")[0]
         self.assertEqual(subject.text, "Comment faire une donation ?")
@@ -32,11 +33,14 @@ class MessageTest(MySeleniumTests):
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+
         page = HomePage(self.selenium)
         page = page.quick_login_successful('olivier.mauvaisaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
+        time.sleep(1)
         page = ListMessagesPage(self.selenium)
         
         page = page.click_on_switch()
@@ -53,11 +57,14 @@ class MessageTest(MySeleniumTests):
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
+        time.sleep(1)
         page = ListMessagesPage(self.selenium)
         
         page = page.click_on_new_message()

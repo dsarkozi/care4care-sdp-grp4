@@ -14,7 +14,6 @@ class ListMessagesPage(FixedPage):
         self.read_more_buttons = []
         
         for el in buttons: # maybe change this if the language change
-            print(el.text)
             if el.text.startswith('Switch') : 
                 self.switch_button = el
             elif el.text.startswith('Write') :
