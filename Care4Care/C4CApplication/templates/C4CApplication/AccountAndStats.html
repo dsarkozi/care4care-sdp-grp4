@@ -48,8 +48,10 @@
 			</tr>
 			<tr>
 				<th >{% trans "List of completed jobs"%}</th>
-				<td  valign="top">
+				<td  >
 					{% if helpedDone %}
+					
+			
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Date"%}</td>
@@ -72,9 +74,11 @@
                         {% endfor %}
                       
 					</table>
+					{% else %}
+						<div style= "text-align:center;margin-top:2px;"> <i> No completed job here </i> </div>
 					 {% endif %} 
 				</td>
-				<td  valign="top">
+				<td  >
 				    {% if helperDone %}
 					<table class = "Second table" cellpadding="5" cellspacing="30" >
 						<tr>
@@ -96,6 +100,8 @@
                             </tr>
                         {% endfor %}
 					</table>
+					{% else %}
+					<div style= "text-align:center;margin-top:2px;"> <i> No completed job here </i> </div>
 					{% endif %}
 				</td>
 			</tr>
@@ -123,10 +129,12 @@
                             </tr>
                         {% endfor %}
 					</table>
+					{% else %}
+						<div style= "text-align:center;margin-top:2px;"> <i> No waiting job here </i> </div>
 					{% endif %}
 			
 				</td>
-				<td  valign="top">
+				<td >
 				    {% if helperPending %}
 					<table class = "Second table" cellpadding="5" cellspacing="30">
 						<tr>
@@ -148,6 +156,8 @@
                             </tr>
                         {% endfor %}
 					</table>
+					{% else %}
+						<div style= "text-align:center;margin-top:2px;"> <i> No waiting job here </i> </div>
 					{% endif %}
 				</td>
 			</tr>
