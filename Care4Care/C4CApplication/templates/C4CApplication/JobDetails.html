@@ -82,13 +82,13 @@
 			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
 		
-		{% if not job.done and job.accepted %}
+		{% if not job.done and job.accepted and job.mail != member.mail%}
 		</br>
 		<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
 	
         {% endif %}
 		
-		{% if not job.payed and job.accepted and job.done  %}
+		{% if not job.payed and job.accepted and job.done and job.mail == member.mail %}
 		</br>
 		<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a> 
 	
