@@ -56,16 +56,14 @@
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
                         {% for job in helpedDone %}
                             <tr>
                                  <td style = "border-width:1px;">{{ job.date }}</td>
                                 <td style = "border-width:1px;">{{ job.category }}</td>
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
-                             <td style = "border-width:1px;">??</td>
+                             <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
@@ -78,16 +76,14 @@
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helperDone %}
                             <tr>
                                  <td style = "border-width:1px;">{{ job.date }}</td>
                                 <td style = "border-width:1px;">{{ job.category }}</td>
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
-                             <td style = "border-width:1px;">??</td>
+                             <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
@@ -103,16 +99,14 @@
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helpedPending %}
                             <tr>
                                 <td style = "border-width:1px;">{{ job.date }}</td>
                                 <td style = "border-width:1px;">{{ job.category }}</td>
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
-                             <td style = "border-width:1px;">??</td>
+                             <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>
@@ -126,16 +120,14 @@
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Time Spent"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "For Whom"%}</td>
 							<td class="tab1-4" style = "font-size:14px; border-width:1px;">#KM</td>
-							<td class="tab1-4" style = "font-size:14px; border-width:1px;">{% trans "Comment"%}</td>
 						</tr>
 						{% for job in helperPending %}
                             <tr>
                                   <td style = "border-width:1px;">{{ job.date }}</td>
                                 <td style = "border-width:1px;">{{ job.category }}</td>
                                 <td style = "border-width:1px;">{{ job.duration }}</td>
-                             <td style = "border-width:1px;">??</td>
+                             <td style = "border-width:1px;">{{ job.whom }}</td>
                                <td style = "border-width:1px;">{{ job.km }}</td>
-                             <td style = "border-width:1px;">{{ job.comment }}</td>
                             </tr>
                         {% endfor %}
 					</table>

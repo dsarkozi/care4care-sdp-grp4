@@ -1,7 +1,6 @@
 from django.views.generic import FormView
 from C4CApplication import models
 from C4CApplication.meta import Member, User
-#from C4CApplication.views.TransferRightsView import TransferRightsView
 from C4CApplication.views.forms.DeleteMemberBPAForm import DeleteMemberBPAForm
 from C4CApplication.views.utils import create_user
 

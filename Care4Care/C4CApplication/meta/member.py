@@ -163,7 +163,7 @@ class Member(NonMember):
 
         :param branch_name:
         :param time:
-        :return:
+        :return: True if donation proceeds correctly
         """
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:

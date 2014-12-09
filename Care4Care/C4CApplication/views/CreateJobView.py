@@ -27,7 +27,6 @@ class CreateJobView(FormView):
         return kwargs
 
     def form_valid(self, form):
-        #TODO Call to create_job
         start_time = form.cleaned_data['start_time']
         duration = form.cleaned_data['duration']
         freq_dict = {

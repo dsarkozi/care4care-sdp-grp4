@@ -22,7 +22,7 @@ class Member(models.Model):
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1)
     picture = models.ImageField(null=True, blank=True, upload_to="images/images_profile/", storage=OverwriteStorage())
-    birthday = models.DateField(blank=True, null=True)   #'yyyy-mm-dd'   #TODO default ? Really ?
+    birthday = models.DateField(blank=True, null=True)   #'yyyy-mm-dd'   
     
     TAG_REVERSE = {
         1         : _('non_member'),               #000001
@@ -73,8 +73,8 @@ class Member(models.Model):
     job = models.ManyToManyField('Job', blank=True, null=True)
     #personal_network = models.ManyToManyField('Member', through='Relationship')
     
-    def __unicode__(self):
-            return unicode(self.first_name)
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
 
     def is_favorite(self, other_member): 
         """
@@ -82,7 +82,7 @@ class Member(models.Model):
         :return: True if the email is in the favorite list of the member
         """
         for relation in self.relation.all():
-            if relation == other_member: #TODO this line won't work
+            if relation == other_member: 
                 return True
         return False
     

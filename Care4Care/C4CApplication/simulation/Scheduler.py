@@ -1,5 +1,6 @@
 from C4CApplication.simulation.BPAdminActor import BPAdminActor
 from C4CApplication.simulation.HelpedOneActor import HelpedOneActor
+from C4CApplication.simulation.HelperActor import HelperActor
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.simulation.SimulationTime import SimulationTime
 
@@ -16,7 +17,8 @@ class Scheduler(MySeleniumTests):
             self.actor_list = [
                 BranchOfficerActor(),
                 BPAdminActor(),
-                HelpedOneActor()
+                HelpedOneActor(),
+                HelperActor()
             ]
 
         return self.actor_list
