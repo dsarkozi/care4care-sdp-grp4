@@ -30,14 +30,14 @@ class RegistrationForm(ModelForm):
             'mail' : _('E-mail address'),
             'street' : _('Street'),
             'town' : _('City'),
-            'password' : _('password'),
-            'first_name' : _('first name'),
-            'last_name' : _('last name'),
-            'gender' : _('gender'),
-            'birthday' : _('birthday'),
-            'mobile' : _('mobile'),
-            'telephone' : _('telephone'),
-            'branch' : _('branch')
+            'password' : _('Password'),
+            'first_name' : _('First name'),
+            'last_name' : _('Last name'),
+            'gender' : _('Gender'),
+            'birthday' : _('Birthday'),
+            'mobile' : _('Mobile number'),
+            'telephone' : _('Phone number'),
+            'branch' : _('Branch')
         }
         widgets = {
             'branch' : CheckboxSelectMultiple(),
@@ -73,7 +73,7 @@ class RegistrationForm(ModelForm):
         )
         self.fields['gender'] = forms.ChoiceField(
             widget=forms.RadioSelect,
-            choices=(('M', 'M'), ('F', 'F') ), label = _('gender'))
+            choices=(('M', 'M'), ('F', 'F') ))
 
         self.auto_id = False
         if eid:
