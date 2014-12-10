@@ -50,6 +50,8 @@ class RegistrationView(CreateView):
         return kwargs
 
     def form_valid(self, form):
+        if not form.cleaned_data:
+            return super(RegistrationView, self).form_invalid(form)
         self.request.session.pop('ax')
         member = form.save(commit=False)
         member.tag = form.cleaned_data['tag']

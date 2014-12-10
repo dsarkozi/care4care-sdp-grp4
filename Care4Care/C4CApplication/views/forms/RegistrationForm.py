@@ -45,9 +45,13 @@ class RegistrationForm(ModelForm):
             'birthday' : SelectDateWidget(years=range(1900, 2050)),
         }
 
+    eid = False
 
     def __init__(self, *args, **kwargs):
-        eid = kwargs.pop('eid')
+        self.eid = kwargs.pop('eid')
+        # Prevents from validating empty form after eID request
+        if self.eid:
+            kwargs['empty_permitted'] = True
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['password'] = forms.CharField(
             max_length=100,
@@ -76,7 +80,7 @@ class RegistrationForm(ModelForm):
             choices=(('M', 'M'), ('F', 'F') ))
 
         self.auto_id = False
-        if eid:
+        if self.eid:
             if kwargs['data']['first_name']: self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
             if kwargs['data']['last_name']: self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
             if kwargs['data']['street']: self.fields['street'].widget.attrs.update({'disabled' : 'true'})
@@ -93,4 +97,3 @@ class RegistrationForm(ModelForm):
         if password != confirm:
             self.add_error('password', forms.ValidationError(_("The password and confirmation do not match."), code='invalid'))
         return cleaned_data
-        
