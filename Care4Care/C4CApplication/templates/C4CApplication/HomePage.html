@@ -9,9 +9,9 @@
 	    <form class="login" method="post" >
 	    <h1>Care4Care</h1>
 	    {% csrf_token %}
-	    {{ loginForm.email.errors }}
+	    {{ form.email.errors }}
 	    {{ loginForm.email }}
-	    {{ loginForm.password.errors }}
+	    {{ form.password.errors }}
 	    {{ loginForm.password }}
 	    
 	    <input type="submit" id="Login" value="{% trans "Login" %}" class="login-submit">
