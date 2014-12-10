@@ -42,7 +42,7 @@ class RegistrationForm(ModelForm):
         widgets = {
             'branch' : CheckboxSelectMultiple(),
             'password' : PasswordInput(),
-            'birthday' : SelectDateWidget(years=range(1900, 2050)),         #TODO Change this to more dynamic values
+            'birthday' : SelectDateWidget(years=range(1900, 2050)),
         }
 
 
@@ -91,6 +91,6 @@ class RegistrationForm(ModelForm):
         password = cleaned_data.get("password")
         confirm = cleaned_data.get("confirm")
         if password != confirm:
-            self.add_error('password', forms.ValidationError(_("The password and confirmation do not match"), code='invalid'))
+            self.add_error('password', forms.ValidationError(_("The password and confirmation do not match."), code='invalid'))
         return cleaned_data
         

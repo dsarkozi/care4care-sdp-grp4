@@ -18,8 +18,17 @@ background-color:#ffffff;width:25%;height:auto;padding-right:4em;padding-left:4e
         <fieldset>
             <legend> <h3> {% trans "Account credentials"%}</h3></legend>
             <table>
-                <tr><td>{{ form.mail.label }} : {{ form.mail }}</td> </tr>
+                {% for error in form.mail.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
+                <tr><td>{{ form.mail.label }} : {{ form.mail }} </td> </tr>
+                {% for error in form.password.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td> {{ form.password.label }} : {{ form.password }}</td> </tr>
+                {% for error in form.confirm.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr><td>{{ form.confirm.label }} : {{ form.confirm }}</td></tr>
             </table>
         </fieldset>
@@ -27,17 +36,44 @@ background-color:#ffffff;width:25%;height:auto;padding-right:4em;padding-left:4e
         <fieldset>
             <legend><h3>{% trans 'Personal details' %}</h3></legend>
             <table>
+                {% for error in form.first_name.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr><td>{{ form.first_name.label }} : {{ form.first_name }} </td> </tr>
-                <tr><td>{{ form.last_name.label }} : {{ form.last_name }} </td>  </tr>
+                {% for error in form.last_name.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
+                <tr><td>{{ form.last_name.label }} : {{ form.last_name }} </td></tr>
+                {% for error in form.gender.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr><td> {{ form.gender.label }} :
                     {% for gender in form.gender %}
                         {{ gender }}
                     {% endfor %}  </td></tr>
+                {% for error in form.street.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td> {{ form.street.label }} : {{ form.street }} </td> </tr>
+                {% for error in form.zip.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td>{{ form.zip.label }} : {{ form.zip }} </td> </tr>
+                {% for error in form.town.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td>{{ form.town.label }} : {{ form.town }} </td> </tr>
+                {% for error in form.telephone.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td>{{ form.telephone.label }} : {{ form.telephone }} </td> </tr>
+                {% for error in form.mobile.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td> {{ form.mobile.label }} : {{ form.mobile }}  </td></tr>
+                {% for error in form.birthday.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr> <td>{{ form.birthday.label }} : {{ form.birthday }} </td></tr>
             </table>
         </fieldset>
@@ -45,16 +81,22 @@ background-color:#ffffff;width:25%;height:auto;padding-right:4em;padding-left:4e
         <fieldset>
             <legend><h3> {% trans "Miscellaneous"%}</h3></legend>
             <table>
-                <tr><td> {{ form.picture.label }} :
-                {{ form.picture }} </td></tr>
-
+                {% for error in form.picture.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
+                <tr><td> {{ form.picture.label }} : {{ form.picture }} </td></tr>
+                {% for error in form.branch.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr><td>  {{ form.branch.label }} :
                 <table style="font-size:12px;color:black;">
                     {% for branch in form.branch %}
                     <tr> <td> {{ branch }} </td></tr>
                     {% endfor %}
                 </table> </td></tr>
-
+                {% for error in form.tag.errors %}
+                    <tr><td> <span style="color: red">{{ error }}</span></td></tr>
+                {% endfor %}
                 <tr><td> {{ form.tag.label }} :
                 <table style="font-size:12px;color:black;">
                     {% for tag in form.tag %}
