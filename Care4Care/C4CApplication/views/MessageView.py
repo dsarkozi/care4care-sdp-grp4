@@ -23,7 +23,7 @@ class MessageView(DetailView):
        message = context['message']
        mailbox = Mailbox.objects.filter(member_receiver=self.user.db_member, message=message)
        if len(mailbox) != 1 :
-           print("problem, da !")
+           return context
        mailbox = mailbox[0]
        mailbox.status = True
        mailbox.save()
