@@ -110,7 +110,7 @@
 		  color: #eec81b;
 		}
 		
-		.myButton2 a hover:
+		.myButton2 a:hover
 		{
 			color:white;
 		}
