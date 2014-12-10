@@ -51,7 +51,7 @@ class MessageTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_read_more(0)
-        time.sleep(120)
+        time.sleep(1)
         
         subject = self.selenium.find_elements_by_xpath("//h1[@style='text-align : center;']")[0]
         self.assertEqual(subject.text, "Comment faire une donation ?")
