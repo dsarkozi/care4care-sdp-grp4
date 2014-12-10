@@ -30,6 +30,7 @@ class JobTest(MySeleniumTests):
                                "00:30", "10", 1, 2, "", "", "", [], [2, 9, 7, 14], [1, 2])
         
         page = page.click_on_post_req()
+        time.sleep(2)
         
         job = Job.objects.filter(title="New job test", description="New job description")
         self.assertEqual(len(job), 1)
@@ -46,12 +47,15 @@ class JobTest(MySeleniumTests):
         #login
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(2)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
         # Create the page object
         self.selenium.get('%s%s' % (self.live_server_url, '/newjob/demand'))
+        time.sleep(2)
         page = CreateJobPage(self.selenium)
         
         # Test create job
@@ -59,6 +63,7 @@ class JobTest(MySeleniumTests):
                                "05:15", "30", 2, 0, "4", "septembre", "2015", [], [], [3])
         
         page = page.click_on_post_req()
+        time.sleep(2)
         
         job = Job.objects.filter(title="New job test 2", description="New job description 2")
         self.assertEqual(len(job), 1)
@@ -74,18 +79,22 @@ class JobTest(MySeleniumTests):
         #login
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(3)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
+        time.sleep(2)
+        
+        self.selenium.get('%s%s' % (self.live_server_url, ''))
         time.sleep(1)
+        
+        page = HomePage(self.selenium)
+        page = page.click_on_demand(0)
+        time.sleep(2)
         
         # accept page
-        self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/1'))
-        time.sleep(1)
-        
-        page = JobDetailsPage(self.selenium)
-        
         page = page.click_on_participate()
-        time.sleep(1)        
+        time.sleep(2)        
         
         job = Job.objects.filter(description="Bonjour, j'ai besoin d'aide pour aller faire mes courses.", place="Rue de l'Eglise, 40, 1330, Rixensart")
         self.assertEqual(len(job), 1)
@@ -105,13 +114,15 @@ class JobTest(MySeleniumTests):
         
         page = HomePage(self.selenium)
         page = page.quick_login_successful('armand.bosquillon@student.uclouvain.be', 'azertyuiop')
-        time.sleep(1)
+        time.sleep(5)
         
         # accept page
         job = Job.objects.get(title="Me conduire a LLN")
         self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/%d' % job.id))
+        time.sleep(10)
         page = JobDetailsPage(self.selenium)
-        time.sleep(1)
+            
+        time.sleep(2)
         
         page = page.click_on_choose_member(1)
         time.sleep(3)        
@@ -151,11 +162,3 @@ class JobTest(MySeleniumTests):
         self.assertEqual(0, 0)
         return True
     
-    # TODO wait for this to be implemented
-    def test_search_job(self):
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True

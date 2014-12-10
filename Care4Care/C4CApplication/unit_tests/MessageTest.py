@@ -20,6 +20,7 @@ class MessageTest(MySeleniumTests):
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/list_messages/1'))
+        time.sleep(1)
         page = ListMessagesPage(self.selenium)
         
         page = page.click_on_read_more(0)
@@ -30,6 +31,9 @@ class MessageTest(MySeleniumTests):
         return True
     
     def test_see_message_sent(self):
+        MessageTest.tearDownClass()
+        MessageTest.setUpClass()
+        
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
@@ -47,13 +51,16 @@ class MessageTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_read_more(0)
-        time.sleep(1)
+        time.sleep(120)
         
         subject = self.selenium.find_elements_by_xpath("//h1[@style='text-align : center;']")[0]
         self.assertEqual(subject.text, "Comment faire une donation ?")
         return True
     
     def test_send_message(self):
+        MessageTest.tearDownClass()
+        MessageTest.setUpClass()
+        
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
