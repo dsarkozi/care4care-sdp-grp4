@@ -22,7 +22,7 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<center><li><a href="{% url 'home' %}" id="home" value="home"> {% trans "HOME" %} </a></li></center>
+			<li><a href="{% url 'home' %}" id="home" value="home"> {% trans "HOME" %} </a></li>
 			{% if connected %}
 				<li><a href="{% url 'profile' %}"> MyCare4Care</a></li>
 			{% endif %}
