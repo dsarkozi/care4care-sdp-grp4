@@ -232,8 +232,8 @@ msgid "Utility of having a status"
 msgstr "Utilitée d'avoir un status"
 
 #: templates/C4CApplication/ChangeActivity.html:17
-msgid "Description of the utility of the status"
-msgstr "Description de l'utilitée du status"
+msgid "Change your status to inactive to prevent other users that you will be not available in the next days (when you go on holydays for exemple)"
+msgstr "Changez votre status en inactif pour avertir les autres utilisateurs que vous ne serez pas disponible dans les prochains jours (quand vous partez en vacances par exemple)"
 
 #: templates/C4CApplication/ChangeActivity.html:22
 msgid "Do you want to be"
