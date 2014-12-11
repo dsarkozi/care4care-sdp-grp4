@@ -350,21 +350,24 @@ class NonMember(User):
             return False
         job = job[0]
         job.done = True
-        job.duration = 0
+        job.duration = new_time
         job.save()
-        
+
         #We send a mail
         helper_mail = ''
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helped_one_email:
-                helper_mail = participant.mail
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                if participant.mail != helped_one_email:
+                    helper_mail = participant.mail
+                    break
         if helper_mail == '':
             return False
-        subject = 'The job ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
-        content = 'The ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + '">job</a>'\
-                  + ' is done. Please, consult your account to accept or not the bill'
+        subject = 'The job is done !'
+        content = 'The job is done ! ' + \
+                  'Please, consult the following link to accept or contest the bill : <a  style="color:red;" href="/jobdetails/' + str(job.id) + '"> your job link .</a>'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
