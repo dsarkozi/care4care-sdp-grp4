@@ -1,84 +1,138 @@
 {% extends "C4CApplication/FixedStructure.html" %}
 {% load i18n %}
 {% load staticfiles %}
-	<style type="text/css">
 
-    </style>
-    
-    
- 
 {% block content %}
-   <center>
-<section style="padding:1em;border-width:2px;border-color:navy;border-style:solid;
-background-color:#ffffff;width:25%;height:auto;padding-right:4em;padding-left:4em;margin:2em;">
 
-<a href="{% url 'eidrequest' %}" class="myButton2" style="padding-left:3px;padding-right:4px;padding-top:1em;padding-bottom:1em;">
-  
-  
-      <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle">
-       Prefill with eID
-  </a>
- 
-  
-    	<form method="post" enctype="multipart/form-data">
-    		{% csrf_token %}
-            </br>
-   			<fieldset>
-			 <legend> <h3> {% trans "Account credential"%}</h3></legend>
-			 <table>
-                <tr><td>{{ form.mail.label }} : {{ form.mail }} </td> </tr>
-              <tr> <td> {{ form.password.label }} : {{ form.password }}</td> </tr>
-                 <tr><td>{{ form.confirm.label }} : {{ form.confirm }}</td></tr>
-              </table>
-   			</fieldset>
-   			  </br>
+    <section style="padding:1em;border-width:2px;border-color:navy;border-style:solid;
+background-color:#ffffff;width:40%;height:auto;padding-right:4em;padding-left:4em;margin:2em;margin-left: auto;margin-right: auto;text-align: center">
+
+    <a href="{% url 'eidrequest' %}" class="myButton2" style="padding-left:3px;padding-right:4px;padding-top:1em;padding-bottom:1em;">
+        <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle">
+        Prefill with eID
+    </a>
+
+    <form method="post" enctype="multipart/form-data" class="pure-form pure-form-aligned">
+        {% csrf_token %}
+        <br>
         <fieldset>
-            <legend><h3>{% trans 'Personal information' %}</h3></legend>
-            <table>
-            <tr> <td>{{ form.first_name.label }} : {{ form.first_name }} </td> </tr>
-           <tr> <td>{{ form.last_name.label }} : {{ form.last_name }} </td>  </tr>
-           <tr><td> {{ form.gender.label }} : 
-            {% for gender in form.gender %}
-                {{ gender }}
-            {% endfor %}  </td></tr>
-          <tr> <td> {{ form.street.label }} : {{ form.street }} </td> </tr>
-           <tr> <td>{{ form.zip.label }} : {{ form.zip }} </td> </tr>
-           <tr> <td>{{ form.town.label }} : {{ form.town }} </td> </tr>
-           <tr> <td>{{ form.telephone.label }} : {{ form.telephone }} </td> </tr>
-            <tr> <td> {{ form.mobile.label }} : {{ form.mobile }}  </td></tr>
-           <tr> <td>{{ form.birthday.label }} : {{ form.birthday }} </td></tr>
-            </table>
+            <legend> <h3> {% trans "Account credentials"%}</h3></legend>
+            {% for error in form.mail.errors %}
+                <span style="color: red">{{ error }}</span><br>
+            {% endfor %}
+            <div class="pure-control-group">
+            <label>{{ form.mail.label }}</label> {{ form.mail }}
+            </div>
+            {% for error in form.password.errors %}
+                <span style="color: red">{{ error }}</span><br>
+            {% endfor %}
+            <div class="pure-control-group">
+            <label>{{ form.password.label }}</label> {{ form.password }}
+            </div>
+            {% for error in form.confirm.errors %}
+                <span style="color: red">{{ error }}</span><br>
+            {% endfor %}
+            <div class="pure-control-group">
+            <label>{{ form.confirm.label }}</label> {{ form.confirm }}
+            </div>
         </fieldset>
-        </br>
+        <br>
+        <fieldset>
+            <legend><h3>{% trans 'Personal details' %}</h3></legend>
+            {% for error in form.first_name.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.first_name.label }}</label> {{ form.first_name }}
+            </div>
+            {% for error in form.last_name.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.last_name.label }}</label> {{ form.last_name }}
+            </div>
+            {% for error in form.gender.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <span style="margin-right: 1em">{{ form.gender.label }}</span>
+                {% for gender in form.gender %}
+                    <span style="margin-right: 0.5em">{{ gender }}</span>
+                {% endfor %}
+            </div>
+            {% for error in form.street.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.street.label }}</label> {{ form.street }}
+            </div>
+            {% for error in form.zip.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.zip.label }}</label> {{ form.zip }}
+            </div>
+            {% for error in form.town.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.town.label }}</label> {{ form.town }}
+            </div>
+            {% for error in form.telephone.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.telephone.label }}</label> {{ form.telephone }}
+            </div>
+            {% for error in form.mobile.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.mobile.label }}</label> {{ form.mobile }}
+            </div>
+            {% for error in form.birthday.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                <label>{{ form.birthday.label }}</label> {{ form.birthday }}
+            </div>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend><h3>{% trans "Branch choice" %}</h3></legend>
+            {% for error in form.branch.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+            {% for branch in form.branch %}
+                <div style="text-align: left; margin-left: 40%">{{ branch }}</div>
+            {% endfor %}
+            </div>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend><h3>{% trans "Account type" %}</h3></legend>
+            {% for error in form.tag.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+            <div class="pure-control-group">
+                {% for tag in form.tag %}
+                <div style="text-align: left; margin-left: 40%">{{ tag }}</div>
+                {% endfor %}
+            </div>
+        </fieldset>
+        <br>
         <fieldset>
             <legend><h3> {% trans "Miscellaneous"%}</h3></legend>
-            <table>
-         <tr><td> {{ form.picture.label }} : 
-            {{ form.picture }} </td></tr>
-            
-           <tr><td>  {{ form.branch.label }} : 
-            <table style="font-size:12px;color:black;">
-            {% for branch in form.branch %}
-              <tr> <td> {{ branch }} </td></tr>
-            {% endfor %}
-            </table> </td></tr>
-            
-           <tr><td> {{ form.tag.label }} : 
-              <table style="font-size:12px;color:black;">
-            {% for tag in form.tag %}
-        
-               <tr><td> {{ tag }} </td></tr>
-                
-            {% endfor %}
-            
-            </td>
-            </tr>
-             </table>
+                {% for error in form.picture.errors %}
+                    <span style="color: red">{{ error }}</span>
+                {% endfor %}
+                <div class="pure-control-group">
+                    <label>{{ form.picture.label }}</label> <input type="file">
+                </div>
         </fieldset>
-       
-      </br>
-        <center> <input type="submit" value={% trans "Register"%} class = "btn"> </center>
-		  </form>
-		</section>
-</center>
+        <br>
+        <input type="submit" value={% trans "Register"%} class="btn">
+    </form>
+    </section>
 {% endblock %}

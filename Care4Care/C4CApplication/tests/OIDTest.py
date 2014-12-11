@@ -1,11 +1,14 @@
-from base64 import b64decode, standard_b64decode, urlsafe_b64decode
+from base64 import urlsafe_b64decode
 from io import StringIO
+
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 import openid2rp
+
 from Care4Care.settings import STATICFILES_DIRS
+
 
 @never_cache
 def oidtest(request):

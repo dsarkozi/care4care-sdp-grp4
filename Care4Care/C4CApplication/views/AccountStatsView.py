@@ -1,8 +1,12 @@
+import time
+
 from django.core.exceptions import PermissionDenied
 from django.db.models.aggregates import Avg, Sum
 from django.views.generic.base import TemplateView
-import time
+from django.db.models import Q
+
 from C4CApplication.models.job import Job
+from C4CApplication.models.member import Member
 from C4CApplication.views.utils import create_user
 
 
@@ -33,18 +37,17 @@ class AccountStatsView(TemplateView):
 
         # Help received
         context['helpedDone'] = self.queryset2list(
-            self.jobset.filter(type=True, done=True).order_by('-date')
+            self.jobset.filter(Q(type=True, done=True, mail=self.user.db_member.mail) | Q(Q(type=False, done=True), ~Q(mail=self.user.db_member.mail))).order_by('-date')
         )
         context['helpedPending'] = self.queryset2list(
-            self.jobset.filter(type=True, done=False).order_by('-date')
+            self.jobset.filter(Q(type=True, done=False, mail=self.user.db_member.mail) | Q(Q(type=False, done=False), ~Q(mail=self.user.db_member.mail))).order_by('-date')
         )
-
         # Help given
         context['helperDone'] = self.queryset2list(
-            self.jobset.filter(type=False, done=True).order_by('-date')
+            self.jobset.filter(Q(type=False, done=True, mail=self.user.db_member.mail) | Q(Q(type=True, done=True), ~Q(mail=self.user.db_member.mail))).order_by('-date')
         )
         context['helperPending'] = self.queryset2list(
-            self.jobset.filter(type=False, done=False).order_by('-date')
+            self.jobset.filter(Q(type=False, done=False, mail=self.user.db_member.mail) | Q(Q(type=True, done=False), ~Q(mail=self.user.db_member.mail))).order_by('-date')
         )
 
         return context
@@ -54,11 +57,12 @@ class AccountStatsView(TemplateView):
         dictlist = list()
         for item in queryset:
             dictlist += [{
+                'id' : item.id,
                 'date' : item.date,
                 'category' : Job.CAT_DICT[item.category],
-                'time' : item.duration,
+                'duration' : item.duration,
+                'whom' : str(Member.objects.filter(mail=item.mail)[0]),
                 'km' : item.km,
-                'comment' : item.comment
             }]
         return dictlist
 

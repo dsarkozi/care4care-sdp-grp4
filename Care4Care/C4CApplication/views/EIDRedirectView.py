@@ -1,5 +1,6 @@
 from urllib.parse import unquote
-from django.core.urlresolvers import reverse_lazy, reverse
+
+from django.core.urlresolvers import reverse
 from django.views.generic.base import RedirectView
 import openid2rp
 

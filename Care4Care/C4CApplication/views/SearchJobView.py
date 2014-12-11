@@ -1,11 +1,8 @@
 from django.core.exceptions import PermissionDenied
 from django.views.generic.edit import FormView
-from C4CApplication.models.member import Member
-from C4CApplication.models.branch import Branch
+from django.core.urlresolvers import reverse_lazy
 
 from C4CApplication import models
-from django.core.urlresolvers import reverse_lazy
-from C4CApplication.meta.user import User
 from C4CApplication.views.forms.SearchForm import SearchForm
 from C4CApplication.views.utils import create_user
 

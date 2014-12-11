@@ -1,11 +1,10 @@
-from C4CApplication.models.member import Member
 from django.views.generic.edit import FormView
-from C4CApplication.views.forms.FavIgnForm import FavIgnForm
 from django.core.urlresolvers import reverse_lazy
-from C4CApplication.views.utils import create_user
-from C4CApplication.meta.user import User
 from django.core.exceptions import PermissionDenied
-    
+
+from C4CApplication.views.forms.FavIgnForm import FavIgnForm
+from C4CApplication.views.utils import create_user
+
 
 class FavoritesView(FormView):
     template_name = "C4CApplication/Favorites.html"

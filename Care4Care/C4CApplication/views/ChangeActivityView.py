@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
-from C4CApplication.views.utils import create_user
 from django.views.generic import TemplateView
+
+from C4CApplication.views.utils import create_user
 
 
 class ChangeActivityView(TemplateView):

@@ -1,3 +1,5 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.BranchListPage import BranchListPage
@@ -8,14 +10,12 @@ from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 from C4CApplication.models.member import Member
 
 
-import time
-
-
 class UserAccountTest(MySeleniumTests):
     
     def test_login(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
         
         home_page = HomePage(self.selenium)
         home_page.login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
@@ -29,6 +29,8 @@ class UserAccountTest(MySeleniumTests):
     def test_logoff(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('olivier.mauvaisaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
@@ -55,7 +57,7 @@ class UserAccountTest(MySeleniumTests):
         time.sleep(1)
         
         page = page.click_on_submit()
-        time.sleep(5)
+        time.sleep(2)
         
         
         self.assertEqual(0, 0)
@@ -64,6 +66,8 @@ class UserAccountTest(MySeleniumTests):
     def test_delete_account(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('dr.robotnik@gmail.com', 'azertyuiop')
         time.sleep(1)
@@ -88,15 +92,18 @@ class UserAccountTest(MySeleniumTests):
     def test_update_to_volunteer(self):
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('kim.mens@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         page.click_on_care4care_branches()
-        page = BranchListPage(self.selenium)
         time.sleep(1)
+        page = BranchListPage(self.selenium)
         
         page.click_on_branch_details(0)
+        time.sleep(1)
         page = MemberListPage(self.selenium)
         time.sleep(1)
         

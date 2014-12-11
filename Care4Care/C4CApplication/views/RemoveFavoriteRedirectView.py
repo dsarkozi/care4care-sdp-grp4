@@ -1,10 +1,9 @@
 from django.views.decorators.cache import never_cache
 from django.views.generic.base import RedirectView
-from C4CApplication.models.member import Member
-from C4CApplication.views.utils import create_user
-from C4CApplication.meta.user import User
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
+
+from C4CApplication.views.utils import create_user
 
 
 class RemoveFavoriteRedirectView(RedirectView):

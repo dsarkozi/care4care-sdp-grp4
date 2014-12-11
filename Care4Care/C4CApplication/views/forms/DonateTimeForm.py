@@ -1,6 +1,7 @@
 from django import forms
-from C4CApplication.models.member import Member
 from django.utils.translation import ugettext_lazy as _
+
+from C4CApplication.models.member import Member
 
 
 class DonateTimeForm(forms.Form):

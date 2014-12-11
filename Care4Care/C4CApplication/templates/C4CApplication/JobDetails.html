@@ -1,45 +1,11 @@
-{% extends "C4CApplication/FixedStructure.html" %}
+{% extends "C4CApplication/MyCare4Care.html" %}
 
 {% load staticfiles %}
 	{% load mathfilters %}
 	{% load i18n %}
-{% block content %}
-
-
-
-
-
-<!-- Navbar -->
-<center>
-<table>
-<tr>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
-	<td><a href="{% url 'messageList' 1 %}" class="btn2">{% trans "Messages"%}</a></td>
 	
-	<td><a href="{% url 'profile' %}" class="btn2" >{% trans "Profile"%}</a></td>
-	
-    <!-- <td><a href="#" class="myButton">Personal Network</a></td> -->
-    <td><a href="{% url 'favorites' %}" class="btn2">{% trans "Favorites"%}</a></td>
-    
-    <td><a href="{% url 'accountstats' %}" class="btn2 ">{% trans "Account & Stats"%}</a></td>
-    
-      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
-        
-      <td> <a href="{% url 'createbranch' %}" class="btn2"  >{% trans "New branch"%}</a></td>
-      
-  <td>  <a href="{% url 'deletememberbpa' %}" class="btn2" >{% trans "Delete a member"%}</a> </td> 
-  
-     <td> <a href="{% url 'transferrights' %}" class="btn2 "> {% trans "Transfer rights"%}</a></td>
- 
-    {% endif %}
-    
-        <td><a href="{% url 'logOut' %}" class="btn2" value="Logout" >{% trans "Logout"%}</a></td>  {% comment %} TODO Change this to id="logoutButton" {% endcomment %}
-    <!-- <td><a href="#" class="myButton">Agenda</a></td> -->
-  
-</tr>
-</table>
+{% block menu2 %}	
 
-
-</center>
 
   
  
@@ -68,27 +34,28 @@
 		
 		{% if not job.accepted and member.mail != job.mail %}
 			{% if member in job.member_set.all %}
-			 
-		       
+
+
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
-				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn"
-				onclick="if ({{job.frequency}} != 0) {alert('You can\'t participate to a regular job.\nBut, you can participate to an occurence of the job. 
-						Check the occurences of the job at the end of this description.'); return false;}">{% trans "Participate" %}</a>
+                {% if job.frequency == 0 %}
+				    <a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn">{% trans "Participate" %}</a>
+                {% endif %}
 			{% endif %}
 		{% endif %}
-		
 		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
-			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
+            {% if member.tag == job.branch.branch_officer or member.tag > 16 %}
+			    <a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
+            {% endif %}
 		{% endif %}
 		
-		{% if not job.done and job.accepted %}
+		{% if not job.done and job.accepted and job.mail != member.mail and member in job.member_set.all %}
 		</br>
 		<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
 	
         {% endif %}
 		
-		{% if not job.payed and job.accepted and job.done  %}
+		{% if not job.payed and job.accepted and job.done and job.mail == member.mail %}
 		</br>
 		<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a> 
 	
@@ -273,7 +240,7 @@
 		<td class="tab1-3">     {{ job.description }}      </td>
 		
 	  </tr>
-	   
+
 	   {% if job.frequency == 0 %}
 		   <tr>
 			<td class="tab1-4">  {% trans "Participants"%} :      </td>
@@ -300,7 +267,8 @@
 		</td>
 			
 		  </tr>
-	  {% elif member.mail != job.mail %}
+
+	  {% elif member.mail != job.mail and member in job.branch.member_set.all %}
 	     <tr>
 			<td class="tab1-4">  {% trans "Occurence of the job"%} :      </td>
 			<td class="tab1-3">
@@ -341,24 +309,44 @@
 							{% endfor %}
 						</ul>
 					</td>
-					<td>{{j.accepted}}</td>
-					<td>{{j.done}}</td>
-					<td>{{j.payed}}</td>
+					<td>{% if j.accepted %}
+                            {% trans "Yes" %}
+                        {% else %}
+                            {%trans "No" %}
+                        {% endif %}
+                    </td>
+					<td>{% if j.done %}
+                            {% trans "Yes" %}
+                        {% else %}
+                            {%trans "No" %}
+                        {% endif %}
+                    </td>
+					<td>{% if j.payed %}
+                            {% trans "Yes" %}
+                        {% else %}
+                            {%trans "No" %}
+                        {% endif %}
+                    </td>
 					<td>
-						{% if not j.accepted and member.mail != j.mail %}
+						{% if not j.accepted and member.mail != j.mail and member in job.branch.member_set.all %}
 							{% if member in j.member_set.all %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Stop_Participate" class="btn">{% trans "Stop participating"%}</a><br>
+                                <a href="{% url 'jobdetails' j.id %}" class = btn>{% trans "Details"%}</a>
 							{% else %}
-								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a></br>
+								<a href="{% url 'participatejob' j.id 'no_response_regular@care4care.com' %}" type="submit" value="Participate" class="btn">{% trans "Participate"%}</a><br>
+                                <a href="{% url 'jobdetails' j.id %}" class = btn>{% trans "Details"%}</a>
 							{% endif %}
+                        {% else %}
+                            <a href="{% url 'jobdetails' j.id %}" class = btn>{% trans "Details"%}</a>
 						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}
-		</table> </br> </br> </br>
+		</table>
 	{% endif %}
 
 
 		</center>
 		
 	 {% endblock %}
+	 

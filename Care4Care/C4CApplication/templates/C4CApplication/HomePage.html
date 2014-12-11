@@ -9,9 +9,9 @@
 	    <form class="login" method="post" >
 	    <h1>Care4Care</h1>
 	    {% csrf_token %}
-	    {{ loginForm.email.errors }}
+	    {{ form.email.errors }}
 	    {{ loginForm.email }}
-	    {{ loginForm.password.errors }}
+	    {{ form.password.errors }}
 	    {{ loginForm.password }}
 	    
 	    <input type="submit" id="Login" value="{% trans "Login" %}" class="login-submit">
@@ -27,8 +27,10 @@
 
 	<!-- Buttons -->
 	<center> <h1 style="margin-bottom:1em;"> {% trans "Welcome on Care4Care"%} !</h1>
-	{% if connected %}
+	{% if connected and member.tag > 1 %}
 		<a href="{% url 'createJob' 'demand' %}" class="myButton">{% trans "I need help"%}</a>
+    {% endif %}
+    {% if connected %}
 	<span>
 	<a href="{% url 'createJob' 'offer' %}" class="myButton"> {% trans "I want to help" %}</a>
 	</span>

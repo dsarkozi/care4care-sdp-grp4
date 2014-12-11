@@ -1,8 +1,5 @@
-from C4CApplication.meta.time import Time
-
 from C4CApplication import models
 from C4CApplication.models.branch import Branch
-from C4CApplication.models.job import Job
 
 from C4CApplication.meta.member import Member as MetaMember
 

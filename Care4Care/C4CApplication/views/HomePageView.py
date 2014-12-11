@@ -1,12 +1,11 @@
 from django.views.generic.edit import FormView
+from django.core.urlresolvers import reverse_lazy
+
 from C4CApplication.views.FeedsMixingView import FeedsMixingView
 from C4CApplication.views.forms.LoginForm import LoginForm
 from C4CApplication.models.member import Member
 from C4CApplication.models.branch import Branch
-
 from C4CApplication import models
-from django.core.urlresolvers import reverse_lazy
-from C4CApplication.meta.user import User
 from C4CApplication.views.utils import create_user
 
 

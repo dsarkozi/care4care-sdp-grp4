@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
 from C4CApplication.models import Member
-from C4CApplication import models
+
 
 # Create your views here.
 

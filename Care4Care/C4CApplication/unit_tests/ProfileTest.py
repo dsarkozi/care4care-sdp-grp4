@@ -1,10 +1,9 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.models.member import Member
-
-
-import time
 
 
 class ProfileTest(MySeleniumTests):
@@ -22,11 +21,14 @@ class ProfileTest(MySeleniumTests):
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('olivier.mauvaisaventure@gmail.com', 'azertyuiop')
         time.sleep(1)
         
         self.selenium.get('%s%s' % (self.live_server_url, '/modifprofile/'))
+        time.sleep(1)
         
         page = ModifProfilePage(self.selenium)
         page = page.fill_in_info("Rue bidon, 15", "9999", "Bouseville", "010010010", "0456880045")
@@ -49,6 +51,8 @@ class ProfileTest(MySeleniumTests):
         #log in
         self.populate_db()
         self.selenium.get('%s%s' % (self.live_server_url, ''))
+        time.sleep(1)
+        
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)

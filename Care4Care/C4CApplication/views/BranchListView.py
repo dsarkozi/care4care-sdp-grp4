@@ -1,7 +1,8 @@
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView
 from django.core.exceptions import PermissionDenied
-from C4CApplication.views.utils import create_user
 
+from C4CApplication.views.utils import create_user
 from C4CApplication.models.member import Member
 from C4CApplication.views.forms.BranchListForm import BranchListForm
 
@@ -9,7 +10,7 @@ from C4CApplication.views.forms.BranchListForm import BranchListForm
 class BranchListView(FormView):
     template_name = "C4CApplication/BranchList.html"
     form_class = BranchListForm
-    success_url = "branchlist"
+    success_url = reverse_lazy('myc4c')
     user = None
 
     def dispatch(self, request, *args, **kwargs):

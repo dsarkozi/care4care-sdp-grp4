@@ -1,7 +1,5 @@
 import abc
 
-from time import strftime, gmtime
-
 
 class User(object):
     __metaclass__ = abc.ABCMeta

@@ -1,9 +1,9 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.BranchListPage import BranchListPage
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.models.branch import Branch
-
-import time
 
 
 class BranchTest(MySeleniumTests):

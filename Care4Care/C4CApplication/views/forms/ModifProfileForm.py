@@ -1,9 +1,5 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import pgettext_lazy
-from C4CApplication.models.member import Member
-from django.utils.translation import string_concat
-from django.utils.translation import ugettext_lazy
 
 
 class ModifProfileForm(forms.Form):

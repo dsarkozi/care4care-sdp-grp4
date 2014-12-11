@@ -1,10 +1,9 @@
 from django import forms
-from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 from django.http.request import QueryDict
+from django.utils.translation import ugettext_lazy as _
 
 from C4CApplication.models.job import Job
-from django.utils.translation import ugettext_lazy as _
 
 
 class CreateJobForm(forms.ModelForm):
@@ -61,18 +60,18 @@ class CreateJobForm(forms.ModelForm):
             widget=forms.TimeInput(
                 attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label='Start time',
+            label=_('Start time'),
         )
         self.fields['duration'] = forms.TimeField(
             widget=forms.TimeInput(
                 attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label='Duration',
+            label=_('Duration'),
         )
         self.fields['km'] = forms.DecimalField(
             min_value=0,
             initial=0,
-            label='Distance to be covered (approximation)',
+            label=_('Distance to be covered (approximation)'),
             max_digits=4,
         )
 

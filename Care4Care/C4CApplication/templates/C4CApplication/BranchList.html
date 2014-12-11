@@ -11,7 +11,8 @@ background-color:#ffffff;width:15em;height:auto;padding:2em;">
     <form method="post">
         {% csrf_token %}
         <h3> {% trans "Choose branch(es)"%} :</h3>
-        <ul style="list-style-type: none;" > 
+        <ul style="list-style-type: none;" >
+        {{ form.branch_list.errors }}
         <table>
            <tr><td> {% for checkbox in branch_list_form.branch_list %}
                 <li style="display:block" >

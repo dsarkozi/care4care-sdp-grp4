@@ -1,8 +1,10 @@
 from base64 import urlsafe_b64decode
+
 from django.core.urlresolvers import reverse_lazy
 from django.http.request import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
+
 from C4CApplication.views.forms.RegistrationForm import RegistrationForm
 from Care4Care.settings import STATICFILES_DIRS
 
@@ -20,6 +22,14 @@ class RegistrationView(CreateView):
     def get(self, request, *args, **kwargs):
         request.session['ax'] = {}
         return super(RegistrationView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationView, self).get_context_data(**kwargs)
+        if 'email' in self.request.session:
+            context['connected'] = True
+        else:
+            context['connected'] = False
+        return context
 
     def get_form_kwargs(self):
         kwargs = super(RegistrationView, self).get_form_kwargs()
@@ -50,6 +60,8 @@ class RegistrationView(CreateView):
         return kwargs
 
     def form_valid(self, form):
+        if not form.cleaned_data:
+            return super(RegistrationView, self).form_invalid(form)
         self.request.session.pop('ax')
         member = form.save(commit=False)
         member.tag = form.cleaned_data['tag']

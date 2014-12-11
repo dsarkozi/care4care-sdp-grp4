@@ -1,56 +1,12 @@
 from C4CApplication.meta import NonMember
-from C4CApplication.meta.time import Time
-from C4CApplication.models import Message, Job, Branch, Mailbox
+from C4CApplication.models import Job, Branch
 from C4CApplication import models
-from django.core.urlresolvers import reverse_lazy
 
 
 class Member(NonMember):
     """
     This class represents a kind of Users called Members
     """
-
-    def register_job_done(self, job_number, job_creator_mail, helped_one_email=None, new_time=0):
-        """
-        Registers a job as done (with the new time to put).
-        The helped one will be warned by email and will be able to accept the 'payment' or not
-
-        :param job_number: it's the number of the job created by the job_creator_mail
-        :param job_creator_mail: The mail of the creator of the job
-        :param helped_one_email: it can't be None
-        :param new_time:
-        :return: False if there was a problem and True otherwise.
-        """
-
-        if helped_one_email is None:
-            return False
-        job = Job.objects.filter(mail=job_creator_mail, number=job_number)
-        if len(job) != 1:
-            return False
-        job = job[0]
-        job.done = True
-        job.duration = new_time
-        job.save()
-        
-        #We send a mail
-        helper_mail = ''
-        if not job.type : # offer
-            helper_mail = job_creator_mail
-        else : # demand
-            participants = job.member_set.all()
-            for participant in participants:
-                if participant.mail != helped_one_email:
-                    helper_mail = participant.mail
-                    break
-        if helper_mail == '':
-            return False
-        subject = 'The ' + \
-                  '<a style="color:red;" href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
-        content = 'The ' + \
-                  '<a  style="color:red;" href="' + '<a href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'\
-                  + ' is done. Please, consult your account to accept or not the bill'
-        type = 1
-        return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 
     def accept_bill(self, job_number, job_creator_mail, amount):
         """

@@ -1,7 +1,7 @@
 from time import strftime, gmtime, time
+
 from django.contrib.sessions.backends.db import SessionStore
 from django.contrib.sessions.models import Session
-
 from django.conf import settings
 
 

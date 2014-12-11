@@ -1,12 +1,8 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
-from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
 
-import time
-
-
-class MemberDetailsPage(FixedPage): 
+class MemberDetailsPage(FixedPage):
     def __init__(self, driver):
         super().__init__(driver)
         self.favorite_button = None

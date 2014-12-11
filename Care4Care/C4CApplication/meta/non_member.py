@@ -1,10 +1,9 @@
+from django.db.models import Max
+
 from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch, Message, Mailbox
-from django.db.models import Max
 from C4CApplication.models.relationship import Relationship
-from C4CApplication.meta.time import Time
-
-from django.core.urlresolvers import reverse_lazy
+from C4CApplication.time import Time
 
 
 class NonMember(User):
@@ -198,8 +197,8 @@ class NonMember(User):
 
             subject = "A member wants to participate to your job"
             content = "The member "+str(self.db_member.first_name)+" "+str(self.db_member.last_name) +\
-                      " has been added to the list of the potential participant of the " + \
-                      '<a href="/jobdetails/' + str(job.id) + '">job</a>.'
+                      " has been added to the list of the potential participants of the " + \
+                      '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>.'
             type = 3
             return self.send_mail(self.db_member.mail, job_creator_mail, subject, content, type)
             
@@ -323,7 +322,7 @@ class NonMember(User):
         content = ''
         if job.type:   #Demand
             subject = 'Your help is accepted'
-            content = 'Congratulation ! Your help has been accepted by '+str(creator.mail)+' for '\
+            content = 'Congratulations ! Your help has been accepted by '+str(creator.mail)+' for '\
                       + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '" >this job</a>'
         else:  #Offer
             subject = 'Your demand of help is accepted'
@@ -351,21 +350,24 @@ class NonMember(User):
             return False
         job = job[0]
         job.done = True
-        job.duration = 0
+        job.duration = new_time
         job.save()
-        
+
         #We send a mail
         helper_mail = ''
-        participants = job.member_set.all()
-        for participant in participants:
-            if participant.mail != helped_one_email:
-                helper_mail = participant.mail
-                break
+        if not job.type : # offer
+            helper_mail = job_creator_mail
+        else : # demand
+            participants = job.member_set.all()
+            for participant in participants:
+                if participant.mail != helped_one_email:
+                    helper_mail = participant.mail
+                    break
         if helper_mail == '':
             return False
-        subject = 'The job ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + ' is done'
-        content = 'The ' + '<a style="color:red;" href="/jobdetails/' + str(job.id) + '">job</a>' + '">job</a>'\
-                  + ' is done. Please, consult your account to accept or not the bill'
+        subject = 'The job is done !'
+        content = 'The job is done ! ' + \
+                  'Please, consult the following link to accept or contest the bill : <a  style="color:red;" href="/jobdetails/' + str(job.id) + '"> your job link .</a>'
         type = 1
         return self.send_mail(helper_mail, helped_one_email, subject, content, type)
 

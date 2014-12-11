@@ -1,8 +1,7 @@
-from C4CApplication.page_objects.FixedPage import FixedPage
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.alert import Alert
-
 import time
+
+from C4CApplication.page_objects.FixedPage import FixedPage
+from selenium.webdriver.common.alert import Alert
 
 
 class ModifProfilePage(FixedPage):

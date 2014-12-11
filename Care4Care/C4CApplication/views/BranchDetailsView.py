@@ -1,7 +1,6 @@
 from django.views.generic import DetailView
 from django.core.exceptions import PermissionDenied
 
-from C4CApplication.meta import User
 from C4CApplication.models import Branch
 from C4CApplication.views.utils import create_user
 

@@ -1,6 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.NewMessagePage import NewMessagePage
-from selenium.webdriver.common.by import By
 
 
 class ListMessagesPage(FixedPage):
@@ -14,7 +13,6 @@ class ListMessagesPage(FixedPage):
         self.read_more_buttons = []
         
         for el in buttons: # maybe change this if the language change
-            print(el.text)
             if el.text.startswith('Switch') : 
                 self.switch_button = el
             elif el.text.startswith('Write') :

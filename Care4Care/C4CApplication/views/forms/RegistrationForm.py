@@ -1,12 +1,16 @@
 import datetime
+
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
-from localflavor.be.forms import BEPostalCodeField
+from localflavor.be.forms import BEPostalCodeField, BEPhoneNumberField
+from django.utils.translation import ugettext_lazy as _
+
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
-from django.utils.translation import ugettext_lazy as _
+from C4CApplication.views.utils import UnlabelledRadioFieldRenderer, UnlabelledCheckboxFieldRenderer
+
 
 class RegistrationForm(ModelForm):
     class Meta:
@@ -30,24 +34,26 @@ class RegistrationForm(ModelForm):
             'mail' : _('E-mail address'),
             'street' : _('Street'),
             'town' : _('City'),
-            'password' : _('password'),
-            'first_name' : _('first name'),
-            'last_name' : _('last name'),
-            'gender' : _('gender'),
-            'birthday' : _('birthday'),
-            'mobile' : _('mobile'),
-            'telephone' : _('telephone'),
-            'branch' : _('branch')
+            'password' : _('Password'),
+            'first_name' : _('First name'),
+            'last_name' : _('Last name'),
+            'gender' : _('Gender'),
+            'birthday' : _('Birthday'),
+            'branch' : _('Branch')
         }
         widgets = {
-            'branch' : CheckboxSelectMultiple(),
+            'branch' : CheckboxSelectMultiple(renderer=UnlabelledCheckboxFieldRenderer),
             'password' : PasswordInput(),
-            'birthday' : SelectDateWidget(years=range(1900, 2050)),         #TODO Change this to more dynamic values
+            'birthday' : SelectDateWidget(years=range(1900, 2050)),
         }
 
+    eid = False
 
     def __init__(self, *args, **kwargs):
-        eid = kwargs.pop('eid')
+        self.eid = kwargs.pop('eid')
+        # Prevents from validating empty form after eID request
+        if self.eid:
+            kwargs['empty_permitted'] = True
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['password'] = forms.CharField(
             max_length=100,
@@ -65,18 +71,20 @@ class RegistrationForm(ModelForm):
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
+        self.fields['telephone'] = BEPhoneNumberField(label=_('Phone number'))
+        self.fields['mobile'] = BEPhoneNumberField(label=_('Mobile number'))
 
         self.fields['tag'] = forms.ChoiceField(
-            widget=forms.RadioSelect,
+            widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
             choices=((1, _("Without time crediting")), (2, _("With time crediting"))),
             label=_("Account type")
         )
         self.fields['gender'] = forms.ChoiceField(
-            widget=forms.RadioSelect,
-            choices=(('M', 'M'), ('F', 'F') ), label = _('gender'))
+            widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
+            choices=(('M', 'M'), ('F', 'F') ))
 
         self.auto_id = False
-        if eid:
+        if self.eid:
             if kwargs['data']['first_name']: self.fields['first_name'].widget.attrs.update({'disabled' : 'true'})
             if kwargs['data']['last_name']: self.fields['last_name'].widget.attrs.update({'disabled' : 'true'})
             if kwargs['data']['street']: self.fields['street'].widget.attrs.update({'disabled' : 'true'})
@@ -91,6 +99,5 @@ class RegistrationForm(ModelForm):
         password = cleaned_data.get("password")
         confirm = cleaned_data.get("confirm")
         if password != confirm:
-            self.add_error('password', forms.ValidationError(_("The password and confirmation do not match"), code='invalid'))
+            self.add_error('password', forms.ValidationError(_("The password and confirmation do not match."), code='invalid'))
         return cleaned_data
-        

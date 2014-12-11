@@ -21,6 +21,14 @@ class CreateJobView(FormView):
 
         return super(CreateJobView, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(CreateJobView, self).get_context_data(**kwargs)
+        if 'email' in self.request.session:
+            context['connected'] = True
+        else:
+            context['connected'] = False
+        return context
+
     def get_form_kwargs(self):
         kwargs = super(CreateJobView, self).get_form_kwargs()
         kwargs.update({'user' : self.user.db_member})

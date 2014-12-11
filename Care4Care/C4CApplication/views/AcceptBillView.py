@@ -1,11 +1,11 @@
 from django.views.generic import DetailView
-from C4CApplication.models.member import Member
-from C4CApplication.models.job import Job
-from C4CApplication.views.utils import create_user
 from django.core.exceptions import PermissionDenied
 
+from C4CApplication.models.job import Job
+from C4CApplication.views.utils import create_user
 
-class AcceptBillView(DetailView): 
+
+class AcceptBillView(DetailView):
     
     model = Job
     context_object_name = "job"

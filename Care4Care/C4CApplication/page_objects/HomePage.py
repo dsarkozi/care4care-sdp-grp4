@@ -1,3 +1,5 @@
+import time
+
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
@@ -5,9 +7,6 @@ from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 from C4CApplication.page_objects.JobDetailsPage import JobDetailsPage
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-
-
-import time
 
 
 class HomePage(FixedPage):
@@ -93,10 +92,24 @@ class HomePage(FixedPage):
         time.sleep(1)
         return CreateJobPage(self.driver)
     
+    def click_on_offer(self, num):
+        if num < len(self.job_offers_links) :
+            self.job_offers_links[num].click()
+        time.sleep(1)
+        return JobDetailsPage(self.driver)
+    
+    def click_on_demand(self, num):
+        if num < len(self.job_demands_links) :
+            self.job_demands_links[num].click()
+        time.sleep(1)
+        return JobDetailsPage(self.driver)
+    
     def click_on_last_offer(self):
         self.job_offers_links[len(self.job_offers_links)-1].click()
+        time.sleep(1)
         return JobDetailsPage(self.driver)
     
     def click_on_last_demand(self):
         self.job_demands_links[len(self.job_demands_links)-1].click()
+        time.sleep(1)
         return JobDetailsPage(self.driver)

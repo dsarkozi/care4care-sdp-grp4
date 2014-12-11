@@ -3,14 +3,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.views.generic import ListView
 from C4CApplication.views.SearchJobView import SearchJobView
 from C4CApplication.views.AccountStatsView import AccountStatsView
-
 from C4CApplication.views.CreateJobView import CreateJobView
 from C4CApplication.views.DonateTimeView import DonateTimeView
 from C4CApplication.views.EIDRedirectView import EIDRedirectView
-
 from C4CApplication.views.HomePageView import HomePageView
 from C4CApplication.views.LogoutView import LogoutView
 from C4CApplication.views.MyCare4CareView import MyCare4CareView
@@ -18,38 +15,28 @@ from C4CApplication.views.BranchListView import BranchListView
 from C4CApplication.views.JobDetailsView import JobDetailsView
 from C4CApplication.views.BranchDetailsView import BranchDetailView
 from C4CApplication.views.ConfirmJobDoneView import ConfirmJobDoneView
-
 from C4CApplication.views.ProfileView import ProfileView
 from C4CApplication.views.MemberDetailsView import MemberDetailsView
 from C4CApplication.views.MemberDetailsRedirectView import MemberDetailsRedirectView
-
 from C4CApplication.views.ParticipateJobRedirectView import ParticipateJobRedirectView
 from C4CApplication.views.ListMessagesView import ListMessagesView
-
 from C4CApplication.views.MessageView import MessageView
-
 from C4CApplication.views.AcceptBillView import AcceptBillView
 from C4CApplication.views.ConfirmBillRedirectView import ConfirmBillRedirectView
-
 from C4CApplication.views.FavoritesView import FavoritesView
 from C4CApplication.views.RegistrationView import RegistrationView
 from C4CApplication.views.RemoveFavoriteRedirectView import RemoveFavoriteRedirectView
-
 from C4CApplication.views.TransferRightsView import TransferRightsView
 from C4CApplication.views.TransferRightsBranchView import TransferRightsBranchView
 from C4CApplication.views.DeleteMemberBPAView import DeleteMemberBPAView
-
 from C4CApplication.views.ChangeActivityView import ChangeActivityView
 from C4CApplication.views.ChangeActivityRedirectView import ChangeActivityRedirectView
-
 from C4CApplication.views.BranchListRedirectView import BranchListRedirectView
 from C4CApplication.views.LoginAsMemberRedirectView import LoginAsMemberRedirectView
 from C4CApplication.views.ModifProfileView import ModifProfileView
 from C4CApplication.views.ModifProfileRedirectView import ModifProfileRedirectView
 from C4CApplication.views.NewMessageView import NewMessageView
-
 from C4CApplication.views.CreateBranchView import CreateBranchView
-
 from C4CApplication.tests import OIDTest
 
 
@@ -57,6 +44,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Care4Care.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^admin/', include(admin.site.urls)), 
     url(r'^$', HomePageView.as_view(), name='home'),

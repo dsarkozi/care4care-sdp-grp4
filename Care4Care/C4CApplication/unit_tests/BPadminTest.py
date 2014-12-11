@@ -1,13 +1,12 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.CreateBranchPage import CreateBranchPage
 from C4CApplication.page_objects.TransferRightsBranchPage import TransferRightsBranchPage
 from C4CApplication.page_objects.TransferRightsPage import TransferRightsPage
-
 from C4CApplication.models import Branch
 from C4CApplication.models import Member
-
-import time
 
 
 class BPadminTest(MySeleniumTests):
@@ -54,7 +53,7 @@ class BPadminTest(MySeleniumTests):
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(1)
         
-        self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/LLN/'))
+        self.selenium.get('%s%s' % (self.live_server_url, '/transferrightsbranch/Nivelles/'))
         time.sleep(1)
         
         page = TransferRightsBranchPage(self.selenium)
@@ -64,7 +63,7 @@ class BPadminTest(MySeleniumTests):
         page = page.click_on_change()
         time.sleep(2)
         
-        branch = Branch.objects.filter(name='LLN')
+        branch = Branch.objects.filter(name='Nivelles')
         self.assertEqual(len(branch), 1)
         branch=branch[0]
         self.assertEqual(branch.branch_officer, 'kim.mens@gmail.com')
