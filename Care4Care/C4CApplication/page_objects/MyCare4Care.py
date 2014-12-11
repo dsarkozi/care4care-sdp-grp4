@@ -11,8 +11,9 @@ class MyCare4Care(FixedPage):
         super().__init__(driver)
         self.logout_button = self.driver.find_element(By.XPATH, '//a[@id="Logout"]')
         self.new_branch_button = None
-        
-        self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
+
+        if len(self.driver.find_elements(By.CLASS_NAME, "myButton")) > 1:
+            self.want_to_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[1]
         self.need_help_button = self.driver.find_elements(By.CLASS_NAME, "myButton")[0]
     
     def BP_click_on_new_branch(self):
