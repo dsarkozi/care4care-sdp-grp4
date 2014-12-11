@@ -21,6 +21,14 @@ class RegistrationView(CreateView):
         request.session['ax'] = {}
         return super(RegistrationView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationView, self).get_context_data(**kwargs)
+        if 'email' in self.request.session:
+            context['connected'] = True
+        else:
+            context['connected'] = False
+        return context
+
     def get_form_kwargs(self):
         kwargs = super(RegistrationView, self).get_form_kwargs()
         self.ax = self.request.session['ax']
