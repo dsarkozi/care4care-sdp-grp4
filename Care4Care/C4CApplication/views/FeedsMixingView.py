@@ -14,8 +14,8 @@ class FeedsMixingView(MultipleObjectMixin):
     context = super(FeedsMixingView, self).get_context_data(**kwargs)
     self.object_list = context['feed_list']
     
-    offer_list = Job.objects.filter(type=False)
-    demand_list = Job.objects.filter(type=True)
+    offer_list = Job.objects.filter(type=False).order_by('-id')
+    demand_list = Job.objects.filter(type=True).order_by('-id')
     
     if len(offer_list)>= 10:
         offer_list = offer_list[0:10]
