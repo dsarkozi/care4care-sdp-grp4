@@ -3,7 +3,7 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
-from localflavor.be.forms import BEPostalCodeField
+from localflavor.be.forms import BEPostalCodeField, BEPhoneNumberField
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
 from django.utils.translation import ugettext_lazy as _
@@ -37,8 +37,6 @@ class RegistrationForm(ModelForm):
             'last_name' : _('Last name'),
             'gender' : _('Gender'),
             'birthday' : _('Birthday'),
-            'mobile' : _('Mobile number'),
-            'telephone' : _('Phone number'),
             'branch' : _('Branch')
         }
         widgets = {
@@ -71,6 +69,8 @@ class RegistrationForm(ModelForm):
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
+        self.fields['telephone'] = BEPhoneNumberField(label=_('Phone number'))
+        self.fields['mobile'] = BEPhoneNumberField(label=_('Mobile number'))
 
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
