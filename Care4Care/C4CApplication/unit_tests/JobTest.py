@@ -161,6 +161,6 @@ class JobTest(MySeleniumTests):
         
         page = page.click_on_confirm()
         time.sleep(1)
-        self.assertEqual(0, 0)
+        #job = Job.objects.filter(title="Visiter l'Atomium")[0]
+        #self.assertEqual(job.done, True)
         return True
-    
