@@ -148,7 +148,7 @@ class User(object):
         """
         return
 
-    def transfer_time(self, destination_email, time):
+    def transfer_time(self, destination_email, time, message):
         """
         Transfers 'time' to a member with 'destination_email' as email
 
@@ -157,7 +157,7 @@ class User(object):
         """
         return
 
-    def make_donation(self, time, branch_name=None):
+    def make_donation(self, time, message, branch_name=None):
         """
         Makes a donation to the branch of the member
 

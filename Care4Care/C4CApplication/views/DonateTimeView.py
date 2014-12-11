@@ -39,10 +39,10 @@ class DonateTimeView(FormView):
         receiver = form.cleaned_data['receiver']
         if receiver == 'c4c' :
             branchDropdown = form.cleaned_data['branchDropdown']
-            self.user.make_donation(time, branchDropdown)
+            self.user.make_donation(time, message, branchDropdown)
         else :
             userDropdown = form.cleaned_data['userDropdown']
-            self.user.transfer_time(userDropdown, time)
+            self.user.transfer_time(userDropdown, time, message)
         
         return super(DonateTimeView, self).form_valid(form)
             
