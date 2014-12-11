@@ -66,7 +66,7 @@ class TimeTransferTest(MySeleniumTests):
         page = GiveTimePage(self.selenium)
         time.sleep(1)
         
-        page = page.fill_in_fields("Tiens Olivier, voici du temps ;)", "0", "1", "40", "Olivier", 1)
+        page = page.fill_in_fields("Tiens Olivier, voici du temps ;)", "0", "1", "40", "Olivier Mauvaisaventure", 1)
         time.sleep(1)
         
         page = page.click_on_donate()
