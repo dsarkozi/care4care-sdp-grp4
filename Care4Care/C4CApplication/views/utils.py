@@ -1,3 +1,6 @@
+from django.forms.widgets import ChoiceInput, ChoiceFieldRenderer
+from django.utils.encoding import force_text
+from django.utils.html import format_html
 from C4CApplication.meta.visitor import Visitor
 from C4CApplication.meta.non_member import NonMember
 from C4CApplication.meta.member import Member
@@ -7,6 +10,40 @@ from C4CApplication.meta.volunteer_verified import VolunteerVerified
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.meta.bp_administrator import BPAdministrator
 from C4CApplication import models
+
+class UnlabelledChoiceInput(ChoiceInput):
+    input_type = None
+
+    def __init__(self, *args, **kwargs):
+        super(UnlabelledChoiceInput, self).__init__(*args, **kwargs)
+
+    def render(self, name=None, value=None, attrs=None, choices=()):
+        return format_html(
+            '{0} {1}', self.tag(), self.choice_label
+        )
+
+class UnlabelledRadioChoiceInput(UnlabelledChoiceInput):
+    input_type = 'radio'
+
+    def __init__(self, *args, **kwargs):
+        super(UnlabelledRadioChoiceInput, self).__init__(*args, **kwargs)
+        self.value = force_text(self.value)
+
+class UnlabelledCheckboxChoiceInput(UnlabelledChoiceInput):
+    input_type = 'checkbox'
+
+    def __init__(self, *args, **kwargs):
+        super(UnlabelledCheckboxChoiceInput, self).__init__(*args, **kwargs)
+        self.value = set(force_text(v) for v in self.value)
+
+    def is_checked(self):
+        return self.choice_value in self.value
+
+class UnlabelledRadioFieldRenderer(ChoiceFieldRenderer):
+    choice_input_class = UnlabelledRadioChoiceInput
+
+class UnlabelledCheckboxFieldRenderer(ChoiceFieldRenderer):
+    choice_input_class = UnlabelledCheckboxChoiceInput
 
 
 def create_user(member_email):

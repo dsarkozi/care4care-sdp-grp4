@@ -1,15 +1,16 @@
 {% load staticfiles %}
 {% load i18n %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html>
 	
 <head>
-	<meta charset="utf-8"/>
+    <meta charset="UTF-8">
 	<title>{% block title%}Care4Care{% endblock %}</title>
 	<link rel="stylesheet" href="../../static/css/home_page.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 	{% block link%} {% endblock%}
 </head>
-
+<body>
 	
 	{% block nav %}
     <!-- Language switcher form -->
@@ -37,7 +38,7 @@
 				<li><a href="Help">Help</a></li>
 			
 			-->
-			<li><a href="{% url 'home' %}" id="home" value="home"> {% trans "HOME" %} </a></li>
+			<li><a href="{% url 'home' %}" id="home"> {% trans "HOME" %} </a></li>
 			{% if connected %}
 				<li><a href="{% url 'profile' %}"> MyCare4Care</a></li>
 			{% endif %}
@@ -63,4 +64,5 @@
 	{% block content %}
 
 	{% endblock %}
+</body>
 </html>

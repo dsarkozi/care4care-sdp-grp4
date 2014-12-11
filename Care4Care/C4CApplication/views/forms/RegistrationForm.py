@@ -7,6 +7,8 @@ from localflavor.be.forms import BEPostalCodeField
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
 from django.utils.translation import ugettext_lazy as _
+from C4CApplication.views.utils import UnlabelledRadioFieldRenderer, UnlabelledCheckboxFieldRenderer
+
 
 class RegistrationForm(ModelForm):
     class Meta:
@@ -40,7 +42,7 @@ class RegistrationForm(ModelForm):
             'branch' : _('Branch')
         }
         widgets = {
-            'branch' : CheckboxSelectMultiple(),
+            'branch' : CheckboxSelectMultiple(renderer=UnlabelledCheckboxFieldRenderer),
             'password' : PasswordInput(),
             'birthday' : SelectDateWidget(years=range(1900, 2050)),
         }
@@ -71,12 +73,12 @@ class RegistrationForm(ModelForm):
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
 
         self.fields['tag'] = forms.ChoiceField(
-            widget=forms.RadioSelect,
+            widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
             choices=((1, _("Without time crediting")), (2, _("With time crediting"))),
             label=_("Account type")
         )
         self.fields['gender'] = forms.ChoiceField(
-            widget=forms.RadioSelect,
+            widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
             choices=(('M', 'M'), ('F', 'F') ))
 
         self.auto_id = False
