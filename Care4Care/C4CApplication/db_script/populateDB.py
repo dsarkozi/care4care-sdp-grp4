@@ -232,6 +232,7 @@ def popule_db():
     j1.duration = 60    #1h *60
     j1.category = 1 #Shopping
     j1.type = True  #True = Demand
+    j1.visibility = 1
     j1.place = "%s, %s, %s" % (m4.street, m4.zip, m4.town)
     j1.branch = b1
     j1.save()
@@ -249,6 +250,7 @@ def popule_db():
     j2.duration = 60    #1h *60
     j2.category = 3 #Transport
     j2.type = True  #True = Demand
+    j2.visibility = 1
     j2.place = "%s, %s, %s" % (m4.street, m4.zip, m4.town)
     j2.visibility = Job.JOB_VISIBILITY['favorites']
     j2.branch = b1
@@ -328,6 +330,7 @@ def popule_db():
     j6.duration = 240    #4h *60
     j6.category = 1 #Shopping
     j6.type = False  #False = Offer
+    j6.visibility = 1
     j6.place = "Place de l'Accueil, 10 bte 1, 1348, Louvain-la-Neuve"
     j6.branch = b1
     j6.save()
@@ -345,6 +348,7 @@ def popule_db():
     j7.category = 4 #Other
     j7.other_category = "Aide informatique"
     j7.type = False  #False = Offer
+    j7.visibility = 1
     j7.place = "Place Sainte Barbe, 2 bte L6.11.01, Salle Intel, 1348, Louvain-la-Neuve"
     j7.branch = b1
     j7.save()
@@ -362,6 +366,7 @@ def popule_db():
     j8.category = 4 #Other
     j8.other_category = "Aide projet"
     j8.type = False #False = Offer
+    j8.visibility = 1
     j8.place = "Place Sainte Barbe, 2 bte L6.11.01, Barb93, 1348, Louvain-la-Neuve"
     j8.branch = b1
     j8.save()
@@ -378,7 +383,8 @@ def popule_db():
     j9.duration = j8.duration   #2h
     j9.category = j8.category #Other
     j9.other_category = j8.other_category
-    j9.type = False #False = Offer
+    j9.type = j8.type
+    j9.visibility = j8.visibility
     j9.place = j8.place
     j9.branch = j8.branch
     j9.regular_job = j8
@@ -398,6 +404,7 @@ def popule_db():
     j10.category = 4 #Other
     j10.other_category = "Aide projet"
     j10.type = False #False = Offer
+    j10.visibility = 1
     j10.place = "Place Sainte Barbe, 2 bte L6.11.01, Barb01, 1348, Louvain-la-Neuve"
     j10.branch = b1
     j10.save()
@@ -414,7 +421,8 @@ def popule_db():
     j11.duration = j10.duration   #2h
     j11.category = j10.category #Other
     j11.other_category = j10.other_category
-    j11.type = False #False = Offer
+    j11.type = j10.type
+    j11.visibility = j10.visibility
     j11.place = j10.place
     j11.branch = j10.branch
     j11.regular_job = j10
