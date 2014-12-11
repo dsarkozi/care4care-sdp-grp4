@@ -61,10 +61,16 @@ background-color:#ffffff;margin:2em;width:40em; height:auto;padding:1em;">
    					<h5> Address: </h5>
    					<p>	{{form.street.errors}} {{form.street}} </p>			
        				<p> {{form.zip.errors}} {{form.zip}}  {{form.town.errors}} {{form.town}} </p>
+       				
+       				<h5> Be visible by : </h5>
+       				<p> {{form.visibility.errors}} {{form.visibility}}</p>
+       				
        				<h5> Phone number:</h5>
    			    	<p> {{form.fixed_phone.errors}} {{form.fixed_phone}} </p>
+   			    	
    			    	<h5> Mobile phone number:</h5>
     				<p> {{form.mobile_phone.errors}} {{form.mobile_phone}} </p>
+    				
     				<h5> Change password:</h5>
     				<p> {{form.new_password.errors}} {{form.new_password}} </p>
 		

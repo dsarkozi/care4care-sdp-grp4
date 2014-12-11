@@ -119,6 +119,7 @@ def popule_db():
     m5.town = "LeaderVille"
     m5.time_credit = 10000000000
     m5.visibility = Member.MEMBER_VISIBILITY['anyone']
+    m5.eid = True
     m5.save()
     
     m6 = Member(mail="dr.robotnik@gmail.com")

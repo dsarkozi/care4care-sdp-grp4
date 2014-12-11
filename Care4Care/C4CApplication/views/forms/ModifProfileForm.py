@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from C4CApplication.models.member import Member
 
 
 class ModifProfileForm(forms.Form):
@@ -13,10 +14,22 @@ class ModifProfileForm(forms.Form):
     zip     = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': _('zip'),    'size' : 10}))
     town    = forms.CharField(max_length=100, widget=forms.TextInput(  attrs={'placeholder': _('town'),   'size' : 32}))
     
+    visibility = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=Member.MEMBER_VISIBILITY_TUPLE)
+    
     #infos facultatives
     picture = forms.ImageField(required=False)
     fixed_phone  = forms.CharField(max_length=100, required=False, widget=forms.NumberInput(attrs={'placeholder': _('fixed phone'),' size' : 88  }))
     mobile_phone = forms.CharField(max_length=100, required=False, widget=forms.NumberInput(attrs={'placeholder': _('mobile phone'),' size' : 10}))
+    
+    def clean_visibility(self):
+        """
+        Cleans the visibility field by converting the choices from a list of strings to a sum of integers.
+        """
+        visibility = self.cleaned_data['visibility']
+        res = 0
+        for vis in visibility:
+            res += int(vis)
+        return res
     
     def clean(self):
         cleaned_data = super(ModifProfileForm, self).clean()
