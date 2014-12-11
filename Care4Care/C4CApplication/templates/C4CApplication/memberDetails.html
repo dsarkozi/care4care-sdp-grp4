@@ -5,7 +5,10 @@
 {% block content %}
 
 
-  <center> <h1> 
+  <center> <h1>
+            {% if member_shown.eid %}
+                <img src="{% static "images/eid_logo.png" %}" border="0" width="50" height="36" align="absmiddle" title="Registered through an eID card !">
+            {% endif %}
 	    	{{ member_shown.first_name}} {{ member_shown.last_name }} :
 	    	{% if member_shown.status %}
 	    		{% if member.mail == member_shown.mail %}

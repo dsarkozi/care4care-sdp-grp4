@@ -15,6 +15,7 @@ class OverwriteStorage(FileSystemStorage):
 class Member(models.Model):
     mail = models.EmailField(primary_key=True)
     password = models.CharField(max_length=100)
+    eid = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1)
