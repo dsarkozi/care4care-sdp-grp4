@@ -14,6 +14,7 @@ class RegistrationView(CreateView):
     template_name = "C4CApplication/Registration.html"
     success_url = reverse_lazy('home')
     ax = None
+    eid = False
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -54,6 +55,7 @@ class RegistrationView(CreateView):
                 data.update(kwargs['data'])
             kwargs['data'] = data
             kwargs.update({'eid' : True})
+            self.eid = True
         else:
             kwargs.update({'eid' : False})
         self.request.session['ax'] = self.ax
@@ -72,6 +74,7 @@ class RegistrationView(CreateView):
             image_name = image_name.replace('@', '.').replace('.', '')+".jpg"
             picture.name = image_name
             member.picture = picture
+        member.eid = self.eid
         member.save()
         return super(RegistrationView, self).form_valid(form)
 

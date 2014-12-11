@@ -87,7 +87,7 @@ class Member(NonMember):
         content = "A bill has been refused by "+str(self.db_member.mail)
         return self.send_mail(self.db_member.mail, mail_branch_officer, subject, content, type)
 
-    def transfer_time(self, destination_email, time):
+    def transfer_time(self, destination_email, time, message):
         """
         Transfers 'time' to a member with 'destination_email' as email
 
@@ -109,11 +109,11 @@ class Member(NonMember):
         
         #Send the message
         subject = "You've received a gift"
-        content = "You've received a gift from "+str(sender_gift.mail)
+        content = "You've received a gift from "+str(sender_gift.mail)+'. Here is the message :\n' + message
         type = 3
         return self.send_mail(sender_gift.mail, receiver_gift.mail, subject, content, type)
 
-    def make_donation(self, time, branch_name=None):
+    def make_donation(self, time, message, branch_name=None):
         """
         Makes a donation to the branch of the member
 
@@ -138,4 +138,9 @@ class Member(NonMember):
         self.db_member.save()
         branch.save()
         branch_off.save()
-        return True
+
+        #Send the message
+        subject = "Branch donation"
+        content = "You've received a donation from "+str(self.db_member.mail)+'. Here is the message :\n' + message
+        type = 3
+        return self.send_mail(self.db_member.mail, branch_off.mail, subject, content, type)

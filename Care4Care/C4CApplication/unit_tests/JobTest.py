@@ -83,9 +83,12 @@ class JobTest(MySeleniumTests):
         page = HomePage(self.selenium)
         page = page.quick_login_successful('mathieu.jadin@student.uclouvain.be', 'azertyuiop')
         time.sleep(2)
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        time.sleep(1)
+
+        # accept page
+        job = Job.objects.get(title="Aide pour mes courses")
+        self.selenium.get('%s%s' % (self.live_server_url, '/jobdetails/%d' % job.id))
+        time.sleep(6)
+        page = JobDetailsPage(self.selenium)
         
         page = HomePage(self.selenium)
         page = page.click_on_demand(0)

@@ -15,6 +15,7 @@ class OverwriteStorage(FileSystemStorage):
 class Member(models.Model):
     mail = models.EmailField(primary_key=True)
     password = models.CharField(max_length=100)
+    eid = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1)
@@ -57,9 +58,16 @@ class Member(models.Model):
     zip = models.CharField(max_length=4)
     town = models.CharField(max_length=100)
     
+    MEMBER_VISIBILITY_TUPLE = (
+        (1, 'Anyone'),
+        (2, 'Verified'),
+        (4, 'Favorites'),
+        (8, 'Volunteer'),
+    )
+    
     MEMBER_VISIBILITY = { # every bit of the number corresponds to one option
         'anyone'     : 1,   #001
-        'verified'  : 2,   #010
+        'verified'   : 2,   #010
         'favorites'  : 4,   #100
     }
     visibility = models.SmallIntegerField(default=MEMBER_VISIBILITY['verified'])

@@ -30,10 +30,13 @@ class AccountStatsView(TemplateView):
         # General info
         context['member'] = self.user.db_member
         context['connected'] = 'email' in self.request.session
-        context['jobAmount'] = self.jobset.count()
-        context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(self.jobset.aggregate(Avg('duration'))['duration__avg']))
-        context['jobTotalDistance'] = self.jobset.aggregate(Sum('km'))['km__sum']
-        context['jobCategories'] = self.categoryStats(self.jobset)
+        context['jobAmount'] = self.jobset.filter(done=True).count()
+        averageQuery = self.jobset.filter(done=True).aggregate(Avg('duration'))['duration__avg']
+        averageQuery = averageQuery if averageQuery is not None else 0
+        context['jobAverageTime'] = time.strftime('%H:%M:%S', time.gmtime(averageQuery))
+        jobTotalDistance = self.jobset.filter(done=True).aggregate(Sum('km'))['km__sum']
+        context['jobTotalDistance'] = jobTotalDistance if jobTotalDistance is not None else 0
+        context['jobCategories'] = self.categoryStats(self.jobset.filter(done=True))
 
         # Help received
         context['helpedDone'] = self.queryset2list(

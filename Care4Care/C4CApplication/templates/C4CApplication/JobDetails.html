@@ -49,16 +49,28 @@
             {% endif %}
 		{% endif %}
 		
-		{% if not job.done and job.accepted and job.mail != member.mail and member in job.member_set.all %}
-		</br>
-		<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
-	
+		{% if job.type %}	<!-- If it's an demand -->
+			{% if not job.done and job.accepted and job.mail != member.mail and member in job.member_set.all %}
+				</br>
+				<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
+			{% endif %}
+		{% else %}
+			{% if not job.done and job.accepted and job.mail == member.mail and member in job.member_set.all %}
+				</br>
+				<a href="{% url 'confirmjobdone' job.id %}" class="btn">{% trans "My job is done"%}</a> 
+			{% endif %}
         {% endif %}
 		
-		{% if not job.payed and job.accepted and job.done and job.mail == member.mail %}
-		</br>
-		<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a> 
-	
+		{% if job.type %}	<!-- If it's an demand -->
+			{% if not job.payed and job.accepted and job.done and job.mail == member.mail %}
+				</br>
+				<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a>
+			{% endif %}
+		{% else %}
+			{% if not job.payed and job.accepted and job.done and job.mail != member.mail %}
+				</br>
+				<a href="{% url 'acceptBill' job.id %}" class="btn">{% trans "Pay the helper"%}</a>
+			{% endif %}
         {% endif %}
 		
 		

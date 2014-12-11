@@ -54,6 +54,8 @@ class ModifProfileView(FormView):
         self.user.db_member.zip = zip
         self.user.db_member.town = town
         
+        self.user.db_member.visibility = form.cleaned_data['visibility']
+        
         self.user.db_member.picture = picture
         if password != '':  # If a new password was entered
             self.user.db_member.password = password
@@ -63,7 +65,12 @@ class ModifProfileView(FormView):
         return super(ModifProfileView, self).form_valid(form)
 
     def get_initial(self):
+        list_to_check = []
+        for key, value in self.user.db_member.MEMBER_VISIBILITY_TUPLE:
+            if key & self.user.db_member.visibility == key:
+                list_to_check.append(key)
+            
         self.initial = {'street':self.user.db_member.street, 'zip':self.user.db_member.zip ,\
                         'town':self.user.db_member.town,'fixed_phone':self.user.db_member.telephone,\
-                        'mobile_phone':self.user.db_member.mobile}
+                        'mobile_phone':self.user.db_member.mobile, 'visibility':list_to_check}
         return self.initial
