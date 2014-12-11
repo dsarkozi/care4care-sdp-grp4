@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 03:20+0000\n"
+"POT-Creation-Date: 2014-12-11 04:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,22 +62,6 @@ msgstr "Favoris"
 msgid "Volunteer"
 msgstr "Volontaire"
 
-#: models/job.py:57
-msgid "anyone"
-msgstr "qui que ce soit"
-
-#: models/job.py:58 models/member.py:30
-msgid "verified"
-msgstr "membre vérifié"
-
-#: models/job.py:59
-msgid "favorites"
-msgstr "favoris"
-
-#: models/job.py:60 models/member.py:31
-msgid "volunteer"
-msgstr "volontaire"
-
 #: models/member.py:28
 msgid "non_member"
 msgstr "non membre"
@@ -85,6 +69,14 @@ msgstr "non membre"
 #: models/member.py:29
 msgid "member"
 msgstr "membre"
+
+#: models/member.py:30
+msgid "verified"
+msgstr "membre vérifié"
+
+#: models/member.py:31
+msgid "volunteer"
+msgstr "volontaire"
 
 #: models/member.py:32
 msgid "branch_officer"
@@ -231,7 +223,7 @@ msgstr "Tâches en attente"
 msgid "Choose branch(es)"
 msgstr "Choisissez une ou (plusieurs) branche(s)"
 
-#: templates/C4CApplication/BranchList.html:24
+#: templates/C4CApplication/BranchList.html:25
 msgid "Submit changes"
 msgstr "Envoyez les changements"
 
@@ -864,6 +856,14 @@ msgstr "divers"
 msgid "Register"
 msgstr "Enregistrement"
 
+#: templates/C4CApplication/SearchJob.html:17
+msgid "Job Search"
+msgstr ""
+
+#: templates/C4CApplication/SearchJob.html:27
+msgid "Filter"
+msgstr ""
+
 #: templates/C4CApplication/SearchJob.html:35
 msgid "Search results"
 msgstr ""
@@ -1272,6 +1272,18 @@ msgstr "Avec comptabilisation de temps"
 msgid "The password and confirmation do not match."
 msgstr ""
 
+#: views/forms/SearchForm.py:11
+msgid "Filter the jobs created by the member"
+msgstr ""
+
+#: views/forms/SearchForm.py:16
+msgid "See help offers"
+msgstr ""
+
+#: views/forms/SearchForm.py:16
+msgid "See help demands"
+msgstr ""
+
 #: views/forms/TransferRightsBranchForm.py:10
 msgid "new_branch_officer@mail.com"
 msgstr "nouveau_branch_officer@gmail.com"
@@ -1279,6 +1291,12 @@ msgstr "nouveau_branch_officer@gmail.com"
 #: views/forms/TransferRightsForm.py:10
 msgid "new_BP_Admin@mail.com"
 msgstr "nouveau_BP_Administrateur@gmail.com"
+
+#~ msgid "anyone"
+#~ msgstr "qui que ce soit"
+
+#~ msgid "favorites"
+#~ msgstr "favoris"
 
 #~ msgid "Comment"
 #~ msgstr "Commentaire"

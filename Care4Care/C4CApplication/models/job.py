@@ -54,10 +54,10 @@ class Job(models.Model):
     )
     
     JOB_VISIBILITY = { # every bit of the number corresponds to one option
-        _('anyone')     : 1,   #0001
-        _('verified')   : 2,   #0010
-        _('favorites')  : 4,   #0100
-        _('volunteer')  : 8,   #1000
+        'anyone'     : 1,   #0001
+        'verified'   : 2,   #0010
+        'favorites'  : 4,   #0100
+        'volunteer'  : 8,   #1000
     }
     visibility = models.SmallIntegerField(default=JOB_VISIBILITY['verified'])
     branch = models.ForeignKey('Branch')
