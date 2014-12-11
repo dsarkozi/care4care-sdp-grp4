@@ -1,8 +1,10 @@
 from django.views.generic import DetailView
-from C4CApplication.models import *
 from django.core.exceptions import PermissionDenied
+
+from C4CApplication.models import *
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.mailbox import Mailbox
+
 
 class MessageView(DetailView):
     template_name = "C4CApplication/Message.html"  # path to the template to display

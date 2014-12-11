@@ -1,7 +1,8 @@
 from django import forms
 from django.forms.widgets import TextInput, EmailInput
-from C4CApplication.models.branch import Branch
 from django.utils.translation import ugettext_lazy as _
+
+from C4CApplication.models.branch import Branch
 
 
 class CreateBranchForm(forms.Form):

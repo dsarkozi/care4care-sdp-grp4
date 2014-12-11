@@ -1,5 +1,7 @@
 from django.contrib import admin
+
 from C4CApplication.models import *
+
 
 # Pour l'admin
 # Register your models here.

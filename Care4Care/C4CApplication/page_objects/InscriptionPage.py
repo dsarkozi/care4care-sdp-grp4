@@ -1,10 +1,8 @@
+import time
+
 from C4CApplication.page_objects.FixedPage import FixedPage
-from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-
-
-import time
 
 
 class InscriptionPage(FixedPage):

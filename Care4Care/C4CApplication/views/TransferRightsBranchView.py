@@ -1,11 +1,10 @@
 from django.views.generic import FormView
-from C4CApplication import models
-from C4CApplication.meta import Member, User
-from C4CApplication.views.forms.TransferRightsBranchForm import TransferRightsBranchForm
-from C4CApplication.views.utils import create_user
-
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
+
+from C4CApplication import models
+from C4CApplication.views.forms.TransferRightsBranchForm import TransferRightsBranchForm
+from C4CApplication.views.utils import create_user
 
 
 class TransferRightsBranchView(FormView):

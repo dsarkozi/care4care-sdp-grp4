@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import C4CApplication.models.member
 import django.db.models.deletion
+
+import C4CApplication.models.member
 
 
 class Migration(migrations.Migration):

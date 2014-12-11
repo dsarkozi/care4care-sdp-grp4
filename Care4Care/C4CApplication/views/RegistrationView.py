@@ -1,8 +1,10 @@
 from base64 import urlsafe_b64decode
+
 from django.core.urlresolvers import reverse_lazy
 from django.http.request import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
+
 from C4CApplication.views.forms.RegistrationForm import RegistrationForm
 from Care4Care.settings import STATICFILES_DIRS
 

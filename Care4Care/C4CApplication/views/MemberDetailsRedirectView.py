@@ -1,8 +1,7 @@
 from django.views.decorators.cache import never_cache
 from django.views.generic.base import RedirectView
+
 from C4CApplication.views.utils import create_user
-from C4CApplication.models.relationship import Relationship
-from C4CApplication.models.member import Member
 
 
 class MemberDetailsRedirectView(RedirectView):

@@ -1,9 +1,8 @@
-from C4CApplication.simulation.Actor import Actor
+import time
 
+from C4CApplication.simulation.Actor import Actor
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
-
-import time
 
 
 class HelpedOneActor(Actor):

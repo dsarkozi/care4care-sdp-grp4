@@ -1,9 +1,9 @@
+import time
+
 from C4CApplication.page_objects.Page import Page
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.alert import Alert
 
-import time
 
 
 #For DonateTime.html

@@ -1,8 +1,4 @@
-from time import strftime, gmtime
-
-
 from django.db import models
-from localflavor.be.forms import BEPostalCodeField
 from django.utils.translation import ugettext_lazy as _
 
 

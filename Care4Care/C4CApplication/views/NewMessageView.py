@@ -1,10 +1,10 @@
+from django.core.exceptions import PermissionDenied
+from django.views.generic import FormView
+from django.core.urlresolvers import reverse_lazy
+
 from C4CApplication.views.forms.NewMessageForm import NewMessageForm
 from C4CApplication.models import *
 from C4CApplication.views.utils import create_user
-from django.core.exceptions import PermissionDenied
-
-from django.views.generic import FormView
-from django.core.urlresolvers import reverse_lazy
 
 
 class NewMessageView(FormView):

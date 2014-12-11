@@ -1,9 +1,9 @@
 from django.views.generic.edit import FormView
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse_lazy
+
 from C4CApplication.views.utils import create_user
 from C4CApplication.views.forms.DonateTimeForm import DonateTimeForm
-from django.core.urlresolvers import reverse_lazy
-from C4CApplication.models.member import Member
 
 
 class DonateTimeView(FormView):

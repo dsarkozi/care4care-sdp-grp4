@@ -1,9 +1,10 @@
 #-*- coding: utf-8 -*-
-from django import forms
 import datetime
-import time, calendar
+import time
+import calendar
 from calendar import monthrange
-from django.utils.translation import ugettext_lazy as _
+
+from django import forms
 
 
 class JobRegularForm(forms.Form):

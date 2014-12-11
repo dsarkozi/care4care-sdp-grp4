@@ -1,11 +1,10 @@
+import time
+
 from C4CApplication.page_objects.BranchListPage import BranchListPage
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.simulation.Actor import Actor
-
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
-
-import time
 
 
 class BranchOfficerActor(Actor):

@@ -1,10 +1,8 @@
-from C4CApplication.models import *
 from django.core.exceptions import PermissionDenied
 from django.views.generic import ListView
 
-
+from C4CApplication.models import *
 from C4CApplication.views.utils import create_user
-from C4CApplication.meta.user import User
 
 
 class ListMessagesView(ListView):

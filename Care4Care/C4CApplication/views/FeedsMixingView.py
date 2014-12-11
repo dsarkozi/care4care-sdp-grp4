@@ -1,6 +1,7 @@
 from django.views.generic.list import MultipleObjectMixin
+
 from C4CApplication.models.job import Job
-from _decimal import Context
+
 
 class FeedsMixingView(MultipleObjectMixin):
     

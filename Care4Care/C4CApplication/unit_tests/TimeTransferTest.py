@@ -1,10 +1,9 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.GiveTimePage import GiveTimePage
 from C4CApplication.models import Member
-
-
-import time
 
 
 class TimeTransferTest(MySeleniumTests):

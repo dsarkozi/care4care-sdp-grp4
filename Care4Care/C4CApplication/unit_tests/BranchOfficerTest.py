@@ -1,11 +1,10 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.MemberDetailsPage import MemberDetailsPage
 from C4CApplication.page_objects.MemberListPage import MemberListPage
 from C4CApplication.models.branch import Branch
 from C4CApplication.page_objects.HomePage import HomePage
-
-
-import time
 
 
 class BranchOfficerTest(MySeleniumTests):

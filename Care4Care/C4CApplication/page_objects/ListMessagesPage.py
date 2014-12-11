@@ -1,6 +1,5 @@
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.NewMessagePage import NewMessagePage
-from selenium.webdriver.common.by import By
 
 
 class ListMessagesPage(FixedPage):

@@ -1,5 +1,4 @@
 from django.db import models
-from localflavor.be.forms import BEPostalCodeField
 
 
 class Branch(models.Model):

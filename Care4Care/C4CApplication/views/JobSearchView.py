@@ -1,4 +1,5 @@
 from django.views.generic.list import ListView
+
 from C4CApplication.models.job import Job
 
 

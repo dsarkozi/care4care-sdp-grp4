@@ -1,9 +1,7 @@
-from selenium.common.exceptions import NoSuchElementException
 from C4CApplication.page_objects.FixedPage import FixedPage
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.alert import Alert
-import time
 
 
 class DeleteMemberBPAPage(FixedPage):

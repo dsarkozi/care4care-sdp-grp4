@@ -1,10 +1,8 @@
+import time
+
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.MemberDetailsPage import MemberDetailsPage
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
-
-
-import time
 
 
 class MemberListPage(FixedPage):

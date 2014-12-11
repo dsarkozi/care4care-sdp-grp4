@@ -1,13 +1,10 @@
 from time import strftime, gmtime
-import os
-from django.core.files import File
+
 from django.utils.translation import ugettext_lazy as _
-
-
 from django.db import models
-from localflavor.be.forms import BEPostalCodeField
-
 from django.core.files.storage import FileSystemStorage
+
+
 class OverwriteStorage(FileSystemStorage):
     def get_available_name(self, name):
         if self.exists(name):

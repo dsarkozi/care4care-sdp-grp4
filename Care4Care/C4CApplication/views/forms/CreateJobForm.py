@@ -1,10 +1,9 @@
 from django import forms
-from django.forms.widgets import TextInput
 from django.forms.extras.widgets import SelectDateWidget
 from django.http.request import QueryDict
+from django.utils.translation import ugettext_lazy as _
 
 from C4CApplication.models.job import Job
-from django.utils.translation import ugettext_lazy as _
 
 
 class CreateJobForm(forms.ModelForm):

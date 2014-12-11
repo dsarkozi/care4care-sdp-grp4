@@ -1,7 +1,7 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+
 from selenium.webdriver.firefox.webdriver import WebDriver
 from C4CApplication.db_script import populateDB
-from selenium import webdriver
 
 
 class MySeleniumTests(StaticLiveServerTestCase):

@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 #from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.FixedPage import FixedPage

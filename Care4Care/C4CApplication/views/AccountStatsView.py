@@ -1,7 +1,9 @@
+import time
+
 from django.core.exceptions import PermissionDenied
 from django.db.models.aggregates import Avg, Sum
 from django.views.generic.base import TemplateView
-import time
+
 from C4CApplication.models.job import Job
 from C4CApplication.models.member import Member
 from C4CApplication.views.utils import create_user

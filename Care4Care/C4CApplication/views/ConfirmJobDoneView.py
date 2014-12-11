@@ -1,13 +1,9 @@
-from django.views.generic import FormView
-from C4CApplication.models.job import Job
+from django.core.exceptions import PermissionDenied
+
 from C4CApplication import models
-from C4CApplication.meta import Member, User
 from C4CApplication.views.JobDetailsView import JobDetailsView
 from C4CApplication.views.forms.ConfirmJobDoneForm import ConfirmJobDoneForm
 from C4CApplication.views.utils import create_user
-
-from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse_lazy
 
 
 class ConfirmJobDoneView(JobDetailsView):

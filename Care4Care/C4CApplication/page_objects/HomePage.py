@@ -1,3 +1,5 @@
+import time
+
 from C4CApplication.page_objects.FixedPage import FixedPage
 from C4CApplication.page_objects.MyCare4Care import MyCare4Care
 from C4CApplication.page_objects.CreateJobPage import CreateJobPage
@@ -5,9 +7,6 @@ from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 from C4CApplication.page_objects.JobDetailsPage import JobDetailsPage
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-
-
-import time
 
 
 class HomePage(FixedPage):

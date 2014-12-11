@@ -1,3 +1,5 @@
+import time
+
 from C4CApplication.unit_tests.super_class import MySeleniumTests
 from C4CApplication.page_objects.HomePage import HomePage
 from C4CApplication.page_objects.BranchListPage import BranchListPage
@@ -6,9 +8,6 @@ from C4CApplication.page_objects.InscriptionPage import InscriptionPage
 from C4CApplication.page_objects.ProfilePage import ProfilePage
 from C4CApplication.page_objects.ModifProfilePage import ModifProfilePage
 from C4CApplication.models.member import Member
-
-
-import time
 
 
 class UserAccountTest(MySeleniumTests):

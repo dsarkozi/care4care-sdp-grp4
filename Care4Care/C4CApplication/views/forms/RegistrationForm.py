@@ -1,12 +1,14 @@
 import datetime
+
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, PasswordInput
 from localflavor.be.forms import BEPostalCodeField, BEPhoneNumberField
+from django.utils.translation import ugettext_lazy as _
+
 from C4CApplication.models.branch import Branch
 from C4CApplication.models.member import Member
-from django.utils.translation import ugettext_lazy as _
 from C4CApplication.views.utils import UnlabelledRadioFieldRenderer, UnlabelledCheckboxFieldRenderer
 
 

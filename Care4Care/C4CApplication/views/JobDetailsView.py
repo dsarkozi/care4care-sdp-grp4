@@ -1,7 +1,7 @@
 from django.views.generic import DetailView
 from django.views.generic import FormView
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse_lazy
+
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
 from C4CApplication.views.forms.JobRegularForm import JobRegularForm

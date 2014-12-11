@@ -1,6 +1,7 @@
 from django.forms.widgets import ChoiceInput, ChoiceFieldRenderer
 from django.utils.encoding import force_text
 from django.utils.html import format_html
+
 from C4CApplication.meta.visitor import Visitor
 from C4CApplication.meta.non_member import NonMember
 from C4CApplication.meta.member import Member
@@ -10,6 +11,7 @@ from C4CApplication.meta.volunteer_verified import VolunteerVerified
 from C4CApplication.meta.branch_officer import BranchOfficer
 from C4CApplication.meta.bp_administrator import BPAdministrator
 from C4CApplication import models
+
 
 class UnlabelledChoiceInput(ChoiceInput):
     input_type = None
