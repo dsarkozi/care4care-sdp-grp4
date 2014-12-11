@@ -197,7 +197,7 @@ class BPAdministrator(BranchOfficer):
         if len(branch_officer) != 1 or branch_officer[0].deleted:  # If the member does not exist
             return False
         branch_officer = branch_officer[0]
-        branch_officer.tag = 16  # We upgrade his rights
+        branch_officer.tag |= 16  # We upgrade his rights
 
         branch.branch_officer = branch_officer_email
         branch.save()
