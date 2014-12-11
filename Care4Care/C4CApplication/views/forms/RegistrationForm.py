@@ -71,8 +71,8 @@ class RegistrationForm(ModelForm):
         self.fields['branch'].queryset = Branch.objects.all()
         self.fields['birthday'].initial = datetime.date.today()
         self.fields['zip'] = BEPostalCodeField(label = _('Postal code'))
-        self.fields['telephone'] = BEPhoneNumberField(label=_('Phone number'))
-        self.fields['mobile'] = BEPhoneNumberField(label=_('Mobile number'))
+        self.fields['telephone'] = BEPhoneNumberField(required=False, label=_('Phone number'))
+        self.fields['mobile'] = BEPhoneNumberField(required=False, label=_('Mobile number'))
 
         self.fields['tag'] = forms.ChoiceField(
             widget=forms.RadioSelect(renderer=UnlabelledRadioFieldRenderer),
