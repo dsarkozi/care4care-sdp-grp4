@@ -195,6 +195,7 @@ class BPAdministrator(BranchOfficer):
 
         branch.branch_officer = branch_officer_email
         branch.save()
+        branch_officer.branch.add(branch)
         branch_officer.save()
         return True
 
