@@ -53,5 +53,6 @@ class BranchOfficerTest(MySeleniumTests):
         page = page.click_on_log_as_member()
         time.sleep(2)
         
-        self.assertEqual(0, 0)
+        name = self.selenium.find_elements_by_xpath("//h1[@class='entete']")[0]
+        self.assertEqual(name.text, "Olivier Mauvaisaventure")
         return True

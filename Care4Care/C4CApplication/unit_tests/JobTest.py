@@ -141,14 +141,7 @@ class JobTest(MySeleniumTests):
         time.sleep(1)
         page = page.click_on_confirm()
         time.sleep(1)
-        self.assertEqual(0, 0)
+        #job = Job.objects.filter(title="Visiter l'Atomium")[0]
+        #self.assertEqual(job.done, True)
         return True
-    
-    # TODO wait for this to be implemented
-    def test_search_job(self):
-        self.populate_db()
-        
-        self.selenium.get('%s%s' % (self.live_server_url, ''))
-        
-        self.assertEqual(0, 0)
-        return True
+
