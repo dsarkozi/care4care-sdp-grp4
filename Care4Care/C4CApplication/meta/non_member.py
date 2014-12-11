@@ -1,10 +1,9 @@
+from django.db.models import Max
+
 from C4CApplication.meta import User
 from C4CApplication.models import Job, Member, Branch, Message, Mailbox
-from django.db.models import Max
 from C4CApplication.models.relationship import Relationship
-from C4CApplication.meta.time import Time
-
-from django.core.urlresolvers import reverse_lazy
+from C4CApplication.time import Time
 
 
 class NonMember(User):

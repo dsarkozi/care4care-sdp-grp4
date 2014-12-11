@@ -1,7 +1,5 @@
-from C4CApplication.meta.time import Time
-
 from C4CApplication.meta.branch_officer import BranchOfficer
-from C4CApplication.models import Member, Branch, Job
+from C4CApplication.models import Member, Branch
 
 
 class BPAdministrator(BranchOfficer):

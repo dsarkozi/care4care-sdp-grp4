@@ -1,8 +1,6 @@
 from C4CApplication.meta import NonMember
-from C4CApplication.meta.time import Time
-from C4CApplication.models import Message, Job, Branch, Mailbox
+from C4CApplication.models import Job, Branch
 from C4CApplication import models
-from django.core.urlresolvers import reverse_lazy
 
 
 class Member(NonMember):
