@@ -56,22 +56,28 @@
 <!-- Fixed member data -->
 <center>
 <h1> {% trans "Hello"%}, {{ member.first_name }} ! </h1>
-
+{% if member.tag > 1 %}
 {% if member.time_credit >= 0 %}
 	<h3> {% trans "You have"%} {{member.time_credit|intdiv:1440}} {% trans "days"%} {{member.time_credit|mod:1440|intdiv:60}} {% trans "hours"%} {{member.time_credit|mod:60}} {% trans "minutes"%}</h3>
 {% else %}
 	<h3> {% trans "You are in debt of"%} {{0|sub:member.time_credit|intdiv:1440}} {% trans "days"%} {{0|sub:member.time_credit|mod:1440|intdiv:60}} {% trans "hours"%} {{0|sub:member.time_credit|mod:60}} {% trans "minutes"%}</h3>
+{% endif %}
 {% endif %}
 </center>
 
 
 <!-- Buttons -->
 <div style="margin-bottom:3em;">
-<center>    {% comment %} TODO Change this to id="XButton" for each X {% endcomment %}
+<center>
 <table style="margin-top:40px; margin-left:0px; margin-bottom:50px; align:center;">
 <tr>
+    {% if member.tag > 1 %}
     <td ><a href="{% url 'createJob' 'demand' %}" class="myButton">{% trans "I need help"%}</a></td>
     <td><a href={% url 'createJob' 'offer' %} class="myButton">{% trans "I want to help"%}</a></td>
+    {% else %}
+        <td><a href={% url 'createJob' 'offer' %} class="myButton">{% trans "I want to help"%}</a></td>
+    {% endif %}
+
 </tr>
 <tr>
   <td><center> <a href="{% url 'donate' %}" class="myButton2" >{% trans "Give time"%}</a></center></td>
