@@ -77,7 +77,6 @@ class BPAdministrator(BranchOfficer):
         branch = Branch.objects.filter(name=branch_name)
         if len(branch) != 1:
             return False
-
         new_branch_officer = Member.objects.filter(mail=new_branch_officer_email)
         # If the member doesn't exist
         if len(new_branch_officer) != 1 or new_branch_officer[0].deleted:
@@ -86,14 +85,15 @@ class BPAdministrator(BranchOfficer):
 
         # Change rights
         branch = branch[0]
+        
         old_branch_officer = Member.objects.filter(mail=branch.branch_officer)
         if len(old_branch_officer) != 1:  # If the branch officer doesn't exists
             return False
         old_branch_officer = old_branch_officer[0]
         keep_tag = False
-        for branch in Branch.objects.all():
+        for br in Branch.objects.all():
             # If the branch officer handles other branches
-            if branch.name != branch_name and branch.branch_officer == old_branch_officer.mail:
+            if br.name != branch_name and br.branch_officer == old_branch_officer.mail:
                 keep_tag = True
                 break
 
@@ -104,6 +104,7 @@ class BPAdministrator(BranchOfficer):
         new_branch_officer.tag |= 16  # We promote him branch officer
 
         branch.branch_officer = new_branch_officer_email
+        new_branch_officer.branch.add(branch)
         branch.save()
         return True
 
