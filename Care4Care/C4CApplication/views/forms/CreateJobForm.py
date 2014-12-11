@@ -61,18 +61,18 @@ class CreateJobForm(forms.ModelForm):
             widget=forms.TimeInput(
                 attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label='Start time',
+            label=_('Start time'),
         )
         self.fields['duration'] = forms.TimeField(
             widget=forms.TimeInput(
                 attrs={'placeholder' : 'Format: 00:00'},
             ),
-            label='Duration',
+            label=_('Duration'),
         )
         self.fields['km'] = forms.DecimalField(
             min_value=0,
             initial=0,
-            label='Distance to be covered (approximation)',
+            label=_('Distance to be covered (approximation)'),
             max_digits=4,
         )
 
