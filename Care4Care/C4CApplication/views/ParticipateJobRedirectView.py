@@ -4,6 +4,7 @@ from django.core.exceptions import PermissionDenied
 
 from C4CApplication.views.utils import create_user
 from C4CApplication.models.job import Job
+from django.core.urlresolvers import reverse_lazy
 
 
 class ParticipateJobRedirectView(RedirectView):
@@ -25,7 +26,7 @@ class ParticipateJobRedirectView(RedirectView):
         
         mail_member_choiced = kwargs['mail']
         job_id = kwargs['pk']
-        self.url = "/jobdetails/"+str(job_id)
+        self.url = reverse_lazy("jobdetails", args=[str(job_id)])
         
         #Recuperation du job
         job = Job.objects.filter(id=job_id)
@@ -42,14 +43,14 @@ class ParticipateJobRedirectView(RedirectView):
         #Actions buttons
         if mail_member_choiced == self.user.db_member.mail :    #Clicked on delete job
             self.user.delete_job(job.id)
-            self.url = "/"
+            self.url = reverse_lazy("home")
         elif mail_member_choiced == 'no_response@care4care.com' :   #Clicked on participate/stop participating    
             if self.user.db_member in job.member_set.all() :
                 self.user.stop_participate_job(job.number, job.mail)
             elif not job.accepted :
                 self.user.accept_job(job.number, job.mail)
         elif mail_member_choiced == 'no_response_regular@care4care.com':
-            self.url = "/jobdetails/"+str(job.regular_job.id)
+            self.url = reverse_lazy("jobdetails", args=[str(job.regular_job.id)])
             if self.user.db_member in job.member_set.all() :
                 self.user.stop_participate_job(job.number, job.mail)
             elif not job.accepted :

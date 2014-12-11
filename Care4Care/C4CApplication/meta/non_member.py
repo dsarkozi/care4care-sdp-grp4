@@ -231,6 +231,8 @@ class NonMember(User):
             return False
 
         job = job_list[0]
+        
+        print(str(function(job, self.db_member)))
 
         if function(job, self.db_member):
             job.member_set.remove(self.db_member)

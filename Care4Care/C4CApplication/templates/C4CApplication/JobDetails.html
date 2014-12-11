@@ -38,15 +38,13 @@
 
 				<a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Stop_Participate" class="btn">{% trans "Stop participating" %}</a>
 			{% else %}
-                {% if job.frequency == 0 %}
+                {% if job.frequency == 0 and member in job.branch.member_set.all %}
 				    <a href="{% url 'participatejob' job.id 'no_response@care4care.com' %}" type="submit" id="participate_button" value="Participate" class="btn">{% trans "Participate" %}</a>
                 {% endif %}
 			{% endif %}
 		{% endif %}
-		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 %}
-            {% if member.tag == job.branch.branch_officer or member.tag > 16 %}
-			    <a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
-            {% endif %}
+		{% if not job.accepted and job.mail == member.mail  or member.tag > 15 and job.branch.branch_officer == member.mail or member.tag >= 32 %}
+			<a href="{% url 'participatejob' job.id member.mail %}" type="submit" id="delete_job" value="DeleteJob" class="btn">{% trans "Delete job"%}</a> </br>
 		{% endif %}
 		
 		{% if job.type %}	<!-- If it's an demand -->
