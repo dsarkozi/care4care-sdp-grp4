@@ -14,7 +14,7 @@ background-color:#ffffff;padding-top:1em;padding-bottom:2em;margin-top:1em;width
    <center>
    
 	 <!-- Job form -->
-	 <h1>Job Search</h1>
+	 <h1>{% trans "Job Search" %}</h1>
 	 <form method="post" >
 	    {% csrf_token %}
  	
@@ -24,7 +24,7 @@ background-color:#ffffff;padding-top:1em;padding-bottom:2em;margin-top:1em;width
 	    <table><tr><td>{{ searchform.type_of_job }}</td></tr></table>
 	  
 
-	    <input type="submit" value="Filter" class ="btn"/>
+	    <input type="submit" value="{% trans "Filter" %}" class ="btn"/>
 	 </form>
      <br/>
 
