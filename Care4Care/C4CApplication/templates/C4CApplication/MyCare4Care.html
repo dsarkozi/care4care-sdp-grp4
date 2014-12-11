@@ -32,7 +32,7 @@
     
     <td><a href="{% url 'accountstats' %}" class="btn2 ">{% trans "Account & Stats"%}</a></td>
     
-      {% if member.tag == 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
+      {% if member.tag >= 32 %} {% comment %} {% trans "If we have a bp administrator"%} {% endcomment %}
         
       <td> <a href="{% url 'createbranch' %}" id="new_branch" class="btn2"  >{% trans "New branch"%}</a></td>
       

@@ -13,7 +13,7 @@
 	  <tr>
 		<th class=".tab1-3" colspan="6">
 			{{ branch.name }} <br/>
-			{% if member.tag == 32 %}
+			{% if member.tag >= 32 %}
 				<a href="{% url 'branchlistredirect' branch.name 'no_response@care4care.com' 3 %}" class ='btn'
 				   onclick="return window.confirm('{% trans "Are you sure you want to delete this branch"%} ?')">
 					{% trans "Delete the branch"%}
@@ -47,7 +47,7 @@
 		<td class="tab1-4">{% trans "Branch officer's mail"%}  </td>
 		<td class="tab1-3">
             <a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ branch.branch_officer }}  </a>
-            {% if member.tag == 16 and branch.branch_officer == member.mail or member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+            {% if member.tag >= 16 and branch.branch_officer == member.mail or member.tag >= 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
                 <br />
                 <br/>
                 <a href="{% url 'transferrightsbranch' branch.name %}" class = btn>{% trans "Change branch officer"%}</a>
@@ -81,7 +81,7 @@
                	 <a href="{% url 'newmessage' %}" type="submit" value="ChoiceMember" class="participate-job"> {{ mem.mail }}  </a>
               	 </td>
               	 
-               {% if member.tag == 16 and branch.branch_officer == member.mail or member.tag == 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
+               {% if member.tag >= 16 and branch.branch_officer == member.mail or member.tag >= 32 %} {% comment %} If the member is a bp administrator or a branch officer {% endcomment %}
                		<td class ="tab1-4" >
                         {% if mem.tag < 16 %}
 	                        <a href="{% url 'branchlistredirect' branch.name mem.mail 0 %}" id="remove_from_branch" value="remove_from_branch" class=btn

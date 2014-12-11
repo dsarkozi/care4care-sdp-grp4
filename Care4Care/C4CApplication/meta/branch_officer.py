@@ -130,6 +130,8 @@ class BranchOfficer(MetaMember):
         branch.branch_officer = new_branch_officer_email
         new_branch_officer.branch.add(branch)
         branch.save()
+        new_branch_officer.save()
+        old_branch_officer.save()
         return True
 
     def modify_tag_member(self, member_mail, new_tag):
