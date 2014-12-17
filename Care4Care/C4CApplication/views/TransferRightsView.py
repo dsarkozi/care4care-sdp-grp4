@@ -41,6 +41,6 @@ class TransferRightsView(FormView):
         
         res = self.user.transfer_bp_admin_rights(email_new_BPAdmin)
         if not res:
-            print("No such a member !")  # pop up ?
+            return super(TransferRightsView, self).form_invalid(form)
         
         return super(TransferRightsView, self).form_valid(form)

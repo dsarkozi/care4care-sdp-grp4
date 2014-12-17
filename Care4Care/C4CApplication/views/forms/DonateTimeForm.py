@@ -33,7 +33,6 @@ class DonateTimeForm(forms.Form):
     for member in members:
         tup += ((member['mail'], member['first_name'] + ' ' + member['last_name']),)
     tup = tuple(tup)
-    print(tup)
 
     userDropdown = forms.ChoiceField(
         widget=forms.Select,

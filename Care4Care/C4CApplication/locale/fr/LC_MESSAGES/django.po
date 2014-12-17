@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 04:01+0000\n"
+"POT-Creation-Date: 2014-12-11 11:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,87 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models/job.py:20
+#: models/job.py:16
 msgid "Once"
 msgstr "Une fois"
 
-#: models/job.py:21
+#: models/job.py:17
 msgid "Weekly"
 msgstr "Chaque semaine"
 
-#: models/job.py:22
+#: models/job.py:18
 msgid "Monthly"
 msgstr "Chaque mois"
 
-#: models/job.py:30 models/job.py:36
+#: models/job.py:26 models/job.py:32
 msgid "Shopping"
 msgstr "Shopping"
 
-#: models/job.py:31 models/job.py:37
+#: models/job.py:27 models/job.py:33
 msgid "Visit"
 msgstr "Visite"
 
-#: models/job.py:32 models/job.py:38
+#: models/job.py:28 models/job.py:34
 msgid "Transport"
 msgstr "Transport"
 
-#: models/job.py:33 models/job.py:39
+#: models/job.py:29 models/job.py:35
 msgid "Other"
 msgstr "Autre"
 
-#: models/job.py:50
+#: models/job.py:46
 msgid "Anyone"
 msgstr "Qui que ce soit"
 
-#: models/job.py:51 models/member.py:39
+#: models/job.py:47 models/member.py:37
 msgid "Verified"
 msgstr "Membre vérifié"
 
-#: models/job.py:52 templates/C4CApplication/MyCare4Care.html:31
+#: models/job.py:48 templates/C4CApplication/MyCare4Care.html:31
 msgid "Favorites"
 msgstr "Favoris"
 
-#: models/job.py:53 models/member.py:40
+#: models/job.py:49 models/member.py:38
 msgid "Volunteer"
 msgstr "Volontaire"
 
-#: models/member.py:28
+#: models/member.py:26
 msgid "non_member"
 msgstr "non membre"
 
-#: models/member.py:29
+#: models/member.py:27
 msgid "member"
 msgstr "membre"
 
-#: models/member.py:30
+#: models/member.py:28
 msgid "verified"
 msgstr "membre vérifié"
 
-#: models/member.py:31
+#: models/member.py:29
 msgid "volunteer"
 msgstr "volontaire"
 
-#: models/member.py:32
+#: models/member.py:30
 msgid "branch_officer"
 msgstr "Administrateur de branche"
 
-#: models/member.py:33
+#: models/member.py:31
 msgid "bp_admin"
 msgstr "bp_administrateur"
 
-#: models/member.py:37
+#: models/member.py:35
 msgid "Non member"
 msgstr "Non membre"
 
-#: models/member.py:38
+#: models/member.py:36
 msgid "Member"
 msgstr "Membre"
 
-#: models/member.py:41
+#: models/member.py:39
 msgid "Branch officer"
 msgstr "Administrateur de branche"
 
-#: models/member.py:42
+#: models/member.py:40
 msgid "BP admin"
 msgstr "BP Administrateur"
 
@@ -161,8 +161,10 @@ msgid "kilometers "
 msgstr "kilomètres"
 
 #: templates/C4CApplication/AccountAndStats.html:37
-msgid " Type of job done"
-msgstr "Type de job effectué"
+#, fuzzy
+#| msgid "Number of job completed"
+msgid " Type of job completed"
+msgstr "Nombre de tâches complètées"
 
 #: templates/C4CApplication/AccountAndStats.html:46
 msgid " Help received"
@@ -203,13 +205,18 @@ msgstr "Temps passé"
 #: templates/C4CApplication/AccountAndStats.html:88
 #: templates/C4CApplication/AccountAndStats.html:117
 #: templates/C4CApplication/AccountAndStats.html:144
-msgid "For Whom"
-msgstr "Pour qui"
+#, fuzzy
+#| msgid "Job category"
+msgid "Job creator"
+msgstr "Catégorie de la tâche"
 
 #: templates/C4CApplication/AccountAndStats.html:72
 #: templates/C4CApplication/AccountAndStats.html:99
 #: templates/C4CApplication/AccountAndStats.html:128
 #: templates/C4CApplication/AccountAndStats.html:155
+#: templates/C4CApplication/JobDetails.html:344
+#: templates/C4CApplication/JobDetails.html:347
+#: templates/C4CApplication/JobDetails.html:350
 #, fuzzy
 #| msgid "Branch Details"
 msgid "Details"
@@ -232,8 +239,13 @@ msgid "Utility of having a status"
 msgstr "Utilitée d'avoir un status"
 
 #: templates/C4CApplication/ChangeActivity.html:17
-msgid "Change your status to inactive to prevent other users that you will not be available in the next days (when you go on holydays for exemple)"
-msgstr "Changez votre status en inactif pour avertir les autres utilisateurs que vous ne serez pas disponible dans les prochains jours (quand vous partez en vacances par exemple)"
+msgid ""
+"Change your status to inactive to prevent other users that you will not be "
+"available in the next days (when you go on holydays for exemple)"
+msgstr ""
+"Changez votre status en inactif pour avertir les autres utilisateurs que "
+"vous ne serez pas disponible dans les prochains jours (quand vous partez en "
+"vacances par exemple)"
 
 #: templates/C4CApplication/ChangeActivity.html:22
 msgid "Do you want to be"
@@ -262,7 +274,7 @@ msgid "Create a branch"
 msgstr "Créer une branche"
 
 #: templates/C4CApplication/CreateBranch.html:18
-#: templates/C4CApplication/Profile.html:51
+#: templates/C4CApplication/Profile.html:58
 msgid "Name"
 msgstr "Nom"
 
@@ -275,7 +287,7 @@ msgid "Branch Officer"
 msgstr "Administrateur de branche"
 
 #: templates/C4CApplication/CreateBranch.html:21
-#: views/forms/RegistrationForm.py:33
+#: views/forms/RegistrationForm.py:35
 msgid "Street"
 msgstr "Rue"
 
@@ -288,7 +300,7 @@ msgid "Town"
 msgstr "Ville"
 
 #: templates/C4CApplication/CreateBranch.html:24
-#: templates/C4CApplication/ModifProfile.html:80
+#: templates/C4CApplication/ModifProfile.html:86
 #: templates/C4CApplication/TransferRightsBranch.html:27
 msgid "Submit"
 msgstr "Confirmez"
@@ -310,8 +322,8 @@ msgid "Quantitative information"
 msgstr "plus d'informations'"
 
 #: templates/C4CApplication/CreateJob.html:61
-#: templates/C4CApplication/HomePage.html:63
-#: templates/C4CApplication/HomePage.html:90
+#: templates/C4CApplication/HomePage.html:65
+#: templates/C4CApplication/HomePage.html:92
 #: templates/C4CApplication/JobSearch.html:13
 #: templates/C4CApplication/SearchJob.html:38
 msgid "Job category"
@@ -438,35 +450,36 @@ msgid "Welcome on Care4Care"
 msgstr "Bienvenue dans Care4Care"
 
 #: templates/C4CApplication/HomePage.html:31
-#: templates/C4CApplication/MyCare4Care.html:76
+#: templates/C4CApplication/MyCare4Care.html:77
 msgid "I need help"
 msgstr "J'ai besoin d'aide"
 
-#: templates/C4CApplication/HomePage.html:33
-#: templates/C4CApplication/MyCare4Care.html:77
+#: templates/C4CApplication/HomePage.html:35
+#: templates/C4CApplication/MyCare4Care.html:78
+#: templates/C4CApplication/MyCare4Care.html:80
 msgid "I want to help"
 msgstr "Je veux aider"
 
-#: templates/C4CApplication/HomePage.html:59
+#: templates/C4CApplication/HomePage.html:61
 #: templates/C4CApplication/JobSearch.html:9
 msgid "Recent feeds of offer"
 msgstr "Offres récentes"
 
-#: templates/C4CApplication/HomePage.html:64
-#: templates/C4CApplication/HomePage.html:91
+#: templates/C4CApplication/HomePage.html:66
+#: templates/C4CApplication/HomePage.html:93
 #: templates/C4CApplication/JobSearch.html:14
 #: templates/C4CApplication/SearchJob.html:39
 msgid "Title"
 msgstr "Titre"
 
-#: templates/C4CApplication/HomePage.html:65
-#: templates/C4CApplication/HomePage.html:92
+#: templates/C4CApplication/HomePage.html:67
+#: templates/C4CApplication/HomePage.html:94
 #: templates/C4CApplication/JobSearch.html:15
 #: templates/C4CApplication/SearchJob.html:40
 msgid "Location"
 msgstr "Localisation"
 
-#: templates/C4CApplication/HomePage.html:87
+#: templates/C4CApplication/HomePage.html:89
 msgid "Recent feeds of demand"
 msgstr "Demandes récentes"
 
@@ -475,159 +488,167 @@ msgid "Job details"
 msgstr "Détails de la tâche"
 
 #: templates/C4CApplication/JobDetails.html:39
-#: templates/C4CApplication/JobDetails.html:316
+#: templates/C4CApplication/JobDetails.html:343
 msgid "Stop participating"
 msgstr "Ne plus participer"
 
-#: templates/C4CApplication/JobDetails.html:43
-#: templates/C4CApplication/JobDetails.html:277
-#: templates/C4CApplication/JobDetails.html:318
+#: templates/C4CApplication/JobDetails.html:42
+#: templates/C4CApplication/JobDetails.html:289
+#: templates/C4CApplication/JobDetails.html:346
 msgid "Participate"
 msgstr "Participer"
 
-#: templates/C4CApplication/JobDetails.html:48
+#: templates/C4CApplication/JobDetails.html:47
 msgid "Delete job"
 msgstr "Supprimer une tâche"
 
 #: templates/C4CApplication/JobDetails.html:53
+#: templates/C4CApplication/JobDetails.html:58
 #, fuzzy
 #| msgid " Type of job done"
 msgid "My job is done"
 msgstr "Type de job effectué"
 
-#: templates/C4CApplication/JobDetails.html:59
+#: templates/C4CApplication/JobDetails.html:65
+#: templates/C4CApplication/JobDetails.html:70
 msgid "Pay the helper"
 msgstr ""
 
-#: templates/C4CApplication/JobDetails.html:73
+#: templates/C4CApplication/JobDetails.html:84
 msgid "Creator of the job"
 msgstr "Créateur de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:84
+#: templates/C4CApplication/JobDetails.html:95
 msgid "Regular job"
 msgstr "Job régulier"
 
-#: templates/C4CApplication/JobDetails.html:86
+#: templates/C4CApplication/JobDetails.html:97
 msgid "Go to the regular job"
 msgstr "Aller aux tâche régulières"
 
-#: templates/C4CApplication/JobDetails.html:94
-#: templates/C4CApplication/JobDetails.html:293
+#: templates/C4CApplication/JobDetails.html:105
+#: templates/C4CApplication/JobDetails.html:305
 msgid "Date of the job"
 msgstr "Date de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:102
-#: templates/C4CApplication/Profile.html:45
+#: templates/C4CApplication/JobDetails.html:113
+#: templates/C4CApplication/Profile.html:52
 msgid "Mail"
 msgstr "Mail"
 
-#: templates/C4CApplication/JobDetails.html:110
+#: templates/C4CApplication/JobDetails.html:121
 msgid "Hour of the start"
 msgstr "Heure du commencement"
 
-#: templates/C4CApplication/JobDetails.html:124
+#: templates/C4CApplication/JobDetails.html:135
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: templates/C4CApplication/JobDetails.html:141
-#: views/forms/CreateJobForm.py:70
+#: templates/C4CApplication/JobDetails.html:152
+#: views/forms/CreateJobForm.py:69
 msgid "Duration"
 msgstr "Durée"
 
-#: templates/C4CApplication/JobDetails.html:150
+#: templates/C4CApplication/JobDetails.html:161
 msgid "Category"
 msgstr "Catégorie"
 
-#: templates/C4CApplication/JobDetails.html:164
+#: templates/C4CApplication/JobDetails.html:175
 msgid "Type of job"
 msgstr "Type de job effectué"
 
-#: templates/C4CApplication/JobDetails.html:167
+#: templates/C4CApplication/JobDetails.html:178
 msgid "Demand"
 msgstr "Demande"
 
-#: templates/C4CApplication/JobDetails.html:169
+#: templates/C4CApplication/JobDetails.html:180
 msgid "Offer"
 msgstr "Offre"
 
-#: templates/C4CApplication/JobDetails.html:175
-#: templates/C4CApplication/Profile.html:56
-#: templates/C4CApplication/memberDetails.html:71
+#: templates/C4CApplication/JobDetails.html:186
+#: templates/C4CApplication/Profile.html:63
+#: templates/C4CApplication/memberDetails.html:74
 msgid "Address"
 msgstr "Adresse"
 
-#: templates/C4CApplication/JobDetails.html:181
+#: templates/C4CApplication/JobDetails.html:192
 msgid "Job accepted"
 msgstr "Tâche acceptée"
 
-#: templates/C4CApplication/JobDetails.html:184
-#: templates/C4CApplication/JobDetails.html:197
-#: templates/C4CApplication/JobDetails.html:210
+#: templates/C4CApplication/JobDetails.html:195
+#: templates/C4CApplication/JobDetails.html:208
+#: templates/C4CApplication/JobDetails.html:221
+#: templates/C4CApplication/JobDetails.html:323
+#: templates/C4CApplication/JobDetails.html:329
+#: templates/C4CApplication/JobDetails.html:335
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/C4CApplication/JobDetails.html:186
-#: templates/C4CApplication/JobDetails.html:199
-#: templates/C4CApplication/JobDetails.html:212
+#: templates/C4CApplication/JobDetails.html:197
+#: templates/C4CApplication/JobDetails.html:210
+#: templates/C4CApplication/JobDetails.html:223
+#: templates/C4CApplication/JobDetails.html:325
+#: templates/C4CApplication/JobDetails.html:331
+#: templates/C4CApplication/JobDetails.html:337
 msgid "No"
 msgstr "Non"
 
-#: templates/C4CApplication/JobDetails.html:194
+#: templates/C4CApplication/JobDetails.html:205
 msgid "Job done"
 msgstr "Tâche effectuée"
 
-#: templates/C4CApplication/JobDetails.html:207
+#: templates/C4CApplication/JobDetails.html:218
 msgid "Job payed"
 msgstr "Tâche payée"
 
-#: templates/C4CApplication/JobDetails.html:222
+#: templates/C4CApplication/JobDetails.html:233
 msgid "Visibility of the job"
 msgstr "visibilitée de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:231
-#: views/forms/RegistrationForm.py:40
+#: templates/C4CApplication/JobDetails.html:242
+#: views/forms/RegistrationForm.py:42
 msgid "Branch"
 msgstr "Branche"
 
-#: templates/C4CApplication/JobDetails.html:232
+#: templates/C4CApplication/JobDetails.html:243
 #: templates/C4CApplication/memberList.html:90
 msgid "branch"
 msgstr "branche"
 
-#: templates/C4CApplication/JobDetails.html:238
+#: templates/C4CApplication/JobDetails.html:249
 msgid "Description"
 msgstr "Description"
 
-#: templates/C4CApplication/JobDetails.html:245
-#: templates/C4CApplication/JobDetails.html:294
+#: templates/C4CApplication/JobDetails.html:256
+#: templates/C4CApplication/JobDetails.html:306
 msgid "Participants"
 msgstr "Participants"
 
-#: templates/C4CApplication/JobDetails.html:257
+#: templates/C4CApplication/JobDetails.html:268
 msgid "Choose this member"
 msgstr "Choisier ce membre"
 
-#: templates/C4CApplication/JobDetails.html:271
+#: templates/C4CApplication/JobDetails.html:283
 msgid "Occurence of the job"
 msgstr "Occurence de la tâche"
 
-#: templates/C4CApplication/JobDetails.html:275
+#: templates/C4CApplication/JobDetails.html:287
 msgid "Possibilities"
 msgstr "Possibilités"
 
-#: templates/C4CApplication/JobDetails.html:295
+#: templates/C4CApplication/JobDetails.html:307
 msgid "Accepted"
 msgstr "Accepté"
 
-#: templates/C4CApplication/JobDetails.html:296
+#: templates/C4CApplication/JobDetails.html:308
 msgid "Done"
 msgstr "Fait"
 
-#: templates/C4CApplication/JobDetails.html:297
+#: templates/C4CApplication/JobDetails.html:309
 msgid "Payed"
 msgstr "Payé"
 
-#: templates/C4CApplication/JobDetails.html:298
+#: templates/C4CApplication/JobDetails.html:310
 msgid "Action"
 msgstr "Action"
 
@@ -685,7 +706,7 @@ msgid "Message"
 msgstr "Message"
 
 #: templates/C4CApplication/ModifProfile.html:21
-#: templates/C4CApplication/Profile.html:59
+#: templates/C4CApplication/Profile.html:66
 msgid "Edit profile"
 msgstr "Editez le Profile"
 
@@ -698,7 +719,7 @@ msgid "Delete picture"
 msgstr "Supprimer la photo"
 
 #: templates/C4CApplication/ModifProfile.html:42
-#: templates/C4CApplication/Profile.html:34
+#: templates/C4CApplication/Profile.html:41
 msgid "Status"
 msgstr "Status"
 
@@ -710,7 +731,7 @@ msgstr "Changer en inactif"
 msgid "Switch to active"
 msgstr "Changer en actif"
 
-#: templates/C4CApplication/ModifProfile.html:86
+#: templates/C4CApplication/ModifProfile.html:92
 msgid "Delete account"
 msgstr "Supprimer le compte"
 
@@ -755,7 +776,7 @@ msgstr "heures"
 
 #: templates/C4CApplication/MyCare4Care.html:63
 #: templates/C4CApplication/MyCare4Care.html:65
-#: views/forms/DonateTimeForm.py:57
+#: views/forms/DonateTimeForm.py:67
 msgid "minutes"
 msgstr "minutes"
 
@@ -763,11 +784,11 @@ msgstr "minutes"
 msgid "You are in debt of"
 msgstr "Vous avez une dette de"
 
-#: templates/C4CApplication/MyCare4Care.html:80
+#: templates/C4CApplication/MyCare4Care.html:85
 msgid "Give time"
 msgstr "Donner du temps"
 
-#: templates/C4CApplication/MyCare4Care.html:81
+#: templates/C4CApplication/MyCare4Care.html:86
 msgid "Search a job"
 msgstr "Chercher une tâche"
 
@@ -783,45 +804,45 @@ msgstr "Nouveau message"
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/C4CApplication/Profile.html:27
+#: templates/C4CApplication/Profile.html:34
 msgid "Account"
 msgstr "Compte"
 
-#: templates/C4CApplication/Profile.html:29
+#: templates/C4CApplication/Profile.html:36
 msgid "Type"
 msgstr "Type"
 
-#: templates/C4CApplication/Profile.html:38
+#: templates/C4CApplication/Profile.html:45
 msgid "Active"
 msgstr "Actif"
 
-#: templates/C4CApplication/Profile.html:40
+#: templates/C4CApplication/Profile.html:47
 msgid "Inactive"
 msgstr "Inactif"
 
-#: templates/C4CApplication/Profile.html:46
+#: templates/C4CApplication/Profile.html:53
 msgid "Registration date"
 msgstr "Date d'enregistrement"
 
-#: templates/C4CApplication/Profile.html:49
+#: templates/C4CApplication/Profile.html:56
 msgid "Personal information"
 msgstr "Renseignements personnels"
 
-#: templates/C4CApplication/Profile.html:52
-#: templates/C4CApplication/memberDetails.html:66
-#: views/forms/RegistrationForm.py:38
+#: templates/C4CApplication/Profile.html:59
+#: templates/C4CApplication/memberDetails.html:69
+#: views/forms/RegistrationForm.py:40
 msgid "Gender"
 msgstr "Sexe"
 
-#: templates/C4CApplication/Profile.html:53
+#: templates/C4CApplication/Profile.html:60
 msgid "Birthdate"
 msgstr "Date de naissance"
 
-#: templates/C4CApplication/Profile.html:54
+#: templates/C4CApplication/Profile.html:61
 msgid "Fixed phone"
 msgstr "Téléphone fixe"
 
-#: templates/C4CApplication/Profile.html:55
+#: templates/C4CApplication/Profile.html:62
 msgid "Mobile phone"
 msgstr "Téléphone mobile"
 
@@ -844,7 +865,7 @@ msgid "Branch choice"
 msgstr "Administrateur de branche"
 
 #: templates/C4CApplication/Registration.html:114
-#: views/forms/RegistrationForm.py:78
+#: views/forms/RegistrationForm.py:80
 msgid "Account type"
 msgstr "Type de compte"
 
@@ -889,47 +910,47 @@ msgstr ""
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/C4CApplication/memberDetails.html:14
+#: templates/C4CApplication/memberDetails.html:17
 msgid "Actif"
 msgstr "Actif"
 
-#: templates/C4CApplication/memberDetails.html:20
+#: templates/C4CApplication/memberDetails.html:23
 msgid "Inactif"
 msgstr "Inactif"
 
-#: templates/C4CApplication/memberDetails.html:29
+#: templates/C4CApplication/memberDetails.html:32
 msgid "Add as a friend"
 msgstr "Ajouter comme un amis"
 
-#: templates/C4CApplication/memberDetails.html:33
+#: templates/C4CApplication/memberDetails.html:36
 msgid "Log as member"
 msgstr "Se connecter comme membre"
 
-#: templates/C4CApplication/memberDetails.html:37
+#: templates/C4CApplication/memberDetails.html:40
 msgid "Member details"
 msgstr "Détails du membre"
 
-#: templates/C4CApplication/memberDetails.html:41
+#: templates/C4CApplication/memberDetails.html:44
 msgid "Type of member"
 msgstr "Type de membre"
 
-#: templates/C4CApplication/memberDetails.html:47
+#: templates/C4CApplication/memberDetails.html:50
 msgid "Branche(s)"
 msgstr "Branche(s)"
 
-#: templates/C4CApplication/memberDetails.html:56
+#: templates/C4CApplication/memberDetails.html:59
 msgid "Email"
 msgstr "Email"
 
-#: templates/C4CApplication/memberDetails.html:61
+#: templates/C4CApplication/memberDetails.html:64
 msgid "Register date"
 msgstr "Date d'enregistrement"
 
-#: templates/C4CApplication/memberDetails.html:77
+#: templates/C4CApplication/memberDetails.html:80
 msgid "Fixed phone number"
 msgstr "Téléphone fixe"
 
-#: templates/C4CApplication/memberDetails.html:84
+#: templates/C4CApplication/memberDetails.html:87
 msgid "Mobile phone number"
 msgstr "Téléphone mobile"
 
@@ -1023,107 +1044,107 @@ msgstr "Ne plus avoir le status de volontaire"
 msgid "Time allowance"
 msgstr "Allocation de temps"
 
-#: views/forms/CreateBranchForm.py:10
+#: views/forms/CreateBranchForm.py:11
 msgid "branch name"
 msgstr "nom de la branche"
 
-#: views/forms/CreateBranchForm.py:11
+#: views/forms/CreateBranchForm.py:12
 msgid "Name of the branch "
 msgstr "Nom de la branche"
 
-#: views/forms/CreateBranchForm.py:16
+#: views/forms/CreateBranchForm.py:17
 msgid "town(s) of the branch"
 msgstr "Ville(s) de la branche"
 
-#: views/forms/CreateBranchForm.py:17
+#: views/forms/CreateBranchForm.py:18
 msgid "Name of the town "
 msgstr "Nome de la ville "
 
-#: views/forms/CreateBranchForm.py:22
+#: views/forms/CreateBranchForm.py:23
 msgid "branch_officer@mail.com"
 msgstr "administrateur_de_branche@gmail.com"
 
-#: views/forms/CreateBranchForm.py:23
+#: views/forms/CreateBranchForm.py:24
 msgid "Branch officer mail"
 msgstr "Courriel de l'administrateur de branche"
 
-#: views/forms/CreateBranchForm.py:29
+#: views/forms/CreateBranchForm.py:30
 msgid "street"
 msgstr "Rue"
 
-#: views/forms/CreateBranchForm.py:31
+#: views/forms/CreateBranchForm.py:32
 msgid "Street of the branch "
 msgstr "Rue de la branche"
 
-#: views/forms/CreateBranchForm.py:37
+#: views/forms/CreateBranchForm.py:38
 msgid "postal code"
 msgstr "Code postal"
 
-#: views/forms/CreateBranchForm.py:39
+#: views/forms/CreateBranchForm.py:40
 msgid "Zip of the branch "
 msgstr "Code postal de la branche"
 
-#: views/forms/CreateBranchForm.py:45 views/forms/ModifProfileForm.py:18
+#: views/forms/CreateBranchForm.py:46 views/forms/ModifProfileForm.py:15
 msgid "town"
 msgstr "Ville"
 
-#: views/forms/CreateBranchForm.py:47
+#: views/forms/CreateBranchForm.py:48
 msgid "Town of the branch "
 msgstr "Ville de la branche"
 
-#: views/forms/CreateBranchForm.py:60
+#: views/forms/CreateBranchForm.py:61
 msgid "A branch already exist with this name."
 msgstr "Une brance ayant ce nom existe déjà"
 
-#: views/forms/CreateJobForm.py:30
+#: views/forms/CreateJobForm.py:29
 msgid "Request description"
 msgstr "Description de la demande"
 
-#: views/forms/CreateJobForm.py:33
+#: views/forms/CreateJobForm.py:32
 msgid "Location details"
 msgstr "Localisation"
 
-#: views/forms/CreateJobForm.py:36
+#: views/forms/CreateJobForm.py:35
 msgid "Specify"
 msgstr "Spécifier"
 
-#: views/forms/CreateJobForm.py:58
+#: views/forms/CreateJobForm.py:57
 msgid "Request title"
 msgstr "Titre de la demande"
 
-#: views/forms/CreateJobForm.py:64
+#: views/forms/CreateJobForm.py:63
 msgid "Start time"
 msgstr "Début"
 
-#: views/forms/CreateJobForm.py:75
+#: views/forms/CreateJobForm.py:74
 msgid "Distance to be covered (approximation)"
 msgstr "Distance à couvrir (approximation)"
 
-#: views/forms/CreateJobForm.py:120
+#: views/forms/CreateJobForm.py:119
 msgid "Monday"
 msgstr "Lundi"
 
-#: views/forms/CreateJobForm.py:121
+#: views/forms/CreateJobForm.py:120
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: views/forms/CreateJobForm.py:122
+#: views/forms/CreateJobForm.py:121
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: views/forms/CreateJobForm.py:123
+#: views/forms/CreateJobForm.py:122
 msgid "Thursday"
 msgstr "Mardi"
 
-#: views/forms/CreateJobForm.py:124
+#: views/forms/CreateJobForm.py:123
 msgid "Friday"
 msgstr "Jeudi"
 
-#: views/forms/CreateJobForm.py:125
+#: views/forms/CreateJobForm.py:124
 msgid "Saturday"
 msgstr "Samdi"
 
-#: views/forms/CreateJobForm.py:126
+#: views/forms/CreateJobForm.py:125
 msgid "Sunday"
 msgstr "Dimanche"
 
@@ -1131,19 +1152,15 @@ msgstr "Dimanche"
 msgid "member_to_delete@mail.com"
 msgstr "membre_à_supprimer@mail.com"
 
-#: views/forms/DonateTimeForm.py:26
+#: views/forms/DonateTimeForm.py:28
 msgid "Send to one of your branches"
 msgstr "Envoyez à une de vos brances"
 
-#: views/forms/DonateTimeForm.py:26
+#: views/forms/DonateTimeForm.py:28
 msgid "Send to user"
 msgstr "Envoyer à l'utilistateur"
 
-#: views/forms/DonateTimeForm.py:30
-msgid "first_name"
-msgstr "prénom"
-
-#: views/forms/DonateTimeForm.py:57
+#: views/forms/DonateTimeForm.py:67
 msgid "You can't do a donation of 0 time !"
 msgstr "Vous ne pouvez pas faire une donation vide"
 
@@ -1151,42 +1168,42 @@ msgstr "Vous ne pouvez pas faire une donation vide"
 msgid "Email Address"
 msgstr "Adresse Email"
 
-#: views/forms/LoginForm.py:14 views/forms/RegistrationForm.py:35
-#: views/forms/RegistrationForm.py:60
+#: views/forms/LoginForm.py:14 views/forms/RegistrationForm.py:37
+#: views/forms/RegistrationForm.py:62
 msgid "Password"
 msgstr "mot de passe"
 
-#: views/forms/ModifProfileForm.py:11
+#: views/forms/ModifProfileForm.py:8
 msgid "new password"
 msgstr "nouveau mot de passe"
 
-#: views/forms/ModifProfileForm.py:12
+#: views/forms/ModifProfileForm.py:9
 msgid "password verification"
 msgstr "vérification du mot de passe"
 
-#: views/forms/ModifProfileForm.py:13
+#: views/forms/ModifProfileForm.py:10
 msgid "street, number, more informations"
 msgstr "rue, nombre, plus d'informations"
 
-#: views/forms/ModifProfileForm.py:17
+#: views/forms/ModifProfileForm.py:14
 msgid "zip"
 msgstr "Code postal"
 
-#: views/forms/ModifProfileForm.py:22
+#: views/forms/ModifProfileForm.py:21
 msgid "fixed phone"
 msgstr "Téléphone fixe"
 
-#: views/forms/ModifProfileForm.py:23
+#: views/forms/ModifProfileForm.py:22
 msgid "mobile phone"
 msgstr "Téléphone mobile"
 
-#: views/forms/ModifProfileForm.py:35
+#: views/forms/ModifProfileForm.py:44
 msgid "Your password is too short, it should be at least 8 characters long."
 msgstr ""
 "Votre mot de passe est trop court, il devrait contenir au minimum 8 "
 "caractères."
 
-#: views/forms/ModifProfileForm.py:38
+#: views/forms/ModifProfileForm.py:47
 msgid "You entered different passwords"
 msgstr "Vous avez entré un mot de passe différent."
 
@@ -1206,69 +1223,69 @@ msgstr "votre message"
 msgid "these Email addresse doesn't exist"
 msgstr "cette addresse Email n'existe pas"
 
-#: views/forms/RegistrationForm.py:32
+#: views/forms/RegistrationForm.py:34
 msgid "E-mail address"
 msgstr "Adresse E-mail"
 
-#: views/forms/RegistrationForm.py:34
+#: views/forms/RegistrationForm.py:36
 msgid "City"
 msgstr "Ville"
 
-#: views/forms/RegistrationForm.py:36
+#: views/forms/RegistrationForm.py:38
 #, fuzzy
 #| msgid "first name"
 msgid "First name"
 msgstr "prénom"
 
-#: views/forms/RegistrationForm.py:37
+#: views/forms/RegistrationForm.py:39
 #, fuzzy
 #| msgid "last name"
 msgid "Last name"
 msgstr "nom de famille"
 
-#: views/forms/RegistrationForm.py:39
+#: views/forms/RegistrationForm.py:41
 #, fuzzy
 #| msgid "birthday"
 msgid "Birthday"
 msgstr "date de naissance"
 
-#: views/forms/RegistrationForm.py:66
+#: views/forms/RegistrationForm.py:68
 #, fuzzy
 #| msgid "new password"
 msgid "Confirm password"
 msgstr "nouveau mot de passe"
 
-#: views/forms/RegistrationForm.py:68
+#: views/forms/RegistrationForm.py:70
 #, fuzzy
 #| msgid "picture"
 msgid "Picture"
 msgstr "Photo"
 
-#: views/forms/RegistrationForm.py:71
+#: views/forms/RegistrationForm.py:73
 msgid "Postal code"
 msgstr "Code postal"
 
-#: views/forms/RegistrationForm.py:72
+#: views/forms/RegistrationForm.py:74
 #, fuzzy
 #| msgid "Fixed phone number"
 msgid "Phone number"
 msgstr "Téléphone fixe"
 
-#: views/forms/RegistrationForm.py:73
+#: views/forms/RegistrationForm.py:75
 #, fuzzy
 #| msgid "Mobile phone number"
 msgid "Mobile number"
 msgstr "Téléphone mobile"
 
-#: views/forms/RegistrationForm.py:77
+#: views/forms/RegistrationForm.py:79
 msgid "Without time crediting"
 msgstr "Sans comptabilisation de temps"
 
-#: views/forms/RegistrationForm.py:77
+#: views/forms/RegistrationForm.py:79
 msgid "With time crediting"
 msgstr "Avec comptabilisation de temps"
 
-#: views/forms/RegistrationForm.py:100
+#: views/forms/RegistrationForm.py:102
 msgid "The password and confirmation do not match."
 msgstr ""
 
@@ -1291,6 +1308,15 @@ msgstr "nouveau_branch_officer@gmail.com"
 #: views/forms/TransferRightsForm.py:10
 msgid "new_BP_Admin@mail.com"
 msgstr "nouveau_BP_Administrateur@gmail.com"
+
+#~ msgid " Type of job done"
+#~ msgstr "Type de job effectué"
+
+#~ msgid "For Whom"
+#~ msgstr "Pour qui"
+
+#~ msgid "first_name"
+#~ msgstr "prénom"
 
 #~ msgid "anyone"
 #~ msgstr "qui que ce soit"

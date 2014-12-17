@@ -102,9 +102,6 @@ class BPAdministrator(BranchOfficer):
             old_branch_officer.tag |= 12  # We degrade him to a volunteer and verified member
 
         new_branch_officer.tag |= 16  # We promote him branch officer
-        
-        print("old branchoff " + str(old_branch_officer.tag))
-        print("new branchoff " + str(new_branch_officer.tag))
 
         branch.branch_officer = new_branch_officer_email
         new_branch_officer.branch.add(branch)
